@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MaU</string>
+    <string name="main_tab_1">首页</string>
+    <string name="main_tab_2">发现</string>
+    <string name="main_tab_3">消息</string>
+    <string name="main_tab_4">我的</string>
+</resources>
