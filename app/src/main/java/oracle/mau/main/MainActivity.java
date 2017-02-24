@@ -48,6 +48,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     /**
      * intent跳转静态方法
      * @param context  上下文
+     *                 测试
      */
     public static void actionStart(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
