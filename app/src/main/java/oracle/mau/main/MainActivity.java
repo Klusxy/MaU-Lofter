@@ -122,18 +122,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
      */
     private void openDialog() {
         bottomMenuDialog = new BottomMenuDialog.Builder(MainActivity.this)
-                .setTitle("更换封面")
+                .setTitle("选择图片")
                 .addMenu("从手机相册选择", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         bottomMenuDialog.dismiss();
                         Toast.makeText(v.getContext(), "从手机相册选择" , Toast.LENGTH_SHORT).show();
-                    }
-                }).addMenu("从空间相册选择", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        bottomMenuDialog.dismiss();
-                        Toast.makeText(v.getContext(), "从空间相册选择" , Toast.LENGTH_SHORT).show();
                     }
                 }).addMenu("拍一张", new View.OnClickListener() {
                     @Override
