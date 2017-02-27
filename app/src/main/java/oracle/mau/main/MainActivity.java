@@ -3,9 +3,13 @@ package oracle.mau.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -15,19 +19,36 @@ import android.widget.Toast;
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.main.account.AccountFragment;
+import oracle.mau.main.camera.activity.CropActivity;
+import oracle.mau.main.camera.constant.PhotoConstant;
+import oracle.mau.main.camera.utils.FileUtils;
 import oracle.mau.main.home.HomeFragment;
 import oracle.mau.main.label.LabelFragment;
 import oracle.mau.main.message.MessageFragment;
 import oracle.mau.view.BottomMenuDialog;
 
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener,View.OnClickListener{
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private RadioGroup rg_main;
     private RadioButton rb_main_label;
     //判断是否第一次加载界面
     private boolean isFirst = true;
+    /**
+     * 照相机模块
+     */
     //照相机按钮
     private Button btn_main_camera;
     private BottomMenuDialog bottomMenuDialog;
+    //照片存储地址，这个照片没有添加标签
+    public static final String IMAGE_SAVE = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera";
+    public final static String IMAGE_URI = "iamge_uri";
+    public final static String CROP_IMAGE_URI = "crop_image_uri";
+
+    public Uri mCameraImageUri;
+    //	public Uri mImageUri;
+
+    public final static int REQ_CODE_GALLERY = 201;
+    public final static int REQ_CODE_CAMERA = 203;
+    public final static int REQ_CODE_PHOTO_CROP = 102;
 
     @Override
     public int getLayoutId() {
@@ -43,17 +64,33 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         btn_main_camera.setOnClickListener(this);
         //设置UI
         configUI();
+        //配置camera模块相关内容
+        configCamera();
+    }
+
+    /**
+     * activity界面初始化时，配置camera模块相关内容
+     */
+    private void configCamera() {
+        //创建App缓存文件夹
+        PhotoConstant.CACHEPATH = new FileUtils(this).makeAppDir();
+        Display display = getWindowManager().getDefaultDisplay();
+        PhotoConstant.displayWidth = display.getWidth();
+        PhotoConstant.displayHeight = display.getHeight();
+        PhotoConstant.scale = getResources().getDisplayMetrics().density;
     }
 
     /**
      * intent跳转静态方法
-     * @param context  上下文
-     *                 测试
+     *
+     * @param context 上下文
+     *                测试
      */
     public static void actionStart(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
+
     /**
      * 初始化之后设置界面
      */
@@ -67,8 +104,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     /**
      * 替换碎片方法
-     * @param fg  新碎片
-     * @param id  被替换的layout
+     *
+     * @param fg 新碎片
+     * @param id 被替换的layout
      */
     public void replaceFragment(Fragment fg, int id) {
         //得到碎片管理器
@@ -83,6 +121,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     /**
      * 底部标签按钮点击事件
+     *
      * @param group
      * @param checkedId
      */
@@ -106,6 +145,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     /**
      * 按钮点击事件
+     *
      * @param v
      */
     @Override
@@ -127,16 +167,73 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                     @Override
                     public void onClick(View v) {
                         bottomMenuDialog.dismiss();
-                        Toast.makeText(v.getContext(), "从手机相册选择" , Toast.LENGTH_SHORT).show();
+                        openPhotoLib();
                     }
                 }).addMenu("拍一张", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         bottomMenuDialog.dismiss();
-                        Toast.makeText(v.getContext(), "拍一张" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), "拍一张", Toast.LENGTH_SHORT).show();
                     }
                 }).create();
 
         bottomMenuDialog.show();
+    }
+
+    /**
+     * 打开系统图库
+     */
+    private void openPhotoLib() {
+        Intent localIntent2 = new Intent();
+        localIntent2.setType("image/*");
+        localIntent2.setAction("android.intent.action.GET_CONTENT");
+        MainActivity.this.startActivityForResult(Intent.createChooser(localIntent2, "选择照片"), REQ_CODE_GALLERY);
+    }
+
+    /**
+     * intent回传
+     * 打开图库之后回调
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQ_CODE_GALLERY) {
+                // 从相册返回
+                Uri localUri = data.getData();
+                if (localUri == null) {
+                    return;
+                }
+                readLocalImage(localUri);
+            } else if (requestCode == REQ_CODE_CAMERA) {
+                // 从相机返回,从设置相机图片的输出路径中提取数据
+                readLocalImage(mCameraImageUri);
+            }
+        }
+    }
+    //选择照片后进行图片裁剪
+    private void readLocalImage(Uri uri) {
+        if (uri != null) {
+            startPhotoCrop(uri, null, REQ_CODE_PHOTO_CROP); // 图片裁剪
+        }
+    }
+    /**
+     * 开始裁剪
+     *
+     * @param uri
+     * @param duplicatePath
+     * @param reqCode
+     * @return void
+     * @Title: startPhotoCrop
+     * @date 2012-12-12 上午11:15:38
+     */
+    private void startPhotoCrop(Uri uri, String duplicatePath, int reqCode) {
+        Intent intent = new Intent(this, CropActivity.class);//跳转到裁剪界面
+        intent.putExtra(IMAGE_URI, uri);
+        startActivityForResult(intent, reqCode);
     }
 }

@@ -31,4 +31,9 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowFrame">@null</item>
     </style>
+    <!-- camera模块  popupwindow 动画 -->
+    <style name="Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/pop_out_anim</item>
+    </style>
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <oracle.mau.main.camera.view.XCRoundRectImageView
+        android:id="@+id/iv_filter_gallery_item_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="6dp"
+        android:scaleType="fitXY" />
+    <TextView
+        android:id="@+id/iv_filter_gallery_item_text"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:background="#000"
+        android:textColor="#FFF"
+        android:layout_alignBottom="@+id/iv_filter_gallery_item_image"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:textSize="13sp"
+        />
+</RelativeLayout>

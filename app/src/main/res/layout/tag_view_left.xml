@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <!--标签表情-->
+    <ImageView
+        android:id="@+id/iv_tagview_tag"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true" />
+    <!--连接条-->
+    <ImageView
+        android:id="@+id/iv_tagview_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/iv_tagview_tag"
+        android:src="@mipmap/ic_tag_edit_arrow" />
+    <!--标签内容-->
+    <TextView
+        android:id="@+id/tv_tagview_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/iv_tagview_flag"
+        android:background="@drawable/tag_tv_bg"
+        android:clickable="false"
+        android:lines="1"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:textColor="#ffffff"
+        android:textSize="12sp" />
+</RelativeLayout>

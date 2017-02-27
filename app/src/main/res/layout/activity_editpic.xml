@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+        <!--顶部-->
+        <RelativeLayout
+            android:id="@+id/edit_top"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="#24292C">
+
+            <ImageView
+                android:id="@+id/ed_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/action_bar_back_camera" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="编辑图片"
+                android:textColor="#FFF"
+                android:textSize="16sp" />
+            <!--android:textColor="#9AC600"-->
+            <TextView
+                android:id="@+id/ed_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:text="确定"
+                android:textColor="#FFF"
+                android:textSize="14sp" />
+        </RelativeLayout>
+        <!--用来修改的image-->
+        <RelativeLayout
+            android:id="@+id/rl_ep_mImageRootLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_ep_bottom"
+            android:layout_below="@+id/edit_top"
+            android:background="#000">
+
+            <ImageView
+                android:id="@+id/iv_ep_st_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <!--滤镜水平滚动条-->
+        <HorizontalScrollView
+            android:id="@+id/hc_ep_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:layout_above="@id/ll_ep_bottom"
+            android:layout_gravity="center_vertical"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/ll_ep_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"></LinearLayout>
+        </HorizontalScrollView>
+        <!--底部按钮栏-->
+        <LinearLayout
+            android:id="@+id/ll_ep_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_alignParentBottom="true"
+            android:background="#24292C"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawableTop="@mipmap/filter_watermark"
+                android:text="贴纸"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btn_ep_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawableTop="@mipmap/filter_tag"
+                android:text="标签"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btn_ep_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawableTop="@mipmap/filter_preview"
+                android:text="滤镜"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

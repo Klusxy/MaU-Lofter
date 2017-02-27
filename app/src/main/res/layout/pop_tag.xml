@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/stick_pop_bg">
+        <!--pop顶部-->
+        <RelativeLayout
+            android:id="@+id/tag_pop_top"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="#000">
+            <!--android:background="#24292C"-->
+            <ImageView
+                android:id="@+id/tag_pop_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/action_bar_cancel_camera" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="添加文字标签"
+                android:textColor="#FFF"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tag_pop_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:text="完成"
+                android:textColor="#FFF"
+                android:textSize="14sp" />
+        </RelativeLayout>
+        <!--pop显示添加之后的标签和文字区域-->
+        <RelativeLayout
+            android:id="@+id/rl_pop_edit_et"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_below="@+id/tag_pop_top">
+
+            <ImageView
+                android:id="@+id/iv_pop_tag_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="20dp" />
+
+            <ImageView
+                android:id="@+id/iv_pop_tag_flag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_pop_tag_img"
+                android:src="@mipmap/ic_tag_edit_arrow" />
+
+            <EditText
+                android:id="@+id/et_pop_tag_content"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_pop_tag_flag"
+                android:background="@drawable/tag_et_bg"
+                android:hint="请输入文字内容"
+                android:lines="1"
+                android:paddingBottom="9dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="9dp"
+                android:textColorHint="#dbdbdb"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+        <!--分割线-->
+        <RelativeLayout
+            android:id="@+id/rl_pop_tag_mid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_pop_edit_et">
+
+            <TextView
+                android:id="@+id/tv_pop_tag_flag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="请选择图标"
+                android:textColor="#8e8e8e"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/tv_pop_tag_flag"
+                android:background="#8e8e8e" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="40dp"
+                android:layout_toRightOf="@+id/tv_pop_tag_flag"
+                android:background="#8e8e8e" />
+        </RelativeLayout>
+        <!--标签表情网格-->
+        <GridView
+            android:id="@+id/gv_pop_tag_face"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rl_pop_tag_mid"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:horizontalSpacing="15dp"
+            android:numColumns="5"
+            android:paddingTop="30dp"
+            android:verticalSpacing="25dp">
+
+        </GridView>
+
+    </RelativeLayout>
+</RelativeLayout>

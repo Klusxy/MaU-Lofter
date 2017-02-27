@@ -28,6 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--裁剪界面-->
+        <activity
+            android:name=".main.camera.activity.CropActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar">
+        </activity>
+        <!--编辑页面-->
+        <activity android:name=".main.camera.activity.EditPicActivity"/>
     </application>
 
 </manifest>
