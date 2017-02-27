@@ -14,7 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
+
+import com.yongchun.library.view.ImageSelectorActivity;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
@@ -163,17 +169,23 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private void openDialog() {
         bottomMenuDialog = new BottomMenuDialog.Builder(MainActivity.this)
                 .setTitle("选择图片")
-                .addMenu("从手机相册选择", new View.OnClickListener() {
+                .addMenu("发布自定义图片文章", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         bottomMenuDialog.dismiss();
-                        openPhotoLib();
+                        openOnePhotoLib();
+                    }
+                }).addMenu("发布多张图片文章", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomMenuDialog.dismiss();
+                        openMorePhotoLib();
                     }
                 }).addMenu("拍一张", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         bottomMenuDialog.dismiss();
-                        Toast.makeText(v.getContext(), "拍一张", Toast.LENGTH_SHORT).show();
+                        openCamera();
                     }
                 }).create();
 
@@ -181,9 +193,37 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     /**
+     * 选取多张图片
+     */
+    private void openMorePhotoLib() {
+        /**
+         * 参数分别代表
+         * 最多可选择图片数（int），
+         * 单选多选（int），model可以设置ImageSelectorActivity.MODE_MULTIPLE和mageSelectorActivity.MODE_SINGLE
+         *
+         * 是否显示拍照选项（boolean），
+         * 是否显示预览（boolean），
+         * 是否裁剪（boolean）等
+         *
+         */
+        ImageSelectorActivity.start(this, 9, ImageSelectorActivity.MODE_MULTIPLE, true, true, true);
+    }
+
+    /**
+     * 打开照相机
+     */
+    private void openCamera() {
+        Intent localIntent1 = new Intent("android.media.action.IMAGE_CAPTURE");
+        //设置相机图片的输出路径
+        mCameraImageUri = Uri.fromFile(new File(IMAGE_SAVE, new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date()) + ".jpg"));
+        localIntent1.putExtra("output", mCameraImageUri);
+        MainActivity.this.startActivityForResult(localIntent1, REQ_CODE_CAMERA);
+    }
+
+    /**
      * 打开系统图库
      */
-    private void openPhotoLib() {
+    private void openOnePhotoLib() {
         Intent localIntent2 = new Intent();
         localIntent2.setType("image/*");
         localIntent2.setAction("android.intent.action.GET_CONTENT");
@@ -202,16 +242,29 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
+            /**
+             * 单选之后
+             */
             if (requestCode == REQ_CODE_GALLERY) {
-                // 从相册返回
                 Uri localUri = data.getData();
                 if (localUri == null) {
                     return;
                 }
                 readLocalImage(localUri);
-            } else if (requestCode == REQ_CODE_CAMERA) {
+            }
+            /**
+             * 照相机
+             */
+            else if (requestCode == REQ_CODE_CAMERA) {
                 // 从相机返回,从设置相机图片的输出路径中提取数据
                 readLocalImage(mCameraImageUri);
+            }
+            /**
+             * 多选照片
+             */
+            else if (requestCode == ImageSelectorActivity.REQUEST_IMAGE) {
+                ArrayList<String> images = (ArrayList<String>) data.getSerializableExtra(ImageSelectorActivity.REQUEST_OUTPUT);
+                Log.d("sdadasdas", "list长度   返回来的长度" + images.size() + "  " + images.size());
             }
         }
     }
