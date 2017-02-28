@@ -327,9 +327,9 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
             }
         });
 
-//        Intent intent = new Intent(this,ShowTagActivity.class);
-//        intent.putExtra("tag_image_path", mImagePath);
-//        startActivity(intent);
+        Intent intent = new Intent(this,ReleaseArticleActivity.class);
+        intent.putExtra("tag_image_path", mImagePath);
+        startActivity(intent);
     }
 
     /**
