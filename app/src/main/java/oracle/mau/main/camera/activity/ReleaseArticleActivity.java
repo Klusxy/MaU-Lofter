@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
@@ -26,6 +27,11 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
      * 添加位置的线性布局
      */
     private LinearLayout ll_ra_add_location;
+
+    /**
+     * 添加位置控件
+     */
+    private TextView tv_ta_location;
     @Override
     public int getLayoutId() {
         return R.layout.activity_release_article;
@@ -42,8 +48,13 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
         iv_ra_pic.setImageURI(mImageUri);
         ll_ra_add_location = (LinearLayout) findViewById(R.id.ll_ra_add_location);
         ll_ra_add_location.setOnClickListener(this);
+        tv_ta_location = (TextView) findViewById(R.id.tv_ta_location);
     }
 
+    /**
+     * 点击事件
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -55,6 +66,22 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
                 Intent intent = new Intent(this,AddLocation.class);
                 startActivityForResult(intent,ADD_LOCATIONE_CODE);
                 break;
+        }
+    }
+
+    /**
+     * 回调
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        /**
+         * 添加位置返回结果
+         */
+        if (AddLocation.ADDLOCATION_BACKCODE==resultCode) {
+            tv_ta_location.setText(data.getStringExtra("location"));
         }
     }
 }
