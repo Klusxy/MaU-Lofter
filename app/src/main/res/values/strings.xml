@@ -8,4 +8,5 @@
     <!--camera模块-->
     <string name="runningFaceDetection">请稍后...</string>
     <string name="camera_cancel">取消</string>
+    <string name="camera_complete">完成</string>
 </resources>

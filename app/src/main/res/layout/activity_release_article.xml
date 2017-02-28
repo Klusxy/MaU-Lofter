@@ -40,6 +40,7 @@
         android:paddingTop="10dp">
 
         <RelativeLayout
+            android:id="@+id/rl_ra_add_article"
             android:layout_width="match_parent"
             android:layout_height="120dp">
 
@@ -52,6 +53,7 @@
                 android:scaleType="fitXY" />
 
             <EditText
+                android:id="@+id/et_ra_article"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/iv_ra_pic"
@@ -123,8 +125,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_top_height"
         android:layout_alignParentBottom="true"
-        android:background="#000"
-        android:text="发布"
+        android:background="#A3C53C"
+        android:text="发  布"
         android:textAlignment="center"
         android:textColor="#FFF" />
 </RelativeLayout>

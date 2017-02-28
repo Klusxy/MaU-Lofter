@@ -23,7 +23,7 @@ import java.util.List;
  * Created by 田帅 on 2017/2/28.
  */
 
-public class AddLocation extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
+public class AddLocationActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
 
     /**
      * 返回按钮
@@ -43,7 +43,7 @@ public class AddLocation extends BaseActivity implements View.OnClickListener,Ad
     private ListView lv_add_location_location;
 
     /**
-     *
+     * 返回码
      */
     public final static int ADDLOCATION_BACKCODE = 10002;
 

@@ -102,10 +102,10 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
     /**
      * 用来将图片存入缓存中
      */
-    private final Handler mHandler = new Handler(){
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (UPDATE_FILTER_GALLERY==(int) msg.obj){
+            if (UPDATE_FILTER_GALLERY == (int) msg.obj) {
                 /**
                  * 初始化滤镜画廊
                  */
@@ -134,7 +134,14 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
 
     private void initViews() {
         mImageView = (ImageView) findViewById(R.id.iv_ep_st_image);
+        mImageRootLayout = (RelativeLayout) findViewById(R.id.rl_ep_mImageRootLayout);
         if (mImageUri != null) {
+            /**
+             * 设置mRootLayout的位置
+             */
+            RelativeLayout.LayoutParams lpp = new RelativeLayout.LayoutParams(PhotoConstant.displayWidth, PhotoConstant.displayWidth);
+            lpp.addRule(RelativeLayout.CENTER_VERTICAL);
+            mImageRootLayout.setLayoutParams(lpp);
             /**
              * 动态设置图片的大小和位置
              */
@@ -145,7 +152,6 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
         }
         btn_edit_tag = (Button) findViewById(R.id.btn_ep_tag);
         btn_edit_tag.setOnClickListener(this);
-        mImageRootLayout = (RelativeLayout) findViewById(R.id.rl_ep_mImageRootLayout);
         mImageRootLayout.setBackgroundColor(Color.BLACK);
         ed_cancel = (ImageView) findViewById(R.id.ed_cancel);
         ed_cancel.setOnClickListener(this);
@@ -156,7 +162,7 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
         hc_et = (HorizontalScrollView) findViewById(R.id.hc_ep_filter);
         hc_et.setVisibility(View.GONE);
         ll_et_gallery = (LinearLayout) findViewById(R.id.ll_ep_gallery);
-        new Thread(){
+        new Thread() {
             @Override
             public void run() {
                 //将file转成bm
@@ -174,7 +180,7 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
      * 初始化滤镜画廊
      */
     private void initFilterGallery() {
-        for (int i = 0; i< filterImageList.size(); i++) {
+        for (int i = 0; i < filterImageList.size(); i++) {
             View view = mInflater.inflate(R.layout.activity_filter_gallery_item,
                     ll_et_gallery, false);
             final ImageView img = (ImageView) view
@@ -291,22 +297,22 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
             /**
              * 确定按钮
              */
-            case R.id.ed_next :
+            case R.id.ed_next:
                 saveImageAndFinish();
-                finish();
+
                 break;
             /**
              * 滤镜按钮
              */
             case R.id.btn_ep_filter:
-                if (filterImageList.size()<9) {
-                    Toast.makeText(this,"滤镜缩略图正在加载，请稍后再试",Toast.LENGTH_SHORT).show();
-                }else if (isFirstFilter){
+                if (filterImageList.size() < 9) {
+                    Toast.makeText(this, "滤镜缩略图正在加载，请稍后再试", Toast.LENGTH_SHORT).show();
+                } else if (isFirstFilter) {
                     hc_et.setVisibility(View.VISIBLE);
                     isFirstFilter = false;
-                }else {
+                } else {
                     hc_et.setVisibility(View.GONE);
-                    isFirstFilter = true ;
+                    isFirstFilter = true;
                 }
                 break;
         }
@@ -327,15 +333,17 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
             }
         });
 
-        Intent intent = new Intent(this,ReleaseArticleActivity.class);
+        Intent intent = new Intent(this, ReleaseArticleActivity.class);
         intent.putExtra("tag_image_path", mImagePath);
         startActivity(intent);
+        finish();
     }
 
     /**
      * 编辑标签信息
-     * @param imgId  标签表情对应在网格的位置的图片id
-     * @param content   添加的标签信息
+     *
+     * @param imgId   标签表情对应在网格的位置的图片id
+     * @param content 添加的标签信息
      */
     private void editTagInfo(int imgId, String content) {
         /**
@@ -370,6 +378,7 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
 
     /**
      * 保存图片到缓存中
+     *
      * @param bitmap
      * @param filePath
      */
@@ -398,17 +407,19 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
         view.invalidate();
         //shark_5
         view.setDrawingCacheEnabled(true);
-        view.measure(
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-        view.layout(0, 0, view.getMeasuredWidth(),
-                view.getMeasuredHeight());
+//        view.measure(
+//                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+//                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+//        view.layout(0, 0, view.getMeasuredWidth(),
+//                view.getMeasuredHeight());
 
         view.buildDrawingCache();
 
         Bitmap bitmap = view.getDrawingCache();
+
         return bitmap;
     }
+
     /**
      * 添加标签
      */
@@ -448,7 +459,7 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
                         _yDelta = Y - lParams.topMargin;
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        updateTagView(v,X,Y);
+                        updateTagView(v, X, Y);
                         break;
                 }
                 return false;
@@ -458,9 +469,10 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
 
     /**
      * 更新标签控件的位置
-     * @param v  标签控件
-     * @param x  触摸点的相对坐标X
-     * @param y  触摸点的相对坐标Y
+     *
+     * @param v 标签控件
+     * @param x 触摸点的相对坐标X
+     * @param y 触摸点的相对坐标Y
      */
     private void updateTagView(View v, int x, int y) {
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) v
@@ -472,19 +484,18 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
         /**
          * 判断左右边界
          */
-        if (lp.leftMargin<0) {
-            lp.leftMargin=0;
-        }
-        else if (lp.leftMargin>(mImageView.getWidth()-v.getWidth())){
-            lp.leftMargin = mImageView.getWidth()-v.getWidth();
+        if (lp.leftMargin < 0) {
+            lp.leftMargin = 0;
+        } else if (lp.leftMargin > (mImageView.getWidth() - v.getWidth())) {
+            lp.leftMargin = mImageView.getWidth() - v.getWidth();
         }
         /**
          * 判断上下边界
          */
-        if (lp.topMargin<mImageView.getY()) {
-            lp.topMargin=(int) mImageView.getY();
-        }else if (lp.topMargin>(mImageView.getY()+mImageView.getHeight()-v.getHeight())) {
-            lp.topMargin=(int)mImageView.getY()+mImageView.getHeight()-v.getHeight();
+        if (lp.topMargin < mImageView.getY()) {
+            lp.topMargin = (int) mImageView.getY();
+        } else if (lp.topMargin > (mImageView.getY() + mImageView.getHeight() - v.getHeight())) {
+            lp.topMargin = (int) mImageView.getY() + mImageView.getHeight() - v.getHeight();
         }
         /**
          * 更新位置
