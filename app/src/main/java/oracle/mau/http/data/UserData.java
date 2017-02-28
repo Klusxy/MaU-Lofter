@@ -1,6 +1,6 @@
 package oracle.mau.http.data;
 
-import entity.UserEntity;
+import oracle.mau.entity.UserEntity;
 import oracle.mau.http.bean.BeanData;
 
 /**

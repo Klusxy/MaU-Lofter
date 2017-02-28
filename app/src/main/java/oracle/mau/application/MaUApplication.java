@@ -2,7 +2,7 @@ package oracle.mau.application;
 
 import android.app.Application;
 
-import entity.UserEntity;
+import oracle.mau.entity.UserEntity;
 
 /**
  * Created by 田帅 on 2017/2/14.

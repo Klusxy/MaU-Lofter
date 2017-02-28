@@ -1,4 +1,4 @@
-package entity;
+package oracle.mau.entity;
 
 /**
  * Created by shadow on 2017/2/28.

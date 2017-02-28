@@ -29,6 +29,7 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
     private EditText editTel;
     private EditText editpwd;
     private Button btnLogin;
+    private Button btnRegister;
     @Override
     public int getLayoutId() {
         return R.layout.activity_login;
@@ -38,13 +39,30 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
     public void initView() {
         editTel=(EditText) findViewById(R.id.edit_login_tel);
         editpwd=(EditText) findViewById(R.id.edit_login_pwd);
+
         btnLogin=(Button) findViewById(R.id.button);
         btnLogin.setOnClickListener(this);
+        btnRegister=(Button)findViewById(R.id.btn_register);
+        btnRegister.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
-        sendMessage();
+        switch (view.getId()) {
+            case R.id.button:
+                sendMessage();
+                break;
+            case R.id.btn_register:
+                Intent intentRegister=new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intentRegister);
+
+                break;
+
+            default:
+                break;
+        }
+
     }
 
 
