@@ -1,5 +1,6 @@
 package oracle.mau.main.camera.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import oracle.mau.main.MainActivity;
  */
 
 public class ReleaseArticleActivity extends BaseActivity implements View.OnClickListener{
+    private final static int ADD_LOCATIONE_CODE = 10001;
     private Uri mImageUri;            //目标图片的Uri
     private String mImagePath;        //目标图片的路径
     /**
@@ -49,7 +51,9 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
              * 添加位置
              */
             case R.id.ll_ra_add_location :
-                toast("asdasdas");
+                //跳转到添加位置界面
+                Intent intent = new Intent(this,AddLocation.class);
+                startActivityForResult(intent,ADD_LOCATIONE_CODE);
                 break;
         }
     }

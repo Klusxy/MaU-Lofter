@@ -11,6 +11,10 @@ import oracle.mau.base.BaseFragment;
  */
 
 public class HomeFragment extends BaseFragment {
+    /**
+     * dasdasdasdasdas
+     * @return
+     */
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_home;

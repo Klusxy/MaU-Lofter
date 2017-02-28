@@ -5,6 +5,8 @@
     <!--整体-->
     <!--整体top栏高度-->
     <dimen name="main_top_height">48dp</dimen>
+    <!--导航栏中间字体大小-->
+    <dimen name="main_nav_top_mid_test_size">20sp</dimen>
     <!--首页底部标签栏字体大小-->
     <dimen name="main_bottom_text_size">10sp</dimen>
 </resources>

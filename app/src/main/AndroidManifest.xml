@@ -39,6 +39,7 @@
         <activity android:name=".main.camera.activity.EditPicActivity"/>
         <!--发布Article页面-->
         <activity android:name=".main.camera.activity.ReleaseArticleActivity" />
+        <activity android:name=".main.camera.activity.AddLocation" />
     </application>
 
 </manifest>
