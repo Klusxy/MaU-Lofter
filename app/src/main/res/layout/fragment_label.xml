@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="发现"/>
-</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_label_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_top_height"
+        android:background="#FF0"
+        >
+
+        <EditText
+            android:id="@+id/et_label_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tv_label_cancle" />
+
+        <TextView
+            android:id="@+id/tv_label_cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="取消"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_label_fg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_label_top">
+
+    </FrameLayout>
+</RelativeLayout>
