@@ -2,27 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <include
+        android:id="@+id/header_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/head_login" />
     <EditText
+        android:id="@+id/edit_login_tel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入手机号码"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
+        android:layout_marginTop="10dip"
         android:textColor="#727272"/>
     <EditText
+        android:id="@+id/edit_login_pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入密码"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
+        android:layout_marginTop="10dip"
         android:textColor="#727272"/>
+
     <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="登录"
-        android:background="#897c7c"/>
-
-
+        android:background="#DDDDDD"
+        android:textSize="20sp"
+        android:text="登  录"
+        />
 
 
 </LinearLayout>

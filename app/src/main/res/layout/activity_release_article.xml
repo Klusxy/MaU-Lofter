@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--头部-->
+    <RelativeLayout
+        android:id="@+id/rl_ra_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_top_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/camera_cancel"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/post_type_setting" />
+
+        <oracle.mau.view.ThinLineView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_ra_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_ra_bottom_release"
+        android:layout_below="@id/rl_ra_top"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/iv_ra_pic"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:scaleType="fitXY" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/iv_ra_pic"
+                android:background="@null"
+                android:hint="说点什么"
+                android:paddingLeft="10dp"
+                android:textSize="12sp" />
+
+            <oracle.mau.view.ThinLineView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+        <!--添加标签-->
+        <LinearLayout
+            android:id="@+id/ll_ra_add_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/tag_item_img" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="添加标签" />
+        </LinearLayout>
+
+        <oracle.mau.view.ThinLineView
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <!--添加位置-->
+        <LinearLayout
+            android:id="@+id/ll_ra_add_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/post_location_img" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="添加位置" />
+        </LinearLayout>
+
+        <oracle.mau.view.ThinLineView
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_ra_bottom_release"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_top_height"
+        android:layout_alignParentBottom="true"
+        android:background="#000"
+        android:text="发布"
+        android:textAlignment="center"
+        android:textColor="#FFF" />
+</RelativeLayout>

@@ -37,6 +37,8 @@
         </activity>
         <!--编辑页面-->
         <activity android:name=".main.camera.activity.EditPicActivity"/>
+        <!--发布Article页面-->
+        <activity android:name=".main.camera.activity.ReleaseArticleActivity" />
     </application>
 
 </manifest>
