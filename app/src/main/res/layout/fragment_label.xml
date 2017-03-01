@@ -3,29 +3,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--头部整体-->
     <RelativeLayout
         android:id="@+id/rl_label_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/main_top_height"
-        android:background="#FF0"
-        >
-
-        <EditText
-            android:id="@+id/et_label_search"
+        android:layout_height="28dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp">
+        <!--背景效果-->
+        <RelativeLayout
+            android:id="@+id/rl_label_top_left_bg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/tv_label_cancle" />
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/tv_label_cancel"
+            android:background="@drawable/label_main_top_round_rect_bg">
+            <!--android:background="#FF9999"-->
+            <!--搜索框-->
+            <EditText
+                android:id="@+id/et_label_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:lines="1"
+                android:paddingLeft="25dp"
+                android:textSize="13sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+        <!--包含搜索icon和tv的相对布局-->
+        <RelativeLayout
+            android:id="@+id/rl_label_top_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/tv_label_search_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_label_search_img_search"
+                android:text="搜索标签、用户、标题"
+                android:textColor="#999"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/iv_label_search_img_search"
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/search_icon" />
+        </RelativeLayout>
+
+
+        <!--取消按钮-->
         <TextView
-            android:id="@+id/tv_label_cancle"
+            android:id="@+id/tv_label_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="2dp"
             android:text="取消"
             android:visibility="gone" />
+        <!--添加关注按钮-->
+        <ImageView
+            android:id="@+id/iv_label_add_attention"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/label_add_attention_selector"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="8dp"/>
     </RelativeLayout>
+
 
     <FrameLayout
         android:id="@+id/fl_label_fg"
