@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,10 +37,12 @@ import oracle.mau.R;
 import oracle.mau.main.MainActivity;
 import oracle.mau.main.camera.constant.PhotoConstant;
 import oracle.mau.main.camera.filter.BitmapFilter;
+import oracle.mau.main.camera.paster.PasterPopupWindow;
 import oracle.mau.main.camera.tag.TagInfo;
 import oracle.mau.main.camera.tag.TagPopupWindow;
 import oracle.mau.main.camera.tag.TagView;
 import oracle.mau.main.camera.tag.TagViewLeft;
+import oracle.mau.main.camera.view.TouchImageView;
 
 
 /**
@@ -76,10 +79,12 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
     private int _xDelta;
     private int _yDelta;
     /**
-     * 底部标签按钮、滤镜按钮
+     * 底部标签按钮、滤镜按钮、贴纸按钮
      */
     private Button btn_edit_tag;
     private Button btn_edit_filter;
+    private Button btn_editpic_paster;
+    private TouchImageView mParserView = null;
     /**
      * 顶部返回按钮和确定按钮
      */
@@ -185,7 +190,8 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
                 initFilter();
             }
         }.start();
-
+        btn_editpic_paster = (Button) findViewById(R.id.btn_editpic_paster);
+        btn_editpic_paster.setOnClickListener(this);
     }
 
     /**
@@ -327,7 +333,53 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
                     isFirstFilter = true;
                 }
                 break;
+            /**
+             * 贴纸按钮
+             */
+            case R.id.btn_editpic_paster:
+                PasterPopupWindow pasterPopupWindow = new PasterPopupWindow(this, new PasterPopupWindow.AddPasterListener() {
+                    @Override
+                    public void addPaster(int imgId) {
+                        //添加贴纸到图片上
+                        addPasterToImg(imgId);
+                    }
+                });
+                pasterPopupWindow.showAtLocation(this.findViewById(R.id.btn_ep_tag),
+                        Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                break;
         }
+    }
+
+    /**
+     * 添加贴纸方法
+     *
+     * @param imgId 贴纸图片id
+     */
+    private void addPasterToImg(int imgId) {
+        //设置图片显示宽高为屏幕宽度
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(PhotoConstant.displayWidth, PhotoConstant.displayWidth);
+
+        Bitmap watermark = BitmapFactory.decodeResource(getResources(), imgId);
+
+        int ww = watermark.getWidth();
+        int wh = watermark.getHeight();
+
+
+        //如果水印图片太大则压缩
+        if (ww > PhotoConstant.displayWidth || wh > PhotoConstant.displayWidth) {
+            // 缩放图片的尺寸
+            float scaleWidth = (float) PhotoConstant.displayWidth / ww;
+            float scaleHeight = (float) PhotoConstant.displayWidth / wh;
+            float scale = Math.min(scaleWidth, scaleHeight) * (float) 0.8;    //屏幕宽度的80%
+            Matrix matrix = new Matrix();
+            matrix.postScale(scale, scale);
+            // 产生缩放后的Bitmap对象
+            watermark = Bitmap.createBitmap(watermark, 0, 0, ww, wh, matrix, false);
+        }
+
+        TouchImageView touchImageView = new TouchImageView(this, watermark);
+        mImageRootLayout.addView(touchImageView, params);
+        mParserView = touchImageView;
     }
 
     /**

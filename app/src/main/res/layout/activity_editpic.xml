@@ -91,6 +91,7 @@
             android:paddingTop="10dp">
 
             <Button
+                android:id="@+id/btn_editpic_paster"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

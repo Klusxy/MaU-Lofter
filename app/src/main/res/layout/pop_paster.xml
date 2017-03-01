@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/stick_pop_bg"
+    >
+    <!--pop顶部-->
+    <RelativeLayout
+        android:id="@+id/paster_pop_top"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#000">
+        <!--android:background="#24292C"-->
+        <ImageView
+            android:id="@+id/paster_pop_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/action_bar_cancel_camera" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="选择贴纸"
+            android:textColor="#FFF"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+    <!--贴纸网格-->
+    <GridView
+        android:id="@+id/gv_pop_paster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:layout_below="@+id/paster_pop_top"
+        android:verticalSpacing="5dp"
+        android:horizontalSpacing="5dp">
+
+    </GridView>
+</RelativeLayout>
