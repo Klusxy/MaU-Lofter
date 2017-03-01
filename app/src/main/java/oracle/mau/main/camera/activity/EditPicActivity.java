@@ -55,6 +55,8 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
 
     private Uri mImageUri;            //目标图片的Uri
     private String mImagePath;        //目标图片的路径
+
+    private RelativeLayout rl_edicpic_main_bg;
     /**
      * 目标图片
      */
@@ -130,6 +132,16 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
 
         //初始化控件
         initViews();
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (rl_edicpic_main_bg == null) {
+            rl_edicpic_main_bg = (RelativeLayout) findViewById(R.id.rl_edicpic_main_bg);
+        }
+        rl_edicpic_main_bg.setBackgroundColor(Color.BLACK);
     }
 
     private void initViews() {
