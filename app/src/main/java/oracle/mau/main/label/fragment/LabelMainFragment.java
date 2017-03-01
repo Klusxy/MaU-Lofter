@@ -2,6 +2,7 @@ package oracle.mau.main.label.fragment;
 
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridView;
@@ -37,7 +38,7 @@ public class LabelMainFragment extends BaseFragment {
      * 自动轮播
      */
     int msgWhat = 0;
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             vp_label_main.setCurrentItem(vp_label_main.getCurrentItem() + 1);//收到消息，指向下一个页面
             handler.sendEmptyMessageDelayed(msgWhat, 4000);//2S后在发送一条消息，由于在handleMessage()方法中，造成死循环。
@@ -48,7 +49,7 @@ public class LabelMainFragment extends BaseFragment {
      * 标签画廊数据
      */
     private ViewPager vp_label_tag;
-    private List<View> tagViewList;
+    private List<LabelTagEntity> tagList = new ArrayList<>();
 
 
     @Override
@@ -69,13 +70,13 @@ public class LabelMainFragment extends BaseFragment {
         //初始化标签画廊
         initTagGallery();
     }
+
+
+    /**
+     * 初始化画廊数据
+     */
     private void initTagGalleryData() {
-        tagViewList = new ArrayList<>();
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-
-        List<LabelTagEntity> tagList = new ArrayList<>();
-
-        int imgs1[] = {R.mipmap.g1,R.mipmap.g2,R.mipmap.g3,R.mipmap.g4};
+        int imgs1[] = {R.mipmap.g1, R.mipmap.g2, R.mipmap.g3, R.mipmap.g4};
         LabelTagEntity labelTagEntity = new LabelTagEntity();
         labelTagEntity.setTagTitle("摄影");
         labelTagEntity.setImgs(imgs1);
@@ -86,25 +87,18 @@ public class LabelMainFragment extends BaseFragment {
         tagList.add(labelTagEntity);
         tagList.add(labelTagEntity);
 
-
-        for (LabelTagEntity e : tagList) {
-            View view = inflater.inflate(R.layout.vp_item_label_tag, null);
-            TextView tv_vp_item_tag = (TextView) view.findViewById(R.id.tv_vp_item_tag);
-            tv_vp_item_tag.setText(e.getTagTitle());
-
-            GridView gv_vp_item = (GridView) view.findViewById(R.id.gv_vp_item);
-            TagGridViewAdapter adapter = new TagGridViewAdapter(mContext,e.getImgs());
-            gv_vp_item.setAdapter(adapter);
-
-            tagViewList.add(view);
-        }
     }
 
+    /**
+     * 初始化画廊
+     */
     private void initTagGallery() {
         int mScreenWidth = ScreenUtils.getScreenWidth(mContext);
         vp_label_tag.setPageMargin(-mScreenWidth / 2);
-//        vp_label_tag.setOffscreenPageLimit(tagViewList.size());
-        vp_label_tag.setOffscreenPageLimit(tagViewList.size());
+        vp_label_tag.setOffscreenPageLimit(tagList.size());
+        /**
+         * 缩放
+         */
         vp_label_tag.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
             public void transformPage(View page, float position) {
@@ -116,17 +110,17 @@ public class LabelMainFragment extends BaseFragment {
                 page.setScaleY(normalizedposition / 2 + 0.5f);
             }
         });
-
-        TagGalleryVPAdapter galleryAdapter = new TagGalleryVPAdapter(tagViewList);
+        TagGalleryVPAdapter galleryAdapter = new TagGalleryVPAdapter(tagList, mContext);
         /**
          * 动态设置vp的宽高
          */
         int screenWidth = ScreenUtils.getScreenWidth(mContext);
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth,screenWidth*3/4);
-        lp.addRule(RelativeLayout.BELOW,R.id.vp_label_main);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth, screenWidth * 3 / 4);
+        lp.addRule(RelativeLayout.BELOW, R.id.vp_label_main);
+        lp.setMargins(0,30,0,0);
         vp_label_tag.setLayoutParams(lp);
         vp_label_tag.setAdapter(galleryAdapter);
-
+        vp_label_tag.setCurrentItem(1000);
     }
 
 

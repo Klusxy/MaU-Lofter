@@ -17,6 +17,9 @@ import oracle.mau.utils.KeyBoardUtils;
 
 public class LabelFragment extends BaseFragment implements View.OnClickListener{
 
+    /**
+     * 设置点击是否搜集的标记
+     */
     private int searchFlag = 1;
 
     private EditText et_label_search;

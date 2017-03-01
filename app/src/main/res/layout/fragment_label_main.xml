@@ -2,18 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF0">
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_label_main"
-        android:layout_width="match_parent"
-        android:layout_height="170dp">
-
-    </android.support.v4.view.ViewPager>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_label_tag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-    </android.support.v4.view.ViewPager>
+    android:background="#DDDDDD">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--顶部自动无缝轮播-->
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_label_main"
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+            </android.support.v4.view.ViewPager>
+            <!--中部标签画廊-->
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_label_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </android.support.v4.view.ViewPager>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_below="@+id/vp_label_tag"/>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -4,11 +4,10 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center"
-    android:paddingLeft="100dp"
-    android:paddingRight="100dp"
+    android:paddingLeft="85dp"
+    android:paddingRight="85dp"
     android:background="#00000000"
     >
-    <!--android:background="#FFF"-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,8 +28,10 @@
             android:layout_height="wrap_content"
             android:horizontalSpacing="1dp"
             android:verticalSpacing="1dp"
+            android:layout_margin="1dp"
             android:numColumns="2"
-            android:layout_below="@id/tv_vp_item_tag">
+            android:layout_below="@id/tv_vp_item_tag"
+            >
 
         </GridView>
     </RelativeLayout>
