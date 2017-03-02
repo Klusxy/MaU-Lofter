@@ -55,6 +55,9 @@
         <activity android:name=".main.camera.activity.ReleaseArticleActivity" />
         <activity android:name=".main.camera.activity.AddLocationActivity" />
         <activity android:name=".main.camera.activity.AddArticleActivity" />
+
+        <!--首页添加关注页面-->
+        <activity android:name=".main.home.activity.HomeAddAttentionActivity"/>
         <!--百度地图-->
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
         </service>

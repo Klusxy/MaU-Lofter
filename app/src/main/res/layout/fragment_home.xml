@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#DDDDDD"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-<TextView
-    android:layout_width="wrap_content"
+
+
+<LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="首页"/>
+    android:background="@color/white"
+    android:orientation="horizontal">
+    <com.astuetz.PagerSlidingTabStrip
+    android:id="@+id/home_psts"
+    android:layout_width="300dp"
+    android:layout_height="50dp">
+    </com.astuetz.PagerSlidingTabStrip>
+    <ImageView
+        android:id="@+id/home_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/label_add_attention_selector"
+
+        />
+</LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/home_vp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
+
 </LinearLayout>
