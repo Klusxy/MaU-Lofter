@@ -1,4 +1,4 @@
-package oracle.mau.main.home.Activity;
+package oracle.mau.main.home.activity;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;

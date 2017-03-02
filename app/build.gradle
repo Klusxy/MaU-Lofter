@@ -45,4 +45,6 @@ dependencies {
     compile files('libs/baidumapapi_search_v3_7_3.jar')
     compile files('libs/baidumapapi_util_v3_7_3.jar')
     compile files('libs/locSDK_6.13.jar')
+    compile project(':PullToRefreshAnim-master')
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 }
