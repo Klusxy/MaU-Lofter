@@ -3,9 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DDDDDD">
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <!--
+        带有下拉刷新的滚动视图
+        ptr:ptrAnimationStyle="rotate"  设置刷新效果：在该项目中，已修改完源码，风格统一，所以这里设什么都一样
+        ptrMode="pullDownFromTop"  pullDownFromTop表示只有下拉刷新效果，both表示下拉刷新和上拉加载都有
+        具体其他属性自行百度 PullToRefresh
+    -->
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ptr_label_main_scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        ptr:ptrAnimationStyle="rotate"
+        ptr:ptrMode="pullDownFromTop">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -13,19 +23,17 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_label_main"
                 android:layout_width="match_parent"
-                android:layout_height="170dp">
-            </android.support.v4.view.ViewPager>
+                android:layout_height="170dp"></android.support.v4.view.ViewPager>
             <!--中部标签画廊-->
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_label_tag"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-            </android.support.v4.view.ViewPager>
+                android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
-                android:layout_below="@+id/vp_label_tag"/>
+                android:layout_below="@+id/vp_label_tag" />
         </RelativeLayout>
-    </ScrollView>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 </RelativeLayout>

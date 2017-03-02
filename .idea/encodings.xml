@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/PullToRefreshAnim-master/src/main/java/com/handmark/pulltorefresh/library/PullToRefreshBase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PullToRefreshAnim-master/src/main/java/com/handmark/pulltorefresh/library/PullToRefreshListView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PullToRefreshAnim-master/src/main/java/com/handmark/pulltorefresh/library/internal/LoadingLayout.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PullToRefreshAnim-master/src/main/java/com/handmark/pulltorefresh/library/internal/RotateLoadingLayout.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PullToRefreshAnim-master/src/main/java/com/handmark/pulltorefresh/library/internal/TweenAnimLoadingLayout.java" charset="UTF-8" />
+  </component>
+</project>
