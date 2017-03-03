@@ -33,5 +33,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             usertel=editUsertel.getText().toString();
             intentConfimation.putExtra("usertel",usertel);
             startActivity(intentConfimation);
+        finish();
     }
 }

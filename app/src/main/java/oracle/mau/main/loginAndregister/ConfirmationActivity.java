@@ -1,5 +1,6 @@
 package oracle.mau.main.loginAndregister;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,8 @@ public class ConfirmationActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void initView() {
+        Intent intent=getIntent();
+        String usertel=intent.getStringExtra("usertel");
         editNum=(EditText) findViewById(R.id.edit_num);
         textTel=(TextView) findViewById(R.id.text_phone);
         btn_again=(Button)findViewById(R.id.btn_getnum);
@@ -37,6 +40,9 @@ public class ConfirmationActivity extends BaseActivity implements View.OnClickLi
             case R.id.btn_getnum:
                 break;
             case R.id.btn_confirmation_next:
+                Intent intentUserinfo=new Intent(ConfirmationActivity.this,UserInfoActivity.class);
+                startActivity(intentUserinfo);
+                finish();
                 break;
         }
     }

@@ -14,6 +14,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA"/>
+
+
+
     <application
         android:name=".application.MaUApplication"
         android:allowBackup="true"
@@ -40,6 +43,11 @@
         <!--发布Article页面-->
         <activity android:name=".main.camera.activity.ReleaseArticleActivity" />
         <activity android:name=".main.camera.activity.AddLocation" />
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
     </application>
 
 </manifest>

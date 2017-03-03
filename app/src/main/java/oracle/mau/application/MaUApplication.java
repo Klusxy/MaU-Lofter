@@ -2,6 +2,7 @@ package oracle.mau.application;
 
 import android.app.Application;
 
+import cn.smssdk.SMSSDK;
 import oracle.mau.entity.UserEntity;
 
 /**
@@ -22,6 +23,8 @@ private UserEntity user;
     @Override
     public void onCreate() {
         super.onCreate();
+        SMSSDK.initSDK(this, "1bb329bbf8c6e", "c9279b59e737ccd1291e9a477e798cfa");
+
 
     }
 }
