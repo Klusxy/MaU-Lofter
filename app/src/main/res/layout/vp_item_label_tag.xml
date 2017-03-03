@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingLeft="95dp"
+    android:paddingRight="95dp"
+    android:background="#00000000"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF">
+        <TextView
+            android:id="@+id/tv_vp_item_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="18sp"/>
+        <GridView
+            android:id="@+id/gv_vp_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="1dp"
+            android:verticalSpacing="1dp"
+            android:layout_margin="1dp"
+            android:numColumns="2"
+            android:layout_below="@id/tv_vp_item_tag"
+            >
+
+        </GridView>
+    </RelativeLayout>
+
+</LinearLayout>

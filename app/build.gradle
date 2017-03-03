@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 
@@ -39,6 +44,21 @@ dependencies {
     compile files('libs/org.apache.http.legacy.jar')
     compile project(':ImageSelector-master')
     compile project(':library')
+<<<<<<< HEAD
     compile files('libs/MobCommons-2016.1201.1839.jar')
     compile files('libs/MobTools-2016.1201.1839.jar')
+=======
+    /**
+     * 百度地图
+     */
+    compile files('libs/baidumapapi_base_v3_7_3.jar')
+    compile files('libs/baidumapapi_cloud_v3_7_3.jar')
+    compile files('libs/baidumapapi_map_v3_7_3.jar')
+    compile files('libs/baidumapapi_radar_v3_7_3.jar')
+    compile files('libs/baidumapapi_search_v3_7_3.jar')
+    compile files('libs/baidumapapi_util_v3_7_3.jar')
+    compile files('libs/locSDK_6.13.jar')
+    compile project(':PullToRefreshAnim-master')
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+>>>>>>> 2c2d6bef8d3c4460dd4168b9f153bef982c689c6
 }

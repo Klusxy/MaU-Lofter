@@ -9,4 +9,10 @@
     <dimen name="main_nav_top_mid_test_size">20sp</dimen>
     <!--首页底部标签栏字体大小-->
     <dimen name="main_bottom_text_size">10sp</dimen>
+
+    <!--首页PagerSlidingTabStrip的滑动条高度-->
+    <dimen name="home_psts_height">5dp</dimen>
+    <dimen name="home_psts_width">1dp</dimen>
+
+
 </resources>

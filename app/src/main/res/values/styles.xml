@@ -36,4 +36,16 @@
         <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
         <item name="android:windowExitAnimation">@anim/pop_out_anim</item>
     </style>
+
+    <!--首页订阅页面的  我的订阅 我参与的  推荐订阅-->
+    <style name="home_subscription">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+    <!--首页订阅页面的 listview-->
+    <style name="home_subscription_lv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>

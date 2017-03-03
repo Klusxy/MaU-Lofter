@@ -4,11 +4,13 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/rl_edicpic_main_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#000">
         <!--顶部-->
         <RelativeLayout
             android:id="@+id/edit_top"
@@ -49,10 +51,11 @@
         <RelativeLayout
             android:id="@+id/rl_ep_mImageRootLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_above="@+id/ll_ep_bottom"
             android:layout_below="@+id/edit_top"
-            android:background="#000">
+            android:layout_centerVertical="true"
+            >
 
             <ImageView
                 android:id="@+id/iv_ep_st_image"
@@ -88,6 +91,7 @@
             android:paddingTop="10dp">
 
             <Button
+                android:id="@+id/btn_editpic_paster"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
