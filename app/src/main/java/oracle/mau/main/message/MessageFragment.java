@@ -2,8 +2,10 @@ package oracle.mau.main.message;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,53 +25,47 @@ import oracle.mau.main.message.fragment.TalkFragment;
  * Created by 田帅 on 2017/2/20.
  */
 
-public class MessageFragment  extends  Fragment implements View.OnClickListener{
-    private static ViewPager viewPager;
-    private ArrayList<Fragment> list;
-    private static TextView textView1;
-    private TextView textView2;
-    private TextView textView3;
-
+public class MessageFragment  extends Fragment {
+    private TabLayout tab;
+    private ViewPager viewpager;
+    private MsgFragmentPageAdapter adapter;
+    public static final String[] tabTitle = new String[]{"动态", "消息", "聊天"};
     @Nullable
-    @Override
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_message,null);
 
-        viewPager = (ViewPager) view.findViewById(R.id.ViewPager1);
+        tab = (TabLayout) view.findViewById(R.id.tab);
+        viewpager = (ViewPager)view. findViewById(R.id.viewpager1);
 
-        textView1 = (TextView) view.findViewById(R.id.textView1);
-        textView1.setSelected(true);
-        textView2 = (TextView) view.findViewById(R.id.textView2);
-        textView3 = (TextView) view.findViewById(R.id.textView3);
-        textView1.setOnClickListener(this);
-        textView2.setOnClickListener(this);
-        textView3.setOnClickListener(this);
-
-        //默认选中第一个界面
-        viewPager.setCurrentItem(0);
-        textView1.setSelected(true);
-        viewPager.setOnPageChangeListener(listener1);
-
-        list = new ArrayList<Fragment>();
-        for (int i = 0; i < 3; i++) {
-            if(i==0){
-                list.add(new DynamicFragment());
+        List<Fragment> fragments = new ArrayList<>();
+        for (int i = 0; i < tabTitle.length; i++) {
+            if(i==0) {
+                fragments.add(new DynamicFragment());
             }
-            if(i==1){
-                list.add(new NewsFragment());
+            if(i==1) {
+                fragments.add(new NewsFragment());
             }
-            if(i==2){
-                list.add(new TalkFragment());
+            if(i==2) {
+                fragments.add(new TalkFragment());
             }
 
         }
-        viewPager.setAdapter(new MsgFragmentPageAdapter(getChildFragmentManager(),
-                list));
+        adapter = new MsgFragmentPageAdapter(getChildFragmentManager(), fragments);
 
+        viewpager.setAdapter(adapter);
 
+        tab.setupWithViewPager(viewpager);
+
+        tab.setTabMode(TabLayout.MODE_FIXED);
+        tab.setTabGravity(TabLayout.GRAVITY_FILL);
         return view;
     }
 
+
+
+
+/*
     public ViewPager.OnPageChangeListener listener1=new ViewPager.OnPageChangeListener() {
 
         @Override
@@ -95,17 +91,18 @@ public class MessageFragment  extends  Fragment implements View.OnClickListener{
                 textView3.setSelected(true);
             }
 
-        }
+        }*/
 
-        @Override
+      /*  @Override
         public void onPageScrollStateChanged(int state) {
 
-        }
+        }*/
 
 
     };
 
-    @Override
+
+   /* @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.textView1:
@@ -123,5 +120,6 @@ public class MessageFragment  extends  Fragment implements View.OnClickListener{
         }
     }
 }
+*/
 
 
