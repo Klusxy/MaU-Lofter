@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
+import oracle.mau.main.camera.constant.PhotoConstant;
 import oracle.mau.utils.JudgeUtils;
 
 /**
@@ -45,6 +49,13 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
     private LinearLayout ll_ra_add_label;
     private TextView tv_ra_label;
 
+    /**
+     * 单选还是多选
+     */
+    private String type = "";
+    private List<String> imageList ;
+    private Button btn_ra_image_size;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_release_article;
@@ -57,6 +68,19 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
          */
         mImagePath = getIntent().getStringExtra("tag_image_path");
         mImageUri = Uri.parse(mImagePath);
+        /**
+         * 得到是否多选
+         */
+        type = getIntent().getStringExtra("type");
+        /**
+         * 多选情况下，显示几种图片，并将集合list获取到
+         */
+        if (PhotoConstant.MORE.equals(type)) {
+            imageList = getIntent().getStringArrayListExtra("images");
+            btn_ra_image_size = (Button) findViewById(R.id.btn_ra_image_size);
+            btn_ra_image_size.setVisibility(View.VISIBLE);
+            btn_ra_image_size.setText(imageList.size()+"");
+        }
         iv_ra_pic = (ImageView) findViewById(R.id.iv_ra_pic);
         iv_ra_pic.setImageURI(mImageUri);
         ll_ra_add_location = (LinearLayout) findViewById(R.id.ll_ra_add_location);

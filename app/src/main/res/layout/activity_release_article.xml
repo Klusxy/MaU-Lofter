@@ -44,19 +44,35 @@
             android:layout_width="match_parent"
             android:layout_height="120dp">
 
-            <ImageView
-                android:id="@+id/iv_ra_pic"
+            <RelativeLayout
+                android:id="@+id/rl_ra_image"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:scaleType="fitXY" />
+                android:layout_marginRight="10dp">
+                <ImageView
+                    android:id="@+id/iv_ra_pic"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:scaleType="fitXY" />
+                <Button
+                    android:id="@+id/btn_ra_image_size"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/camera_add_label_reset_btn"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="20sp"
+                    android:textColor="#FFF"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
 
             <EditText
                 android:id="@+id/et_ra_article"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/iv_ra_pic"
+                android:layout_toLeftOf="@id/rl_ra_image"
                 android:background="@null"
                 android:hint="说点什么"
                 android:paddingLeft="10dp"

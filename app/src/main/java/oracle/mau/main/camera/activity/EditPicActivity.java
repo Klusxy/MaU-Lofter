@@ -317,7 +317,6 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
              */
             case R.id.ed_next:
                 saveImageAndFinish();
-
                 break;
             /**
              * 滤镜按钮
@@ -399,6 +398,7 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
 
         Intent intent = new Intent(this, ReleaseArticleActivity.class);
         intent.putExtra("tag_image_path", mImagePath);
+        intent.putExtra("type",PhotoConstant.ONE);
         startActivity(intent);
         finish();
     }
