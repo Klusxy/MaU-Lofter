@@ -31,4 +31,9 @@ public class PhotoConstant {
 	 * App缓存文件路径
 	 */
 	public static String CACHEPATH = "";
+	/**
+	 * 单选还是多选
+	 */
+	public static String ONE = "one";
+	public static String MORE = "more";
 }

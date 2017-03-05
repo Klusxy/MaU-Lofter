@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <!--头部-->
+    <RelativeLayout
+        android:id="@+id/rl_al_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_top_height">
+
+        <TextView
+            android:id="@+id/tv_al_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="@string/camera_complete"
+            android:textColor="#A3C53C"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="选择标签"
+            android:textSize="18sp" />
+
+        <oracle.mau.view.ThinLineView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_al_flag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:textColor="#BBB"
+        android:text="点击标签删除(只能留一个)"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/rl_al_top"/>
+    <oracle.mau.view.WarpLinearLayout
+        android:id="@+id/wll_al_labels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:layout_below="@+id/tv_al_flag"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        app:grivate="left"
+        app:horizontal_Space="10dp"
+        app:isFull="false"
+        app:vertical_Space="10dp">
+
+    </oracle.mau.view.WarpLinearLayout>
+    <Button
+        android:id="@+id/btn_al_reset"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="重置"
+        android:textSize="16sp"
+        android:textColor="#FFF"
+        android:background="@drawable/camera_add_label_reset_btn"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

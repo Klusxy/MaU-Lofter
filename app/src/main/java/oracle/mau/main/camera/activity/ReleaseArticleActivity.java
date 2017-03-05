@@ -2,15 +2,20 @@ package oracle.mau.main.camera.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
+import oracle.mau.main.camera.constant.PhotoConstant;
 import oracle.mau.utils.JudgeUtils;
 
 /**
@@ -20,6 +25,7 @@ import oracle.mau.utils.JudgeUtils;
 public class ReleaseArticleActivity extends BaseActivity implements View.OnClickListener{
     private final  int ADD_LOCATIONE_CODE = 10001;
     private final  int ADD_ARTICLE_CODE = 10002;
+    private final  int ADD_LABEL_CODE = 10003;
     private Uri mImageUri;            //目标图片的Uri
     private String mImagePath;        //目标图片的路径
     /**
@@ -36,6 +42,20 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
      */
     private RelativeLayout rl_ra_add_article;
     private EditText et_ra_article;
+
+    /**
+     * 添加标签
+     */
+    private LinearLayout ll_ra_add_label;
+    private TextView tv_ra_label;
+
+    /**
+     * 单选还是多选
+     */
+    private String type = "";
+    private List<String> imageList ;
+    private Button btn_ra_image_size;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_release_article;
@@ -48,6 +68,19 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
          */
         mImagePath = getIntent().getStringExtra("tag_image_path");
         mImageUri = Uri.parse(mImagePath);
+        /**
+         * 得到是否多选
+         */
+        type = getIntent().getStringExtra("type");
+        /**
+         * 多选情况下，显示几种图片，并将集合list获取到
+         */
+        if (PhotoConstant.MORE.equals(type)) {
+            imageList = getIntent().getStringArrayListExtra("images");
+            btn_ra_image_size = (Button) findViewById(R.id.btn_ra_image_size);
+            btn_ra_image_size.setVisibility(View.VISIBLE);
+            btn_ra_image_size.setText(imageList.size()+"");
+        }
         iv_ra_pic = (ImageView) findViewById(R.id.iv_ra_pic);
         iv_ra_pic.setImageURI(mImageUri);
         ll_ra_add_location = (LinearLayout) findViewById(R.id.ll_ra_add_location);
@@ -56,6 +89,9 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
         rl_ra_add_article = (RelativeLayout) findViewById(R.id.rl_ra_add_article);
         rl_ra_add_article.setOnClickListener(this);
         et_ra_article = (EditText) findViewById(R.id.et_ra_article);
+        ll_ra_add_label = (LinearLayout) findViewById(R.id.ll_ra_add_label);
+        ll_ra_add_label.setOnClickListener(this);
+        tv_ra_label = (TextView) findViewById(R.id.tv_ra_label);
     }
 
     /**
@@ -73,6 +109,9 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
                 Intent locationIntent = new Intent(this,AddLocationActivity.class);
                 startActivityForResult(locationIntent,ADD_LOCATIONE_CODE);
                 break;
+            /**
+             * 添加文章
+             */
             case R.id.rl_ra_add_article :
                 //跳转到添加文字界面
                 Intent articleIntent = new Intent(this,AddArticleActivity.class);
@@ -81,6 +120,14 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
                     articleIntent.putExtra("article",et_ra_article.getText().toString());
                 }
                 startActivityForResult(articleIntent,ADD_ARTICLE_CODE);
+                break;
+            /**
+             * 添加标签
+             */
+            case R.id.ll_ra_add_label:
+                //跳转到添加标签界面
+                Intent labelIntent = new Intent(this,AddLabelActivity.class);
+                startActivityForResult(labelIntent,ADD_LABEL_CODE);
                 break;
         }
     }
@@ -106,6 +153,14 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
             case AddArticleActivity.ADDARTICLE_BACKCODE:
                 et_ra_article.setText(data.getStringExtra("article"));
                 et_ra_article.setSelection(data.getStringExtra("article").length());//将光标移至文字末尾
+                break;
+            /**
+             * 添加标签返回结果
+             */
+            case AddLabelActivity.ADDLABEL_BACKCODE :
+                int labelTypeId = data.getIntExtra("labelTypeId",-1);
+                String label = data.getStringExtra("label");
+                tv_ra_label.setText(label);
                 break;
         }
     }

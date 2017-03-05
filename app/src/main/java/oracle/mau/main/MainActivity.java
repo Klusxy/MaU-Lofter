@@ -26,6 +26,7 @@ import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.main.account.AccountFragment;
 import oracle.mau.main.camera.activity.CropActivity;
+import oracle.mau.main.camera.activity.ReleaseArticleActivity;
 import oracle.mau.main.camera.constant.PhotoConstant;
 import oracle.mau.main.camera.utils.FileUtils;
 import oracle.mau.main.home.fragment.HomeFragment;
@@ -265,6 +266,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             else if (requestCode == ImageSelectorActivity.REQUEST_IMAGE) {
                 ArrayList<String> images = (ArrayList<String>) data.getSerializableExtra(ImageSelectorActivity.REQUEST_OUTPUT);
                 Log.d("sdadasdas", "list长度   返回来的长度" + images.size() + "  " + images.size());
+                Intent intent = new Intent(this, ReleaseArticleActivity.class);
+                intent.putExtra("tag_image_path", images.get(0));
+                intent.putExtra("type",PhotoConstant.MORE);
+                intent.putStringArrayListExtra("images",images);
+                startActivity(intent);
             }
         }
     }
