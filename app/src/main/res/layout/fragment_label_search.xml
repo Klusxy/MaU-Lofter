@@ -3,6 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F00">
+    xmlns:app="http://schemas.android.com/apk/res-auto"  >
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_label_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="#A3C53C"
+        app:tabSelectedTextColor="#A3C53C"
+        app:tabTextColor="#000"
+        />
 
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_label_search"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
 </LinearLayout>

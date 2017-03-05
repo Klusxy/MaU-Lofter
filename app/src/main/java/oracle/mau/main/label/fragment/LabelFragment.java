@@ -1,5 +1,6 @@
 package oracle.mau.main.label.fragment;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -210,6 +211,12 @@ public class LabelFragment extends BaseFragment implements View.OnClickListener,
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (!"".equals(et_label_search.getText().toString())) {
             tv_label_search_text.setText("");
+            /**
+             * 发送广播，通知请求数据
+             */
+            Intent intent = new Intent(LabelSearchFragment.REQUEST_SEARCH_DATA_BROAD);
+            intent.putExtra("contnet",et_label_search.getText().toString());
+            mContext.sendBroadcast(intent);
         } else {
             tv_label_search_text.setText("搜索标签、用户、标题");
         }
