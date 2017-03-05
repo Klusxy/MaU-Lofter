@@ -15,8 +15,10 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
+import oracle.mau.main.MainActivity;
 import oracle.mau.main.camera.constant.PhotoConstant;
 import oracle.mau.utils.JudgeUtils;
+import oracle.mau.view.BottomMenuDialog;
 
 /**
  * Created by 田帅 on 2017/2/28.
@@ -56,6 +58,12 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
     private List<String> imageList ;
     private Button btn_ra_image_size;
 
+    /**
+     * 顶部取消按钮
+     */
+    private TextView tv_ra_cancle;
+    private BottomMenuDialog bottomMenuDialog;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_release_article;
@@ -92,6 +100,8 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
         ll_ra_add_label = (LinearLayout) findViewById(R.id.ll_ra_add_label);
         ll_ra_add_label.setOnClickListener(this);
         tv_ra_label = (TextView) findViewById(R.id.tv_ra_label);
+        tv_ra_cancle = (TextView) findViewById(R.id.tv_ra_cancle);
+        tv_ra_cancle.setOnClickListener(this);
     }
 
     /**
@@ -128,6 +138,27 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
                 //跳转到添加标签界面
                 Intent labelIntent = new Intent(this,AddLabelActivity.class);
                 startActivityForResult(labelIntent,ADD_LABEL_CODE);
+                break;
+            /**
+             * 取消按钮
+             */
+            case R.id.tv_ra_cancle :
+                bottomMenuDialog = new BottomMenuDialog.Builder(ReleaseArticleActivity.this)
+                        .setTitle("确定放弃编辑吗")
+                        .addMenu("不，我点错了", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                bottomMenuDialog.dismiss();
+                            }
+                        }).addMenu("确定", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                bottomMenuDialog.dismiss();
+                                finish();
+                            }
+                        }).create();
+
+                bottomMenuDialog.show();
                 break;
         }
     }

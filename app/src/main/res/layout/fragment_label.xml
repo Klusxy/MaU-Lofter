@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_label_search_img_search"
                 android:text="搜索标签、用户、标题"
-                android:textColor="#999"
+                android:textColor="@color/label_gray_color"
                 android:textSize="13sp" />
 
             <ImageView

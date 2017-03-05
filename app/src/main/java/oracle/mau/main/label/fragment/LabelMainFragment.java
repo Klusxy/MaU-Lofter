@@ -2,9 +2,11 @@ package oracle.mau.main.label.fragment;
 
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.IntegerRes;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
@@ -17,10 +19,14 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseFragment;
+import oracle.mau.entity.LabelRecommendEntity;
 import oracle.mau.entity.LabelTagEntity;
 import oracle.mau.main.label.adapter.ImageCarouselVPAdapter;
+import oracle.mau.main.label.adapter.LabelMainReommendLabelLVAdapter;
 import oracle.mau.main.label.adapter.TagGalleryVPAdapter;
+import oracle.mau.utils.ExtraUtils;
 import oracle.mau.utils.ScreenUtils;
+import oracle.mau.view.ListViewForScrollView;
 
 /**
  * Created by 田帅 on 2017/2/28.
@@ -39,6 +45,15 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
      * 自动轮播
      */
     private final int LABEL_TOP_VP_AUTO_UPDATE = 100002;
+    /**
+     * 标签推荐listview
+     */
+    private ListViewForScrollView lv_label_main_label_recommend;
+    private List<LabelRecommendEntity> lrList;
+
+
+
+
 
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -87,6 +102,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     protected void initView() {
         vp_label_main = (ViewPager) rootView.findViewById(R.id.vp_label_main);
         vp_label_tag = (ViewPager) rootView.findViewById(R.id.vp_label_tag);
+        lv_label_main_label_recommend = (ListViewForScrollView) rootView.findViewById(R.id.lv_label_main_label_recommend);
         /**
          * 初始化下拉刷新、设置监听(去获取数据)
          */
@@ -100,6 +116,56 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         initTagGalleryData();
         //初始化标签画廊
         initTagGallery();
+        //初始化标签推荐listview数据
+        initRecommendLVData();
+        //初始化标签推荐listview
+        initRecommendLV();
+    }
+    /**
+     * 初始化标签推荐listview
+     */
+    private void initRecommendLV() {
+
+    }
+
+    /**
+     * 初始化标签推荐listview数据
+     */
+    private void initRecommendLVData() {
+        lrList = new ArrayList<>();
+        LabelRecommendEntity lr1 = new LabelRecommendEntity();
+        lr1.setLrTitle("始于人像摄影");
+        lr1.setLrParticipationNum(12875);
+        lrList.add(lr1);
+
+        LabelRecommendEntity lr2 = new LabelRecommendEntity();
+        lr2.setLrTitle("彩色");
+        lr2.setLrParticipationNum(34875);
+        lrList.add(lr2);
+
+        LabelRecommendEntity lr3 = new LabelRecommendEntity();
+        lr3.setLrTitle("关于春天的特别回忆");
+        lr3.setLrParticipationNum(66875);
+        lrList.add(lr3);
+
+        LabelRecommendEntity lr4 = new LabelRecommendEntity();
+        lr4.setLrTitle("假装喵星人");
+        lr4.setLrParticipationNum(232875);
+        lrList.add(lr4);
+
+        int[] bgs = {R.mipmap.mh1,R.mipmap.mh2,R.mipmap.mh3,R.mipmap.mh4};
+        int[] lrImgs1 = {R.mipmap.renxiang1,R.mipmap.renxiang2,R.mipmap.renxiang3};
+        int[] lrImgs2 = {R.mipmap.caise1,R.mipmap.caise2,R.mipmap.caise3};
+        int[] lrImgs3 = {R.mipmap.chuntian1,R.mipmap.chuntian2,R.mipmap.chuntian3};
+        int[] lrImgs4 = {R.mipmap.miaoxingren1,R.mipmap.miaoxingren2,R.mipmap.miaoxingren3};
+        List<int[]> imgsList = new ArrayList<>();
+        imgsList.add(lrImgs1);
+        imgsList.add(lrImgs2);
+        imgsList.add(lrImgs3);
+        imgsList.add(lrImgs4);
+        LabelMainReommendLabelLVAdapter adapter = new LabelMainReommendLabelLVAdapter(mContext,lrList,bgs,imgsList);
+        lv_label_main_label_recommend.setAdapter(adapter);
+//        ExtraUtils.setListViewHeightBasedOnChildren(lv_label_main_label_recommend);
     }
 
 

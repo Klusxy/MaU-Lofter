@@ -29,11 +29,120 @@
                 android:id="@+id/vp_label_tag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
-
-            <TextView
+            <!--标签推荐-->
+            <RelativeLayout
+                android:id="@+id/rl_label_main_label_recommend"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_below="@+id/vp_label_tag" />
+                android:layout_height="wrap_content"
+                android:layout_below="@id/vp_label_tag">
+                <TextView
+                    android:id="@+id/tv_label_main_label_recommend_flag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/label_gray_color"
+                    android:background="#FFF"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:text="标签推荐"/>
+                <oracle.mau.view.ListViewForScrollView
+                    android:id="@+id/lv_label_main_label_recommend"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_below="@+id/tv_label_main_label_recommend_flag">
+
+                </oracle.mau.view.ListViewForScrollView>
+                <RelativeLayout
+                    android:id="@+id/rl_label_look_more_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#FFF"
+                    android:layout_below="@+id/lv_label_main_label_recommend">
+                    <TextView
+                        android:id="@+id/rl_label_look_more_label_flag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#A3C53C"
+                        android:textSize="14sp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="更多好玩的标签"
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/rl_label_look_more_label_flag"
+                        android:src="@mipmap/discover_item_arrow"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <!--达人推荐-->
+            <RelativeLayout
+                android:id="@+id/rl_label_main_user_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_label_main_label_recommend"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:id="@+id/tv_label_main_user_recommend_flag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/label_gray_color"
+                    android:background="#FFF"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="达人推荐"/>
+                <RelativeLayout
+                    android:id="@+id/rl_label_look_more_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#FFF"
+                    android:layout_below="@+id/tv_label_main_user_recommend_flag">
+                    <TextView
+                        android:id="@+id/rl_label_look_more_user_flag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#A3C53C"
+                        android:textSize="14sp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="查看更多达人"
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/rl_label_look_more_user_flag"
+                        android:src="@mipmap/discover_item_arrow"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <!--文章推荐-->
+            <RelativeLayout
+                android:id="@+id/rl_label_main_message_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_label_main_user_recommend"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:id="@+id/tv_label_main_message_recommend_flag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/label_gray_color"
+                    android:background="#FFF"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="达人推荐"/>
+            </RelativeLayout>
         </RelativeLayout>
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 </RelativeLayout>
