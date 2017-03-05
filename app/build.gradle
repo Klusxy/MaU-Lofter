@@ -24,8 +24,17 @@ android {
     }
 }
 
+
+repositories{
+    flatDir{
+        dir 'libs'//就是你放 arr的目录地址
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile name: 'SMSSDK-2.1.3', ext: 'aar'
+    compile name: 'SMSSDKGUI-2.1.3', ext: 'aar'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -35,6 +44,10 @@ dependencies {
     compile files('libs/org.apache.http.legacy.jar')
     compile project(':ImageSelector-master')
     compile project(':library')
+
+    compile files('libs/MobCommons-2016.1201.1839.jar')
+    compile files('libs/MobTools-2016.1201.1839.jar')
+
     /**
      * 百度地图
      */
@@ -47,4 +60,10 @@ dependencies {
     compile files('libs/locSDK_6.13.jar')
     compile project(':PullToRefreshAnim-master')
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+/**
+ * TabLayout
+ */
+    compile 'com.android.support:design:25.0.0'
+
+
 }

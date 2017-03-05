@@ -1,0 +1,105 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+ >
+
+    <include
+        android:id="@+id/user_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/head_login" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_below="@id/user_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dip"
+        android:src="@mipmap/bb_btn_label_select" />
+
+    <TextView
+        android:id="@+id/text_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageButton1"
+        android:layout_centerHorizontal="true"
+        android:text="上传头像"
+
+        android:textSize="20sp" />
+    <LinearLayout
+        android:layout_below="@id/text_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dip"
+        >
+        <LinearLayout
+            android:id="@+id/line_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+            android:layout_marginTop="20dip"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的昵称"
+
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:id="@+id/edit_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+
+                android:ems="10"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_marginTop="20dip"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的密码"
+
+                android:textSize="20sp"
+
+                />
+
+            <EditText
+                android:id="@+id/edit_usersex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:ems="10"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="完  成"
+            android:layout_marginTop="15dip"
+
+
+
+
+            />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
