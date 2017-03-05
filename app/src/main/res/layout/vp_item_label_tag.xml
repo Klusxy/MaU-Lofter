@@ -21,7 +21,8 @@
             android:textAlignment="center"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            />
         <GridView
             android:id="@+id/gv_vp_item"
             android:layout_width="match_parent"

@@ -69,7 +69,7 @@
         </RelativeLayout>
         <!--添加标签-->
         <LinearLayout
-            android:id="@+id/ll_ra_add_tag"
+            android:id="@+id/ll_ra_add_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -83,6 +83,7 @@
                 android:src="@mipmap/tag_item_img" />
 
             <TextView
+                android:id="@+id/tv_ra_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
