@@ -45,7 +45,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true" />
 
-        <LinearLayout android:layout_width="wrap_content"
+        <RelativeLayout android:layout_width="wrap_content"
             android:layout_height="@dimen/top_category_height"
             android:layout_toLeftOf="@id/iv_rd_expand"
             android:layout_alignParentLeft="true"
@@ -59,7 +59,30 @@
                 android:layout_width="wrap_content"
                 android:background="#FFF"
                 android:layout_height="@dimen/top_category_height" />
-        </LinearLayout>
+            <!--刚开始隐藏的选择频道和调整顺序-->
+            <RelativeLayout
+                android:id="@+id/rl_rd_category_select_channel_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/top_category_height"
+                android:visibility="gone"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="选择频道"
+                    android:layout_marginLeft="20dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="调整顺序"
+                    android:textColor="#A3C53C"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
     </RelativeLayout>
     <android.support.v4.view.ViewPager android:id="@+id/vp_recommend_detail"
         android:layout_width="fill_parent"

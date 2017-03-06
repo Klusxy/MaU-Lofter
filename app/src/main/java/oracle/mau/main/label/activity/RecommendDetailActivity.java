@@ -2,7 +2,11 @@ package oracle.mau.main.label.activity;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
@@ -20,9 +24,23 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
     /**
      * 选项卡
      */
-    private CategoryTabStrip tabs;
-    private ViewPager pager;
-    private RDCategoryItemVPAdapter adapter;
+    private CategoryTabStrip mCategoryTabStrip;
+    private ViewPager mViewPager;
+    private RDCategoryItemVPAdapter mAdapter;
+
+    /**
+     * 选择频道   调整顺序layout
+     */
+    private RelativeLayout rl_rd_category_select_channel_layout;
+
+    /**
+     * 显示隐藏 选择xxxx布局的imageview
+     */
+    private ImageView iv_rd_expand;
+    private int expandFlag = 0;  //显示隐藏的标记
+    private Animation mShowAnim ;
+    private Animation mHiddenAnim ;
+
 
     @Override
     public int getLayoutId() {
@@ -37,21 +55,60 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
         LabelTagEntity tagEntity = (LabelTagEntity) getIntent().getExtras().getSerializable("tag");
         iv_rd_back = (ImageView) findViewById(R.id.iv_rd_back);
         iv_rd_back.setOnClickListener(this);
+        rl_rd_category_select_channel_layout = (RelativeLayout) findViewById(R.id.rl_rd_category_select_channel_layout);
+        iv_rd_expand = (ImageView) findViewById(R.id.iv_rd_expand);
+        iv_rd_expand.setOnClickListener(this);
+        //初始化选项卡和viewpager
+        initTabCategoryWithVP();
 
-        tabs = (CategoryTabStrip) findViewById(R.id.cs_recommend_detail);
-        pager = (ViewPager) findViewById(R.id.vp_recommend_detail);
-        adapter = new RDCategoryItemVPAdapter(getSupportFragmentManager(),this);
+    }
 
-        pager.setAdapter(adapter);
+    /**
+     * 初始化选项卡和viewpager
+     */
+    private void initTabCategoryWithVP() {
+        //初始化动画
+        initAnimations();
+        mCategoryTabStrip = (CategoryTabStrip) findViewById(R.id.cs_recommend_detail);
+        mViewPager = (ViewPager) findViewById(R.id.vp_recommend_detail);
+        mAdapter = new RDCategoryItemVPAdapter(getSupportFragmentManager(),this);
+        mViewPager.setAdapter(mAdapter);
+        mCategoryTabStrip.setViewPager(mViewPager);
+    }
 
-        tabs.setViewPager(pager);
+    private void initAnimations()
+    {
+        mShowAnim = AnimationUtils.loadAnimation(this, R.anim.category_item_show_anim);
+        mHiddenAnim = AnimationUtils.loadAnimation(this, R.anim.category_item_hidden_anim);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            /**
+             * 返回按钮
+             */
             case R.id.iv_rd_back:
                 finish();
+                break;
+            /**
+             * 显示隐藏 选择xxxx布局的imageview
+             */
+            case R.id.iv_rd_expand:
+
+                if (expandFlag == 0) {
+                    mCategoryTabStrip.setVisibility(View.GONE);
+                    mCategoryTabStrip.startAnimation(mHiddenAnim);
+                    rl_rd_category_select_channel_layout.setVisibility(View.VISIBLE);
+                    rl_rd_category_select_channel_layout.startAnimation(mShowAnim);
+                    expandFlag = 1;
+                }else {
+                    mCategoryTabStrip.setVisibility(View.VISIBLE);
+                    mCategoryTabStrip.startAnimation(mShowAnim);
+                    rl_rd_category_select_channel_layout.setVisibility(View.GONE);
+                    rl_rd_category_select_channel_layout.startAnimation(mHiddenAnim);
+                    expandFlag = 0;
+                }
                 break;
         }
     }
