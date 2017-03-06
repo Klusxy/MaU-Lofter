@@ -4,7 +4,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -40,6 +39,8 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
     private int expandFlag = 0;  //显示隐藏的标记
     private Animation mShowAnim ;
     private Animation mHiddenAnim ;
+    private Animation mRotateDownToUpAnim;
+    private Animation mRotateUpToDowmAnim;
 
 
     @Override
@@ -80,6 +81,8 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
     {
         mShowAnim = AnimationUtils.loadAnimation(this, R.anim.category_item_show_anim);
         mHiddenAnim = AnimationUtils.loadAnimation(this, R.anim.category_item_hidden_anim);
+        mRotateDownToUpAnim = AnimationUtils.loadAnimation(this,R.anim.category_right_expand_rotate_down_to_up_anim);
+        mRotateUpToDowmAnim = AnimationUtils.loadAnimation(this,R.anim.category_right_expand_rotate_up_to_down_anim);
     }
 
     @Override
@@ -97,17 +100,31 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
             case R.id.iv_rd_expand:
 
                 if (expandFlag == 0) {
+                    /**
+                     * 添加显示隐藏动画效果
+                     */
                     mCategoryTabStrip.setVisibility(View.GONE);
                     mCategoryTabStrip.startAnimation(mHiddenAnim);
                     rl_rd_category_select_channel_layout.setVisibility(View.VISIBLE);
                     rl_rd_category_select_channel_layout.startAnimation(mShowAnim);
+                    /**
+                     * 添加按钮的旋转动画效果
+                     */
+                    iv_rd_expand.startAnimation(mRotateDownToUpAnim);
                     expandFlag = 1;
                 }else {
+                    /**
+                     * 添加显示隐藏动画效果
+                     */
                     mCategoryTabStrip.setVisibility(View.VISIBLE);
                     mCategoryTabStrip.startAnimation(mShowAnim);
                     rl_rd_category_select_channel_layout.setVisibility(View.GONE);
                     rl_rd_category_select_channel_layout.startAnimation(mHiddenAnim);
                     expandFlag = 0;
+                    /**
+                     * 添加按钮的旋转动画效果
+                     */
+                    iv_rd_expand.startAnimation(mRotateUpToDowmAnim);
                 }
                 break;
         }
