@@ -1,8 +1,11 @@
 package oracle.mau.main.label.fragment;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -22,10 +25,12 @@ import oracle.mau.base.BaseFragment;
 import oracle.mau.entity.LabelRecommendEntity;
 import oracle.mau.entity.LabelTagEntity;
 import oracle.mau.entity.UserEntity;
+import oracle.mau.main.label.activity.RecommendDetailActivity;
 import oracle.mau.main.label.adapter.ImageCarouselVPAdapter;
 import oracle.mau.main.label.adapter.LabelMainRecommendUserGVAdapter;
 import oracle.mau.main.label.adapter.LabelMainReommendLabelLVAdapter;
 import oracle.mau.main.label.adapter.TagGalleryVPAdapter;
+import oracle.mau.main.label.view.TouchViewPager;
 import oracle.mau.utils.ExtraUtils;
 import oracle.mau.utils.ScreenUtils;
 import oracle.mau.view.GridViewForScrollView;
@@ -60,8 +65,6 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     private List<UserEntity> userList;
 
 
-
-
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
@@ -90,8 +93,9 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     /**
      * 标签画廊数据
      */
-    private ViewPager vp_label_tag;
+    private TouchViewPager vp_label_tag;
     private List<LabelTagEntity> tagList = new ArrayList<>();
+
 
     /**
      * 下拉刷新
@@ -108,7 +112,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     @Override
     protected void initView() {
         vp_label_main = (ViewPager) rootView.findViewById(R.id.vp_label_main);
-        vp_label_tag = (ViewPager) rootView.findViewById(R.id.vp_label_tag);
+        vp_label_tag = (TouchViewPager) rootView.findViewById(R.id.vp_label_tag);
         lv_label_main_label_recommend = (ListViewForScrollView) rootView.findViewById(R.id.lv_label_main_label_recommend);
         gv_label_main_user_recommend = (GridViewForScrollView) rootView.findViewById(R.id.gv_label_main_user_recommend);
         /**
@@ -140,6 +144,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     private void initUserRecommendGV() {
 
     }
+
     /**
      * 初始化达人推荐gridview数据
      */
@@ -153,8 +158,8 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         userList.add(user);
         userList.add(user);
         userList.add(user);
-        int[] userImgs = {R.mipmap.mh2,R.mipmap.mh2,R.mipmap.mh2,R.mipmap.mh2,R.mipmap.mh2,R.mipmap.mh2};
-        LabelMainRecommendUserGVAdapter userAdapter = new LabelMainRecommendUserGVAdapter(mContext,userList,userImgs);
+        int[] userImgs = {R.mipmap.mh2, R.mipmap.mh2, R.mipmap.mh2, R.mipmap.mh2, R.mipmap.mh2, R.mipmap.mh2};
+        LabelMainRecommendUserGVAdapter userAdapter = new LabelMainRecommendUserGVAdapter(mContext, userList, userImgs);
         gv_label_main_user_recommend.setAdapter(userAdapter);
     }
 
@@ -190,17 +195,17 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         lr4.setLrParticipationNum(232875);
         lrList.add(lr4);
 
-        int[] bgs = {R.mipmap.mh1,R.mipmap.mh2,R.mipmap.mh3,R.mipmap.mh4};
-        int[] lrImgs1 = {R.mipmap.renxiang1,R.mipmap.renxiang2,R.mipmap.renxiang3};
-        int[] lrImgs2 = {R.mipmap.caise1,R.mipmap.caise2,R.mipmap.caise3};
-        int[] lrImgs3 = {R.mipmap.chuntian1,R.mipmap.chuntian2,R.mipmap.chuntian3};
-        int[] lrImgs4 = {R.mipmap.miaoxingren1,R.mipmap.miaoxingren2,R.mipmap.miaoxingren3};
+        int[] bgs = {R.mipmap.mh1, R.mipmap.mh2, R.mipmap.mh3, R.mipmap.mh4};
+        int[] lrImgs1 = {R.mipmap.renxiang1, R.mipmap.renxiang2, R.mipmap.renxiang3};
+        int[] lrImgs2 = {R.mipmap.caise1, R.mipmap.caise2, R.mipmap.caise3};
+        int[] lrImgs3 = {R.mipmap.chuntian1, R.mipmap.chuntian2, R.mipmap.chuntian3};
+        int[] lrImgs4 = {R.mipmap.miaoxingren1, R.mipmap.miaoxingren2, R.mipmap.miaoxingren3};
         List<int[]> imgsList = new ArrayList<>();
         imgsList.add(lrImgs1);
         imgsList.add(lrImgs2);
         imgsList.add(lrImgs3);
         imgsList.add(lrImgs4);
-        LabelMainReommendLabelLVAdapter adapter = new LabelMainReommendLabelLVAdapter(mContext,lrList,bgs,imgsList);
+        LabelMainReommendLabelLVAdapter adapter = new LabelMainReommendLabelLVAdapter(mContext, lrList, bgs, imgsList);
         lv_label_main_label_recommend.setAdapter(adapter);
     }
 
@@ -219,7 +224,10 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         tagList.add(labelTagEntity);
         tagList.add(labelTagEntity);
         tagList.add(labelTagEntity);
-
+        /**
+         * 给自定义vp赋值数据，点击时候传过去
+         */
+        vp_label_tag.setTagList(tagList);
     }
 
     /**

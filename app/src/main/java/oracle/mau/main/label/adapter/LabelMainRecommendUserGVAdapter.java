@@ -63,6 +63,9 @@ public class LabelMainRecommendUserGVAdapter extends BaseAdapter {
         }else {
             vh = (ViewHolder) convertView.getTag();
         }
+        vh.iv_gv_item_label_main_user_img.setFocusable(false);
+
+        vh.iv_gv_item_label_main_user_img.setFocusableInTouchMode(false);
         Bitmap bm = BitmapFactory.decodeResource(context.getResources(),userImg[position]);
         Bitmap circleBitmap = ImageUtils.circleBitmap(bm);
         int screenWidth = ScreenUtils.getScreenWidth(context);
