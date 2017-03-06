@@ -1,20 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F4F5F5"
+    >
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_label_main_scrollview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         ptr:ptrAnimationStyle="rotate"
-        ptr:ptrMode="pullDownFromTop">
-
-        <oracle.mau.view.ListViewForScrollView
-            android:id="@+id/msg_listview"
+        ptr:ptrMode="pullDownFromTop"
+        >
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
+            <oracle.mau.view.ListViewForScrollView
+                android:id="@+id/msg_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                >
 
-        </oracle.mau.view.ListViewForScrollView>
+            </oracle.mau.view.ListViewForScrollView>
+            <RelativeLayout
+                android:id="@+id/the_line"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/msg_listview"
+
+
+                >
+                <TextView
+                    android:id="@+id/text_zhuanti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="专题"
+                    android:layout_centerHorizontal="true"
+                    android:alpha="0.7"
+                    android:layout_marginTop="12dp"
+
+                    />
+                <ImageView
+                    android:id="@+id/left_line"
+                    android:layout_width="130dp"
+                    android:layout_height="1dp"
+                    android:background="#525252"
+                    android:layout_toLeftOf="@+id/text_zhuanti"
+                    android:layout_marginRight="20dp"
+                    android:alpha="0.1"
+                    android:layout_marginTop="23dp"
+                    />
+                <ImageView
+                    android:id="@+id/right_line"
+                    android:layout_width="130dp"
+                    android:layout_height="1dp"
+                    android:background="#525252"
+                    android:layout_toRightOf="@+id/text_zhuanti"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="0.1"
+                    android:layout_marginTop="22dp"
+                    />
+
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/zhuanti_first_line"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_below="@id/the_line"
+                android:orientation="horizontal"
+                android:background="#FFFFFF">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="65dp"
+                    android:layout_weight="1"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/mimi"
+                    android:layout_gravity="center_vertical"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="姑娘就是用这张嘴吻醒了夜华"
+                    android:textSize="16sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="30dp"/>
+
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="查看更多专题"
+                android:textSize="18sp"
+                android:textColor="#B9D74F"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/zhuanti_first_line"
+                android:background="#FFFFFF"
+                />
+
+
+        </RelativeLayout>
+
+
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 
 </RelativeLayout>
