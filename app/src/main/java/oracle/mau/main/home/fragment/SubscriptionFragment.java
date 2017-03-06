@@ -1,22 +1,26 @@
 package oracle.mau.main.home.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import oracle.mau.R;
-import oracle.mau.base.BaseFragment;
+
 
 /**
  * Created by Administrator on 2017/3/2.
  */
 
-public class SubscriptionFragment extends BaseFragment {
-    int type;
-    @Override
-    protected int getLayoutResource() {
-        return R.layout.fragment_homesubscription;
-    }
+public class SubscriptionFragment extends Fragment {
+    View view;
 
     @Override
-    protected void initView() {
-        type=getArguments().getInt("type",-1);
-        toast(type+"--------");
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        view=inflater.inflate(R.layout.fragment_homesubscription,container,false);
+        return view;
     }
 }

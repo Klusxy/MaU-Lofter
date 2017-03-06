@@ -9,15 +9,16 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseFragment;
+import oracle.mau.entity.HomeEntity;
 import oracle.mau.main.home.adapter.HomeAttentionFragmentAdapter;
-import oracle.mau.main.home.entity.User;
+
 
 /**
  * Created by Administrator on 2017/3/1.
  */
 
 public class AttentionFragment extends BaseFragment{
-    int type;
+   // int type;
     ListView lv;
     HomeAttentionFragmentAdapter adapter;
 
@@ -29,8 +30,10 @@ public class AttentionFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        type=getArguments().getInt("type",-1);
-        toast(type+"--------");
+
+
+//        type=getArguments().getInt("type",-1);
+//        toast(type+"--------");
         lv=(ListView)rootView.findViewById(R.id.home_lv);
         adapter=new HomeAttentionFragmentAdapter(getActivity());
         lv.setAdapter(adapter);
@@ -45,10 +48,10 @@ public class AttentionFragment extends BaseFragment{
     }
     // 自定义数据加载的方法
     public void addData() {
-        List<User> list=new ArrayList<User>();
+        List<HomeEntity> list=new ArrayList<HomeEntity>();
         for (int i=0;i<20;i++){
             //假数据
-            User user=new User();
+            HomeEntity user=new HomeEntity();
             user.setUsername("用户名"+ i);
             user.setCommandname("推荐用户名"+ i);
             user.setContent("文章内容"+ i);
