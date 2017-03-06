@@ -11,8 +11,8 @@
     -->
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_label_main_scrollview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         ptr:ptrAnimationStyle="rotate"
         ptr:ptrMode="both">
 
@@ -47,8 +47,8 @@
                     android:text="标签推荐"/>
                 <oracle.mau.view.ListViewForScrollView
                     android:id="@+id/lv_label_main_label_recommend"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_label_main_label_recommend_flag">
 
                 </oracle.mau.view.ListViewForScrollView>
@@ -97,13 +97,21 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="达人推荐"/>
+                <oracle.mau.view.GridViewForScrollView
+                    android:id="@+id/gv_label_main_user_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="3"
+                    android:layout_below="@+id/tv_label_main_user_recommend_flag">
+
+                </oracle.mau.view.GridViewForScrollView>
                 <RelativeLayout
                     android:id="@+id/rl_label_look_more_user"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_alignParentBottom="true"
                     android:background="#FFF"
-                    android:layout_below="@+id/tv_label_main_user_recommend_flag">
+                    android:layout_below="@+id/gv_label_main_user_recommend">
                     <TextView
                         android:id="@+id/rl_label_look_more_user_flag"
                         android:layout_width="wrap_content"
