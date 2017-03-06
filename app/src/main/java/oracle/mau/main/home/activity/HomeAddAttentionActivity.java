@@ -1,22 +1,19 @@
 package oracle.mau.main.home.activity;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
+import oracle.mau.entity.HomeEntity;
 import oracle.mau.main.home.adapter.HomeAddAttentionAdapter;
-import oracle.mau.main.home.entity.User;
+
 
 /**
  * Created by Administrator on 2017/3/1.
  */
-
 public class HomeAddAttentionActivity extends BaseActivity{
     ImageView home_back;
     ListView lv;
@@ -50,10 +47,10 @@ public class HomeAddAttentionActivity extends BaseActivity{
     }
     // 自定义数据加载的方法
     public void addData() {
-        List<User> list=new ArrayList<User>();
+        List<HomeEntity> list=new ArrayList<HomeEntity>();
         for (int i=0;i<20;i++){
             //假数据
-            User user=new User();
+            HomeEntity user=new HomeEntity();
             user.setUsername("发布用户名"+ i);
             user.setLikeNum("被喜欢"+1000+i+"次");
             user.setPic(R.mipmap.ic_launcher);//推荐用户头像

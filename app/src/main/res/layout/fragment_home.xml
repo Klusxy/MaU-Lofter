@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#DDDDDD"
     android:layout_width="match_parent"
@@ -11,16 +12,20 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="horizontal">
-    <com.astuetz.PagerSlidingTabStrip
-    android:id="@+id/home_psts"
-    android:layout_width="300dp"
-    android:layout_height="50dp">
-    </com.astuetz.PagerSlidingTabStrip>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        app:tabIndicatorColor="#37d43a"
+
+        >
+    </android.support.design.widget.TabLayout>
     <ImageView
         android:id="@+id/home_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="25dp"
         android:background="@drawable/label_add_attention_selector"
 
         />

@@ -16,6 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/iv_gv_item_label_main_user_img"
         />
 </RelativeLayout>

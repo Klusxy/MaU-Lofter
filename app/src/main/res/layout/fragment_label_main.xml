@@ -102,6 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:numColumns="3"
+                    android:background="#FFF"
                     android:layout_below="@+id/tv_label_main_user_recommend_flag">
 
                 </oracle.mau.view.GridViewForScrollView>
@@ -120,6 +121,7 @@
                         android:textSize="14sp"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
                         android:text="查看更多达人"
                         />
                     <ImageView
@@ -128,6 +130,7 @@
                         android:layout_toRightOf="@+id/rl_label_look_more_user_flag"
                         android:src="@mipmap/discover_item_arrow"
                         android:layout_centerVertical="true"
+                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="10dp"/>
                 </RelativeLayout>
             </RelativeLayout>
@@ -149,7 +152,7 @@
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="达人推荐"/>
+                    android:text="文章推荐"/>
             </RelativeLayout>
         </RelativeLayout>
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>

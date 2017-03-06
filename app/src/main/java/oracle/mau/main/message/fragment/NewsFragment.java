@@ -1,5 +1,6 @@
 package oracle.mau.main.message.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +17,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 import oracle.mau.R;
+import oracle.mau.main.message.adapter.NewsListAdapter;
 import oracle.mau.view.ListViewForScrollView;
 
 /**
@@ -47,6 +49,8 @@ public class NewsFragment extends Fragment implements AdapterView.OnItemClickLis
         View view=inflater.inflate(R.layout.fragment_msg_message,null);
 
         listView=(ListViewForScrollView) view.findViewById(R.id.msg_listview);
+        NewsListAdapter newslistAdapter=new NewsListAdapter(getActivity(),msgtext,msgpic);
+        listView.setAdapter(newslistAdapter);
         listView.setOnItemClickListener(this);
         /**
          * 初始化下拉刷新、设置监听(去获取数据)

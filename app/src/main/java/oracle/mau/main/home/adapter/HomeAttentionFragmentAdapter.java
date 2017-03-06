@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import oracle.mau.R;
-import oracle.mau.main.home.entity.User;
+import oracle.mau.entity.HomeEntity;
+
 
 /**
  * Created by Administrator on 2017/3/1.
@@ -21,18 +22,18 @@ import oracle.mau.main.home.entity.User;
 public class HomeAttentionFragmentAdapter extends BaseAdapter {
     Context context;
     LayoutInflater inflater;
-    List<User> list=new ArrayList<User>();
+    List<HomeEntity> list=new ArrayList<HomeEntity>();
     public HomeAttentionFragmentAdapter(Context context ) {
         this.context = context;
         inflater=LayoutInflater.from(context);
     }
 //添加数据的方法
-    public void addData(List<User> list){
+    public void addData(List<HomeEntity> list){
         this.list.clear();
         this.list=list;
     }
     //返回所有数据的方法
-    public List<User> getList(){
+    public List<HomeEntity> getList(){
         return list;
     }
     @Override

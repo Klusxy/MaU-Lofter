@@ -17,6 +17,7 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.entity.UserEntity;
+import oracle.mau.utils.DensityUtils;
 import oracle.mau.utils.ImageUtils;
 import oracle.mau.utils.ScreenUtils;
 
@@ -68,6 +69,7 @@ public class LabelMainRecommendUserGVAdapter extends BaseAdapter {
 //        Glide.with(context).load(userImg[position]).into(vh.iv_gv_item_label_main_user_img);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth/3,screenWidth/3);
         vh.iv_gv_item_label_main_user_img.setLayoutParams(lp);
+        lp.setMargins(DensityUtils.dp2px(context,10),10,DensityUtils.dp2px(context,10),0);
         vh.iv_gv_item_label_main_user_img.setImageBitmap(circleBitmap);
 
         vh.tv_gv_item_label_main_user_name.setText(list.get(position).getUsername());
