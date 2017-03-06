@@ -264,7 +264,6 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         vp_label_tag.setCurrentItem(1000);
     }
 
-
     /**
      * 初始化顶部自动轮播数据
      */

@@ -5,4 +5,14 @@
     <color name="colorAccent">#FF4081</color>
     <!--label模块字体颜色-->
     <color name="label_gray_color">#999</color>
+    <!--label模块滚动选项卡-->
+    <color name="category_tab_text">#000</color>
+    <color name="category_tab_text_dark">#fffafafa</color>
+    <color name="category_tab_highlight_text">#fffafafa</color>
+    <color name="category_tab_highlight_text_dark">#A3C53C</color>
+    <color name="category_tab_highlight_bg">#A3C53C</color>
+    <color name="category_tab_highlight_dark_bg">#fffafafa</color>
+    <color name="activity_bg_color">#FFF</color>
+    <color name="top_category_bar_background">#FFF</color>
+    <color name="divider">#FFF</color>
 </resources>
