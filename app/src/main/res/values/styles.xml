@@ -33,8 +33,14 @@
     </style>
     <!-- camera模块  popupwindow 动画 -->
     <style name="Animation">
-        <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
-        <item name="android:windowExitAnimation">@anim/pop_out_anim</item>
+        <item name="android:windowEnterAnimation">@anim/camera_pop_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/camera_pop_out_anim</item>
+    </style>
+
+    <!-- label模块 精选推荐  popupwindow 动画 -->
+    <style name="LabelRecommendDetailAnimation">
+        <item name="android:windowEnterAnimation">@anim/recommend_detail_pop_enter</item>
+        <item name="android:windowExitAnimation">@anim/recommend_detail_pop_out</item>
     </style>
 
     <!--首页订阅页面的  我的订阅 我参与的  推荐订阅-->

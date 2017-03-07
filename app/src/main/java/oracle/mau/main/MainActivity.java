@@ -29,7 +29,7 @@ import oracle.mau.main.camera.activity.CropActivity;
 import oracle.mau.main.camera.activity.ReleaseArticleActivity;
 import oracle.mau.main.camera.constant.PhotoConstant;
 import oracle.mau.main.camera.utils.FileUtils;
-import oracle.mau.main.home.fragment.HomeFragment;
+import oracle.mau.main.home.HomeFragment;
 import oracle.mau.main.label.fragment.LabelFragment;
 import oracle.mau.main.message.MessageFragment;
 import oracle.mau.view.BottomMenuDialog;

@@ -4,8 +4,10 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -55,6 +57,8 @@ public class TagGalleryVPAdapter extends PagerAdapter {
         TagGridViewAdapter adapter = new TagGridViewAdapter(context, list.get(position % list.size()).getImgs());
         gv_vp_item.setAdapter(adapter);
         container.addView(view);
+
         return view;
     }
+
 }

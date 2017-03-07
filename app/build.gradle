@@ -25,8 +25,8 @@ android {
 }
 
 
-repositories{
-    flatDir{
+repositories {
+    flatDir {
         dir 'libs'//就是你放 arr的目录地址
     }
 }
@@ -57,6 +57,7 @@ dependencies {
     compile files('libs/baidumapapi_util_v3_7_3.jar')
     compile files('libs/locSDK_6.13.jar')
     compile project(':PullToRefreshAnim-master')
+<<<<<<< HEAD
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     /**
      *   TabLayout
@@ -65,4 +66,15 @@ dependencies {
     compile files('libs/ezmorph-0.9.1.jar')
     compile files('libs/json-lib-0.9.jar')
     compile files('libs/wmqtt.jar')
+=======
+    /**
+     * TabLayout
+     */
+    compile 'com.android.support:design:25.0.0'
+    /**
+     * 图片加载库
+     */
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+>>>>>>> 62f74bd02f5f81a577cb63a7a33363e58c81e8de
 }

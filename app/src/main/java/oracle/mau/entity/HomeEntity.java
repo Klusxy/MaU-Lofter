@@ -1,10 +1,10 @@
-package oracle.mau.main.home.entity;
+package oracle.mau.entity;
 
 /**
- * Created by Administrator on 2017/3/2.
+ * Created by Administrator on 2017/3/6.
  */
 
-public class User {
+public class HomeEntity {
     private  int userid;
     private int commandid;
     private String username;
@@ -14,7 +14,7 @@ public class User {
     private String commandname;
     private String content;
 
-    public User() {
+    public HomeEntity() {
         super();
     }
 
@@ -106,7 +106,7 @@ public class User {
         this.sign = sign;
     }
 
-    public User(int userid, int commandid, String username, int pic, String commentcontent, String time, String commandname, String content, String likeNum, String hot, String sign) {
+    public HomeEntity(int userid, int commandid, String username, int pic, String commentcontent, String time, String commandname, String content, String likeNum, String hot, String sign) {
         this.userid = userid;
         this.commandid = commandid;
         this.username = username;

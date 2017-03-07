@@ -11,8 +11,8 @@
     -->
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_label_main_scrollview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         ptr:ptrAnimationStyle="rotate"
         ptr:ptrMode="both">
 
@@ -25,57 +25,61 @@
                 android:layout_width="match_parent"
                 android:layout_height="170dp"></android.support.v4.view.ViewPager>
             <!--中部标签画廊-->
-            <android.support.v4.view.ViewPager
+            <oracle.mau.main.label.view.TouchViewPager
                 android:id="@+id/vp_label_tag"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
+                android:layout_height="wrap_content"></oracle.mau.main.label.view.TouchViewPager>
             <!--标签推荐-->
             <RelativeLayout
                 android:id="@+id/rl_label_main_label_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/vp_label_tag">
+
                 <TextView
                     android:id="@+id/tv_label_main_label_recommend_flag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/label_gray_color"
                     android:background="#FFF"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:text="标签推荐"/>
+                    android:text="标签推荐"
+                    android:textColor="@color/label_gray_color"
+                    android:textSize="15sp" />
+
                 <oracle.mau.view.ListViewForScrollView
                     android:id="@+id/lv_label_main_label_recommend"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_label_main_label_recommend_flag">
 
                 </oracle.mau.view.ListViewForScrollView>
+
                 <RelativeLayout
                     android:id="@+id/rl_label_look_more_label"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_alignParentBottom="true"
-                    android:background="#FFF"
-                    android:layout_below="@+id/lv_label_main_label_recommend">
+                    android:layout_below="@+id/lv_label_main_label_recommend"
+                    android:background="#FFF">
+
                     <TextView
                         android:id="@+id/rl_label_look_more_label_flag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#A3C53C"
-                        android:textSize="14sp"
-                        android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
                         android:text="更多好玩的标签"
-                        />
+                        android:textColor="#A3C53C"
+                        android:textSize="14sp" />
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/rl_label_look_more_label_flag"
-                        android:src="@mipmap/discover_item_arrow"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/rl_label_look_more_label_flag"
+                        android:src="@mipmap/discover_item_arrow" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -86,41 +90,56 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rl_label_main_label_recommend"
                 android:layout_marginTop="20dp">
+
                 <TextView
                     android:id="@+id/tv_label_main_user_recommend_flag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/label_gray_color"
                     android:background="#FFF"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="达人推荐"/>
+                    android:text="达人推荐"
+                    android:textColor="@color/label_gray_color"
+                    android:textSize="15sp" />
+
+                <oracle.mau.view.GridViewForScrollView
+                    android:id="@+id/gv_label_main_user_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_label_main_user_recommend_flag"
+                    android:background="#FFF"
+                    android:numColumns="3">
+
+                </oracle.mau.view.GridViewForScrollView>
+
                 <RelativeLayout
                     android:id="@+id/rl_label_look_more_user"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_alignParentBottom="true"
-                    android:background="#FFF"
-                    android:layout_below="@+id/tv_label_main_user_recommend_flag">
+                    android:layout_below="@+id/gv_label_main_user_recommend"
+                    android:background="#FFF">
+
                     <TextView
                         android:id="@+id/rl_label_look_more_user_flag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#A3C53C"
-                        android:textSize="14sp"
-                        android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="10dp"
                         android:text="查看更多达人"
-                        />
+                        android:textColor="#A3C53C"
+                        android:textSize="14sp" />
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/rl_label_look_more_user_flag"
-                        android:src="@mipmap/discover_item_arrow"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@+id/rl_label_look_more_user_flag"
+                        android:src="@mipmap/discover_item_arrow" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -131,17 +150,18 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rl_label_main_user_recommend"
                 android:layout_marginTop="20dp">
+
                 <TextView
                     android:id="@+id/tv_label_main_message_recommend_flag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/label_gray_color"
                     android:background="#FFF"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="达人推荐"/>
+                    android:text="文章推荐"
+                    android:textColor="@color/label_gray_color"
+                    android:textSize="15sp" />
             </RelativeLayout>
         </RelativeLayout>
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>

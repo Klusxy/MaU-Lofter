@@ -78,6 +78,7 @@
 
         <!--首页添加关注页面-->
         <activity android:name=".main.home.activity.HomeAddAttentionActivity"/>
+        <activity android:name=".main.label.activity.RecommendDetailActivity" />
         <!--百度地图-->
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
         </service>

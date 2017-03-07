@@ -70,4 +70,5 @@ public class TagGridViewAdapter extends BaseAdapter {
         private ImageView iv_gv_item_tag_img;
     }
 
+
 }
