@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import oracle.mau.main.label.fragment.RecommendDetailFragment;
  * Created by 田帅 on 2017/3/7.
  */
 
-public class RDCategoryItemVPAdapter extends FragmentPagerAdapter {
+public class RDCategoryItemVPAdapter extends FragmentStatePagerAdapter {
     private Context context;
     private List<LabelTagEntity> list;
 
@@ -39,7 +40,7 @@ public class RDCategoryItemVPAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return RecommendDetailFragment.newInstance(position);
+        return RecommendDetailFragment.newInstance(list.get(position));
     }
 
 }
