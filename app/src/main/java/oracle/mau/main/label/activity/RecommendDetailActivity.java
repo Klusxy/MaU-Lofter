@@ -23,6 +23,7 @@ import oracle.mau.view.CategoryTabStrip;
 
 public class RecommendDetailActivity extends BaseActivity implements View.OnClickListener {
     private List<LabelTagEntity> tagList;
+    private int position;
 
     private ImageView iv_rd_back;
 
@@ -64,7 +65,10 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
          * 得到传过来的标签实体
          */
         LabelTagEntity tagEntity = (LabelTagEntity) getIntent().getExtras().getSerializable("tag");
-
+        /**
+         * 得到position
+         */
+        position = getIntent().getIntExtra("position",-1);
         iv_rd_back = (ImageView) findViewById(R.id.iv_rd_back);
         iv_rd_back.setOnClickListener(this);
         rl_rd_category_select_channel_layout = (RelativeLayout) findViewById(R.id.rl_rd_category_select_channel_layout);
@@ -86,6 +90,7 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
         mAdapter = new RDCategoryItemVPAdapter(getSupportFragmentManager(), this ,tagList);
         mViewPager.setAdapter(mAdapter);
         mCategoryTabStrip.setViewPager(mViewPager);
+        mViewPager.setCurrentItem(position);
     }
 
     private void initAnimations() {

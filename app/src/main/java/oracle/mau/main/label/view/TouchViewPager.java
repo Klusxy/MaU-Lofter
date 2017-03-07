@@ -59,6 +59,7 @@ public class TouchViewPager extends ViewPager {
                     int item = this.getCurrentItem()%tagList.size();
                     Intent intent = new Intent(mContext, RecommendDetailActivity.class);
                     intent.putExtra("all",(Serializable) tagList);
+                    intent.putExtra("position",item);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("tag",tagList.get(item));
                     intent.putExtras(bundle);
