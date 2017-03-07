@@ -78,10 +78,17 @@ public class HomeAttentionFragmentAdapter extends BaseAdapter {
 
         vh.home_head.setImageResource(list.get(position).getPic());
         vh.home_iv.setImageResource(list.get(position).getPic());
-        vh.home_love.setImageResource(list.get(position).getPic());
-        vh.home_comment.setImageResource(list.get(position).getPic());
-        vh.home_transmit.setImageResource(list.get(position).getPic());
-        vh.home_popupwindow.setImageResource(list.get(position).getPic());
+        vh.home_love.setImageResource(R.mipmap.dashboard_like_off_hover);
+        vh.home_comment.setImageResource(R.mipmap.dashboard_reply_hover);
+        vh.home_transmit.setImageResource(R.mipmap.dashboard_reblog_hover);
+        vh.home_popupwindow.setImageResource(R.mipmap.dots_rest_person_page_hover);
+
+//        View contentView = inflater.inflate(R.layout.home_popuplayout, null);
+//        PopupWindow popWnd = PopupWindow();
+//        popWnd.setContentView(contentView);
+//        popWnd.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+//        popWnd.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+
 
         vh.home_username.setText(list.get(position).getUsername());
         vh.home_time.setText(list.get(position).getTime());

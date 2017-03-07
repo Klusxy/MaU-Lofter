@@ -18,7 +18,7 @@ import oracle.mau.main.home.adapter.HomeAttentionFragmentAdapter;
  */
 
 public class AttentionFragment extends BaseFragment{
-   // int type;
+
     ListView lv;
     HomeAttentionFragmentAdapter adapter;
 
@@ -32,8 +32,6 @@ public class AttentionFragment extends BaseFragment{
     protected void initView() {
 
 
-//        type=getArguments().getInt("type",-1);
-//        toast(type+"--------");
         lv=(ListView)rootView.findViewById(R.id.home_lv);
         adapter=new HomeAttentionFragmentAdapter(getActivity());
         lv.setAdapter(adapter);
@@ -57,7 +55,7 @@ public class AttentionFragment extends BaseFragment{
             user.setContent("文章内容"+ i);
             user.setTime("2分钟前");
             user.setSign("搭配  今天穿什么 stylelife");
-            user.setPic(R.mipmap.ic_launcher);
+           // user.setPic(R.mipmap.ic_launcher);
             user.setHot("2  热度");
             list.add(user);
         }

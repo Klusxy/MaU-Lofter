@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:paddingBottom="2dp">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2.25dp"
+        android:background="#fa7829"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/pop_computer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="推荐给我的粉丝"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+       />
+
+    <!--<TextView-->
+        <!--android:id="@+id/pop_financial"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+
+        <!--android:text="复制链接"/>-->
+    <!---->
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--/>-->
+    <!--<TextView-->
+        <!--android:id="@+id/pop_financial"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+
+        <!--android:text="取消"/>-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</LinearLayout>

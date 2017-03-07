@@ -3,35 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!--头部-->
-    <RelativeLayout
-        android:id="@+id/rl_aa_top"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/main_top_height">
-
-        <TextView
-            android:id="@+id/tv_aa_complete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:text="@string/camera_complete"
-            android:textColor="#A3C53C"
-            android:textSize="15sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="添加文字"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            />
-
-        <oracle.mau.view.ThinLineView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true" />
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,4 +36,36 @@
                 android:textSize="12sp" />
             </RelativeLayout>
         </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_aa_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_top_height"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/tv_aa_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:text="@string/camera_complete"
+            android:textColor="#A3C53C"
+            android:textSize="15sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="添加文字"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+
+        <oracle.mau.view.ThinLineView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
+</RelativeLayout>

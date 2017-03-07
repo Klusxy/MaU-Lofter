@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
@@ -15,7 +15,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             app:srcCompat="@mipmap/ic_launcher"
             android:id="@+id/home_head"
 
@@ -26,7 +26,9 @@
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/home_head"
             android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp"
             android:id="@+id/home_username"
         />
 
@@ -35,9 +37,12 @@
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_marginLeft="130dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:id="@+id/home_time" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,7 +91,7 @@
             android:layout_marginLeft="10dp"
             android:text="标签"/>
     </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">
@@ -95,28 +100,32 @@
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/dashboard_like_off_hover"/>
 
         <ImageView
             android:id="@+id/home_comment"
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
-            android:src="@mipmap/ic_launcher"/>
+           android:layout_toRightOf="@+id/home_love"
+            android:src="@mipmap/dashboard_reply_hover"/>
 
         <ImageView
             android:id="@+id/home_transmit"
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:layout_toRightOf="@+id/home_comment"
+            android:src="@mipmap/dashboard_reblog_hover"/>
         <ImageView
             android:id="@+id/home_popupwindow"
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_marginLeft="140dp"
-            android:src="@mipmap/ic_launcher"/>
-    </LinearLayout>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/dots_rest_person_page_hover"/>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"

@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
-        <shape>
-           <gradient android:startColor="#28FF28" android:endColor="#FFFFF4"></gradient>
-        <corners android:radius="20dp"></corners>
-            <padding android:left="3dp"
-                android:top="3dp"
-                android:right="3dp"
-                android:bottom="3dp"></padding>
+        <shape android:shape="rectangle">
+            <!-- 填充的颜色 -->
+<solid android:color="@color/white" />
+        <corners  android:radius="200dp" ></corners>
+
+            <padding android:left="1dp"
+                android:top="1dp"
+                android:right="1dp"
+                android:bottom="1dp"></padding>
+            <stroke    android:dashGap="0dp"    android:width="1dp"    android:color="#28FF28" />
         </shape>
     </item>
     <item android:state_pressed="false">
-        <shape>
-            <gradient android:startColor="#28FF28" android:endColor="#FFFFF4"></gradient>
-            <corners android:radius="20dp"></corners>
-            <padding android:left="3dp"
-                android:top="3dp"
-                android:right="3dp"
-                android:bottom="3dp"></padding>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <corners android:radius="200dp"></corners>
+            <stroke    android:dashGap="0dp"    android:width="1dp"    android:color="@color/grey" />
+            <padding android:left="1dp"
+                android:top="1dp"
+                android:right="1dp"
+                android:bottom="1dp"></padding>
         </shape>
     </item>
 </selector>
