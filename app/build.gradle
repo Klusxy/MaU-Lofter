@@ -44,12 +44,10 @@ dependencies {
     compile files('libs/org.apache.http.legacy.jar')
     compile project(':ImageSelector-master')
     compile project(':library')
-
     compile files('libs/MobCommons-2016.1201.1839.jar')
     compile files('libs/MobTools-2016.1201.1839.jar')
-
     /**
-     * 百度地图
+     *   百度地图
      */
     compile files('libs/baidumapapi_base_v3_7_3.jar')
     compile files('libs/baidumapapi_cloud_v3_7_3.jar')
@@ -60,10 +58,11 @@ dependencies {
     compile files('libs/locSDK_6.13.jar')
     compile project(':PullToRefreshAnim-master')
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
-/**
- * TabLayout
- */
+    /**
+     *   TabLayout
+     */
     compile 'com.android.support:design:25.0.0'
-
-
+    compile files('libs/ezmorph-0.9.1.jar')
+    compile files('libs/json-lib-0.9.jar')
+    compile files('libs/wmqtt.jar')
 }

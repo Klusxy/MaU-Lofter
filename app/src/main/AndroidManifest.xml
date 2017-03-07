@@ -32,6 +32,12 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
 
 
+
+    <!--用于mqtt手机震动-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+
+
     <application
         android:name=".application.MaUApplication"
         android:allowBackup="true"
@@ -59,7 +65,7 @@
         <!--发布Article页面-->
         <activity android:name=".main.camera.activity.ReleaseArticleActivity" />
 
-        <activity android:name=".main.camera.activity.AddLocation" />
+
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -77,6 +83,11 @@
         </service>
         <meta-data  android:name="com.baidu.lbsapi.API_KEY"
             android:value="z5rGC2iOOeft6amq5E9WzLaCHImy7MKT" />
+        <service android:name=".main.message.mqtt.PushService" android:enabled="true" android:process=":remote">
+        </service>
+        <service android:name=".main.message.mqtt.PushService2" android:enabled="true" android:process=":remote">
+        </service>
+        <activity android:name=".main.message.mqtt.PushActivity" />
     </application>
 
 </manifest>

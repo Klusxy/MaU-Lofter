@@ -1,5 +1,6 @@
 package oracle.mau.main.message;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,9 @@ import oracle.mau.main.message.adapter.MsgFragmentPageAdapter;
 import oracle.mau.main.message.fragment.DynamicFragment;
 import oracle.mau.main.message.fragment.NewsFragment;
 import oracle.mau.main.message.fragment.TalkFragment;
+import oracle.mau.main.message.mqtt.PushService;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by 田帅 on 2017/2/20.
@@ -59,8 +63,13 @@ public class MessageFragment  extends Fragment {
 
         tab.setTabMode(TabLayout.MODE_FIXED);
         tab.setTabGravity(TabLayout.GRAVITY_FILL);
+        //连接mqtt服务器
+
+
+
         return view;
     }
+
 
 
 
