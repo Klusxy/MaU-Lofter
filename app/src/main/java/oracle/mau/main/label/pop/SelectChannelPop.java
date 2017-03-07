@@ -28,6 +28,11 @@ public class SelectChannelPop extends PopupWindow {
         this.mContext = context;
         this.onItemClickListener = onItemClickListener;
         initPop();
+        initViews();
+    }
+
+    private void initViews() {
+
     }
 
     private void initPop() {
@@ -43,7 +48,7 @@ public class SelectChannelPop extends PopupWindow {
         //设置PopupWindow弹出窗体可点击
 //        this.setFocusable(true);
         //设置SelectPicPopupWindow弹出窗体动画效果
-        this.setAnimationStyle(R.style.LabelRecommendDetailAnimation);
+//        this.setAnimationStyle(R.style.LabelRecommendDetailAnimation);
         /**
          * 不设置会有黑边
          */

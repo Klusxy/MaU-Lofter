@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by 田帅 on 2017/2/28.
  */
 
-public class LabelTagEntity implements Serializable{
+public class LabelTagEntity implements Serializable {
     private int tagId;
 
     public int getTagId() {

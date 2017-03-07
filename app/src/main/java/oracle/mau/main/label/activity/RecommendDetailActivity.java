@@ -8,6 +8,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.util.List;
+
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.entity.LabelTagEntity;
@@ -20,6 +22,8 @@ import oracle.mau.view.CategoryTabStrip;
  */
 
 public class RecommendDetailActivity extends BaseActivity implements View.OnClickListener {
+    private List<LabelTagEntity> tagList;
+
     private ImageView iv_rd_back;
 
     /**
@@ -53,9 +57,14 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
     @Override
     public void initView() {
         /**
+         * 得到所有的标签集合
+         */
+        this.tagList = (List<LabelTagEntity>) getIntent().getSerializableExtra("all");
+        /**
          * 得到传过来的标签实体
          */
         LabelTagEntity tagEntity = (LabelTagEntity) getIntent().getExtras().getSerializable("tag");
+
         iv_rd_back = (ImageView) findViewById(R.id.iv_rd_back);
         iv_rd_back.setOnClickListener(this);
         rl_rd_category_select_channel_layout = (RelativeLayout) findViewById(R.id.rl_rd_category_select_channel_layout);
@@ -74,7 +83,7 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
         initAnimations();
         mCategoryTabStrip = (CategoryTabStrip) findViewById(R.id.cs_recommend_detail);
         mViewPager = (ViewPager) findViewById(R.id.vp_recommend_detail);
-        mAdapter = new RDCategoryItemVPAdapter(getSupportFragmentManager(), this);
+        mAdapter = new RDCategoryItemVPAdapter(getSupportFragmentManager(), this ,tagList);
         mViewPager.setAdapter(mAdapter);
         mCategoryTabStrip.setViewPager(mViewPager);
     }
@@ -122,8 +131,10 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
 
                         }
                     });
-                    selectChannelPop.showAtLocation(iv_rd_expand,
-                            Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+//                    selectChannelPop.showAtLocation(iv_rd_expand,
+//                            Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    selectChannelPop.showAsDropDown(v);
+
                 } else {
                     /**
                      * 添加显示隐藏动画效果

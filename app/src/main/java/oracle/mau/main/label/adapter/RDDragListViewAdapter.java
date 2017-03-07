@@ -1,4 +1,4 @@
-package oracle.dragsortlistviewdemo;
+package oracle.mau.main.label.adapter;
 
 
 /**
@@ -6,24 +6,26 @@ package oracle.dragsortlistviewdemo;
  */
 
 
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import java.util.List;
 
-
-        import android.content.Context;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.BaseAdapter;
-        import android.widget.ImageView;
-        import android.widget.TextView;
+import oracle.mau.R;
+import oracle.mau.entity.LabelTagEntity;
 
 public class RDDragListViewAdapter extends BaseAdapter {
 
     private Context context;
-    List<LabelTypeEntity> items;//适配器的数据源
+    List<LabelTagEntity> items;//适配器的数据源
 
 
-    public RDDragListViewAdapter(Context context,List<LabelTypeEntity> list){
+    public RDDragListViewAdapter(Context context, List<LabelTagEntity> list){
         this.context = context;
         this.items = list;
     }
@@ -53,14 +55,14 @@ public class RDDragListViewAdapter extends BaseAdapter {
         this.notifyDataSetChanged();//不要忘记更改适配器对象的数据源
     }
 
-    public void insert(LabelTypeEntity item, int arg0) {//在指定位置插入item
+    public void insert(LabelTagEntity item, int arg0) {//在指定位置插入item
         items.add(arg0, item);
         this.notifyDataSetChanged();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LabelTypeEntity item = (LabelTypeEntity)getItem(position);
+        LabelTagEntity item = (LabelTagEntity)getItem(position);
         ViewHolder viewHolder;
         if(convertView==null){
             viewHolder = new ViewHolder();
@@ -74,7 +76,7 @@ public class RDDragListViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tvTitle.setText(item.getLabel());
+        viewHolder.tvTitle.setText(item.getTagTitle());
 //        viewHolder.ivCountryLogo.setImageResource(item.src);
 
 

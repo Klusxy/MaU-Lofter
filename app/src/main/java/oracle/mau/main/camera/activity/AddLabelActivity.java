@@ -13,7 +13,7 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
-import oracle.mau.entity.LabelTypeEntity;
+import oracle.mau.entity.LabelTagEntity;
 import oracle.mau.main.camera.utils.DensityUtils;
 import oracle.mau.view.WarpLinearLayout;
 
@@ -24,8 +24,8 @@ import oracle.mau.view.WarpLinearLayout;
 public class AddLabelActivity extends BaseActivity implements View.OnClickListener {
     //完成按钮
     private TextView tv_al_complete;
-    private List<LabelTypeEntity> labelsList ;
-    private List<LabelTypeEntity> resultList;
+    private List<LabelTagEntity> labelsList ;
+    private List<LabelTagEntity> resultList;
     private List<TextView> labelViewList;
     private WarpLinearLayout wll_al_labels;
     //重置按钮
@@ -57,44 +57,44 @@ public class AddLabelActivity extends BaseActivity implements View.OnClickListen
      */
     private void initLabelsList() {
         labelsList = new ArrayList<>();
-        LabelTypeEntity e1 = new LabelTypeEntity();
-        e1.setLabelTypeId(1);
-        e1.setLabel("摄影天堂");
+        LabelTagEntity e1 = new LabelTagEntity();
+        e1.setTagId(1);
+        e1.setTagTitle("摄影天堂");
         labelsList.add(e1);
 
-        LabelTypeEntity e2 = new LabelTypeEntity();
-        e2.setLabelTypeId(2);
-        e2.setLabel("电影");
+        LabelTagEntity e2 = new LabelTagEntity();
+        e2.setTagId(2);
+        e2.setTagTitle("电影");
         labelsList.add(e2);
 
-        LabelTypeEntity e3 = new LabelTypeEntity();
-        e3.setLabelTypeId(3);
-        e3.setLabel("说走就走的旅行");
+        LabelTagEntity e3 = new LabelTagEntity();
+        e3.setTagId(3);
+        e3.setTagTitle("说走就走的旅行");
         labelsList.add(e3);
 
-        LabelTypeEntity e4 = new LabelTypeEntity();
-        e4.setLabelTypeId(4);
-        e4.setLabel("独一无二的设计");
+        LabelTagEntity e4 = new LabelTagEntity();
+        e4.setTagId(4);
+        e4.setTagTitle("独一无二的设计");
         labelsList.add(e4);
 
-        LabelTypeEntity e5 = new LabelTypeEntity();
-        e5.setLabelTypeId(5);
-        e5.setLabel("女神");
+        LabelTagEntity e5 = new LabelTagEntity();
+        e5.setTagId(5);
+        e5.setTagTitle("女神");
         labelsList.add(e5);
 
-        LabelTypeEntity e6 = new LabelTypeEntity();
-        e6.setLabelTypeId(6);
-        e6.setLabel("运动圈");
+        LabelTagEntity e6 = new LabelTagEntity();
+        e6.setTagId(6);
+        e6.setTagTitle("运动圈");
         labelsList.add(e6);
 
-        LabelTypeEntity e7 = new LabelTypeEntity();
-        e7.setLabelTypeId(7);
-        e7.setLabel("娱乐");
+        LabelTagEntity e7 = new LabelTagEntity();
+        e7.setTagId(7);
+        e7.setTagTitle("娱乐");
         labelsList.add(e7);
 
-        LabelTypeEntity e8 = new LabelTypeEntity();
-        e8.setLabelTypeId(8);
-        e8.setLabel("穿搭");
+        LabelTagEntity e8 = new LabelTagEntity();
+        e8.setTagId(8);
+        e8.setTagTitle("穿搭");
         labelsList.add(e8);
     }
 
@@ -117,7 +117,7 @@ public class AddLabelActivity extends BaseActivity implements View.OnClickListen
         for (int i = 0; i < labelsList.size(); i++) {
             TextView mTextView = new TextView(this);
             //给textview设置文字
-            mTextView.setText(labelsList.get(i).getLabel());
+            mTextView.setText(labelsList.get(i).getTagTitle());
             //给textview设置背景（带边框的圆角矩形）
             mTextView.setBackgroundResource(R.drawable.camera_add_label_tv_solid_oval_bg);
             //设置textview的外边距和内边距
@@ -135,9 +135,9 @@ public class AddLabelActivity extends BaseActivity implements View.OnClickListen
             mTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LabelTypeEntity e = new LabelTypeEntity();
-                    e.setLabelTypeId(-1);
-                    e.setLabel("");
+                    LabelTagEntity e = new LabelTagEntity();
+                    e.setTagId(-1);
+                    e.setTagTitle("");
                     resultList.set((int) v.getTag(),e);
                     v.setVisibility(View.GONE);
                 }
@@ -154,11 +154,11 @@ public class AddLabelActivity extends BaseActivity implements View.OnClickListen
              */
             case R.id.tv_al_complete:
 
-                List<LabelTypeEntity> list = new ArrayList<>();
+                List<LabelTagEntity> list = new ArrayList<>();
                 //将标签的信息回传
-                for (LabelTypeEntity e : resultList) {
+                for (LabelTagEntity e : resultList) {
 
-                    if (e.getLabelTypeId()!=-1) {
+                    if (e.getTagId()!=-1) {
                         list.add(e);
                     }
                 }
@@ -167,8 +167,8 @@ public class AddLabelActivity extends BaseActivity implements View.OnClickListen
                 }else if (list.size() > 1) {
                     toast("只能选择一个标签");
                 }else {
-                    int labelTypeId = list.get(0).getLabelTypeId();
-                    String label = list.get(0).getLabel();
+                    int labelTypeId = list.get(0).getTagId();
+                    String label = list.get(0).getTagTitle();
                     Intent intent = new Intent();
                     intent.putExtra("labelTypeId",labelTypeId);
                     intent.putExtra("label",label);
