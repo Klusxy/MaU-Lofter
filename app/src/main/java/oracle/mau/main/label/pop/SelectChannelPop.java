@@ -38,6 +38,9 @@ public class SelectChannelPop extends PopupWindow implements AdapterView.OnItemC
             new DragSortListView.DropListener() {
                 @Override
                 public void drop(int from, int to) {//from to 分别表示 被拖动控件原位置 和目标位置
+                    for (LabelTagEntity ll : list) {
+                        ll.setDrag(true);
+                    }
                     if (from != to) {
                         LabelTagEntity item = (LabelTagEntity) mAdapter.getItem(from);//得到listview的适配器
                         mAdapter.remove(from);//在适配器中”原位置“的数据。
@@ -58,12 +61,22 @@ public class SelectChannelPop extends PopupWindow implements AdapterView.OnItemC
         initViews();
     }
 
+    public DragSortListView getmDragSortListView() {
+        return mDragSortListView;
+    }
+
+    public void setmDragSortListView(DragSortListView mDragSortListView) {
+        this.mDragSortListView = mDragSortListView;
+    }
+
     private void initViews() {
         mDragSortListView = (DragSortListView) mView.findViewById(R.id.dsl_recommend_detail_pop);
+        setmDragSortListView(mDragSortListView);
         //得到滑动listview并且设置监听器。
         mDragSortListView.setDropListener(onDrop);
         mDragSortListView.setOnItemClickListener(this);
         mAdapter = new RDDragListViewAdapter(mContext, list);
+        setmAdapter(mAdapter);
         mDragSortListView.setAdapter(mAdapter);
         mDragSortListView.setDragEnabled(true); //设置是否可拖动。
     }
@@ -97,6 +110,13 @@ public class SelectChannelPop extends PopupWindow implements AdapterView.OnItemC
         onItemClickListener.onItemClick(item.getTagTitle() , position);
     }
 
+    public RDDragListViewAdapter getmAdapter() {
+        return mAdapter;
+    }
+
+    public void setmAdapter(RDDragListViewAdapter mAdapter) {
+        this.mAdapter = mAdapter;
+    }
 
     public interface ItemClickListener{
         void onItemClick(String tagTitle , int posi);

@@ -57,6 +57,9 @@ public class TouchViewPager extends ViewPager {
             case MotionEvent.ACTION_UP:
                 if (vp_label_tag_flag == 0) {
                     int item = this.getCurrentItem()%tagList.size();
+                    for (LabelTagEntity ll : tagList) {
+                        ll.setSelectPosition(item);
+                    }
                     Intent intent = new Intent(mContext, RecommendDetailActivity.class);
                     intent.putExtra("all",(Serializable) tagList);
                     intent.putExtra("position",item);

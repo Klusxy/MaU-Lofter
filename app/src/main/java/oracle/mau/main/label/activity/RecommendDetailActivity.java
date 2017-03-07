@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,6 @@ import oracle.mau.view.CategoryTabStrip;
 
 public class RecommendDetailActivity extends BaseActivity implements View.OnClickListener {
     private List<LabelTagEntity> tagList;
-    private List<RecommendDetailFragment> fragmentList;
     private int position;
 
     private ImageView iv_rd_back;
@@ -43,6 +43,12 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
      * 选择频道   调整顺序layout
      */
     private RelativeLayout rl_rd_category_select_channel_layout;
+    /**
+     * 调整顺序按钮
+     */
+    private TextView tv_rd_adjust_position;
+    private int adjustFlag = 1;
+    private TextView tv_rd_adjust_position_flag;
 
     /**
      * 显示隐藏 选择xxxx布局的imageview
@@ -67,7 +73,7 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
          */
         this.tagList = (List<LabelTagEntity>) getIntent().getSerializableExtra("all");
         for (LabelTagEntity ll : tagList) {
-            Log.d("asdasda",ll.getTagTitle()+"  1111  \n");
+            Log.d("asdasda", ll.getTagTitle() + "  1111  \n");
         }
         /**
          * 得到传过来的标签实体
@@ -76,24 +82,18 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
         /**
          * 得到position
          */
-        position = getIntent().getIntExtra("position",-1);
+        position = getIntent().getIntExtra("position", -1);
+
         iv_rd_back = (ImageView) findViewById(R.id.iv_rd_back);
         iv_rd_back.setOnClickListener(this);
         rl_rd_category_select_channel_layout = (RelativeLayout) findViewById(R.id.rl_rd_category_select_channel_layout);
         iv_rd_expand = (ImageView) findViewById(R.id.iv_rd_expand);
         iv_rd_expand.setOnClickListener(this);
-        //初始化碎片集合数据
-        initFragmentList();
+        tv_rd_adjust_position = (TextView) findViewById(R.id.tv_rd_adjust_position);
+        tv_rd_adjust_position.setOnClickListener(this);
+        tv_rd_adjust_position_flag = (TextView) findViewById(R.id.tv_rd_adjust_position_flag);
         //初始化选项卡和viewpager
         initTabCategoryWithVP();
-
-    }
-
-    private void initFragmentList() {
-        fragmentList = new ArrayList<>();
-        for (LabelTagEntity ll : tagList) {
-            fragmentList.add(new RecommendDetailFragment().newInstance(ll));
-        }
     }
 
     /**
@@ -104,7 +104,7 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
         initAnimations();
         mCategoryTabStrip = (CategoryTabStrip) findViewById(R.id.cs_recommend_detail);
         mViewPager = (ViewPager) findViewById(R.id.vp_recommend_detail);
-        mAdapter = new RDCategoryItemVPAdapter(getSupportFragmentManager(),this, tagList);
+        mAdapter = new RDCategoryItemVPAdapter(getSupportFragmentManager(), this, tagList);
         mViewPager.setAdapter(mAdapter);
         mCategoryTabStrip.setViewPager(mViewPager);
         mViewPager.setCurrentItem(position);
@@ -143,6 +143,39 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
                     hiddenPop();
                 }
                 break;
+            /**
+             * 调整顺序按钮
+             */
+            case R.id.tv_rd_adjust_position:
+                /**
+                 * 显示拖拽按钮
+                 */
+                if (adjustFlag % 2 == 1) {
+                    tv_rd_adjust_position.setText("完成");
+                    tv_rd_adjust_position_flag.setText("按住右边的按钮拖动排序");
+                    for (int i = 0; i < tagList.size(); i++) {
+                        View convertView = selectChannelPop.getmDragSortListView().getChildAt(i);
+                        ImageView iv_dsl_drag_selected = (ImageView) convertView.findViewById(R.id.iv_dsl_drag_selected);
+                        ImageView iv_dsl_drag_sort = (ImageView) convertView.findViewById(R.id.iv_dsl_drag_sort);
+                        iv_dsl_drag_sort.setVisibility(View.VISIBLE);
+                        iv_dsl_drag_selected.setVisibility(View.GONE);
+                    }
+                } else {
+                    tv_rd_adjust_position.setText("调整顺序");
+                    tv_rd_adjust_position_flag.setText("选择频道");
+                    for (int i = 0; i < tagList.size(); i++) {
+                        View convertView = selectChannelPop.getmDragSortListView().getChildAt(i);
+                        ImageView iv_dsl_drag_selected = (ImageView) convertView.findViewById(R.id.iv_dsl_drag_selected);
+                        ImageView iv_dsl_drag_sort = (ImageView) convertView.findViewById(R.id.iv_dsl_drag_sort);
+                        iv_dsl_drag_sort.setVisibility(View.GONE);
+                        LabelTagEntity ll = (LabelTagEntity) selectChannelPop.getmAdapter().getItem(i);
+                        if (i == ll.getSelectPosition()) {
+                            iv_dsl_drag_selected.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+                adjustFlag++;
+                break;
         }
     }
 
@@ -164,31 +197,27 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
          */
         selectChannelPop = new SelectChannelPop(this, new SelectChannelPop.ItemClickListener() {
             @Override
-            public void onItemClick(String tagTitle , int posi) {
+            public void onItemClick(String tagTitle, int posi) {
                 hiddenPop();
                 /**
+                 * 改变选中的postion
+                 */
+                for (LabelTagEntity ll : tagList) {
+                    ll.setSelectPosition(posi);
+                    ll.setDrag(false);
+                }
+                /**
                  * 设置当前滚动条的位置
+                 * 拖拽之后，tagList也会变，  notifiChange不会刷新，所以先制空，在重创建
                  */
                 mAdapter = null;
-                fragmentList = null;
-                initFragmentList();
-                mAdapter = new RDCategoryItemVPAdapter(RecommendDetailActivity.this.getSupportFragmentManager(),mContext,tagList);
+                mAdapter = new RDCategoryItemVPAdapter(RecommendDetailActivity.this.getSupportFragmentManager(), mContext, tagList);
                 mViewPager.setAdapter(mAdapter);
                 mCategoryTabStrip.setViewPager(mViewPager);
                 position = posi;
-                Log.d("asdasda",posi+"vp设定的位置");
                 mViewPager.setCurrentItem(posi);
-//                for (int i = 0 ;i<tagList.size() ; i++) {
-//                    LabelTagEntity lt = tagList.get(i);
-//                    Log.d("asdasda",lt.getTagTitle() +" 2222  " + i);
-//                    if (lt.getTagTitle().equals(tagTitle)) {
-//                        position = i ;
-//                        mViewPager.setCurrentItem(position);
-//                        break;
-//                    }
-//                }
             }
-        },tagList,position);
+        }, tagList, position);
         selectChannelPop.showAsDropDown(iv_rd_expand);
     }
 
@@ -209,5 +238,8 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
          * 隐藏pop
          */
         selectChannelPop.dismiss();
+        tv_rd_adjust_position.setText("调整顺序");
+        tv_rd_adjust_position_flag.setText("选择频道");
+        adjustFlag++;
     }
 }

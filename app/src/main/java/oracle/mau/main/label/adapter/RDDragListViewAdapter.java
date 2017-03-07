@@ -71,11 +71,16 @@ public class RDDragListViewAdapter extends BaseAdapter {
 //            viewHolder.ivCountryLogo = (ImageView) convertView.findViewById(R.id.ivCountryLogo);
 //            viewHolder.ivDelete = (ImageView) convertView.findViewById(R.id.click_remove);
             viewHolder.ivDragHandle = (ImageView) convertView.findViewById(R.id.iv_dsl_drag_sort);
+            viewHolder.iv_dsl_drag_selected = (ImageView) convertView.findViewById(R.id.iv_dsl_drag_selected);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
+        if (!item.isDrag()) {
+            if (position == item.getSelectPosition()) {
+                viewHolder.iv_dsl_drag_selected.setVisibility(View.VISIBLE);
+            }
+        }
         viewHolder.tvTitle.setText(item.getTagTitle());
 //        viewHolder.ivCountryLogo.setImageResource(item.src);
 
@@ -84,10 +89,11 @@ public class RDDragListViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    class ViewHolder {
+    public class ViewHolder {
         TextView tvTitle;
 //        ImageView ivCountryLogo;
 //        ImageView ivDelete;
-        ImageView ivDragHandle;
+        public ImageView ivDragHandle;
+        public ImageView iv_dsl_drag_selected;
     }
 }
