@@ -21,9 +21,13 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
+import oracle.mau.http.common.HttpServer;
 import oracle.mau.main.account.AccountFragment;
 import oracle.mau.main.camera.activity.CropActivity;
 import oracle.mau.main.camera.activity.ReleaseArticleActivity;
@@ -73,6 +77,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         configUI();
         //配置camera模块相关内容
         configCamera();
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("pwd",123);
+//        map.put("user_name","哈哈哈哈");
+//        String url = "www.baidu.com/";
+//        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET,map,null,url,null);
     }
 
     /**

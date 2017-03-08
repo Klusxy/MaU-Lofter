@@ -73,7 +73,7 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
         params.put("userTel", userTel);
         params.put("userPwd", userPwd);
 
-        HttpServer.sendPostRequest(params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERLOGIN, new Callback() {
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERLOGIN, new Callback() {
 
 
 
