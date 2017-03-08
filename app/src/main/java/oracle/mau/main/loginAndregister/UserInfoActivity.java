@@ -147,7 +147,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         params.put("userPwd", userPwd);
         params.put("userImg",path);
 
-        HttpServer.sendPostRequest(params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERLOGIN, new Callback() {
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERLOGIN, new Callback() {
 
 
 

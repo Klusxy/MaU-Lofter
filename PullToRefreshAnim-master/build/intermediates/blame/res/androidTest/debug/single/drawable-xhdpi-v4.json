@@ -14,6 +14,7 @@
 =======
         "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
         "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
+<<<<<<< HEAD
     },
     {
         "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
@@ -27,5 +28,7 @@
         "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
         "source": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
 >>>>>>> 62f74bd02f5f81a577cb63a7a33363e58c81e8de
+=======
+>>>>>>> 8eaa24058c7d04fe5525e8eb173402c44e2e8a53
     }
 ]

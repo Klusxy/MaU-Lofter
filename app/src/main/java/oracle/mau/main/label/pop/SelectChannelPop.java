@@ -6,9 +6,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.PopupWindow;
 
+import com.mobeta.android.dslv.DragSortListView;
+
+import java.util.List;
+
 import oracle.mau.R;
+import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.main.label.adapter.RDDragListViewAdapter;
 import oracle.mau.utils.DensityUtils;
 import oracle.mau.utils.ScreenUtils;
 
@@ -16,18 +23,62 @@ import oracle.mau.utils.ScreenUtils;
  * Created by 田帅 on 2017/3/7.
  */
 
-public class SelectChannelPop extends PopupWindow {
+public class SelectChannelPop extends PopupWindow implements AdapterView.OnItemClickListener{
     private Context mContext;
     private ItemClickListener onItemClickListener;
     private View mView;
+    private DragSortListView mDragSortListView;
+    private List<LabelTagEntity> list;
+    private int position;
+    private RDDragListViewAdapter mAdapter;
 
-    public SelectChannelPop(Context context,  ItemClickListener onItemClickListener) {
+
+    //监听器在手机拖动停下的时候触发
+    private DragSortListView.DropListener onDrop =
+            new DragSortListView.DropListener() {
+                @Override
+                public void drop(int from, int to) {//from to 分别表示 被拖动控件原位置 和目标位置
+                    for (LabelTagEntity ll : list) {
+                        ll.setDrag(true);
+                    }
+                    if (from != to) {
+                        LabelTagEntity item = (LabelTagEntity) mAdapter.getItem(from);//得到listview的适配器
+                        mAdapter.remove(from);//在适配器中”原位置“的数据。
+                        mAdapter.insert(item, to);//在目标位置中插入被拖动的控件。
+                    }
+                }
+            };
+
+    public SelectChannelPop(Context context,  ItemClickListener onItemClickListener ,List<LabelTagEntity> list,int position) {
         super(context);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = inflater.inflate(R.layout.pop_category_select_channel, null);
         this.mContext = context;
+        this.list = list;
+        this.position = position;
         this.onItemClickListener = onItemClickListener;
         initPop();
+        initViews();
+    }
+
+    public DragSortListView getmDragSortListView() {
+        return mDragSortListView;
+    }
+
+    public void setmDragSortListView(DragSortListView mDragSortListView) {
+        this.mDragSortListView = mDragSortListView;
+    }
+
+    private void initViews() {
+        mDragSortListView = (DragSortListView) mView.findViewById(R.id.dsl_recommend_detail_pop);
+        setmDragSortListView(mDragSortListView);
+        //得到滑动listview并且设置监听器。
+        mDragSortListView.setDropListener(onDrop);
+        mDragSortListView.setOnItemClickListener(this);
+        mAdapter = new RDDragListViewAdapter(mContext, list);
+        setmAdapter(mAdapter);
+        mDragSortListView.setAdapter(mAdapter);
+        mDragSortListView.setDragEnabled(true); //设置是否可拖动。
     }
 
     private void initPop() {
@@ -43,7 +94,7 @@ public class SelectChannelPop extends PopupWindow {
         //设置PopupWindow弹出窗体可点击
 //        this.setFocusable(true);
         //设置SelectPicPopupWindow弹出窗体动画效果
-        this.setAnimationStyle(R.style.LabelRecommendDetailAnimation);
+//        this.setAnimationStyle(R.style.LabelRecommendDetailAnimation);
         /**
          * 不设置会有黑边
          */
@@ -53,8 +104,21 @@ public class SelectChannelPop extends PopupWindow {
         this.setBackgroundDrawable(dw);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        LabelTagEntity item = (LabelTagEntity)mAdapter.getItem(position);
+        onItemClickListener.onItemClick(item.getTagTitle() , position);
+    }
+
+    public RDDragListViewAdapter getmAdapter() {
+        return mAdapter;
+    }
+
+    public void setmAdapter(RDDragListViewAdapter mAdapter) {
+        this.mAdapter = mAdapter;
+    }
 
     public interface ItemClickListener{
-        void onItemClick(int position);
+        void onItemClick(String tagTitle , int posi);
     }
 }

@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+        android:id="@+id/tttttttt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="哈哈哈哈"/>

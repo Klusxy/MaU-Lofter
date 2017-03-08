@@ -215,15 +215,36 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
      */
     private void initTagGalleryData() {
         int imgs1[] = {R.mipmap.g1, R.mipmap.g2, R.mipmap.g3, R.mipmap.g4};
-        LabelTagEntity labelTagEntity = new LabelTagEntity();
-        labelTagEntity.setTagTitle("摄影");
-        labelTagEntity.setImgs(imgs1);
+        LabelTagEntity labelTagEntity1 = new LabelTagEntity();
+        labelTagEntity1.setTagTitle("摄影");
+        labelTagEntity1.setImgs(imgs1);
 
-        tagList.add(labelTagEntity);
-        tagList.add(labelTagEntity);
-        tagList.add(labelTagEntity);
-        tagList.add(labelTagEntity);
-        tagList.add(labelTagEntity);
+        LabelTagEntity labelTagEntity2 = new LabelTagEntity();
+        labelTagEntity2.setTagTitle("女神");
+        labelTagEntity2.setImgs(imgs1);
+
+        LabelTagEntity labelTagEntity3 = new LabelTagEntity();
+        labelTagEntity3.setTagTitle("小清新");
+        labelTagEntity3.setImgs(imgs1);
+
+        LabelTagEntity labelTagEntity4 = new LabelTagEntity();
+        labelTagEntity4.setTagTitle("运动");
+        labelTagEntity4.setImgs(imgs1);
+
+        LabelTagEntity labelTagEntity5 = new LabelTagEntity();
+        labelTagEntity5.setTagTitle("电影");
+        labelTagEntity5.setImgs(imgs1);
+
+        LabelTagEntity labelTagEntity6 = new LabelTagEntity();
+        labelTagEntity6.setTagTitle("明星");
+        labelTagEntity6.setImgs(imgs1);
+
+        tagList.add(labelTagEntity1);
+        tagList.add(labelTagEntity2);
+        tagList.add(labelTagEntity3);
+        tagList.add(labelTagEntity4);
+        tagList.add(labelTagEntity5);
+        tagList.add(labelTagEntity6);
         /**
          * 给自定义vp赋值数据，点击时候传过去
          */

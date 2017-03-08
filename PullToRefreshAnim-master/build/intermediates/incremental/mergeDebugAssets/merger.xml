@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <merger version="3"><dataSet config="main"><source path="E:\androidstudiospace\MaU\PullToRefreshAnim-master\src\main\assets"/><source path="E:\androidstudiospace\MaU\PullToRefreshAnim-master\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\androidstudiospace\MaU\PullToRefreshAnim-master\src\debug\assets"/></dataSet></merger>
+=======
+<merger version="3"><dataSet config="main"><source path="E:\Git\MaU\PullToRefreshAnim-master\src\main\assets"/><source path="E:\Git\MaU\PullToRefreshAnim-master\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\Git\MaU\PullToRefreshAnim-master\src\debug\assets"/></dataSet></merger>
+>>>>>>> 8eaa24058c7d04fe5525e8eb173402c44e2e8a53

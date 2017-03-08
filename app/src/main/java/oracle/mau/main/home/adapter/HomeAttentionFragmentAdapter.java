@@ -1,5 +1,6 @@
 package oracle.mau.main.home.adapter;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,22 +8,28 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.entity.HomeEntity;
-
+import oracle.mau.view.BottomMenuDialog;
 
 /**
  * Created by Administrator on 2017/3/1.
  */
 
-public class HomeAttentionFragmentAdapter extends BaseAdapter {
+public class HomeAttentionFragmentAdapter extends BaseAdapter implements View.OnClickListener {
     Context context;
     LayoutInflater inflater;
     List<HomeEntity> list=new ArrayList<HomeEntity>();
+    private BottomMenuDialog bottomMenuDialog;
+//AttentionFragment attentionFragment=new AttentionFragment();
+
+
+
     public HomeAttentionFragmentAdapter(Context context ) {
         this.context = context;
         inflater=LayoutInflater.from(context);
@@ -64,6 +71,7 @@ public class HomeAttentionFragmentAdapter extends BaseAdapter {
             vh.home_comment =(ImageView)convertView.findViewById(R.id.home_comment);
             vh.home_transmit=(ImageView)convertView.findViewById(R.id.home_transmit);
             vh.home_popupwindow=(ImageView)convertView.findViewById(R.id.home_popupwindow);
+            vh.home_popupwindow.setOnClickListener(this);
             //TextView
             vh.home_username=(TextView)convertView.findViewById(R.id.home_username);
             vh.home_time=(TextView)convertView.findViewById(R.id.home_time);
@@ -71,17 +79,23 @@ public class HomeAttentionFragmentAdapter extends BaseAdapter {
             vh.home_content=(TextView)convertView.findViewById(R.id.home_content);
             vh.home_sign=(TextView)convertView.findViewById(R.id.home_sign);
             vh.home_hot=(TextView)convertView.findViewById(R.id.home_hot);
+
+
+
             convertView.setTag(vh);
         }else {
             vh=(ViewHolder)convertView.getTag();
         }
 
-        vh.home_head.setImageResource(list.get(position).getPic());
+        vh.home_head.setImageResource(R.mipmap.ic_launcher);
         vh.home_iv.setImageResource(list.get(position).getPic());
-        vh.home_love.setImageResource(list.get(position).getPic());
-        vh.home_comment.setImageResource(list.get(position).getPic());
-        vh.home_transmit.setImageResource(list.get(position).getPic());
-        vh.home_popupwindow.setImageResource(list.get(position).getPic());
+        vh.home_love.setImageResource(R.mipmap.dashboard_like_off_hover);
+        vh.home_comment.setImageResource(R.mipmap.dashboard_reply_hover);
+        vh.home_transmit.setImageResource(R.mipmap.dashboard_reblog_hover);
+        vh.home_popupwindow.setImageResource(R.mipmap.dots_rest_person_page_hover);
+
+
+
 
         vh.home_username.setText(list.get(position).getUsername());
         vh.home_time.setText(list.get(position).getTime());
@@ -90,6 +104,44 @@ public class HomeAttentionFragmentAdapter extends BaseAdapter {
         vh.home_sign.setText(list.get(position).getSign());
         vh.home_hot.setText(list.get(position).getHot());
         return convertView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.home_popupwindow:
+                openDialog();
+                break;
+        }
+    }
+    /**
+     * 打开弹出框
+     */
+    private void openDialog() {
+        bottomMenuDialog = new BottomMenuDialog.Builder(context)
+
+                .addMenu("推荐给我的粉丝", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomMenuDialog.dismiss();
+                        home_recommand();
+                    }
+                }).addMenu("复制链接", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomMenuDialog.dismiss();
+                        CopyUri();
+                    }
+                }).create();
+
+        bottomMenuDialog.show();
+    }
+
+    private void home_recommand() {
+        Toast.makeText(context,"推荐给我的粉丝", Toast.LENGTH_SHORT).show();
+    }
+    private void CopyUri() {
+        Toast.makeText(context,"复制链接", Toast.LENGTH_SHORT).show();
     }
     class ViewHolder{
         ImageView home_head,home_iv,home_love,home_comment,home_transmit,home_popupwindow;
