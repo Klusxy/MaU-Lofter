@@ -17,6 +17,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/main_bottom_text_size</item>
     </style>
+
     <!--仿iOS底部弹出框-->
     <style name="Animation.Bottom.Rising" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
