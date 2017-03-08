@@ -219,6 +219,8 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
             }
         }, tagList, position);
         selectChannelPop.showAsDropDown(iv_rd_expand);
+
+//        selectChannelPop.showAtLocation(iv_rd_expand,Gravity.BOTTOM,0,0);
     }
 
     private void hiddenPop() {
