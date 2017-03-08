@@ -1,11 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dslv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-    <TextView
+    android:orientation="vertical">
+
+
+
+    <com.mobeta.android.dslv.DragSortListView
+        android:id="@+id/dsl_recommend_detail_pop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我是pop"
-        android:background="#FFF"/>
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:layout_margin="3dp"
+        android:dividerHeight="1px"
+        dslv:collapsed_height="1px"
+        dslv:drag_enabled="true"
+        dslv:drag_handle_id="@+id/iv_dsl_drag_sort"
+        dslv:drag_scroll_start="0.33"
+        dslv:drag_start_mode="onDown"
+        dslv:float_alpha="0.6"
+        dslv:remove_enabled="false"
+        dslv:slide_shuffle_speed="0.3" />
+
 </LinearLayout>

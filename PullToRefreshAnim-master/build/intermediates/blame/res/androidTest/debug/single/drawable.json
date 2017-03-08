@@ -1,30 +1,30 @@
 [
     {
-        "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
-        "source": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+        "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\progress_loading_image_01.png",
+        "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\progress_loading_image_01.png"
     },
     {
-        "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\app_loading1.png",
-        "source": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\app_loading1.png"
+        "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
+        "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
     },
     {
-        "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\loading.xml",
-        "source": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\loading.xml"
+        "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\app_loading1.png",
+        "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\app_loading1.png"
     },
     {
-        "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\progress_loading_image_01.png",
-        "source": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\progress_loading_image_01.png"
+        "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\loading.xml",
+        "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\loading.xml"
     },
     {
-        "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\app_loading0.png",
-        "source": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\app_loading0.png"
+        "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\progress_loading_image_02.png",
+        "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\progress_loading_image_02.png"
     },
     {
-        "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
-        "source": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
+        "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
+        "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
     },
     {
-        "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\progress_loading_image_02.png",
-        "source": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\progress_loading_image_02.png"
+        "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\app_loading0.png",
+        "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable\\app_loading0.png"
     }
 ]

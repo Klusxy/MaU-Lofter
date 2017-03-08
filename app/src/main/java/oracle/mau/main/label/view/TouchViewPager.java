@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import java.io.Serializable;
 import java.util.List;
 
 import oracle.mau.entity.LabelTagEntity;
@@ -56,7 +57,12 @@ public class TouchViewPager extends ViewPager {
             case MotionEvent.ACTION_UP:
                 if (vp_label_tag_flag == 0) {
                     int item = this.getCurrentItem()%tagList.size();
+                    for (LabelTagEntity ll : tagList) {
+                        ll.setSelectPosition(item);
+                    }
                     Intent intent = new Intent(mContext, RecommendDetailActivity.class);
+                    intent.putExtra("all",(Serializable) tagList);
+                    intent.putExtra("position",item);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("tag",tagList.get(item));
                     intent.putExtras(bundle);
