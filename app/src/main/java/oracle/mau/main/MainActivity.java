@@ -85,9 +85,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 //        map.put("UserName","string");
 //        map.put("UserPwd","string");
 //        map.put("UserTel","string");
-//        map.put("user_name","哈哈哈哈");
 //        String url = "http://115.159.0.152:8080/v1/mau_user/";
-//        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_PUT, map, null, url, new Callback() {
+//        String url = "http://115.159.0.152:8080/v1/mau_article_tag";
+//        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, null, url, new Callback() {
 //            @Override
 //            public void success(BeanData beanData) {
 //
