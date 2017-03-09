@@ -31,12 +31,12 @@ public class PushActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_talk);
+		//setContentView(R.layout.activity_talk);
 		
 		setTitle("Client");
 		mDeviceID = "sly12";
 		
-		((TextView) findViewById(R.id.target_text)).setText(mDeviceID);
+		/*((TextView) findViewById(R.id.target_text)).setText(mDeviceID);
 		final Button startButton = ((Button) findViewById(R.id.start_button));
 		final Button stopButton = ((Button) findViewById(R.id.stop_button));
 		startButton.setOnClickListener(new OnClickListener() {
@@ -59,7 +59,7 @@ public class PushActivity extends Activity {
 				startButton.setEnabled(true);
 				stopButton.setEnabled(false);
 			}
-		});
+		});*/
 	}
 
 	@Override
@@ -70,8 +70,8 @@ public class PushActivity extends Activity {
 				MODE_PRIVATE);
 		boolean started = p.getBoolean(PushService.PREF_STARTED, false);
 
-		((Button) findViewById(R.id.start_button)).setEnabled(!started);
-		((Button) findViewById(R.id.stop_button)).setEnabled(started);
+		/*((Button) findViewById(R.id.start_button)).setEnabled(!started);
+		((Button) findViewById(R.id.stop_button)).setEnabled(started);*/
 		
 		mPrefs = getSharedPreferences(TAG, MODE_WORLD_READABLE);
 		classify  = mPrefs.getString("classify", "clothe");

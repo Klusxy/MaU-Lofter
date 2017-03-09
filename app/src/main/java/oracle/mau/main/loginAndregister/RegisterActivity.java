@@ -31,7 +31,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View view) {
             Intent intentConfimation=new Intent(RegisterActivity.this,ConfirmationActivity.class);
             usertel=editUsertel.getText().toString();
-            intentConfimation.putExtra("usertel",usertel);
+        intentConfimation.putExtra("usertel",usertel)  ;
             startActivity(intentConfimation);
         finish();
     }

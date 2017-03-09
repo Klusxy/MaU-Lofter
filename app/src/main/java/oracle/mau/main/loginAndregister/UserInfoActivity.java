@@ -36,6 +36,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     private EditText editpwd;
     private Button btnOk;
     private String path;
+    private String userTel;
     @Override
     public int getLayoutId() {
         return R.layout.activity_userinfo;
@@ -43,6 +44,8 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void initView() {
+        Intent intent=getIntent();
+       userTel= intent.getStringExtra("usertel");
         userimg=(ImageButton)findViewById(R.id.imageButton1);
         userimg.setOnClickListener(this);
         editname=(EditText) findViewById(R.id.edit_userName);
@@ -143,9 +146,10 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         Map<String, Object> params=new HashMap<String, Object>();
         String userName=editname.getText().toString();
         String userPwd=editpwd.getText().toString();
-        params.put("userName", userName);
-        params.put("userPwd", userPwd);
-        params.put("userImg",path);
+        params.put("UserName", userName);
+        params.put("UserPwd", userPwd);
+        params.put("UserImg",path);
+        params.put("UserTel",userTel);
 
         HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERLOGIN, new Callback() {
 
@@ -156,17 +160,15 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
             public void success(BeanData beanData) {
                 UserData uData=(UserData)beanData;
 
-                if(uData.getCode()== StatusCode.Common.SUCCESS){
-                    if(uData.getFlag()== StatusCode.Dao.INSERT_SUCCESS){
+/*
+注册成功后跳转到登录界面
+ */
+                toast("注册成功");
+                Intent intentLog=new Intent(UserInfoActivity.this,LoginActivity.class);
+                startActivity(intentLog);
+                finish();
 
-                        toast("注册成功");
-                        finish();
-                    }else{
-                        toast("注册失败");
-                    }
-                }else{
-                    toast("服务器异常");
-                }
+
             }
 
             @Override

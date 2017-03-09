@@ -18,6 +18,7 @@ public class ConfirmationActivity extends BaseActivity implements View.OnClickLi
     private TextView textTel;
     private Button btn_again;
     private Button btn_next;
+    private String usertel;
     @Override
     public int getLayoutId() {
         return R.layout.activity_confirmation;
@@ -26,7 +27,7 @@ public class ConfirmationActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void initView() {
         Intent intent=getIntent();
-        String usertel=intent.getStringExtra("usertel");
+        usertel=intent.getStringExtra("usertel");
         editNum=(EditText) findViewById(R.id.edit_num);
         textTel=(TextView) findViewById(R.id.text_phone);
         btn_again=(Button)findViewById(R.id.btn_getnum);
@@ -41,6 +42,7 @@ public class ConfirmationActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.btn_confirmation_next:
                 Intent intentUserinfo=new Intent(ConfirmationActivity.this,UserInfoActivity.class);
+                intentUserinfo.putExtra("usertel",usertel);
                 startActivity(intentUserinfo);
                 finish();
                 break;

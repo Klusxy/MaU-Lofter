@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import oracle.mau.R;
+import oracle.mau.application.MaUApplication;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.common.Callback;
@@ -35,6 +36,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
     private EditText edittext;
     private Button btnsend;
     private ListView listView;
+    private int id;//当前用户的id
 
     @Override
     public int getLayoutId() {
@@ -51,6 +53,8 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
         btnsend=(Button)findViewById(R.id.btn_chat_send);
         btnsend.setOnClickListener(this);
         listView=(ListView) findViewById(R.id.lv_chat);
+        MaUApplication app=(MaUApplication)getApplication();
+       id= app.getUser().getUserid();
 
     }
 

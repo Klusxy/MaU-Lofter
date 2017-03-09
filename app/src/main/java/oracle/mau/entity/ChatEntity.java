@@ -5,9 +5,9 @@ package oracle.mau.entity;
  */
 
 public class ChatEntity {
-    private UserEntity user1;
-    private UserEntity user2;
-    private String text;
+    private UserEntity user1;//当前用户
+    private UserEntity user2;//对方用户
+    private String text;//谈话的文本内容
     private String time;
 
     public UserEntity getUser1() {

@@ -84,11 +84,19 @@
         </service>
         <meta-data  android:name="com.baidu.lbsapi.API_KEY"
             android:value="z5rGC2iOOeft6amq5E9WzLaCHImy7MKT" />
+        <!--消息界面-->
         <service android:name=".main.message.mqtt.PushService" android:enabled="true" android:process=":remote">
         </service>
         <service android:name=".main.message.mqtt.PushService2" android:enabled="true" android:process=":remote">
         </service>
         <activity android:name=".main.message.mqtt.PushActivity" />
+        <activity android:name=".main.message.mqtt.ChatActivity" />
+        <!--登录注册界面-->
+        <activity android:name=".main.loginAndregister.FirstActivity" />
+        <activity android:name=".main.loginAndregister.LoginActivity" />
+        <activity android:name=".main.loginAndregister.RegisterActivity" />
+        <activity android:name=".main.loginAndregister.ConfirmationActivity" />
+        <activity android:name=".main.loginAndregister.UserInfoActivity" />
     </application>
 
 </manifest>
