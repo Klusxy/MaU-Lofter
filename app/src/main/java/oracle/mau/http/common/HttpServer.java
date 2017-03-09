@@ -14,6 +14,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.http.client.multipart.content.StringBody;
 import com.lidroid.xutils.util.PreferencesCookieStore;
 
 import org.apache.http.HttpEntity;
@@ -27,6 +28,7 @@ import org.apache.http.util.EntityUtils;
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.Map;
+import java.util.Objects;
 
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.bean.BeanParser;
@@ -144,7 +146,7 @@ public class HttpServer {
                     }
                     sb.deleteCharAt(sb.length() - 1);
                     url = sb.toString();
-                    Log.d("sadasd", url);
+                    Log.d("dasdasd", url + "    url ");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -157,6 +159,7 @@ public class HttpServer {
                     //responseInfo.result  就是json字符串
                     //从服务器返回来的
                     String json = responseInfo.result;
+                    Log.d("dasdasd", json);
                     //解析
                     BeanData beandata = null;
                     if (parser != null) {
@@ -182,39 +185,37 @@ public class HttpServer {
          * PUT请求
          */
         if (HTTPSERVER_PUT.equals(type)) {
-            try {
-                // GET方式参数拼接在URL结尾
-                StringBuilder sb = new StringBuilder();
-                sb.append(url).append("?");
-
-                if (map != null) {
-                    for (String key : map.keySet()) {
-                        //拼接url
-//                    url = url +"&"+key+"="+ map.get(key).toString();
-                        // 如果请求参数中有中文，需要进行URLEncoder编码
-                        sb.append(key)
-                                .append("=")
-                                .append(URLEncoder.encode(map.get(key).toString(), "utf-8"));
-                        sb.append("&");
+            if (map != null) {
+                //创建一个参数对象，用来存储需要传递的参数,如果想把值传给服务器，那么就必须把值存在RequestParams中
+                RequestParams rp = new RequestParams();
+                for (String key : map.keySet()) {
+                    if ("id".equals(key)) {
+                        url = url + map.get(key).toString();
+//                        rp.addHeader(key, (String) map.get(key));
+                    } else {
+                        rp.addBodyParameter(key, (String) map.get(key));
                     }
-                    sb.deleteCharAt(sb.length() - 1);
-                    url = sb.toString();
-                    Log.d("sadasd", url);
-                    /* 1.1 创建httpPut请求，并设置Url地址 */
-                    HttpPut httpPut = new HttpPut(url);
-                    /* 1.2 获取HttpClient对象，并发送请求，得到响应 */
-                    // 1.3发送请求，获取服务器返回的相应对象
-                    HttpResponse httpResponse = httpUtils.getHttpClient().execute(httpPut);
-                    /* 1.4从响应中获取数据 */
-                    if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
-                        callback.failure("put请求失败");
-                    }else {
-                        HttpEntity httpEntity = httpResponse.getEntity();
+                    //拼接url
+//                    url = url +"&"+key+"="+ map.get(key).toString();
+                    // 如果请求参数中有中文，需要进行URLEncoder编码
+//                        sb.append(key)
+//                                .append("=")
+//                                .append(URLEncoder.encode(map.get(key).toString(), "utf-8"));
+//                        sb.append("&");
+                }
+//                    sb.deleteCharAt(sb.length() - 1);
+//                    url = sb.toString();
+                Log.d("dasdasd", url);
+                //向服务器发送请求方法
+                httpUtils.send(HttpRequest.HttpMethod.PUT, url, rp, new RequestCallBack<String>() {
+                    //发送请求成功
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
                         //从服务器返回来的
-                        String json = (httpEntity == null) ? null : (EntityUtils
-                                .toString(httpEntity, "UTF-8"));
-                        //responseInfo.result  就是json字符串
-//                        String json = object;
+                        String json = responseInfo.result;
+                            Log.d("dasdasd",  "   head" +responseInfo.getAllHeaders()[0] +"  "+responseInfo.getAllHeaders()[1]+"  "+responseInfo.getAllHeaders()[2]+"  "+responseInfo.getAllHeaders()[3]);
+
+                        Log.d("dasdasd", json );
                         //解析
                         BeanData beandata = null;
                         if (parser != null) {
@@ -225,50 +226,50 @@ public class HttpServer {
                             callback.success(beandata);
                         }
                     }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+
+                    //发送请求失败
+                    @Override
+                    public void onFailure(HttpException e, String s) {
+                        //匿名对象访问方法参数要求是final
+                        //将失败信息传给callback
+                        callback.failure(s);
+                    }
+                });
             }
 
         }
         /**
          * DELETE请求
          */
-        if (HTTPSERVER_DELETE.equals(type))
-        {
-            try {
-                // GET方式参数拼接在URL结尾
-                StringBuilder sb = new StringBuilder();
-                sb.append(url).append("?");
+        if (HTTPSERVER_DELETE.equals(type)) {
+            // GET方式参数拼接在URL结尾
+//                StringBuilder sb = new StringBuilder();
+//                sb.append(url).append("?");
 
-                if (map != null) {
-                    for (String key : map.keySet()) {
-                        //拼接url
+            if (map != null) {
+                for (String key : map.keySet()) {
+                    url = url + map.get(key).toString();
+                    //拼接url
 //                    url = url +"&"+key+"="+ map.get(key).toString();
-                        // 如果请求参数中有中文，需要进行URLEncoder编码
-                        sb.append(key)
-                                .append("=")
-                                .append(URLEncoder.encode(map.get(key).toString(), "utf-8"));
-                        sb.append("&");
-                    }
-                    sb.deleteCharAt(sb.length() - 1);
-                    url = sb.toString();
-                    Log.d("sadasd", url);
-                    /* 1.1 创建httpPut请求，并设置Url地址 */
-                    HttpDelete httpDelete = new HttpDelete(url);
-                    /* 1.2 获取HttpClient对象，并发送请求，得到响应 */
-                    // 1.3发送请求，获取服务器返回的相应对象
-                    HttpResponse httpResponse = httpUtils.getHttpClient().execute(httpDelete);
-                    /* 1.4从响应中获取数据 */
-                    if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
-                        callback.failure("delete请求失败");
-                    }else {
-                        HttpEntity httpEntity = httpResponse.getEntity();
-                        //从服务器返回来的
-                        String json = (httpEntity == null) ? null : (EntityUtils
-                                .toString(httpEntity, "UTF-8"));
+                    // 如果请求参数中有中文，需要进行URLEncoder编码
+//                        sb.append(key)
+//                                .append("=")
+//                                .append(URLEncoder.encode(map.get(key).toString(), "utf-8"));
+//                        sb.append("&");
+                }
+//                    sb.deleteCharAt(sb.length() - 1);
+//                    url = sb.toString();
+                Log.d("dasdasd", url);
+
+                //向服务器发送请求方法
+                httpUtils.send(HttpRequest.HttpMethod.DELETE, url, new RequestCallBack<String>() {
+                    //发送请求成功
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
                         //responseInfo.result  就是json字符串
-//                        String json = object;
+                        //从服务器返回来的
+                        String json = responseInfo.result;
+                        Log.d("dasdasd", json);
                         //解析
                         BeanData beandata = null;
                         if (parser != null) {
@@ -279,9 +280,15 @@ public class HttpServer {
                             callback.success(beandata);
                         }
                     }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+
+                    //发送请求失败
+                    @Override
+                    public void onFailure(HttpException e, String s) {
+                        //匿名对象访问方法参数要求是final
+                        //将失败信息传给callback
+                        callback.failure(s);
+                    }
+                });
             }
         }
     }

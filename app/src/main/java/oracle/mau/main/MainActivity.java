@@ -27,6 +27,8 @@ import java.util.Objects;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
+import oracle.mau.http.bean.BeanData;
+import oracle.mau.http.common.Callback;
 import oracle.mau.http.common.HttpServer;
 import oracle.mau.main.account.AccountFragment;
 import oracle.mau.main.camera.activity.CropActivity;
@@ -78,10 +80,24 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         //配置camera模块相关内容
         configCamera();
 //        Map<String,Object> map = new HashMap<>();
-//        map.put("pwd",123);
+//        map.put("id","2");
+//        map.put("UserImg","string");
+//        map.put("UserName","string");
+//        map.put("UserPwd","string");
+//        map.put("UserTel","string");
 //        map.put("user_name","哈哈哈哈");
-//        String url = "www.baidu.com/";
-//        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET,map,null,url,null);
+//        String url = "http://115.159.0.152:8080/v1/mau_user/";
+//        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_PUT, map, null, url, new Callback() {
+//            @Override
+//            public void success(BeanData beanData) {
+//
+//            }
+//
+//            @Override
+//            public void failure(String error) {
+//
+//            }
+//        });
     }
 
     /**
