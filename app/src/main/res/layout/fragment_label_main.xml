@@ -9,7 +9,8 @@
         ptrMode="pullDownFromTop"  pullDownFromTop表示只有下拉刷新效果，both表示下拉刷新和上拉加载都有
         具体其他属性自行百度 PullToRefresh
     -->
-    <com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_label_main_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
