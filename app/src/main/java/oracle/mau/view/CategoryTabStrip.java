@@ -129,14 +129,14 @@ public class CategoryTabStrip extends HorizontalScrollView {
 	private void calculateIndicatorRect(Rect rect) {
 		ViewGroup currentTab = (ViewGroup)tabsContainer.getChildAt(currentPosition);
 		TextView category_text = (TextView) currentTab.findViewById(R.id.category_text);
-		
+
 		float left = (float) (currentTab.getLeft() + category_text.getLeft());
         float width = ((float) category_text.getWidth()) + left;
-        
+
         if (currentPositionOffset > 0f && currentPosition < tabCount - 1) {
         	ViewGroup nextTab = (ViewGroup)tabsContainer.getChildAt(currentPosition + 1);
 			TextView next_category_text = (TextView) nextTab.findViewById(R.id.category_text);
-			
+
 			float next_left = (float) (nextTab.getLeft() + next_category_text.getLeft());
 			left = left * (1.0f - currentPositionOffset) + next_left * currentPositionOffset;
 			width = width * (1.0f - currentPositionOffset) + currentPositionOffset * (((float) next_category_text.getWidth()) + next_left);
