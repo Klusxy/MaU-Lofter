@@ -12,7 +12,11 @@ public class URLConstants {
      * 基础url
      */
 //    public static String BASE_URL = "http://192.168.1.105:8080/SchoolCircle/";
-    public static String BASE_URL = "http://115.159.0.152:8080/swagger/";
+    public static String BASE_URL = "http://115.159.0.152:8080/v1/";
+    /**
+     * 用户注册
+     */
+    public static final String USERRESGISTER="mau_user/";
     /**
      * 用户登录
      */

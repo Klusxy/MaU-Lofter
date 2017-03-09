@@ -151,7 +151,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         params.put("UserImg",path);
         params.put("UserTel",userTel);
 
-        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERLOGIN, new Callback() {
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERRESGISTER, new Callback() {
 
 
 
@@ -163,7 +163,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 /*
 注册成功后跳转到登录界面
  */
-                toast("注册成功");
+                toast("注册SAAA成功");
                 Intent intentLog=new Intent(UserInfoActivity.this,LoginActivity.class);
                 startActivity(intentLog);
                 finish();

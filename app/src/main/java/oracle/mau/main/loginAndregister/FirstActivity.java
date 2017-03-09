@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.HashMap;
+
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+import cn.smssdk.gui.RegisterPage;
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
 
@@ -37,10 +42,29 @@ public class FirstActivity extends BaseActivity implements View.OnClickListener{
                 finish();
                 break;
             case R.id.btn_first_register:
-                Intent intentRegister=new Intent(FirstActivity.this,RegisterActivity.class
-                );
-                startActivity(intentRegister);
-                finish();
+                SMSSDK.initSDK(FirstActivity.this, "1bb329bbf8c6e", "c9279b59e737ccd1291e9a477e798cfa");
+                //打开注册页面
+                RegisterPage registerPage = new RegisterPage();
+                registerPage.setRegisterCallback(new EventHandler() {
+                    public void afterEvent(int event, int result, Object data) {
+                        // 解析注册结果
+                       if (result == SMSSDK.RESULT_COMPLETE) {
+                           // @SuppressWarnings("unchecked")
+                            /*HashMap<String,Object> phoneMap = (HashMap<String, Object>) data;
+                            String country = (String) phoneMap.get("country");
+                            String phone = (String) phoneMap.get("phone");
+                            // 提交用户信息
+                            registerUser(country, phone);*/
+                           HashMap<String,Object> phoneMap = (HashMap<String, Object>) data;
+                            Intent intentUserinfo=new Intent(FirstActivity.this,UserInfoActivity.class);
+                           intentUserinfo.putExtra("usertel",(String) phoneMap.get("phone"));
+                           startActivity(intentUserinfo);
+                        }
+                    }
+                });
+               registerPage.show(this);
+                //finish();
+                //finish();
                 break;
         }
     }

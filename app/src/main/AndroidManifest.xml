@@ -38,6 +38,13 @@
 
 
 
+
+
+
+
+
+
+
     <application
         android:name=".application.MaUApplication"
         android:allowBackup="true"
@@ -47,11 +54,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".main.MainActivity"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--裁剪界面-->
         <activity
@@ -65,7 +68,7 @@
         <!--发布Article页面-->
         <activity android:name=".main.camera.activity.ReleaseArticleActivity" />
 
-
+        <!--短信认证页面-->
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -92,11 +95,19 @@
         <activity android:name=".main.message.mqtt.PushActivity" />
         <activity android:name=".main.message.mqtt.ChatActivity" />
         <!--登录注册界面-->
-        <activity android:name=".main.loginAndregister.FirstActivity" />
+        <activity android:name=".main.loginAndregister.FirstActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".main.loginAndregister.LoginActivity" />
         <activity android:name=".main.loginAndregister.RegisterActivity" />
         <activity android:name=".main.loginAndregister.ConfirmationActivity" />
         <activity android:name=".main.loginAndregister.UserInfoActivity" />
+
+
     </application>
 
 </manifest>
