@@ -75,7 +75,7 @@ public class LabelSearchFragment extends BaseFragment implements ViewPager.OnPag
     private void initList() {
         mTitleList.add("标签");
         mTitleList.add("用户");
-        mTitleList.add("文章");
+        mTitleList.add("专题");
         mFragmentList.add(new LabelSearchDetailFragment());
         mFragmentList.add(new LabelSearchDetailFragment());
         mFragmentList.add(new LabelSearchDetailFragment());
