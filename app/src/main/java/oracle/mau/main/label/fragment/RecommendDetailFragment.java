@@ -1,5 +1,6 @@
 package oracle.mau.main.label.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,8 +17,10 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseFragment;
+import oracle.mau.entity.LabelRecommendDetailEntity;
 import oracle.mau.entity.LabelRecommendEntity;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.main.label.activity.ArticleDetailActivity;
 import oracle.mau.main.label.adapter.RecommendDetailLVAdapter;
 
 /**
@@ -36,7 +39,7 @@ public class RecommendDetailFragment extends BaseFragment implements PullToRefre
     /**
      * 数据源
      */
-    private List<LabelRecommendEntity> list;
+    private List<LabelRecommendDetailEntity> list;
 
     private TextView tttttttt;
 
@@ -138,6 +141,8 @@ public class RecommendDetailFragment extends BaseFragment implements PullToRefre
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        toast("item点击事件");
+        Intent intent = new Intent(mContext,ArticleDetailActivity.class);
+        startActivity(intent);
+//        ArticleDetailActivity.actionStart(mContext,list.get(position));
     }
 }

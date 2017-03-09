@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFF">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_user_top"
         android:layout_width="wrap_content"
+        android:layout_height="240dp">
+
+        <ImageView
+            android:id="@+id/iv_detail_my"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/wall_7" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_account_user_img"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+        <TextView
+            android:id="@+id/tv_account_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_account_user_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="测试用户"/>
+
+        <ImageView
+            android:layout_width="92dp"
+            android:layout_height="92dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/account_user_circle_img_bg" />
+
+        <oracle.mau.view.DynamicWave
+            android:id="@+id/dw_user"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_fa_article_flag"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="我的"/>
-</LinearLayout>
+        android:layout_below="@+id/rl_user_top"
+        android:text="我的文章"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_fa_article_flag"
+        android:background="#EEE"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂无文章"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>

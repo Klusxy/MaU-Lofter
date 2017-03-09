@@ -1,12 +1,13 @@
 package oracle.mau.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by 田帅 on 2017/3/9.
  */
 
-public class LabelRecommendDetailEntity {
+public class LabelRecommendDetailEntity implements Serializable{
     /**
      * 用户id  用户头像地址  用户名
      */

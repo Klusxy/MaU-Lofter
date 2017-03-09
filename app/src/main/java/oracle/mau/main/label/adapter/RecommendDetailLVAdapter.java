@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import oracle.mau.R;
+import oracle.mau.entity.LabelRecommendDetailEntity;
 import oracle.mau.entity.LabelRecommendEntity;
 import oracle.mau.utils.ImageUtils;
 
@@ -26,9 +27,9 @@ import oracle.mau.utils.ImageUtils;
 public class RecommendDetailLVAdapter extends BaseAdapter {
 
     private Context context;
-    private List<LabelRecommendEntity> list;
+    private List<LabelRecommendDetailEntity> list;
 
-    public RecommendDetailLVAdapter(Context context, List<LabelRecommendEntity> list) {
+    public RecommendDetailLVAdapter(Context context, List<LabelRecommendDetailEntity> list) {
         this.context = context;
         this.list = list;
     }
