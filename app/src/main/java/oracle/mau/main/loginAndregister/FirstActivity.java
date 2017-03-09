@@ -23,8 +23,9 @@ public class FirstActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void initView() {
         btnLogin=(Button)findViewById(R.id.btn_first_login);
-
+        btnLogin.setOnClickListener(this);
         btnRegister=(Button)findViewById(R.id.btn_first_register);
+        btnRegister.setOnClickListener(thisgit);
     }
 
     @Override
