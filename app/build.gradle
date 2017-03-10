@@ -75,10 +75,12 @@ dependencies {
      * 图片加载库
      */
     compile 'com.github.bumptech.glide:glide:3.7.0'
-
-
-
-
+    /**
+     * 拖拽排序
+     */
     compile project(':drag-sort-listview-master')
-
+    /**
+     * 加载
+     */
+    compile 'com.wang.avi:library:2.1.3'
 }

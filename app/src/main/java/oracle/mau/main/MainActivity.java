@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.wang.avi.AVLoadingIndicatorView;
 import com.yongchun.library.view.ImageSelectorActivity;
 
 import java.io.File;
@@ -63,6 +64,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     public final static int REQ_CODE_CAMERA = 203;
     public final static int REQ_CODE_PHOTO_CROP = 102;
 
+    private AVLoadingIndicatorView avi;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
@@ -75,6 +78,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         rb_main_label = (RadioButton) findViewById(R.id.rb_main_label);
         btn_main_camera = (Button) findViewById(R.id.btn_main_camera);
         btn_main_camera.setOnClickListener(this);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+        avi.show();
         //设置UI
         configUI();
         //配置camera模块相关内容
@@ -168,6 +173,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 break;
             case R.id.rb_main_message:
                 replaceFragment(new MessageFragment(), R.id.fl_main_fragment);
+                avi.hide();
                 break;
             case R.id.rb_main_account:
                 replaceFragment(new AccountFragment(), R.id.fl_main_fragment);
