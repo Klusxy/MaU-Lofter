@@ -1,65 +1,114 @@
 package oracle.mau.main.home.fragment;
 
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ScrollView;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import oracle.mau.R;
-import oracle.mau.base.BaseFragment;
-import oracle.mau.entity.HomeEntity;
-import oracle.mau.main.home.adapter.HomeAttentionFragmentAdapter;
-
+import oracle.mau.entity.LabelRecommendDetailEntity;
+import oracle.mau.main.label.activity.ArticleDetailActivity;
+import oracle.mau.main.label.adapter.RecommendDetailLVAdapter;
+import oracle.mau.view.ListViewForScrollView;
 
 /**
  * Created by Administrator on 2017/3/1.
  */
 
-public class AttentionFragment extends BaseFragment{
+public class AttentionFragment extends Fragment implements AdapterView.OnItemClickListener,PullToRefreshBase.OnRefreshListener<ScrollView> {
+    RecommendDetailLVAdapter adapter;
+    ListViewForScrollView lv;
+    /**
+     * 数据源，复用Label中布局适配器
+     */
+    List<LabelRecommendDetailEntity> list=new ArrayList<LabelRecommendDetailEntity>();
+    /**
+     * 下拉刷新
+     */
 
-    ListView lv;
-    HomeAttentionFragmentAdapter adapter;
+    private PullToRefreshScrollView mPullRefreshScrollView;
+    private final int HOME_PULL_UPDATE = 100001;
 
+    private Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            mPullRefreshScrollView.onRefreshComplete();
+        }
+    };
 
+    @Nullable
     @Override
-    protected int getLayoutResource() {
-        return R.layout.fragment_homeattention;
-    }
-
-    @Override
-    protected void initView() {
-
-
-        lv=(ListView)rootView.findViewById(R.id.home_lv);
-        adapter=new HomeAttentionFragmentAdapter(getActivity());
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+     View view=inflater.inflate(R.layout.fragment_homeattention,null);
+        lv=(ListViewForScrollView)view.findViewById(R.id.home_lv);
+        adapter=new RecommendDetailLVAdapter(getActivity(),list);
         lv.setAdapter(adapter);
-        addData();
+        /**
+         * 初始化下拉刷新、设置监听(去获取数据)
+         */
+        mPullRefreshScrollView = (PullToRefreshScrollView) view.findViewById(R.id.ptr_home_attention);
+        mPullRefreshScrollView.smoothScrollTo(0, 0);//将ScrollView滚动至最顶端（自定义的listview影响下的效果）
+        mPullRefreshScrollView.setOnRefreshListener(this);
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                toast("首页每个item的点击事件");
+
+                Intent intent = new Intent(getActivity(),ArticleDetailActivity.class);
+                startActivity(intent);
             }
         });
 
+
+
+
+        return view;
     }
-    // 自定义数据加载的方法
-    public void addData() {
-        List<HomeEntity> list=new ArrayList<HomeEntity>();
-        for (int i=0;i<20;i++){
-            //假数据
-            HomeEntity user=new HomeEntity();
-            user.setUsername("用户名"+ i);
-            user.setCommandname("推荐用户名"+ i);
-            user.setContent("文章内容"+ i);
-            user.setTime("2分钟前");
-            user.setSign("搭配  今天穿什么 stylelife");
-           // user.setPic(R.mipmap.ic_launcher);
-            user.setHot("2  热度");
-            list.add(user);
-        }
-        adapter.addData(list);
-        adapter.notifyDataSetChanged();
+
+
+
+
+
+    /**
+     * 下拉刷新的监听方法
+     * 用于去获取数据
+     *
+     * @param refreshView
+     */
+    @Override
+    public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    //模拟获取数据花费4秒
+                    sleep(4000);
+                    //得到数据后不能直接在子线程中让下拉刷新头部缩回，通过handler机制告诉主线程缩回下拉刷新头部
+                    Message msg = handler.obtainMessage(HOME_PULL_UPDATE, "刷新成功");
+                    handler.sendMessage(msg);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }

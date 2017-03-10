@@ -51,14 +51,14 @@ public class HomeAddAttentionActivity extends BaseActivity{
         for (int i=0;i<20;i++){
             //假数据
             HomeEntity user=new HomeEntity();
-            user.setUsername("发布用户名"+ i);
+            user.setUsername("测试用户名"+ i);
             user.setLikeNum("被喜欢"+1000+i+"次");
-            user.setPic(R.mipmap.ic_launcher);//推荐用户头像
+//            user.setPic(R.mipmap.mimi);//推荐用户头像
             list.add(user);
         }
         adapter.addData(list);
         adapter.notifyDataSetChanged();
     }
-    //关注不喜欢按钮的样式
+
 
 }
