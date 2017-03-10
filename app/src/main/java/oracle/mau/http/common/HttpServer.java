@@ -6,6 +6,7 @@ package oracle.mau.http.common;
  * Created by 田帅 on 2017/2/8.
  */
 
+import android.nfc.Tag;
 import android.util.Log;
 
 import com.lidroid.xutils.HttpUtils;
@@ -23,10 +24,14 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -36,6 +41,9 @@ import oracle.mau.main.camera.filter.IceFilter;
 
 
 public class HttpServer {
+
+    private final static String TAG = "MAU_HTTPSERVER";
+
     public final static String HTTPSERVER_POST = "POST";
     public final static String HTTPSERVER_GET = "GET";
     public final static String HTTPSERVER_PUT = "PUT";
@@ -65,11 +73,10 @@ public class HttpServer {
      *                                                   用接口回调方法
      *                                                   参数->解析->callback
      */
-    public static void sendPostRequest(String type, Map<String, Object> map, final BeanParser parser, String url, final Callback callback) {
+    public static void sendPostRequest(final String type, Map<String, Object> map, final BeanParser parser, String url, final Callback callback) {
 
         //该对象用来向服务器发送请求
         HttpUtils httpUtils = new HttpUtils();
-
         //设置请求
         //cookie
         if (preferencesCookieStore != null) {
@@ -88,12 +95,17 @@ public class HttpServer {
             //创建一个参数对象，用来存储需要传递的参数,如果想把值传给服务器，那么就必须把值存在RequestParams中
             RequestParams rp = new RequestParams();
             if (map != null) {
+                JSONObject json = new JSONObject(map);
                 for (String key : map.keySet()) {
                     //判断请求的map中包含不包含文件
                     if (key.contains("File")) {
                         rp.addBodyParameter(key, new File((String) map.get(key)));
                     } else {
-                        rp.addBodyParameter(key, (String) map.get(key));
+                        try {
+                            rp.setBodyEntity(new StringEntity(json.toString()));
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -105,6 +117,7 @@ public class HttpServer {
                     //responseInfo.result  就是json字符串
                     //从服务器返回来的
                     String json = responseInfo.result;
+                    Log.d(TAG, "请求方式: " + type + " 状态码:" + responseInfo.statusCode + " 返回的json数据为：" + json);
                     //解析
                     BeanData beandata = null;
                     if (parser != null) {
@@ -122,6 +135,7 @@ public class HttpServer {
                     //匿名对象访问方法参数要求是final
                     //将失败信息传给callback
                     callback.failure(s);
+                    Log.d(TAG, "请求方式: " + type + " 状态码:" + e.getExceptionCode() + " 返回的error信息为：" + s);
                 }
             });
         }
@@ -133,7 +147,6 @@ public class HttpServer {
                 // GET方式参数拼接在URL结尾
                 StringBuilder sb = new StringBuilder();
                 sb.append(url).append("?");
-
                 if (map != null) {
                     for (String key : map.keySet()) {
                         //拼接url
@@ -146,7 +159,6 @@ public class HttpServer {
                     }
                     sb.deleteCharAt(sb.length() - 1);
                     url = sb.toString();
-                    Log.d("dasdasd", url + "    url ");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -159,7 +171,7 @@ public class HttpServer {
                     //responseInfo.result  就是json字符串
                     //从服务器返回来的
                     String json = responseInfo.result;
-                    Log.d("dasdasd", json);
+                    Log.d(TAG, "请求方式: " + type + " 状态码:" + responseInfo.statusCode + " 返回的json数据为：" + json);
                     //解析
                     BeanData beandata = null;
                     if (parser != null) {
@@ -177,6 +189,7 @@ public class HttpServer {
                     //匿名对象访问方法参数要求是final
                     //将失败信息传给callback
                     callback.failure(s);
+                    Log.d(TAG, "请求方式: " + type + " 状态码:" + e.getExceptionCode() + " 返回的error信息为：" + s);
                 }
             });
         }
@@ -188,12 +201,12 @@ public class HttpServer {
             if (map != null) {
                 //创建一个参数对象，用来存储需要传递的参数,如果想把值传给服务器，那么就必须把值存在RequestParams中
                 RequestParams rp = new RequestParams();
+                Map<String, Object> newMap = new HashMap<>();
                 for (String key : map.keySet()) {
                     if ("id".equals(key)) {
                         url = url + map.get(key).toString();
-//                        rp.addHeader(key, (String) map.get(key));
                     } else {
-                        rp.addBodyParameter(key, (String) map.get(key));
+                        newMap.put(key, map.get(key));
                     }
                     //拼接url
 //                    url = url +"&"+key+"="+ map.get(key).toString();
@@ -205,7 +218,12 @@ public class HttpServer {
                 }
 //                    sb.deleteCharAt(sb.length() - 1);
 //                    url = sb.toString();
-                Log.d("dasdasd", url);
+                JSONObject json = new JSONObject(newMap);
+                try {
+                    rp.setBodyEntity(new StringEntity(json.toString()));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 //向服务器发送请求方法
                 httpUtils.send(HttpRequest.HttpMethod.PUT, url, rp, new RequestCallBack<String>() {
                     //发送请求成功
@@ -213,9 +231,7 @@ public class HttpServer {
                     public void onSuccess(ResponseInfo<String> responseInfo) {
                         //从服务器返回来的
                         String json = responseInfo.result;
-                            Log.d("dasdasd",  "   head" +responseInfo.getAllHeaders()[0] +"  "+responseInfo.getAllHeaders()[1]+"  "+responseInfo.getAllHeaders()[2]+"  "+responseInfo.getAllHeaders()[3]);
-
-                        Log.d("dasdasd", json );
+                        Log.d(TAG, "请求方式: " + type + " 状态码:" + responseInfo.statusCode + " 返回的json数据为：" + json);
                         //解析
                         BeanData beandata = null;
                         if (parser != null) {
@@ -233,6 +249,7 @@ public class HttpServer {
                         //匿名对象访问方法参数要求是final
                         //将失败信息传给callback
                         callback.failure(s);
+                        Log.d(TAG, "请求方式: " + type + " 状态码:" + e.getExceptionCode() + " 返回的error信息为：" + s);
                     }
                 });
             }
@@ -259,7 +276,6 @@ public class HttpServer {
                 }
 //                    sb.deleteCharAt(sb.length() - 1);
 //                    url = sb.toString();
-                Log.d("dasdasd", url);
 
                 //向服务器发送请求方法
                 httpUtils.send(HttpRequest.HttpMethod.DELETE, url, new RequestCallBack<String>() {
@@ -269,7 +285,7 @@ public class HttpServer {
                         //responseInfo.result  就是json字符串
                         //从服务器返回来的
                         String json = responseInfo.result;
-                        Log.d("dasdasd", json);
+                        Log.d(TAG, "请求方式: " + type + " 状态码:" + responseInfo.statusCode + " 返回的json数据为：" + json);
                         //解析
                         BeanData beandata = null;
                         if (parser != null) {
@@ -287,6 +303,7 @@ public class HttpServer {
                         //匿名对象访问方法参数要求是final
                         //将失败信息传给callback
                         callback.failure(s);
+                        Log.d(TAG, "请求方式: " + type + " 状态码:" + e.getExceptionCode() + " 返回的error信息为：" + s);
                     }
                 });
             }
