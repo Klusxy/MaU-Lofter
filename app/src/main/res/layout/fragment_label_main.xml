@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDDDDD">
+    android:background="#FFF">
     <!--
         带有下拉刷新的滚动视图
         ptr:ptrAnimationStyle="rotate"  设置刷新效果：在该项目中，已修改完源码，风格统一，所以这里设什么都一样
@@ -20,78 +20,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <!--顶部自动无缝轮播-->
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_label_main"
-                android:layout_width="match_parent"
-                android:layout_height="170dp"></android.support.v4.view.ViewPager>
-            <!--中部标签画廊-->
-            <oracle.mau.main.label.view.TouchViewPager
-                android:id="@+id/vp_label_tag"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></oracle.mau.main.label.view.TouchViewPager>
-            <!--专题推荐-->
-            <RelativeLayout
-                android:id="@+id/rl_label_main_label_recommend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/vp_label_tag">
-
-                <TextView
-                    android:id="@+id/tv_label_main_label_recommend_flag"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#FFF"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="专题推荐"
-                    android:textColor="@color/label_gray_color"
-                    android:textSize="15sp" />
-
-                <oracle.mau.view.ListViewForScrollView
-                    android:id="@+id/lv_label_main_label_recommend"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_label_main_label_recommend_flag">
-
-                </oracle.mau.view.ListViewForScrollView>
-
-                <RelativeLayout
-                    android:id="@+id/rl_label_look_more_label"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_below="@+id/lv_label_main_label_recommend"
-                    android:background="#FFF">
-
-                    <TextView
-                        android:id="@+id/rl_label_look_more_label_flag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:text="更多好玩的标签"
-                        android:textColor="#A3C53C"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/rl_label_look_more_label_flag"
-                        android:src="@mipmap/discover_item_arrow" />
-                </RelativeLayout>
-            </RelativeLayout>
-
             <!--达人推荐-->
             <RelativeLayout
                 android:id="@+id/rl_label_main_user_recommend"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rl_label_main_label_recommend"
-                android:layout_marginTop="20dp">
-
+                android:layout_height="wrap_content">
+                <!--android:layout_below="@id/rl_label_main_label_recommend"-->
                 <TextView
                     android:id="@+id/tv_label_main_user_recommend_flag"
                     android:layout_width="match_parent"
@@ -102,7 +36,8 @@
                     android:paddingTop="10dp"
                     android:text="达人推荐"
                     android:textColor="@color/label_gray_color"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:visibility="gone"/>
 
                 <oracle.mau.view.GridViewForScrollView
                     android:id="@+id/gv_label_main_user_recommend"
@@ -110,7 +45,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_label_main_user_recommend_flag"
                     android:background="#FFF"
-                    android:numColumns="3">
+                    android:numColumns="4"
+                    android:paddingBottom="10dp">
 
                 </oracle.mau.view.GridViewForScrollView>
 
@@ -120,7 +56,8 @@
                     android:layout_height="48dp"
                     android:layout_alignParentBottom="true"
                     android:layout_below="@+id/gv_label_main_user_recommend"
-                    android:background="#FFF">
+                    android:background="#FFF"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/rl_label_look_more_user_flag"
@@ -131,7 +68,8 @@
                         android:layout_marginTop="10dp"
                         android:text="查看更多达人"
                         android:textColor="#A3C53C"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -143,15 +81,25 @@
                         android:src="@mipmap/discover_item_arrow" />
                 </RelativeLayout>
             </RelativeLayout>
+            <!--顶部自动无缝轮播-->
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_label_main"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:visibility="gone"></android.support.v4.view.ViewPager>
+            <!--中部标签画廊-->
+            <oracle.mau.main.label.view.TouchViewPager
+                android:id="@+id/vp_label_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></oracle.mau.main.label.view.TouchViewPager>
 
             <!--文章推荐-->
             <RelativeLayout
                 android:id="@+id/rl_label_main_message_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_label_main_user_recommend"
+                android:layout_below="@id/vp_label_tag"
                 android:layout_marginTop="20dp">
-
                 <TextView
                     android:id="@+id/tv_label_main_message_recommend_flag"
                     android:layout_width="match_parent"

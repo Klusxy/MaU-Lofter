@@ -70,8 +70,9 @@ public class LabelMainRecommendUserGVAdapter extends BaseAdapter {
         Bitmap circleBitmap = ImageUtils.circleBitmap(bm);
         int screenWidth = ScreenUtils.getScreenWidth(context);
 //        Glide.with(context).load(userImg[position]).into(vh.iv_gv_item_label_main_user_img);
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth/3,screenWidth/3);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth/6,screenWidth/6);
         vh.iv_gv_item_label_main_user_img.setLayoutParams(lp);
+        lp.addRule(RelativeLayout.CENTER_HORIZONTAL);
         lp.setMargins(DensityUtils.dp2px(context,10),10,DensityUtils.dp2px(context,10),0);
         vh.iv_gv_item_label_main_user_img.setImageBitmap(circleBitmap);
 
