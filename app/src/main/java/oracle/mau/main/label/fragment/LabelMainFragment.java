@@ -53,11 +53,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
      * 自动轮播
      */
     private final int LABEL_TOP_VP_AUTO_UPDATE = 100002;
-    /**
-     * 标签推荐listview
-     */
-    private ListViewForScrollView lv_label_main_label_recommend;
-    private List<LabelRecommendEntity> lrList;
+
     /**
      * 用户推荐gridview
      */
@@ -113,7 +109,6 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     protected void initView() {
         vp_label_main = (ViewPager) rootView.findViewById(R.id.vp_label_main);
         vp_label_tag = (TouchViewPager) rootView.findViewById(R.id.vp_label_tag);
-        lv_label_main_label_recommend = (ListViewForScrollView) rootView.findViewById(R.id.lv_label_main_label_recommend);
         gv_label_main_user_recommend = (GridViewForScrollView) rootView.findViewById(R.id.gv_label_main_user_recommend);
         /**
          * 初始化下拉刷新、设置监听(去获取数据)
@@ -128,8 +123,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         initTagGalleryData();
         //初始化标签画廊
         initTagGallery();
-        //初始化标签推荐listview数据
-        initLabelRecommendLVData();
+
         //初始化标签推荐listview
         initLabelRecommendLV();
         //初始化达人推荐gridview数据
@@ -170,44 +164,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
 
     }
 
-    /**
-     * 初始化标签推荐listview数据
-     */
-    private void initLabelRecommendLVData() {
-        lrList = new ArrayList<>();
-        LabelRecommendEntity lr1 = new LabelRecommendEntity();
-        lr1.setLrTitle("始于人像摄影");
-        lr1.setLrParticipationNum(12875);
-        lrList.add(lr1);
 
-        LabelRecommendEntity lr2 = new LabelRecommendEntity();
-        lr2.setLrTitle("彩色");
-        lr2.setLrParticipationNum(34875);
-        lrList.add(lr2);
-
-        LabelRecommendEntity lr3 = new LabelRecommendEntity();
-        lr3.setLrTitle("关于春天的特别回忆");
-        lr3.setLrParticipationNum(66875);
-        lrList.add(lr3);
-
-        LabelRecommendEntity lr4 = new LabelRecommendEntity();
-        lr4.setLrTitle("假装喵星人");
-        lr4.setLrParticipationNum(232875);
-        lrList.add(lr4);
-
-        int[] bgs = {R.mipmap.mh1, R.mipmap.mh2, R.mipmap.mh3, R.mipmap.mh4};
-        int[] lrImgs1 = {R.mipmap.renxiang1, R.mipmap.renxiang2, R.mipmap.renxiang3};
-        int[] lrImgs2 = {R.mipmap.caise1, R.mipmap.caise2, R.mipmap.caise3};
-        int[] lrImgs3 = {R.mipmap.chuntian1, R.mipmap.chuntian2, R.mipmap.chuntian3};
-        int[] lrImgs4 = {R.mipmap.miaoxingren1, R.mipmap.miaoxingren2, R.mipmap.miaoxingren3};
-        List<int[]> imgsList = new ArrayList<>();
-        imgsList.add(lrImgs1);
-        imgsList.add(lrImgs2);
-        imgsList.add(lrImgs3);
-        imgsList.add(lrImgs4);
-        LabelMainReommendLabelLVAdapter adapter = new LabelMainReommendLabelLVAdapter(mContext, lrList, bgs, imgsList);
-        lv_label_main_label_recommend.setAdapter(adapter);
-    }
 
 
     /**
@@ -278,7 +235,8 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
          */
         int screenWidth = ScreenUtils.getScreenWidth(mContext);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth, screenWidth * 3 / 4);
-        lp.addRule(RelativeLayout.BELOW, R.id.vp_label_main);
+//        lp.addRule(RelativeLayout.BELOW, R.id.vp_label_main);
+        lp.addRule(RelativeLayout.BELOW, R.id.rl_label_main_user_recommend);
         lp.setMargins(0, 30, 0, 0);
         vp_label_tag.setLayoutParams(lp);
         vp_label_tag.setAdapter(galleryAdapter);
