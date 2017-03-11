@@ -35,7 +35,8 @@
             android:paddingBottom="5dp"
             android:textColor="#A3C53C"
             android:background="@drawable/label_rd_attention_tv_solid_oval_bg"
-            android:layout_marginRight="20dp"/>
+            android:layout_marginRight="20dp"
+            android:visibility="gone"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
