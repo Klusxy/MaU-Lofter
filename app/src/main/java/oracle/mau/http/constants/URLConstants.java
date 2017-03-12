@@ -37,4 +37,8 @@ public class URLConstants {
      * 发布文章内容
      */
     public static final String SEND_ARTICLE_CONTENT  = "article/";
+    /**
+     * 发布文章图片
+     */
+    public static final String SEND_ARTICLE_PIC  = "upload/";
 }

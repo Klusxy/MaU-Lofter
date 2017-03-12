@@ -16,18 +16,21 @@ import oracle.mau.http.common.Callback;
 import oracle.mau.http.common.HttpServer;
 import oracle.mau.http.constants.URLConstants;
 import oracle.mau.http.data.HotUserData;
+import oracle.mau.http.data.UserData;
 import oracle.mau.http.parser.HotUserParser;
+import oracle.mau.http.parser.UserParser;
 import oracle.mau.main.MainActivity;
 
 /**
  * Created by shadow on 2017/2/27.
  */
 
-public class LoginActivity  extends BaseActivity implements View.OnClickListener{
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private EditText editTel;
     private EditText editpwd;
     private Button btnLogin;
     private Button btnRegister;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_login;
@@ -35,12 +38,12 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
 
     @Override
     public void initView() {
-        editTel=(EditText) findViewById(R.id.edit_login_tel);
-        editpwd=(EditText) findViewById(R.id.edit_login_pwd);
+        editTel = (EditText) findViewById(R.id.edit_login_tel);
+        editpwd = (EditText) findViewById(R.id.edit_login_pwd);
 
-        btnLogin=(Button) findViewById(R.id.button);
+        btnLogin = (Button) findViewById(R.id.button);
         btnLogin.setOnClickListener(this);
-        btnRegister=(Button)findViewById(R.id.btn_register);
+        btnRegister = (Button) findViewById(R.id.btn_register);
         btnRegister.setOnClickListener(this);
 
     }
@@ -51,11 +54,10 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
             case R.id.button:
 
 
-
                 sendMessage();
                 break;
             case R.id.btn_register:
-                Intent intentRegister=new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intentRegister = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intentRegister);
 
                 break;
@@ -67,42 +69,33 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
     }
 
 
-    public void sendMessage(){
-        Map<String, Object> params=new HashMap<String, Object>();
-        String userTel=editTel.getText().toString();
-        String userPwd=editpwd.getText().toString();
+    public void sendMessage() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        String userTel = editTel.getText().toString();
+        String userPwd = editpwd.getText().toString();
         params.put("user_name", userTel);
         params.put("password", userPwd);
 
-        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new HotUserParser(), URLConstants.BASE_URL+URLConstants.USERLOGIN, new Callback() {
-
-
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST, params, new UserParser(), URLConstants.BASE_URL + URLConstants.USERLOGIN, new Callback() {
 
 
             @Override
             public void success(BeanData beanData) {
-                HotUserData uData=(HotUserData)beanData;
-
-
-
-                        MaUApplication app=(MaUApplication) getApplication();
-                        app.setUser(uData.getUser());
-
-                        Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                        startActivity(intent);
-                        finish();
-
-                    }
-
+                UserData uData = (UserData) beanData;
+                MaUApplication app = (MaUApplication) getApplication();
+                app.setUser(uData.getUserEntity());
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
 
             @Override
             public void failure(String error) {
 
-                    toast(error);
+                toast(error);
             }
         });
-
 
 
     }
