@@ -1,6 +1,7 @@
 package oracle.mau.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by 田帅 on 2017/2/28.
@@ -16,6 +17,21 @@ public class LabelTagEntity implements Serializable {
      * 是否是拖动之后
      */
     private boolean isDrag;
+
+
+    private int tagId;
+    private String tagTitle;
+    private List<String> imgList;
+
+    public List<String> getImgList() {
+        return imgList;
+    }
+
+    public void setImgList(List<String> imgList) {
+        this.imgList = imgList;
+    }
+
+
 
     public boolean isDrag() {
         return isDrag;
@@ -33,8 +49,6 @@ public class LabelTagEntity implements Serializable {
         this.selectPosition = selectPosition;
     }
 
-    private int tagId;
-
     public int getTagId() {
         return tagId;
     }
@@ -42,9 +56,6 @@ public class LabelTagEntity implements Serializable {
     public void setTagId(int tagId) {
         this.tagId = tagId;
     }
-
-    private String tagTitle;
-    private int[] imgs;
 
     public String getTagTitle() {
         return tagTitle;
@@ -54,11 +65,4 @@ public class LabelTagEntity implements Serializable {
         this.tagTitle = tagTitle;
     }
 
-    public int[] getImgs() {
-        return imgs;
-    }
-
-    public void setImgs(int[] imgs) {
-        this.imgs = imgs;
-    }
 }

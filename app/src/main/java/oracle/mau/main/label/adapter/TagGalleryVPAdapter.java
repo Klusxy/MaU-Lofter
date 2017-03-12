@@ -15,6 +15,7 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.view.GridViewForScrollView;
 
 /**
  * Created by 田帅 on 2017/2/28.
@@ -53,8 +54,8 @@ public class TagGalleryVPAdapter extends PagerAdapter {
         View view = LayoutInflater.from(context).inflate(R.layout.vp_item_label_tag, null);
         TextView tv_vp_item_tag = (TextView) view.findViewById(R.id.tv_vp_item_tag);
         tv_vp_item_tag.setText(list.get(position % list.size()).getTagTitle());
-        GridView gv_vp_item = (GridView) view.findViewById(R.id.gv_vp_item);
-        TagGridViewAdapter adapter = new TagGridViewAdapter(context, list.get(position % list.size()).getImgs());
+        GridViewForScrollView gv_vp_item = (GridViewForScrollView) view.findViewById(R.id.gv_vp_item);
+        TagGridViewAdapter adapter = new TagGridViewAdapter(context, list.get(position % list.size()).getImgList());
         gv_vp_item.setAdapter(adapter);
         container.addView(view);
 
