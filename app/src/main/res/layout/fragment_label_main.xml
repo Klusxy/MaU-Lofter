@@ -9,11 +9,21 @@
         ptrMode="pullDownFromTop"  pullDownFromTop表示只有下拉刷新效果，both表示下拉刷新和上拉加载都有
         具体其他属性自行百度 PullToRefresh
     -->
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avliv_label_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:indicatorColor="#000"
+        app:indicatorName="BallClipRotatePulseIndicator"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_label_main_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         ptr:ptrAnimationStyle="rotate"
         ptr:ptrMode="both">
 

@@ -16,6 +16,7 @@ import android.widget.ScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,12 @@ import oracle.mau.base.BaseFragment;
 import oracle.mau.entity.LabelRecommendEntity;
 import oracle.mau.entity.LabelTagEntity;
 import oracle.mau.entity.UserEntity;
+import oracle.mau.http.bean.BeanData;
+import oracle.mau.http.common.Callback;
+import oracle.mau.http.common.HttpServer;
+import oracle.mau.http.constants.URLConstants;
+import oracle.mau.http.data.UserData;
+import oracle.mau.http.parser.UserParser;
 import oracle.mau.main.label.activity.RecommendDetailActivity;
 import oracle.mau.main.label.adapter.ImageCarouselVPAdapter;
 import oracle.mau.main.label.adapter.LabelMainRecommendUserGVAdapter;
@@ -44,7 +51,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     /**
      * 顶部自动轮播viewpager
      */
-    private ViewPager vp_label_main;
+//    private ViewPager vp_label_main;
     /**
      * 放imageView的集合
      */
@@ -52,13 +59,18 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     /**
      * 自动轮播
      */
-    private final int LABEL_TOP_VP_AUTO_UPDATE = 100002;
+//    private final int LABEL_TOP_VP_AUTO_UPDATE = 100002;
 
     /**
      * 用户推荐gridview
      */
     private GridViewForScrollView gv_label_main_user_recommend;
     private List<UserEntity> userList;
+    /**
+     * 进度条
+     */
+    private AVLoadingIndicatorView avliv_label_main;
+    private int updateFlag = 0;
 
 
     private Handler handler = new Handler() {
@@ -71,17 +83,13 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
                      * 得到数据之后，通知xxx刷新或其他操作
                      */
 
-                    /**
-                     * 最后掉调用该方法缩回头部（主线程中）
-                     */
-                    mPullRefreshScrollView.onRefreshComplete();
 
                     break;
                 //顶部自动轮播
-                case LABEL_TOP_VP_AUTO_UPDATE:
-                    vp_label_main.setCurrentItem(vp_label_main.getCurrentItem() + 1);//收到消息，指向下一个页面
-                    handler.sendEmptyMessageDelayed(LABEL_TOP_VP_AUTO_UPDATE, 4000);//2S后在发送一条消息，由于在handleMessage()方法中，造成死循环。
-                    break;
+//                case LABEL_TOP_VP_AUTO_UPDATE:
+//                    vp_label_main.setCurrentItem(vp_label_main.getCurrentItem() + 1);//收到消息，指向下一个页面
+//                    handler.sendEmptyMessageDelayed(LABEL_TOP_VP_AUTO_UPDATE, 4000);//2S后在发送一条消息，由于在handleMessage()方法中，造成死循环。
+//                    break;
             }
         }
     };
@@ -107,7 +115,8 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
 
     @Override
     protected void initView() {
-        vp_label_main = (ViewPager) rootView.findViewById(R.id.vp_label_main);
+//        vp_label_main = (ViewPager) rootView.findViewById(R.id.vp_label_main);
+        avliv_label_main = (AVLoadingIndicatorView) rootView.findViewById(R.id.avliv_label_main);
         vp_label_tag = (TouchViewPager) rootView.findViewById(R.id.vp_label_tag);
         gv_label_main_user_recommend = (GridViewForScrollView) rootView.findViewById(R.id.gv_label_main_user_recommend);
         /**
@@ -115,46 +124,54 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
          */
         mPullRefreshScrollView = (PullToRefreshScrollView) rootView.findViewById(R.id.ptr_label_main_scrollview);
         mPullRefreshScrollView.setOnRefreshListener(this);
+
+        avliv_label_main.show();
+        //初始化达人推荐gridview数据
+        initUserRecommendGVData();
+
         //初始化顶部自动轮播数据
-        initImageCarouselData();
+//        initImageCarouselData();
         //初始化顶部自动轮播
-        initImageCarousel();
+//        initImageCarousel();
         //初始化标签画廊数据
         initTagGalleryData();
         //初始化标签画廊
         initTagGallery();
-
-        //初始化标签推荐listview
-        initLabelRecommendLV();
-        //初始化达人推荐gridview数据
-        initUserRecommendGVData();
-        //初始化达人推荐gridview
-        initUserRecommendGV();
     }
 
     /**
      * 初始化达人推荐gridview
      */
     private void initUserRecommendGV() {
-
+        LabelMainRecommendUserGVAdapter userAdapter = new LabelMainRecommendUserGVAdapter(mContext, userList);
+        gv_label_main_user_recommend.setAdapter(userAdapter);
     }
 
     /**
      * 初始化达人推荐gridview数据
      */
     private void initUserRecommendGVData() {
-        userList = new ArrayList<>();
-        UserEntity user = new UserEntity();
-        user.setUsername("云深步知处");
-        userList.add(user);
-        userList.add(user);
-        userList.add(user);
-        userList.add(user);
-        userList.add(user);
-        userList.add(user);
-        int[] userImgs = {R.mipmap.mh2, R.mipmap.mh2, R.mipmap.mh2, R.mipmap.mh2, R.mipmap.mh2, R.mipmap.mh2};
-        LabelMainRecommendUserGVAdapter userAdapter = new LabelMainRecommendUserGVAdapter(mContext, userList, userImgs);
-        gv_label_main_user_recommend.setAdapter(userAdapter);
+        UserParser parser = new UserParser();
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, parser, URLConstants.BASE_URL + URLConstants.HOT_USER, new Callback() {
+            @Override
+            public void success(BeanData beanData) {
+                UserData uData = (UserData) beanData;
+                userList = uData.getUserList();
+                initUserRecommendGV();
+                if (updateFlag > 0) {
+                    /**
+                     * 最后掉调用该方法缩回头部（主线程中）
+                     */
+                    mPullRefreshScrollView.onRefreshComplete();
+                }
+                avliv_label_main.hide();
+            }
+
+            @Override
+            public void failure(String error) {
+
+            }
+        });
     }
 
     /**
@@ -163,8 +180,6 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     private void initLabelRecommendLV() {
 
     }
-
-
 
 
     /**
@@ -278,11 +293,11 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     /**
      * 初始化顶部自动轮播
      */
-    private void initImageCarousel() {
-        ImageCarouselVPAdapter imageCarouselVPAdapter = new ImageCarouselVPAdapter(imageViewList);
-        vp_label_main.setAdapter(imageCarouselVPAdapter);
-        vp_label_main.setCurrentItem(1000);//当前页是第1000页
-    }
+//    private void initImageCarousel() {
+//        ImageCarouselVPAdapter imageCarouselVPAdapter = new ImageCarouselVPAdapter(imageViewList);
+//        vp_label_main.setAdapter(imageCarouselVPAdapter);
+//        vp_label_main.setCurrentItem(1000);//当前页是第1000页
+//    }
 
     /**
      * fragment可见可交互的时候就开始发送消息，开启循环
@@ -290,7 +305,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     @Override
     public void onResume() {
         super.onResume();
-        handler.sendEmptyMessageDelayed(LABEL_TOP_VP_AUTO_UPDATE, 4000);
+//        handler.sendEmptyMessageDelayed(LABEL_TOP_VP_AUTO_UPDATE, 4000);
     }
 
     /**
@@ -300,7 +315,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     @Override
     public void onStop() {
         super.onStop();
-        handler.removeMessages(LABEL_TOP_VP_AUTO_UPDATE);
+//        handler.removeMessages(LABEL_TOP_VP_AUTO_UPDATE);
     }
 
     /**
@@ -311,20 +326,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
      */
     @Override
     public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    //模拟获取数据花费4秒
-                    sleep(4000);
-                    //得到数据后不能直接在子线程中让下拉刷新头部缩回，通过handler机制告诉主线程缩回下拉刷新头部
-                    Message msg = handler.obtainMessage(LABEL_MAIN_PULL_UPDATE, "刷新成功");
-                    handler.sendMessage(msg);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        updateFlag++;
+        initUserRecommendGVData();
     }
 }
