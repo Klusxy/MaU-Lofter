@@ -10,7 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.util.List;
+
 import oracle.mau.R;
+import oracle.mau.utils.ImageUtils;
 
 /**
  * Created by 田帅 on 2017/2/28.
@@ -19,22 +22,22 @@ import oracle.mau.R;
 public class TagGridViewAdapter extends BaseAdapter {
     private Context context;
     private int parentWidth = 0;
+    private List<String> imgList;
 
-    public TagGridViewAdapter(Context context, int[] imgs) {
+    public TagGridViewAdapter(Context context, List<String> imgList) {
         this.context = context;
-        this.imgs = imgs;
+        this.imgList = imgList;
     }
 
-    private int[] imgs;
 
     @Override
     public int getCount() {
-        return imgs.length;
+        return imgList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return imgs[position];
+        return imgList.get(position);
     }
 
     @Override
@@ -62,13 +65,12 @@ public class TagGridViewAdapter extends BaseAdapter {
          */
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(parentWidth / 2, parentWidth / 2);
         vh.iv_gv_item_tag_img.setLayoutParams(lp);
-        vh.iv_gv_item_tag_img.setImageResource(imgs[position]);
+        ImageUtils.getBitmapUtils(context).display(vh.iv_gv_item_tag_img,imgList.get(position));
         return convertView;
     }
 
     private class ViewHolder {
         private ImageView iv_gv_item_tag_img;
     }
-
 
 }

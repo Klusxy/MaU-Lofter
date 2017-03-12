@@ -26,7 +26,11 @@ public class URLConstants {
      */
     public static final String MSG_URL ="" ;
     /**
-     * 热门用户
+     * label热门用户
      */
     public static final String HOT_USER="user/hot";
+    /**
+     * label画廊标签
+     */
+    public static final String TAG_GALLERY="article/tag";
 }

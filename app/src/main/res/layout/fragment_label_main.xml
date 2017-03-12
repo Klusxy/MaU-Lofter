@@ -9,18 +9,7 @@
         ptrMode="pullDownFromTop"  pullDownFromTop表示只有下拉刷新效果，both表示下拉刷新和上拉加载都有
         具体其他属性自行百度 PullToRefresh
     -->
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/avliv_label_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:indicatorColor="#000"
-        app:indicatorName="BallClipRotatePulseIndicator"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        />
-    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_label_main_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +24,7 @@
                 android:id="@+id/rl_label_main_user_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <!--android:layout_below="@id/rl_label_main_label_recommend"-->
+
                 <TextView
                     android:id="@+id/tv_label_main_user_recommend_flag"
                     android:layout_width="match_parent"
@@ -47,7 +36,7 @@
                     android:text="达人推荐"
                     android:textColor="@color/label_gray_color"
                     android:textSize="15sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <oracle.mau.view.GridViewForScrollView
                     android:id="@+id/gv_label_main_user_recommend"
@@ -56,47 +45,8 @@
                     android:layout_below="@+id/tv_label_main_user_recommend_flag"
                     android:background="#FFF"
                     android:numColumns="4"
-                    android:paddingBottom="10dp">
-
-                </oracle.mau.view.GridViewForScrollView>
-
-                <RelativeLayout
-                    android:id="@+id/rl_label_look_more_user"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_below="@+id/gv_label_main_user_recommend"
-                    android:background="#FFF"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:id="@+id/rl_label_look_more_user_flag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="10dp"
-                        android:text="查看更多达人"
-                        android:textColor="#A3C53C"
-                        android:textSize="14sp"
-                        />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@+id/rl_label_look_more_user_flag"
-                        android:src="@mipmap/discover_item_arrow" />
-                </RelativeLayout>
+                    android:paddingBottom="10dp"></oracle.mau.view.GridViewForScrollView>
             </RelativeLayout>
-            <!--顶部自动无缝轮播-->
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_label_main"
-                android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:visibility="gone"></android.support.v4.view.ViewPager>
             <!--中部标签画廊-->
             <oracle.mau.main.label.view.TouchViewPager
                 android:id="@+id/vp_label_tag"
@@ -110,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/vp_label_tag"
                 android:layout_marginTop="20dp">
+
                 <TextView
                     android:id="@+id/tv_label_main_message_recommend_flag"
                     android:layout_width="match_parent"
@@ -124,4 +75,14 @@
             </RelativeLayout>
         </RelativeLayout>
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        style="@style/AVLoadingIndicatorView"
+        xmlns:app = "http://schemas.android.com/apk/res-auto"
+        app:indicatorColor="#A3C53C"
+        app:indicatorName="BallClipRotatePulseIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 </RelativeLayout>
