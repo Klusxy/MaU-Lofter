@@ -9,7 +9,7 @@ import oracle.mau.http.bean.BeanData;
  * Created by shadow on 2017/2/28.
  */
 
-public class UserData extends BeanData {
+public class HotUserData extends BeanData {
     private UserEntity user;
 
     /**

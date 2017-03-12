@@ -1,7 +1,6 @@
 package oracle.mau.main.loginAndregister;
 
 import android.content.Intent;
-import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,10 +14,9 @@ import oracle.mau.base.BaseActivity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.common.Callback;
 import oracle.mau.http.common.HttpServer;
-import oracle.mau.http.common.StatusCode;
 import oracle.mau.http.constants.URLConstants;
-import oracle.mau.http.data.UserData;
-import oracle.mau.http.parser.UserParser;
+import oracle.mau.http.data.HotUserData;
+import oracle.mau.http.parser.HotUserParser;
 import oracle.mau.main.MainActivity;
 
 /**
@@ -76,14 +74,14 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
         params.put("user_name", userTel);
         params.put("password", userPwd);
 
-        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERLOGIN, new Callback() {
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new HotUserParser(), URLConstants.BASE_URL+URLConstants.USERLOGIN, new Callback() {
 
 
 
 
             @Override
             public void success(BeanData beanData) {
-                UserData uData=(UserData)beanData;
+                HotUserData uData=(HotUserData)beanData;
 
 
 

@@ -15,16 +15,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import oracle.mau.R;
-import oracle.mau.application.MaUApplication;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.common.Callback;
 import oracle.mau.http.common.HttpServer;
-import oracle.mau.http.common.StatusCode;
 import oracle.mau.http.constants.URLConstants;
-import oracle.mau.http.data.UserData;
-import oracle.mau.http.parser.UserParser;
-import oracle.mau.main.MainActivity;
+import oracle.mau.http.data.HotUserData;
+import oracle.mau.http.parser.HotUserParser;
 
 /**
  * Created by shadow on 2017/2/28.
@@ -152,14 +149,14 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         params.put("user_tel",userTel);
 
 
-        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERRESGISTER, new Callback() {
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new HotUserParser(), URLConstants.BASE_URL+URLConstants.USERRESGISTER, new Callback() {
 
 
 
 
             @Override
             public void success(BeanData beanData) {
-                UserData uData=(UserData)beanData;
+                HotUserData uData=(HotUserData)beanData;
 
 /*
 注册成功后跳转到登录界面
