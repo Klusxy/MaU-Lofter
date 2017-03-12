@@ -45,6 +45,7 @@
                     android:layout_below="@+id/tv_label_main_user_recommend_flag"
                     android:background="#FFF"
                     android:numColumns="4"
+                    android:listSelector="@android:color/transparent"
                     android:paddingBottom="10dp"></oracle.mau.view.GridViewForScrollView>
             </RelativeLayout>
             <!--中部标签画廊-->

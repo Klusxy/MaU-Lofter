@@ -2,6 +2,7 @@ package oracle.mau.main.label.fragment;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
@@ -24,6 +25,7 @@ import oracle.mau.http.data.LabelTagData;
 import oracle.mau.http.data.HotUserData;
 import oracle.mau.http.parser.LabelTagParser;
 import oracle.mau.http.parser.HotUserParser;
+import oracle.mau.main.account.activity.AccountDetailActivity;
 import oracle.mau.main.label.adapter.LabelMainRecommendUserGVAdapter;
 import oracle.mau.main.label.adapter.TagGalleryVPAdapter;
 import oracle.mau.main.label.view.TouchViewPager;
@@ -34,7 +36,7 @@ import oracle.mau.view.GridViewForScrollView;
  * Created by 田帅 on 2017/2/28.
  */
 
-public class LabelMainFragment extends BaseFragment implements OnRefreshListener<ScrollView> {
+public class LabelMainFragment extends BaseFragment implements OnRefreshListener<ScrollView> , AdapterView.OnItemClickListener{
 
     /**
      * 用户推荐gridview
@@ -45,7 +47,6 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
      * 进度条
      */
     private AVLoadingIndicatorView avi;
-
 
     /**
      * 标签画廊数据
@@ -70,6 +71,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         avi = (AVLoadingIndicatorView) rootView.findViewById(R.id.avi);
         vp_label_tag = (TouchViewPager) rootView.findViewById(R.id.vp_label_tag);
         gv_label_main_user_recommend = (GridViewForScrollView) rootView.findViewById(R.id.gv_label_main_user_recommend);
+        gv_label_main_user_recommend.setOnItemClickListener(this);
         /**
          * 初始化下拉刷新、设置监听(去获取数据)
          */
@@ -186,5 +188,14 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
         updateFlag++;
         initUserRecommendGVData();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (parent.getId()) {
+            case R.id.gv_label_main_user_recommend :
+                AccountDetailActivity.actionStart(mContext,userList.get(position).getUserid());
+                break;
+        }
     }
 }

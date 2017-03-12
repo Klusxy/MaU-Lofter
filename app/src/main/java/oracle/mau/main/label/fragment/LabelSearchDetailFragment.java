@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import oracle.mau.R;
@@ -22,7 +24,8 @@ public class LabelSearchDetailFragment extends BaseFragment {
     /**
      * 控件
      */
-
+    private RelativeLayout rl_flsd_top;
+    private TextView tv_flsd_flag;
 
     @Override
     protected int getLayoutResource() {
@@ -31,6 +34,8 @@ public class LabelSearchDetailFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        rl_flsd_top = (RelativeLayout) rootView.findViewById(R.id.rl_flsd_top);
+        tv_flsd_flag = (TextView) rootView.findViewById(R.id.tv_flsd_flag);
         //注册广播
         mContext.registerReceiver(uub,new IntentFilter(UPDATE_SEARCH_UI_BROAD));
     }
@@ -46,10 +51,14 @@ public class LabelSearchDetailFragment extends BaseFragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             /**
-             * 发送广播，通知请求数据
+             * 收到广播，显示隐藏控件，通知请求数据
              */
+            rl_flsd_top.setVisibility(View.VISIBLE);
             int position = intent.getIntExtra("position",0);
-            //接收到广播之后更新UI
+            String content = intent.getStringExtra("content");
+            //接收到广播之后请求数据
+            tv_flsd_flag.setText("正在搜索 “"+content+"”");
+            // 更新UI
             updateUI(position);
         }
     }

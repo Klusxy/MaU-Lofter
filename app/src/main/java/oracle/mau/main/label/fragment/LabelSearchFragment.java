@@ -33,6 +33,7 @@ public class LabelSearchFragment extends BaseFragment implements ViewPager.OnPag
      */
     public static String REQUEST_SEARCH_DATA_BROAD = "searchBroad";
     private RequestDataBroadcast rdb = new RequestDataBroadcast();
+    private String content;
 
 
     @Override
@@ -103,18 +104,18 @@ public class LabelSearchFragment extends BaseFragment implements ViewPager.OnPag
             /**
             * 发送广播，通知请求数据
             */
-            String content = intent.getStringExtra("contnet");
-            switch (mPosition) {
-                case 0:
-                    toast("第一层碎片接收到请求标签信息"+content);
-                    break;
-                case 1:
-                    toast("第一层碎片接收到请求用户信息"+content);
-                    break;
-                case 2:
-                    toast("第一层碎片接收到请求文章信息"+content);
-                    break;
-            }
+            content = intent.getStringExtra("contnet");
+//            switch (mPosition) {
+//                case 0:
+//                    toast("第一层碎片接收到请求标签信息"+content);
+//                    break;
+//                case 1:
+//                    toast("第一层碎片接收到请求用户信息"+content);
+//                    break;
+//                case 2:
+//                    toast("第一层碎片接收到请求文章信息"+content);
+//                    break;
+//            }
             //请求完之后发送广播通知更新UI
             updateUI();
         }
@@ -126,6 +127,7 @@ public class LabelSearchFragment extends BaseFragment implements ViewPager.OnPag
          */
         Intent intent = new Intent(LabelSearchDetailFragment.UPDATE_SEARCH_UI_BROAD);
         intent.putExtra("position",mPosition);
+        intent.putExtra("content",content);
         mContext.sendBroadcast(intent);
     }
 }
