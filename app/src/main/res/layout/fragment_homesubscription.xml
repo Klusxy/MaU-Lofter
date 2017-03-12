@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ptr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
    >
 
-
-
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:id="@+id/ptr_home_subscription"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ptr:ptrAnimationStyle="rotate"
+        ptr:ptrMode="both">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+           android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:orientation="vertical">
 
@@ -36,8 +44,10 @@
             style="@style/home_subscription_lv"
             android:layout_gravity="center"
             android:layout_weight="0.1"
+
             android:gravity="center"
             android:text="分类查看所有标签" />
 
-
 </LinearLayout>
+</com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+</RelativeLayout>

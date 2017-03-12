@@ -1,23 +1,44 @@
 package oracle.mau.main.home.activity;
+
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.ScrollView;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.entity.HomeEntity;
 import oracle.mau.main.home.adapter.HomeAddAttentionAdapter;
+import oracle.mau.view.ListViewForScrollView;
 
 
 /**
  * Created by Administrator on 2017/3/1.
  */
-public class HomeAddAttentionActivity extends BaseActivity{
+public class HomeAddAttentionActivity extends BaseActivity implements AdapterView.OnItemClickListener,PullToRefreshBase.OnRefreshListener<ScrollView>  {
     ImageView home_back;
-    ListView lv;
+    ListViewForScrollView lv;
     HomeAddAttentionAdapter adapter;
+    /**
+     * 下拉刷新
+     */
+
+    private PullToRefreshScrollView mPullRefreshScrollView;
+    private final int HOME_PULL_UPDATE = 100001;
+
+    private Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            mPullRefreshScrollView.onRefreshComplete();
+        }
+    };
     @Override
     public int getLayoutId() {
         return R.layout.activity_home_addattention;
@@ -32,7 +53,7 @@ public class HomeAddAttentionActivity extends BaseActivity{
                 finish();
             }
         });
-        lv=(ListView) findViewById(R.id.home_addattention_lv);
+        lv=(ListViewForScrollView) findViewById(R.id.home_addattention_lv);
         adapter=new HomeAddAttentionAdapter(HomeAddAttentionActivity.this);
         lv.setAdapter(adapter);
         addData();
@@ -43,6 +64,12 @@ public class HomeAddAttentionActivity extends BaseActivity{
 
             }
         });
+        /**
+         * 初始化下拉刷新、设置监听(去获取数据)
+         */
+        mPullRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.ptr_home_addattention);
+        mPullRefreshScrollView.smoothScrollTo(0, 0);//将ScrollView滚动至最顶端（自定义的listview影响下的效果）
+        mPullRefreshScrollView.setOnRefreshListener(this);
 
     }
     // 自定义数据加载的方法
@@ -61,4 +88,32 @@ public class HomeAddAttentionActivity extends BaseActivity{
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+    /**
+     * 下拉刷新的监听方法
+     * 用于去获取数据
+     *
+     * @param refreshView
+     */
+    @Override
+    public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    //模拟获取数据花费4秒
+                    sleep(4000);
+                    //得到数据后不能直接在子线程中让下拉刷新头部缩回，通过handler机制告诉主线程缩回下拉刷新头部
+                    Message msg = handler.obtainMessage(HOME_PULL_UPDATE, "刷新成功");
+                    handler.sendMessage(msg);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
 }

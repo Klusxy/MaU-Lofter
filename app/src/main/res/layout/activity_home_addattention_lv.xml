@@ -14,56 +14,30 @@
 
         <ImageView
             android:id="@+id/home_addattention_head"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_weight="0.5"
             android:layout_height="60dp"
             android:layout_gravity="center"
+
             app:srcCompat="@mipmap/ic_launcher" />
-    <LinearLayout
-    android:layout_width="0dp"
-    android:layout_weight="1"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+
 
 
         <TextView
             android:id="@+id/home_addattention_username"
             android:layout_width="wrap_content"
             android:layout_weight="1"
-            android:layout_height="0dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:textSize="18sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="发布用户名"
              />
-    <TextView
-        android:id="@+id/home__addattention_like"
-        android:layout_width="wrap_content"
-        android:layout_weight="1"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:textSize="10sp"
-        android:text="被喜欢1000次"
-        />
-</LinearLayout>
-
-        <TextView
-            android:id="@+id/home_addattention"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-          android:layout_marginTop="25dp"
-            android:text="关注"
-            android:textSize="13sp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="#A3C53C"
-            android:background="@drawable/label_rd_attention_tv_solid_oval_bg"
-            android:layout_marginRight="20dp"/>
     </LinearLayout>
 
-    <GridView
+
+
+    <oracle.mau.view.GridViewForScrollView
         android:id="@+id/home_gv"
         android:layout_width="match_parent"
         android:layout_height="300dp"
