@@ -16,11 +16,11 @@ public class URLConstants {
     /**
      * 用户注册
      */
-    public static final String USERRESGISTER="mau_user/";
+    public static final String USERRESGISTER="user/register";
     /**
      * 用户登录
      */
-    public static final String USERLOGIN = "";
+    public static final String USERLOGIN ="user/login";
     /**
      * 发送消息
      */

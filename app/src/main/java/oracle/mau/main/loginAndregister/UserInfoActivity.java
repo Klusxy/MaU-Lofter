@@ -146,10 +146,11 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         Map<String, Object> params=new HashMap<String, Object>();
         String userName=editname.getText().toString();
         String userPwd=editpwd.getText().toString();
-        params.put("UserName", userName);
-        params.put("UserPwd", userPwd);
-        params.put("UserImg",path);
-        params.put("UserTel",userTel);
+        params.put("user_name", userName);
+        params.put("user_pwd", userPwd);
+        params.put("user_img",path);
+        params.put("user_tel",userTel);
+
 
         HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERRESGISTER, new Callback() {
 

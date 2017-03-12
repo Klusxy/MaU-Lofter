@@ -53,9 +53,8 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
             case R.id.button:
 
 
-                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
-                //sendMessage();
+
+                sendMessage();
                 break;
             case R.id.btn_register:
                 Intent intentRegister=new Intent(LoginActivity.this,RegisterActivity.class);
@@ -74,8 +73,8 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
         Map<String, Object> params=new HashMap<String, Object>();
         String userTel=editTel.getText().toString();
         String userPwd=editpwd.getText().toString();
-        params.put("userTel", userTel);
-        params.put("userPwd", userPwd);
+        params.put("user_name", userTel);
+        params.put("password", userPwd);
 
         HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new UserParser(), URLConstants.BASE_URL+URLConstants.USERLOGIN, new Callback() {
 
@@ -86,8 +85,7 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
             public void success(BeanData beanData) {
                 UserData uData=(UserData)beanData;
 
-                if(uData.getCode()==StatusCode.Common.SUCCESS){
-                    if(uData.getFlag()== StatusCode.Login.LOGIN_SUCCESS){
+
 
                         MaUApplication app=(MaUApplication) getApplication();
                         app.setUser(uData.getUser());
@@ -95,13 +93,10 @@ public class LoginActivity  extends BaseActivity implements View.OnClickListener
                         Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
                         finish();
-                    }else{
-                       toast("登录失败");
+
                     }
-                }else{
-                    toast("服务器异常");
-                }
-            }
+
+
 
             @Override
             public void failure(String error) {
