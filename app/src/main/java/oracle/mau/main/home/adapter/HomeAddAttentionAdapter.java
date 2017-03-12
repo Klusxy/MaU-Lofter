@@ -10,8 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import oracle.mau.R;
 import oracle.mau.entity.HomeEntity;
 import oracle.mau.utils.ImageUtils;
@@ -68,11 +70,33 @@ public class HomeAddAttentionAdapter extends BaseAdapter {
             vh.name = (TextView) convertView.findViewById(R.id.home_addattention_username);
 
             vh.gv = (GridViewForScrollView) convertView.findViewById(R.id.home_gv);
+           // initGridView();
+
+            gv_list = new ArrayList<>();
+            gv_list.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
+            gv_list.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
+            gv_list.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
+            gv_list.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
+            gv_list.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
+            gv_list.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
+            gv_list.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
+            if (gv_list.size()==1){
+                vh.gv.setNumColumns(1);
+            }
+            if (gv_list.size()==2){
+                vh.gv.setNumColumns(2);
+            }
+            if (gv_list.size()>=3){
+                vh.gv.setNumColumns(3);
+            }
+            gvAdapter=new HomeAddAttentionGVAdapter(context);
+            vh.gv.setAdapter(gvAdapter);
+
             convertView.setTag(vh);
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-        Bitmap bm = BitmapFactory.decodeResource(context.getResources(),R.mipmap.mimi);
+        Bitmap bm = BitmapFactory.decodeResource(context.getResources(),R.mipmap.caise1);
         Bitmap circleBm = ImageUtils.circleBitmap(bm);
         vh.head.setImageBitmap(circleBm);
         vh.head.setOnClickListener(new View.OnClickListener() {
@@ -83,20 +107,7 @@ public class HomeAddAttentionAdapter extends BaseAdapter {
             }
         });
 
-
         vh.name.setText(list.get(position).getUsername());
-
-        gvAdapter=new HomeAddAttentionGVAdapter(context);
-        vh.gv.setAdapter(gvAdapter);
-        gv_list = new ArrayList<String>();
-        gv_list.add("");
-        gv_list.add("");
-        gv_list.add("");
-        gv_list.add("");
-        gv_list.add("");
-        gv_list.add("");
-
-
         gvAdapter.setList(gv_list);
         gvAdapter.notifyDataSetChanged();
         return convertView;
