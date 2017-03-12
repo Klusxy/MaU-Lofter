@@ -10,17 +10,16 @@ import java.util.List;
 import oracle.mau.entity.UserEntity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.bean.BeanParser;
-import oracle.mau.http.data.CommonData;
-import oracle.mau.http.data.UserData;
+import oracle.mau.http.data.HotUserData;
 
 /**
  * Created by shadow on 2017/2/28.
  */
 
-public class UserParser extends BeanParser {
+public class HotUserParser extends BeanParser {
     @Override
     public BeanData parser(String result) {
-        UserData uData = new UserData();
+        HotUserData uData = new HotUserData();
         try {
             JSONArray arr = new JSONArray(result);
 
