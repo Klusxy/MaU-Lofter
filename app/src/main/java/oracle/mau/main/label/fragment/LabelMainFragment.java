@@ -75,7 +75,6 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
          */
         mPullRefreshScrollView = (PullToRefreshScrollView) rootView.findViewById(R.id.ptr_label_main_scrollview);
         mPullRefreshScrollView.setOnRefreshListener(this);
-
         //显示进度条
         avi.show();
         //初始化达人推荐gridview数据

@@ -22,25 +22,29 @@ public class HotUserParser extends BeanParser {
         HotUserData uData = new HotUserData();
         try {
             JSONArray arr = new JSONArray(result);
-
-            List<UserEntity> list = new ArrayList<>();
-
-            for (int i = 0 ;i<arr.length() ; i++) {
-                JSONObject jsonObject = arr.getJSONObject(i);
-                String user_id = jsonObject.getString("user_id");
-                String user_tel = jsonObject.getString("user_tel");
-                String user_pwd = jsonObject.getString("user_pwd");
-                String user_name = jsonObject.getString("user_name");
-                String user_img = jsonObject.getString("user_img");
-                UserEntity e = new UserEntity();
-                e.setUserid(Integer.parseInt(user_id));
-                e.setUsertel(user_tel);
-                e.setUserpwd(user_pwd);
-                e.setUsername(user_name);
-                e.setUserpic(user_img);
-                list.add(e);
+            /**
+             * 热门用户数据
+             */
+            if (arr!=null){
+                List<UserEntity> list = new ArrayList<>();
+                for (int i = 0 ;i<arr.length() ; i++) {
+                    JSONObject jsonObject = arr.getJSONObject(i);
+                    String user_id = jsonObject.getString("user_id");
+                    String user_tel = jsonObject.getString("user_tel");
+                    String user_pwd = jsonObject.getString("user_pwd");
+                    String user_name = jsonObject.getString("user_name");
+                    String user_img = jsonObject.getString("user_img");
+                    UserEntity e = new UserEntity();
+                    e.setUserid(Integer.parseInt(user_id));
+                    e.setUsertel(user_tel);
+                    e.setUserpwd(user_pwd);
+                    e.setUsername(user_name);
+                    e.setUserpic(user_img);
+                    list.add(e);
+                }
+                uData.setUserList(list);
             }
-            uData.setUserList(list);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

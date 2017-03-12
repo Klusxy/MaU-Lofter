@@ -11,12 +11,22 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
+import oracle.mau.entity.UserEntity;
+import oracle.mau.http.bean.BeanData;
+import oracle.mau.http.common.Callback;
+import oracle.mau.http.common.HttpServer;
+import oracle.mau.http.constants.URLConstants;
 import oracle.mau.main.MainActivity;
 import oracle.mau.main.camera.constant.PhotoConstant;
+import oracle.mau.utils.GetTheUser;
 import oracle.mau.utils.JudgeUtils;
 import oracle.mau.view.BottomMenuDialog;
 
@@ -64,6 +74,13 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
     private TextView tv_ra_cancle;
     private BottomMenuDialog bottomMenuDialog;
 
+    /**
+     * 发布文章按钮
+     */
+    private Button btn_ra_bottom_release;
+
+    private AVLoadingIndicatorView avi;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_release_article;
@@ -102,6 +119,9 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
         tv_ra_label = (TextView) findViewById(R.id.tv_ra_label);
         tv_ra_cancle = (TextView) findViewById(R.id.tv_ra_cancle);
         tv_ra_cancle.setOnClickListener(this);
+        btn_ra_bottom_release = (Button) findViewById(R.id.btn_ra_bottom_release);
+        btn_ra_bottom_release.setOnClickListener(this);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
     }
 
     /**
@@ -160,6 +180,52 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
 
                 bottomMenuDialog.show();
                 break;
+            /**
+             * 发布文章
+             */
+            case R.id.btn_ra_bottom_release :
+                sendArticle();
+                break;
+        }
+    }
+
+    /**
+     * 发送文章
+     */
+    private void sendArticle() {
+        //内容是否为空
+        if (JudgeUtils.isEmpty(et_ra_article.getText().toString())){
+            toast("请输入文章内容");
+        }else
+        //标签是否为空
+        if ("添加标签".equals(tv_ra_label.getText().toString())){
+            toast("请选择文章标签");
+        }else
+        //位置是否为空
+        if ("添加位置".equals(tv_ta_location.getText().toString())){
+            toast("文章内容不能为空");
+        }else {
+            avi.show();
+            Map<String,Object> map = new HashMap<>();
+            UserEntity user = GetTheUser.getUser(this);
+            map.put("user_id","1");
+            map.put("article_content",et_ra_article.getText().toString());
+            map.put("article_location",tv_ta_location.getText().toString());
+            map.put("article_tag_content",tv_ra_label.getText().toString());
+            HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST, map, null, URLConstants.BASE_URL + URLConstants.SEND_ARTICLE_CONTENT, new Callback() {
+                @Override
+                public void success(BeanData beanData) {
+                    toast("发布成功");
+                    avi.hide();
+                    finish();
+                }
+
+                @Override
+                public void failure(String error) {
+                    toast("发布失败");
+                    avi.hide();
+                }
+            });
         }
     }
 

@@ -33,4 +33,8 @@ public class URLConstants {
      * label画廊标签
      */
     public static final String TAG_GALLERY="article/tag";
+    /**
+     * 发布文章内容
+     */
+    public static final String SEND_ARTICLE_CONTENT  = "article/";
 }
