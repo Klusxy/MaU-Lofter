@@ -1,15 +1,7 @@
 package oracle.mau.main.label.fragment;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.view.ViewPager;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
@@ -18,14 +10,10 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseFragment;
-import oracle.mau.entity.LabelRecommendEntity;
 import oracle.mau.entity.LabelTagEntity;
 import oracle.mau.entity.UserEntity;
 import oracle.mau.http.bean.BeanData;
@@ -33,19 +21,14 @@ import oracle.mau.http.common.Callback;
 import oracle.mau.http.common.HttpServer;
 import oracle.mau.http.constants.URLConstants;
 import oracle.mau.http.data.LabelTagData;
-import oracle.mau.http.data.UserData;
+import oracle.mau.http.data.HotUserData;
 import oracle.mau.http.parser.LabelTagParser;
-import oracle.mau.http.parser.UserParser;
-import oracle.mau.main.label.activity.RecommendDetailActivity;
-import oracle.mau.main.label.adapter.ImageCarouselVPAdapter;
+import oracle.mau.http.parser.HotUserParser;
 import oracle.mau.main.label.adapter.LabelMainRecommendUserGVAdapter;
-import oracle.mau.main.label.adapter.LabelMainReommendLabelLVAdapter;
 import oracle.mau.main.label.adapter.TagGalleryVPAdapter;
 import oracle.mau.main.label.view.TouchViewPager;
-import oracle.mau.utils.ExtraUtils;
 import oracle.mau.utils.ScreenUtils;
 import oracle.mau.view.GridViewForScrollView;
-import oracle.mau.view.ListViewForScrollView;
 
 /**
  * Created by 田帅 on 2017/2/28.
@@ -113,11 +96,11 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
      * 初始化达人推荐gridview数据
      */
     private void initUserRecommendGVData() {
-        UserParser parser = new UserParser();
+        HotUserParser parser = new HotUserParser();
         HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, parser, URLConstants.BASE_URL + URLConstants.HOT_USER, new Callback() {
             @Override
             public void success(BeanData beanData) {
-                UserData uData = (UserData) beanData;
+                HotUserData uData = (HotUserData) beanData;
                 userList = uData.getUserList();
                 initUserRecommendGV();
                 if (updateFlag > 0) {
