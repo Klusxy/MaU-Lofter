@@ -33,7 +33,7 @@ public class MessageFragment  extends Fragment {
     private TabLayout tab;
     private ViewPager viewpager;
     private MsgFragmentPageAdapter adapter;
-    public static final String[] tabTitle = new String[]{"动态", "消息", "聊天"};
+    public static final String[] tabTitle = new String[]{"动态", "专题"};
     @Nullable
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,10 +47,8 @@ public class MessageFragment  extends Fragment {
             if(i==0) {
                 fragments.add(new DynamicFragment());
             }
+
             if(i==1) {
-                fragments.add(new NewsFragment());
-            }
-            if(i==2) {
                 fragments.add(new TalkFragment());
             }
 
@@ -63,7 +61,7 @@ public class MessageFragment  extends Fragment {
 
         tab.setTabMode(TabLayout.MODE_FIXED);
         tab.setTabGravity(TabLayout.GRAVITY_FILL);
-        //连接mqtt服务器
+
 
 
 
@@ -72,63 +70,8 @@ public class MessageFragment  extends Fragment {
 
 
 
-
-
-/*
-    public ViewPager.OnPageChangeListener listener1=new ViewPager.OnPageChangeListener() {
-
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int arg0) {
-            if (arg0 == 0) {
-                textView1.setSelected(true);
-                textView2.setSelected(false);
-                textView3.setSelected(false);
-            }
-            if (arg0 == 1) {
-                textView1.setSelected(false);
-                textView2.setSelected(true);
-                textView3.setSelected(false);
-            }
-            if (arg0 == 2) {
-                textView1.setSelected(false);
-                textView2.setSelected(false);
-                textView3.setSelected(true);
-            }
-
-        }*/
-
-      /*  @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }*/
-
-
     };
 
 
-   /* @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.textView1:
-                viewPager.setCurrentItem(0);
-                break;
-            case R.id.textView2:
-                viewPager.setCurrentItem(1);
-                break;
-            case R.id.textView3:
-                viewPager.setCurrentItem(2);
-                break;
-
-            default:
-                break;
-        }
-    }
-}
-*/
 
 
