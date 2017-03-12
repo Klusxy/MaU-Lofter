@@ -11,6 +11,10 @@ import oracle.mau.entity.UserEntity;
  * Created by shadow on 2017/3/12.
  */
 
+/**
+ * 获取当前用户信息的静态方法
+ */
+
 public class GetTheUser {
     public static UserEntity getUser(Activity activity){
         MaUApplication app=(MaUApplication)activity.getApplication();
