@@ -78,7 +78,9 @@
                     android:layout_below="@+id/tv_label_main_article_recommend_flag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:numColumns="4">
+                    android:numColumns="4"
+                    android:horizontalSpacing="3dp"
+                    android:verticalSpacing="3dp">
 
                 </oracle.mau.view.GridViewForScrollView>
             </RelativeLayout>

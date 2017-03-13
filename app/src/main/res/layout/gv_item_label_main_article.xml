@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <oracle.mau.view.XCRoundRectImageView
+    <ImageView
         android:id="@+id/iv_gv_item_label_main_article_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

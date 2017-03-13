@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
 import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
@@ -17,33 +17,30 @@ import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 import java.util.List;
 
 import oracle.mau.R;
-import oracle.mau.entity.ArticleEntity;
+import oracle.mau.entity.UserEntity;
 import oracle.mau.utils.ImageUtils;
-import oracle.mau.utils.ScreenUtils;
-import oracle.mau.view.XCRoundRectImageView;
 
 /**
  * Created by 田帅 on 2017/3/13.
  */
 
-public class LabelMessageRecommendGVAdapter extends BaseAdapter {
-
+public class SearchUserAdapter extends BaseAdapter {
     private Context context;
-    private List<ArticleEntity> articleList;
+    private List<UserEntity> list;
 
-    public LabelMessageRecommendGVAdapter(Context context, List<ArticleEntity> articleList) {
+    public SearchUserAdapter(Context context, List<UserEntity> list) {
         this.context = context;
-        this.articleList = articleList;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return articleList.size();
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return articleList.get(position);
+        return list.get(position);
     }
 
     @Override
@@ -53,23 +50,22 @@ public class LabelMessageRecommendGVAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder vh;
+        ViewHolder vh ;
+
         if (convertView == null) {
             vh = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.gv_item_label_main_article,null);
-            vh.iv_gv_item_label_main_article_img = (ImageView) convertView.findViewById(R.id.iv_gv_item_label_main_article_img);
+            convertView = LayoutInflater.from(context).inflate(R.layout.lv_item_search_user,null);
+            vh.iv_lv_item_search_user_img = (ImageView) convertView.findViewById(R.id.iv_lv_item_search_user_img);
+            vh.tv_lv_item_search_user_name = (TextView) convertView.findViewById(R.id.tv_lv_item_search_user_name);
             convertView.setTag(vh);
         }else {
             vh = (ViewHolder) convertView.getTag();
         }
-        int screenWidth = ScreenUtils.getScreenWidth(context);
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth/4,screenWidth/4);
-        vh.iv_gv_item_label_main_article_img.setLayoutParams(lp);
-        ImageUtils.getBitmapUtils(context).display(vh.iv_gv_item_label_main_article_img, articleList.get(position).getArticleImg(), new BitmapLoadCallBack<ImageView>() {
+        ImageUtils.getBitmapUtils(context).display(vh.iv_lv_item_search_user_img, list.get(position).getUserpic(), new BitmapLoadCallBack<ImageView>() {
             @Override
             public void onLoadCompleted(ImageView imageView, String s, Bitmap bitmap, BitmapDisplayConfig bitmapDisplayConfig, BitmapLoadFrom bitmapLoadFrom) {
-                Bitmap bm = ImageUtils.toRoundCornerImage(bitmap,10);
-                imageView.setImageBitmap(bm);
+                Bitmap circleBm = ImageUtils.circleBitmap(bitmap);
+                imageView.setImageBitmap(circleBm);
             }
 
             @Override
@@ -77,11 +73,13 @@ public class LabelMessageRecommendGVAdapter extends BaseAdapter {
 
             }
         });
+        vh.tv_lv_item_search_user_name.setText(list.get(position).getUsername());
         return convertView;
     }
 
     private class ViewHolder{
-        private ImageView iv_gv_item_label_main_article_img;
+        private ImageView iv_lv_item_search_user_img;
+        private TextView tv_lv_item_search_user_name;
     }
 
 }

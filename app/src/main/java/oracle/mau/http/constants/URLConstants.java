@@ -45,4 +45,8 @@ public class URLConstants {
      * label推荐文章
      */
     public static final String ARTICLE_RECOMMEND = "article/list/";
+    /**
+     * label search模块
+     */
+    public static final String SEARCH_CONTENT = "search/index/";
 }
