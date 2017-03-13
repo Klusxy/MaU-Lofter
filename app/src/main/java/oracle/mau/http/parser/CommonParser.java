@@ -19,10 +19,10 @@ public class CommonParser extends BeanParser {
             CommonData commonData = new CommonData();
         try {
             JSONObject json = new JSONObject(result);
-            int code = json.getInt("code");
-            int flag = json.getInt("flag");
-            commonData.setCode(code);
-            commonData.setFlag(flag);
+            int status = json.getInt("status");
+            String message = json.getString("message");
+            commonData.setStatus(status);
+            commonData.setMessage(message);
         } catch (JSONException e) {
             e.printStackTrace();
         }

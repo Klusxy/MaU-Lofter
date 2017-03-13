@@ -53,4 +53,8 @@ public class URLConstants {
      * 文章详情
      */
     public static final String ARTICLE_DETAIL = "article/get/";
+    /**
+     * 发表评论
+     */
+    public static final String SEND_ARTICLE_COMMENT = "comment";
 }

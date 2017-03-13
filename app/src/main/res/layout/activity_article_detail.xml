@@ -167,7 +167,8 @@
                 android:layout_marginTop="10dp"
                 android:divider="#FFF"
                 android:footerDividersEnabled="false"
-                android:headerDividersEnabled="false">
+                android:headerDividersEnabled="false"
+                >
 
             </oracle.mau.view.ListViewForScrollView>
         </RelativeLayout>
@@ -212,5 +213,15 @@
             android:layout_marginRight="20dp"
             />
     </RelativeLayout>
-
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        style="@style/AVLoadingIndicatorView"
+        xmlns:app = "http://schemas.android.com/apk/res-auto"
+        app:indicatorColor="#A3C53C"
+        app:indicatorName="BallClipRotatePulseIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
 </RelativeLayout>
