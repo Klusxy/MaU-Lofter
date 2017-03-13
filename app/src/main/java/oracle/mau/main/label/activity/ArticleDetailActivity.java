@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -38,6 +39,7 @@ import oracle.mau.http.data.CommonData;
 import oracle.mau.http.parser.ArticleDetailParser;
 import oracle.mau.http.parser.ArticleParser;
 import oracle.mau.http.parser.CommonParser;
+import oracle.mau.main.account.activity.AccountDetailActivity;
 import oracle.mau.main.label.adapter.ArticleDetailGVAdapter;
 import oracle.mau.main.label.adapter.ArticleDetailLVAdapter;
 import oracle.mau.utils.GetTheUser;
@@ -51,7 +53,7 @@ import oracle.mau.view.ListViewForScrollView;
  * Created by 田帅 on 2017/3/9.
  */
 
-public class ArticleDetailActivity extends BaseActivity implements View.OnClickListener {
+public class ArticleDetailActivity extends BaseActivity implements View.OnClickListener , AdapterView.OnItemClickListener{
     private int articleId;
     private ArticleEntity mArticleEntity;
     private UserEntity mUser;
@@ -93,7 +95,9 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
     public void initView() {
         gv_ad_article_imgs = (GridViewForScrollView) findViewById(R.id.gv_ad_article_imgs);
         lv_ad_article_comments = (ListViewForScrollView) findViewById(R.id.lv_ad_article_comments);
+        lv_ad_article_comments.setOnItemClickListener(this);
         iv_ad_user_img = (ImageView) findViewById(R.id.iv_ad_user_img);
+        iv_ad_user_img.setOnClickListener(this);
         tv_ad_user_name = (TextView) findViewById(R.id.tv_ad_user_name);
         tv_ad_article_content = (TextView) findViewById(R.id.tv_ad_article_content);
         tv_ad_tag_name = (TextView) findViewById(R.id.tv_ad_tag_name);
@@ -142,6 +146,9 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
         });
     }
 
+    /**
+     * 更新主界面
+     */
     private void updateUI() {
         ImageUtils.getBitmapUtils(this).display(iv_ad_user_img, mArticleEntity.getArticleUser().getUserpic(), new BitmapLoadCallBack<ImageView>() {
             @Override
@@ -163,6 +170,9 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
         tv_ad_article_date.setText(mArticleEntity.getArticleDate());
     }
 
+    /**
+     * 初始化评论列表
+     */
     private void initListView() {
         commentList = mArticleEntity.getCommentEntityList();
         commentAdapter =new ArticleDetailLVAdapter(this, commentList);
@@ -216,6 +226,10 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
             //发表评论按钮
             case R.id.tv_send_article_comment:
                 sendComment();
+                break;
+            //头像按钮
+            case R.id.iv_ad_user_img:
+                AccountDetailActivity.actionStart(this,mArticleEntity.getArticleUser().getUserid());
                 break;
         }
     }
@@ -276,9 +290,17 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
         updateComment.setUserId(mUser.getUserid());
         updateComment.setCommentContent(et_send_article_comment.getText().toString());
         updateComment.setUserName(mUser.getUsername());
+        /**
+         * 追加的评论显示在第一行
+         */
         commentList.add(0,updateComment);
         if (commentAdapter!=null) {
             commentAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        AccountDetailActivity.actionStart(this,commentList.get(position).getUserId());
     }
 }

@@ -67,17 +67,17 @@ public class ArticleDetailGVAdapter extends BaseAdapter {
 
         LinearLayout.LayoutParams lp ;
         if (list.size() == 1) {
-            lp =new LinearLayout.LayoutParams(screenWidth, screenWidth);
+            lp =new LinearLayout.LayoutParams(screenWidth, screenWidth*3/4);
             vh.iv_gv_item_article_img.setLayoutParams(lp);
             vh.iv_gv_item_article_img.setScaleType(ImageView.ScaleType.FIT_XY);
         }
         if (list.size() == 2) {
-            lp =new LinearLayout.LayoutParams(screenWidth/2, screenWidth/2);
+            lp =new LinearLayout.LayoutParams(screenWidth/2, screenWidth*3/8);
             vh.iv_gv_item_article_img.setLayoutParams(lp);
             vh.iv_gv_item_article_img.setScaleType(ImageView.ScaleType.FIT_XY);
         }
         if (list.size() >= 3) {
-            lp =new LinearLayout.LayoutParams(screenWidth/3, screenWidth/3);
+            lp =new LinearLayout.LayoutParams(screenWidth/3, screenWidth/4);
             vh.iv_gv_item_article_img.setLayoutParams(lp);
             vh.iv_gv_item_article_img.setScaleType(ImageView.ScaleType.FIT_XY);
         }
