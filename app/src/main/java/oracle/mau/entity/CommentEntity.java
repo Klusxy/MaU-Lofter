@@ -6,8 +6,36 @@ package oracle.mau.entity;
 
 public class CommentEntity {
     private int userId;
+    private int commentId;
+    private int articleId;
+
+    public int getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(int commentId) {
+        this.commentId = commentId;
+    }
+
+    public int getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(int articleId) {
+        this.articleId = articleId;
+    }
+
     private String userName;
     private String commentContent;
+    private String commentDate;
+
+    public String getCommentDate() {
+        return commentDate;
+    }
+
+    public void setCommentDate(String commentDate) {
+        this.commentDate = commentDate;
+    }
 
     public int getUserId() {
         return userId;

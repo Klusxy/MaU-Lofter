@@ -2,19 +2,36 @@ package oracle.mau.main.label.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
+import oracle.mau.entity.ArticleEntity;
 import oracle.mau.entity.CommentEntity;
 import oracle.mau.entity.LabelRecommendDetailEntity;
 import oracle.mau.entity.LabelRecommendEntity;
+import oracle.mau.http.bean.BeanData;
+import oracle.mau.http.common.Callback;
+import oracle.mau.http.common.HttpServer;
+import oracle.mau.http.constants.URLConstants;
+import oracle.mau.http.data.ArticleData;
+import oracle.mau.http.parser.ArticleDetailParser;
+import oracle.mau.http.parser.ArticleParser;
 import oracle.mau.main.label.adapter.ArticleDetailGVAdapter;
 import oracle.mau.main.label.adapter.ArticleDetailLVAdapter;
+import oracle.mau.utils.ImageUtils;
 import oracle.mau.view.GridViewForScrollView;
 import oracle.mau.view.ListViewForScrollView;
 
@@ -23,7 +40,8 @@ import oracle.mau.view.ListViewForScrollView;
  */
 
 public class ArticleDetailActivity extends BaseActivity {
-
+    private int articleId;
+    private ArticleEntity mArticleEntity;
     /**
      * 文章图片网格
      */
@@ -35,6 +53,16 @@ public class ArticleDetailActivity extends BaseActivity {
     private ListViewForScrollView lv_ad_article_comments;
     private List<CommentEntity> commentList;
 
+    /**
+     * 控件
+     */
+    private ImageView iv_ad_user_img;
+    private TextView tv_ad_user_name;
+    private TextView tv_ad_article_content;
+    private TextView tv_ad_tag_name;
+    private TextView tv_ad_article_location;
+    private TextView tv_ad_article_date;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_article_detail;
@@ -44,9 +72,61 @@ public class ArticleDetailActivity extends BaseActivity {
     public void initView() {
         gv_ad_article_imgs = (GridViewForScrollView) findViewById(R.id.gv_ad_article_imgs);
         lv_ad_article_comments = (ListViewForScrollView) findViewById(R.id.lv_ad_article_comments);
-        initGridView();
-        initListView();
+        iv_ad_user_img = (ImageView) findViewById(R.id.iv_ad_user_img);
+        tv_ad_user_name = (TextView) findViewById(R.id.tv_ad_user_name);
+        tv_ad_article_content = (TextView) findViewById(R.id.tv_ad_article_content);
+        tv_ad_tag_name = (TextView) findViewById(R.id.tv_ad_tag_name);
+        tv_ad_article_location = (TextView) findViewById(R.id.tv_ad_article_location);
+        tv_ad_article_date = (TextView) findViewById(R.id.tv_ad_article_date);
+        /**
+         * 获得传入的文章id
+         */
+        articleId = getIntent().getIntExtra("articleId",-1);
+//        articleId = 1;
+        /**
+         * 请求数据
+         */
+        requestArticleData();
 
+    }
+
+    private void requestArticleData() {
+        String url = URLConstants.BASE_URL + URLConstants.ARTICLE_DETAIL + articleId;
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, new ArticleDetailParser(), url, new Callback() {
+            @Override
+            public void success(BeanData beanData) {
+                ArticleData data = (ArticleData) beanData;
+                mArticleEntity = data.getArticleEntity();
+                initGridView();
+//                initListView();
+                updateUI();
+            }
+
+            @Override
+            public void failure(String error) {
+
+            }
+        });
+    }
+
+    private void updateUI() {
+        ImageUtils.getBitmapUtils(this).display(iv_ad_user_img, mArticleEntity.getArticleUser().getUserpic(), new BitmapLoadCallBack<ImageView>() {
+            @Override
+            public void onLoadCompleted(ImageView imageView, String s, Bitmap bitmap, BitmapDisplayConfig bitmapDisplayConfig, BitmapLoadFrom bitmapLoadFrom) {
+                Bitmap circleBm  = ImageUtils.circleBitmap(bitmap);
+                imageView.setImageBitmap(circleBm);
+            }
+
+            @Override
+            public void onLoadFailed(ImageView imageView, String s, Drawable drawable) {
+
+            }
+        });
+        tv_ad_user_name.setText(mArticleEntity.getArticleUser().getUsername());
+        tv_ad_article_content.setText(mArticleEntity.getArticleContent());
+        tv_ad_tag_name.setText(mArticleEntity.getArticleTag().getTagTitle());
+        tv_ad_article_location.setText(mArticleEntity.getArticleLocation());
+        tv_ad_article_date.setText(mArticleEntity.getArticleDate());
     }
 
     private void initListView() {
@@ -66,14 +146,7 @@ public class ArticleDetailActivity extends BaseActivity {
     }
 
     private void initGridView() {
-        imgList = new ArrayList<>();
-        imgList.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
-        imgList.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
-        imgList.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
-        imgList.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
-        imgList.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
-        imgList.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
-        imgList.add("http://img06.tooopen.com/images/20161123/tooopen_sy_187628854311.jpg");
+        imgList = mArticleEntity.getImgList();
         if (imgList.size()==1){
             gv_ad_article_imgs.setNumColumns(1);
         }
@@ -91,9 +164,6 @@ public class ArticleDetailActivity extends BaseActivity {
 
     public static void actionStart(Context context , int articleId){
         Intent intent = new Intent(context,ArticleDetailActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("entity",entity);
-//        intent.putExtras(bundle);
         intent.putExtra("articleId",articleId);
         context.startActivity(intent);
     }

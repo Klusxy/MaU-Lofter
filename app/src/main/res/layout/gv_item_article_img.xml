@@ -6,6 +6,5 @@
         android:id="@+id/iv_gv_item_article_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
         />
 </LinearLayout>

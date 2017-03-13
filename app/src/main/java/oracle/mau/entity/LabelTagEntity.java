@@ -21,17 +21,15 @@ public class LabelTagEntity implements Serializable {
 
     private int tagId;
     private String tagTitle;
-    private List<String> imgList;
+    private List<ArticleEntity> articleEntityListList;
 
-    public List<String> getImgList() {
-        return imgList;
+    public List<ArticleEntity> getArticleEntityListList() {
+        return articleEntityListList;
     }
 
-    public void setImgList(List<String> imgList) {
-        this.imgList = imgList;
+    public void setArticleEntityListList(List<ArticleEntity> articleEntityListList) {
+        this.articleEntityListList = articleEntityListList;
     }
-
-
 
     public boolean isDrag() {
         return isDrag;

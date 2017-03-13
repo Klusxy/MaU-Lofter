@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import java.util.List;
 
 import oracle.mau.R;
+import oracle.mau.entity.ArticleEntity;
 import oracle.mau.utils.ImageUtils;
 
 /**
@@ -22,22 +23,22 @@ import oracle.mau.utils.ImageUtils;
 public class TagGridViewAdapter extends BaseAdapter {
     private Context context;
     private int parentWidth = 0;
-    private List<String> imgList;
+    private List<ArticleEntity> articleEntityList;
 
-    public TagGridViewAdapter(Context context, List<String> imgList) {
+    public TagGridViewAdapter(Context context, List<ArticleEntity> articleEntityList) {
         this.context = context;
-        this.imgList = imgList;
+        this.articleEntityList = articleEntityList;
     }
 
 
     @Override
     public int getCount() {
-        return imgList.size();
+        return articleEntityList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return imgList.get(position);
+        return articleEntityList.get(position);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class TagGridViewAdapter extends BaseAdapter {
          */
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(parentWidth / 2, parentWidth / 2);
         vh.iv_gv_item_tag_img.setLayoutParams(lp);
-        ImageUtils.getBitmapUtils(context).display(vh.iv_gv_item_tag_img,imgList.get(position));
+        ImageUtils.getBitmapUtils(context).display(vh.iv_gv_item_tag_img,articleEntityList.get(position).getArticleImg());
         return convertView;
     }
 

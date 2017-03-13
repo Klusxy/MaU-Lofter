@@ -49,4 +49,8 @@ public class URLConstants {
      * label search模块
      */
     public static final String SEARCH_CONTENT = "search/index/";
+    /**
+     * 文章详情
+     */
+    public static final String ARTICLE_DETAIL = "article/get/";
 }

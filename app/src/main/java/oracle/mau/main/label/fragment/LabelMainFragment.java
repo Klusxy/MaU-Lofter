@@ -11,9 +11,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseFragment;
@@ -31,6 +29,7 @@ import oracle.mau.http.parser.ArticleParser;
 import oracle.mau.http.parser.LabelTagParser;
 import oracle.mau.http.parser.HotUserParser;
 import oracle.mau.main.account.activity.AccountDetailActivity;
+import oracle.mau.main.label.activity.ArticleDetailActivity;
 import oracle.mau.main.label.adapter.LabelMainRecommendUserGVAdapter;
 import oracle.mau.main.label.adapter.LabelMessageRecommendGVAdapter;
 import oracle.mau.main.label.adapter.TagGalleryVPAdapter;
@@ -71,7 +70,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     /**
      * 文章推荐网格
      */
-    private GridViewForScrollView gv_label_main_message;
+    private GridViewForScrollView gv_label_main_article;
     private List<ArticleEntity> articleList;
 
 
@@ -86,7 +85,8 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         vp_label_tag = (TouchViewPager) rootView.findViewById(R.id.vp_label_tag);
         gv_label_main_user_recommend = (GridViewForScrollView) rootView.findViewById(R.id.gv_label_main_user_recommend);
         gv_label_main_user_recommend.setOnItemClickListener(this);
-        gv_label_main_message = (GridViewForScrollView) rootView.findViewById(R.id.gv_label_main_article);
+        gv_label_main_article = (GridViewForScrollView) rootView.findViewById(R.id.gv_label_main_article);
+        gv_label_main_article.setOnItemClickListener(this);
         /**
          * 初始化下拉刷新、设置监听(去获取数据)
          */
@@ -118,7 +118,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
                  * 设置适配器
                  */
                 LabelMessageRecommendGVAdapter messageRecommendGVAdapter = new LabelMessageRecommendGVAdapter(mContext,articleList);
-                gv_label_main_message.setAdapter(messageRecommendGVAdapter);
+                gv_label_main_article.setAdapter(messageRecommendGVAdapter);
             }
 
             @Override
@@ -238,6 +238,9 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         switch (parent.getId()) {
             case R.id.gv_label_main_user_recommend:
                 AccountDetailActivity.actionStart(mContext, userList.get(position).getUserid());
+                break;
+            case R.id.gv_label_main_article:
+                ArticleDetailActivity.actionStart(mContext,articleList.get(position).getArticleId());
                 break;
         }
     }
