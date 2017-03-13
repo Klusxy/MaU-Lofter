@@ -56,9 +56,9 @@ public class LabelSearchUserDetailFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        rl_flsd_top = (RelativeLayout) rootView.findViewById(R.id.rl_flsd_top);
-        tv_flsd_flag = (TextView) rootView.findViewById(R.id.tv_flsd_flag);
-        lv_label_search_detail = (ListView) rootView.findViewById(R.id.lv_label_search_detail);
+        rl_flsd_top = (RelativeLayout) rootView.findViewById(R.id.rl_search_detail_user_top);
+        tv_flsd_flag = (TextView) rootView.findViewById(R.id.tv_search_detail_user_flag);
+        lv_label_search_detail = (ListView) rootView.findViewById(R.id.lv_search_detail_user);
         avi = (AVLoadingIndicatorView) rootView.findViewById(R.id.avi);
         //注册广播
         mContext.registerReceiver(uub, new IntentFilter(BroConstants.BRO_UPDATE_USER));
@@ -86,7 +86,6 @@ public class LabelSearchUserDetailFragment extends BaseFragment {
 
     /**
      * 请求数据
-     *
      * @param content 用户输入的内容
      */
     private void requestSearchContent(String content) {

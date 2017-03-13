@@ -1,5 +1,6 @@
 package oracle.mau.http.parser;
 
+import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.bean.BeanParser;
 
 /**
@@ -7,4 +8,8 @@ import oracle.mau.http.bean.BeanParser;
  */
 
 public class TagParser extends BeanParser {
+    @Override
+    public BeanData parser(String result) {
+        return null;
+    }
 }

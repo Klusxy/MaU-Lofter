@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/rl_flsd_top"
+        android:id="@+id/rl_search_detail_user_top"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:visibility="gone"
@@ -19,7 +19,7 @@
             app:indicatorColor="#A3C53C"
             app:indicatorName="PacmanIndicator" />
         <TextView
-            android:id="@+id/tv_flsd_flag"
+            android:id="@+id/tv_search_detail_user_flag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/avi"
@@ -33,7 +33,7 @@
             android:layout_marginRight="20dp"/>
     </RelativeLayout>
     <ListView
-        android:id="@+id/lv_label_search_detail"
+        android:id="@+id/lv_search_detail_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
