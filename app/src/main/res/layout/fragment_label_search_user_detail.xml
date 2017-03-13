@@ -28,7 +28,9 @@
         <oracle.mau.view.ThinLineView
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
     </RelativeLayout>
     <ListView
         android:id="@+id/lv_label_search_detail"

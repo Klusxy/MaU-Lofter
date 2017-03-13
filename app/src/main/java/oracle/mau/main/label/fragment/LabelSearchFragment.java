@@ -13,6 +13,7 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseFragment;
+import oracle.mau.main.label.constants.BroConstants;
 import oracle.mau.main.label.adapter.SearchLabelVPAdapter;
 
 /**
@@ -77,9 +78,9 @@ public class LabelSearchFragment extends BaseFragment implements ViewPager.OnPag
         mTitleList.add("标签");
         mTitleList.add("用户");
         mTitleList.add("专题");
-        mFragmentList.add(new LabelSearchDetailFragment());
-        mFragmentList.add(new LabelSearchDetailFragment());
-        mFragmentList.add(new LabelSearchDetailFragment());
+        mFragmentList.add(new LabelSearchTagDetailFragment());
+        mFragmentList.add(new LabelSearchUserDetailFragment());
+        mFragmentList.add(new LabelSearchSpecialDetailFragment());
     }
 
     @Override
@@ -105,17 +106,6 @@ public class LabelSearchFragment extends BaseFragment implements ViewPager.OnPag
             * 发送广播，通知请求数据
             */
             content = intent.getStringExtra("contnet");
-//            switch (mPosition) {
-//                case 0:
-//                    toast("第一层碎片接收到请求标签信息"+content);
-//                    break;
-//                case 1:
-//                    toast("第一层碎片接收到请求用户信息"+content);
-//                    break;
-//                case 2:
-//                    toast("第一层碎片接收到请求文章信息"+content);
-//                    break;
-//            }
             //请求完之后发送广播通知更新UI
             updateUI();
         }
@@ -124,9 +114,20 @@ public class LabelSearchFragment extends BaseFragment implements ViewPager.OnPag
     private void updateUI() {
         /**
          * 发送广播，通知请求数据
+         * 根据position来发送不同的广播
          */
-        Intent intent = new Intent(LabelSearchDetailFragment.UPDATE_SEARCH_UI_BROAD);
-        intent.putExtra("position",mPosition);
+        Intent intent = null;
+        switch (mPosition) {
+            case 0:
+                intent = new Intent(BroConstants.BRO_UPDATE_TAG);
+                break;
+            case 1:
+                intent = new Intent(BroConstants.BRO_UPDATE_USER);
+                break;
+            case 2:
+                intent = new Intent(BroConstants.BRO_UPDATE_SPECIAL);
+                break;
+        }
         intent.putExtra("content",content);
         mContext.sendBroadcast(intent);
     }
