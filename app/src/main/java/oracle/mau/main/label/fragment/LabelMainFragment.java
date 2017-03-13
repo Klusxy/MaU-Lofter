@@ -11,22 +11,28 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseFragment;
+import oracle.mau.entity.ArticleEntity;
 import oracle.mau.entity.LabelTagEntity;
 import oracle.mau.entity.UserEntity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.common.Callback;
 import oracle.mau.http.common.HttpServer;
 import oracle.mau.http.constants.URLConstants;
+import oracle.mau.http.data.ArticleData;
 import oracle.mau.http.data.LabelTagData;
 import oracle.mau.http.data.HotUserData;
+import oracle.mau.http.parser.ArticleParser;
 import oracle.mau.http.parser.LabelTagParser;
 import oracle.mau.http.parser.HotUserParser;
 import oracle.mau.main.account.activity.AccountDetailActivity;
 import oracle.mau.main.label.adapter.LabelMainRecommendUserGVAdapter;
+import oracle.mau.main.label.adapter.LabelMessageRecommendGVAdapter;
 import oracle.mau.main.label.adapter.TagGalleryVPAdapter;
 import oracle.mau.main.label.view.TouchViewPager;
 import oracle.mau.utils.ScreenUtils;
@@ -36,7 +42,7 @@ import oracle.mau.view.GridViewForScrollView;
  * Created by 田帅 on 2017/2/28.
  */
 
-public class LabelMainFragment extends BaseFragment implements OnRefreshListener<ScrollView> , AdapterView.OnItemClickListener{
+public class LabelMainFragment extends BaseFragment implements OnRefreshListener<ScrollView>, AdapterView.OnItemClickListener {
 
     /**
      * 用户推荐gridview
@@ -58,7 +64,15 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
      */
     private PullToRefreshScrollView mPullRefreshScrollView;
     //标记是否是下拉刷新
-    private int updateFlag = 0;
+    private int updateDowmFlag = 0;
+    //标记几次上拉加载,默认是第一页
+    private int updateUpFlag = 1;
+
+    /**
+     * 文章推荐网格
+     */
+    private GridViewForScrollView gv_label_main_message;
+    private List<ArticleEntity> articleList;
 
 
     @Override
@@ -72,6 +86,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         vp_label_tag = (TouchViewPager) rootView.findViewById(R.id.vp_label_tag);
         gv_label_main_user_recommend = (GridViewForScrollView) rootView.findViewById(R.id.gv_label_main_user_recommend);
         gv_label_main_user_recommend.setOnItemClickListener(this);
+        gv_label_main_message = (GridViewForScrollView) rootView.findViewById(R.id.gv_label_main_article);
         /**
          * 初始化下拉刷新、设置监听(去获取数据)
          */
@@ -83,10 +98,38 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
         initUserRecommendGVData();
         //初始化标签画廊数据
         initTagGalleryData();
+        //初始化文章数据
+        initArticleRecommendGVData();
     }
 
     /**
-     * 初始化达人推荐gridview
+     * 初始化文章推荐网格
+     */
+    private void initArticleRecommendGVData() {
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, new ArticleParser(), URLConstants.BASE_URL + URLConstants.ARTICLE_RECOMMEND + updateUpFlag, new Callback() {
+            @Override
+            public void success(BeanData beanData) {
+                ArticleData data = (ArticleData) beanData;
+                /**
+                 * 得到数据
+                 */
+                articleList = data.getArticleList();
+                /**
+                 * 设置适配器
+                 */
+                LabelMessageRecommendGVAdapter messageRecommendGVAdapter = new LabelMessageRecommendGVAdapter(mContext,articleList);
+                gv_label_main_message.setAdapter(messageRecommendGVAdapter);
+            }
+
+            @Override
+            public void failure(String error) {
+
+            }
+        });
+    }
+
+    /**
+     * 初始化达人推荐网格
      */
     private void initUserRecommendGV() {
         LabelMainRecommendUserGVAdapter userAdapter = new LabelMainRecommendUserGVAdapter(mContext, userList);
@@ -104,7 +147,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
                 HotUserData uData = (HotUserData) beanData;
                 userList = uData.getUserList();
                 initUserRecommendGV();
-                if (updateFlag > 0) {
+                if (updateDowmFlag > 0) {
                     /**
                      * 最后掉调用该方法缩回头部（主线程中）
                      */
@@ -186,15 +229,15 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
      */
     @Override
     public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-        updateFlag++;
+        updateDowmFlag++;
         initUserRecommendGVData();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (parent.getId()) {
-            case R.id.gv_label_main_user_recommend :
-                AccountDetailActivity.actionStart(mContext,userList.get(position).getUserid());
+            case R.id.gv_label_main_user_recommend:
+                AccountDetailActivity.actionStart(mContext, userList.get(position).getUserid());
                 break;
         }
     }

@@ -144,10 +144,10 @@ public class HttpServer {
          */
         if (HTTPSERVER_GET.equals(type)) {
             try {
-                // GET方式参数拼接在URL结尾
-                StringBuilder sb = new StringBuilder();
-                sb.append(url).append("?");
                 if (map != null) {
+                    // GET方式参数拼接在URL结尾
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(url).append("?");
                     for (String key : map.keySet()) {
                         //拼接url
 //                    url = url +"&"+key+"="+ map.get(key).toString();

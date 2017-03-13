@@ -41,4 +41,8 @@ public class URLConstants {
      * 发布文章图片
      */
     public static final String SEND_ARTICLE_PIC  = "upload/";
+    /**
+     * label推荐文章
+     */
+    public static final String ARTICLE_RECOMMEND = "article/list/";
 }

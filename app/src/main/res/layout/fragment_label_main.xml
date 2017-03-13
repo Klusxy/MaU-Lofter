@@ -63,7 +63,7 @@
                 android:layout_marginTop="20dp">
 
                 <TextView
-                    android:id="@+id/tv_label_main_message_recommend_flag"
+                    android:id="@+id/tv_label_main_article_recommend_flag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFF"
@@ -73,6 +73,14 @@
                     android:text="文章推荐"
                     android:textColor="@color/label_gray_color"
                     android:textSize="15sp" />
+                <oracle.mau.view.GridViewForScrollView
+                    android:id="@+id/gv_label_main_article"
+                    android:layout_below="@+id/tv_label_main_article_recommend_flag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="4">
+
+                </oracle.mau.view.GridViewForScrollView>
             </RelativeLayout>
         </RelativeLayout>
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>

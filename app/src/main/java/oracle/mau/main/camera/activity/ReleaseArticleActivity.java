@@ -85,7 +85,9 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
      * 进度条
      */
     private AVLoadingIndicatorView avi;
-
+    /**
+     * 存储上传图片之后响应回来的地址
+     */
     private List<String> responcePicList = new ArrayList<>();
 
 
@@ -265,6 +267,12 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
                     map.put("article_content", et_ra_article.getText().toString());
                     map.put("article_location", tv_ta_location.getText().toString());
                     map.put("article_tag_content", tv_ra_label.getText().toString());
+                    /**
+                     * 添加图片地址
+                     */
+                    for (int i = 0; i<responcePicList.size() ; i++) {
+                        map.put("imageUrl"+i , responcePicList.get(i));
+                    }
                     HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST, map, null, URLConstants.BASE_URL + URLConstants.SEND_ARTICLE_CONTENT, new Callback() {
                         @Override
                         public void success(BeanData beanData) {
