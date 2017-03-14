@@ -61,4 +61,8 @@ public class URLConstants {
      * 用户详情
      */
     public static final String USER_DETAIL = "user/index/";
+    /**
+     * 推荐详情
+     */
+    public static final String RECOMMEND_DETAIL = "article/getArticlesByTag/";
 }

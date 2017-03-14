@@ -76,6 +76,11 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
     private EditText et_send_article_comment;
     private AVLoadingIndicatorView avi;
     /**
+     * 需要显示的控件
+     */
+    private TextView tv_ad_tag_name_flag;
+    private ImageView iv_ad_article_location_flag;
+    /**
      * 评论listview适配器
      */
     private ArticleDetailLVAdapter commentAdapter;
@@ -104,6 +109,11 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
         tv_send_article_comment.setOnClickListener(this);
         et_send_article_comment = (EditText) findViewById(R.id.et_send_article_comment);
         avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+        /**
+         * 需要显示的控件
+         */
+        tv_ad_tag_name_flag = (TextView) findViewById(R.id.tv_ad_tag_name_flag);
+        iv_ad_article_location_flag = (ImageView) findViewById(R.id.iv_ad_article_location_flag);
         /**
          * 获得传入的文章id
          */
@@ -164,6 +174,12 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
         tv_ad_tag_name.setText(mArticleEntity.getArticleTag().getTagTitle());
         tv_ad_article_location.setText(mArticleEntity.getArticleLocation());
         tv_ad_article_date.setText(mArticleEntity.getArticleDate());
+        /**
+         * 显示控件(为了刚显示时美化)
+         */
+        tv_ad_tag_name_flag.setVisibility(View.VISIBLE);
+        tv_ad_tag_name.setVisibility(View.VISIBLE);
+        iv_ad_article_location_flag.setVisibility(View.VISIBLE);
     }
 
     /**

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import oracle.mau.R;
+import oracle.mau.entity.ArticleEntity;
 import oracle.mau.entity.LabelRecommendDetailEntity;
 import oracle.mau.main.label.activity.ArticleDetailActivity;
 import oracle.mau.main.label.adapter.RecommendDetailLVAdapter;
@@ -35,7 +36,7 @@ public class AttentionFragment extends Fragment implements AdapterView.OnItemCli
     /**
      * 数据源，复用Label中布局适配器
      */
-    List<LabelRecommendDetailEntity> list=new ArrayList<LabelRecommendDetailEntity>();
+    List<ArticleEntity> list=new ArrayList<ArticleEntity>();
     /**
      * 下拉刷新
      */

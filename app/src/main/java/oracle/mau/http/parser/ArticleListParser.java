@@ -33,6 +33,12 @@ public class ArticleListParser extends BeanParser {
                 //文章内容
                 String content = articleObject.getString("content");
                 articleEntity.setArticleContent(content);
+                //文章地址
+                String article_location = articleObject.getString("article_location");
+                articleEntity.setArticleLocation(article_location);
+                //文章时间
+                String create_time = articleObject.getString("create_time");
+                articleEntity.setArticleDate(create_time);
                 //文章图片集合
                 List<String> imgList = new ArrayList<>();
                 JSONArray imgArr = articleObject.getJSONArray("imgs");

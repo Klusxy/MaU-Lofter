@@ -1,14 +1,6 @@
 [
     {
-<<<<<<< HEAD
-        "outputFile": "E:\\androidstudiospace\\MaU\\drag-sort-listview-master\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
-=======
         "outputFile": "E:\\Android\\AndroidStudioProjects\\MaU\\drag-sort-listview-master\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
->>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
-        "map": []
-    },
-    {
-        "outputFile": "E:\\Git\\MaU\\drag-sort-listview-master\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
         "map": []
     }
 ]
