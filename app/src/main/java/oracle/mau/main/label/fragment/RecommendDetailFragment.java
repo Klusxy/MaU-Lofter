@@ -20,6 +20,7 @@ import oracle.mau.base.BaseFragment;
 import oracle.mau.entity.LabelRecommendDetailEntity;
 import oracle.mau.entity.LabelRecommendEntity;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.entity.LabelTagNoListEntity;
 import oracle.mau.main.label.activity.ArticleDetailActivity;
 import oracle.mau.main.label.adapter.RecommendDetailLVAdapter;
 
@@ -29,7 +30,7 @@ import oracle.mau.main.label.adapter.RecommendDetailLVAdapter;
 
 public class RecommendDetailFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener , AdapterView.OnItemClickListener{
 
-    private LabelTagEntity labelTagEntity;
+    private LabelTagNoListEntity labelTagEntity;
     /**
      * 带下拉刷新的listview
      */
@@ -69,10 +70,10 @@ public class RecommendDetailFragment extends BaseFragment implements PullToRefre
      * @param labelTagEntity
      * @return
      */
-    public static RecommendDetailFragment newInstance(LabelTagEntity labelTagEntity) {
+    public static RecommendDetailFragment newInstance(LabelTagNoListEntity labelTagEntity) {
         RecommendDetailFragment f = new RecommendDetailFragment();
         Bundle b = new Bundle();
-        b.putSerializable("tag",labelTagEntity);
+        b.putSerializable("tag", labelTagEntity);
         f.setArguments(b);
         return f;
     }
@@ -89,7 +90,7 @@ public class RecommendDetailFragment extends BaseFragment implements PullToRefre
          * 获取当前对应的标签实体
          */
         Bundle bundle = getArguments();
-        labelTagEntity = (LabelTagEntity) bundle.getSerializable("tag");
+        labelTagEntity = (LabelTagNoListEntity) bundle.getSerializable("tag");
         tttttttt = (TextView) rootView.findViewById(R.id.tttttttt);
         /**
          * listview

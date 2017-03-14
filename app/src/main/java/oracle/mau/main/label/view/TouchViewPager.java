@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.entity.LabelTagNoListEntity;
 import oracle.mau.main.label.activity.RecommendDetailActivity;
 
 /**
@@ -34,13 +35,13 @@ public class TouchViewPager extends ViewPager {
 
 
     private int vp_label_tag_flag = 0;
-    private List<LabelTagEntity> tagList;
+    private List<LabelTagNoListEntity> tagList;
 
-    public List<LabelTagEntity> getTagList() {
+    public List<LabelTagNoListEntity> getTagList() {
         return tagList;
     }
 
-    public void setTagList(List<LabelTagEntity> tagList) {
+    public void setTagList(List<LabelTagNoListEntity> tagList) {
         this.tagList = tagList;
     }
 
@@ -58,12 +59,13 @@ public class TouchViewPager extends ViewPager {
                 if (vp_label_tag_flag == 0) {
                     if (tagList!=null){
                         int item = this.getCurrentItem()%tagList.size();
-                        for (LabelTagEntity ll : tagList) {
+                        for (LabelTagNoListEntity ll : tagList) {
                             ll.setSelectPosition(item);
                         }
                         Intent intent = new Intent(mContext, RecommendDetailActivity.class);
                         intent.putExtra("all",(Serializable) tagList);
                         intent.putExtra("position",item);
+//                        intent.putExtra("tagId",tagList.get(item).getTagId());
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("tag",tagList.get(item));
                         intent.putExtras(bundle);

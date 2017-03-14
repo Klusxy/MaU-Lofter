@@ -57,4 +57,8 @@ public class URLConstants {
      * 发表评论
      */
     public static final String SEND_ARTICLE_COMMENT = "comment";
+    /**
+     * 用户详情
+     */
+    public static final String USER_DETAIL = "user/index/";
 }

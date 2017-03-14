@@ -120,7 +120,6 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
          * 上传图片
          */
         sendPic();
-
         iv_ra_pic = (ImageView) findViewById(R.id.iv_ra_pic);
         iv_ra_pic.setImageURI(mImageUri);
         ll_ra_add_location = (LinearLayout) findViewById(R.id.ll_ra_add_location);
@@ -167,7 +166,6 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
             public void success(BeanData beanData) {
                 PicData picData = (PicData) beanData;
                 responcePicList.add(picData.getPicUrl());
-                toast("list长度   "+responcePicList.size());
                 flag++;
             }
 
@@ -258,7 +256,7 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
             } else
                 //位置是否为空
                 if ("添加位置".equals(tv_ta_location.getText().toString())) {
-                    toast("文章内容不能为空");
+                    toast("请添加位置");
                 } else {
                     avi.show();
                     Map<String, Object> map = new HashMap<>();

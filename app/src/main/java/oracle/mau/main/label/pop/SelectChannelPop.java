@@ -15,6 +15,7 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.entity.LabelTagNoListEntity;
 import oracle.mau.main.label.adapter.RDDragListViewAdapter;
 import oracle.mau.utils.DensityUtils;
 import oracle.mau.utils.ScreenUtils;
@@ -28,7 +29,7 @@ public class SelectChannelPop extends PopupWindow implements AdapterView.OnItemC
     private ItemClickListener onItemClickListener;
     private View mView;
     private DragSortListView mDragSortListView;
-    private List<LabelTagEntity> list;
+    private List<LabelTagNoListEntity> list;
     private int position;
     private RDDragListViewAdapter mAdapter;
 
@@ -38,18 +39,18 @@ public class SelectChannelPop extends PopupWindow implements AdapterView.OnItemC
             new DragSortListView.DropListener() {
                 @Override
                 public void drop(int from, int to) {//from to 分别表示 被拖动控件原位置 和目标位置
-                    for (LabelTagEntity ll : list) {
+                    for (LabelTagNoListEntity ll : list) {
                         ll.setDrag(true);
                     }
                     if (from != to) {
-                        LabelTagEntity item = (LabelTagEntity) mAdapter.getItem(from);//得到listview的适配器
+                        LabelTagNoListEntity item = (LabelTagNoListEntity) mAdapter.getItem(from);//得到listview的适配器
                         mAdapter.remove(from);//在适配器中”原位置“的数据。
                         mAdapter.insert(item, to);//在目标位置中插入被拖动的控件。
                     }
                 }
             };
 
-    public SelectChannelPop(Context context,  ItemClickListener onItemClickListener ,List<LabelTagEntity> list,int position) {
+    public SelectChannelPop(Context context, ItemClickListener onItemClickListener , List<LabelTagNoListEntity> list, int position) {
         super(context);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = inflater.inflate(R.layout.pop_category_select_channel, null);
@@ -106,7 +107,7 @@ public class SelectChannelPop extends PopupWindow implements AdapterView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        LabelTagEntity item = (LabelTagEntity)mAdapter.getItem(position);
+        LabelTagNoListEntity item = (LabelTagNoListEntity)mAdapter.getItem(position);
         onItemClickListener.onItemClick(item.getTagTitle() , position);
     }
 

@@ -11,6 +11,7 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.entity.LabelTagNoListEntity;
 import oracle.mau.main.label.fragment.RecommendDetailFragment;
 
 /**
@@ -19,9 +20,9 @@ import oracle.mau.main.label.fragment.RecommendDetailFragment;
 
 public class RDCategoryItemVPAdapter extends FragmentStatePagerAdapter {
     private Context context;
-    private List<LabelTagEntity> list;
+    private List<LabelTagNoListEntity> list;
 
-    public RDCategoryItemVPAdapter(FragmentManager fm, Context context,List<LabelTagEntity> list) {
+    public RDCategoryItemVPAdapter(FragmentManager fm, Context context,List<LabelTagNoListEntity> list) {
         super(fm);
         this.context = context;
         this.list = list;

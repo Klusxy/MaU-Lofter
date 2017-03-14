@@ -18,14 +18,15 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.entity.LabelTagNoListEntity;
 
 public class RDDragListViewAdapter extends BaseAdapter {
 
     private Context context;
-    List<LabelTagEntity> items;//适配器的数据源
+    List<LabelTagNoListEntity> items;//适配器的数据源
 
 
-    public RDDragListViewAdapter(Context context, List<LabelTagEntity> list){
+    public RDDragListViewAdapter(Context context, List<LabelTagNoListEntity> list){
         this.context = context;
         this.items = list;
     }
@@ -55,14 +56,14 @@ public class RDDragListViewAdapter extends BaseAdapter {
         this.notifyDataSetChanged();//不要忘记更改适配器对象的数据源
     }
 
-    public void insert(LabelTagEntity item, int arg0) {//在指定位置插入item
+    public void insert(LabelTagNoListEntity item, int arg0) {//在指定位置插入item
         items.add(arg0, item);
         this.notifyDataSetChanged();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LabelTagEntity item = (LabelTagEntity)getItem(position);
+        LabelTagNoListEntity item = (LabelTagNoListEntity)getItem(position);
         ViewHolder viewHolder;
         if(convertView==null){
             viewHolder = new ViewHolder();

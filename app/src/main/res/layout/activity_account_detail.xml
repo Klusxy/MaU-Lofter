@@ -68,10 +68,12 @@
         android:background="#EEE"
         >
         <TextView
+            android:id="@+id/tv_fa_article_hiden_flag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="暂无文章"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
     </RelativeLayout>
 </RelativeLayout>

@@ -9,12 +9,14 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseFragment;
 import oracle.mau.entity.ArticleEntity;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.entity.LabelTagNoListEntity;
 import oracle.mau.entity.UserEntity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.common.Callback;
@@ -240,6 +242,19 @@ public class LabelMainFragment extends BaseFragment implements AdapterView.OnIte
                 page.setScaleY(normalizedposition / 2 + 0.5f);
             }
         });
+        /**
+         * 实体类中有List不能通过序列化传
+         */
+        List<LabelTagNoListEntity> tagNoListEntityList = new ArrayList<>();
+        for (LabelTagEntity lt : tagList) {
+            int tagId = lt.getTagId();
+            String tagTitle = lt.getTagTitle();
+            LabelTagNoListEntity tagNoListEntity = new LabelTagNoListEntity();
+            tagNoListEntity.setTagId(tagId);
+            tagNoListEntity.setTagTitle(tagTitle);
+            tagNoListEntityList.add(tagNoListEntity);
+        }
+        vp_label_tag.setTagList(tagNoListEntityList);
         TagGalleryVPAdapter galleryAdapter = new TagGalleryVPAdapter(tagList, mContext);
         /**
          * 动态设置vp的宽高
