@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
                 android:background="#00000000"
+                android:inputType="number"
                 android:hint="手机号"
                 android:padding="3dip"
                 android:textSize="14sp" />

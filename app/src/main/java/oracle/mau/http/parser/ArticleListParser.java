@@ -9,6 +9,7 @@ import java.util.List;
 
 import oracle.mau.entity.ArticleEntity;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.entity.UserEntity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.bean.BeanParser;
 import oracle.mau.http.data.ArticleData;
@@ -56,6 +57,18 @@ public class ArticleListParser extends BeanParser {
                 tagEntity.setTagId(Integer.parseInt(tag_id));
                 tagEntity.setTagTitle(tag_name);
                 articleEntity.setArticleTag(tagEntity);
+                //用户实体
+                UserEntity userEntity = new UserEntity();
+                JSONObject userObject = articleObject.getJSONObject("article_user");
+                String user_id = userObject.getString("user_id");
+                String user_name = userObject.getString("user_name");
+                String user_img = userObject.getString("user_img");
+                String user_tel = userObject.getString("user_tel");
+                userEntity.setUserid(Integer.parseInt(user_id));
+                userEntity.setUsername(user_name);
+                userEntity.setUsertel(user_tel);
+                userEntity.setUserpic(user_img);
+                articleEntity.setArticleUser(userEntity);
                 articleEntityList.add(articleEntity);
             }
             data.setArticleList(articleEntityList);

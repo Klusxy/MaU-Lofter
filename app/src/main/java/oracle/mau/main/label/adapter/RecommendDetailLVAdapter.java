@@ -25,6 +25,7 @@ import oracle.mau.entity.ArticleEntity;
 import oracle.mau.entity.LabelRecommendDetailEntity;
 import oracle.mau.entity.LabelRecommendEntity;
 import oracle.mau.utils.ImageUtils;
+import oracle.mau.utils.JudgeUtils;
 import oracle.mau.utils.ScreenUtils;
 
 /**
@@ -79,10 +80,16 @@ public class RecommendDetailLVAdapter extends BaseAdapter {
          * 文章图片
          */
         int screenWidth = ScreenUtils.getScreenWidth(context);
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth,screenWidth);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth, screenWidth);
         vh.iv_rd_lv_item_article_img.setLayoutParams(lp);
-        ImageUtils.getBitmapUtils(context).display(vh.iv_rd_lv_item_article_img, list.get(position).getImgList().get(0));
-        vh.tv_rd_lv_item_article_img_count.setText(list.get(position).getImgList().size()+"");
+        if (list.get(position)!=null){
+            if (list.get(position).getImgList()!=null&&list.get(position).getImgList().size()!=0){
+                if (!JudgeUtils.isEmpty(list.get(position).getImgList().get(0))) {
+                    ImageUtils.getBitmapUtils(context).display(vh.iv_rd_lv_item_article_img, list.get(position).getImgList().get(0));
+                }
+            }
+        }
+        vh.tv_rd_lv_item_article_img_count.setText(list.get(position).getImgList().size() + "");
         /**
          * 圆形头像
          */

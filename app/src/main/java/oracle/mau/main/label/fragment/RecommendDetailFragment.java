@@ -136,6 +136,6 @@ public class RecommendDetailFragment extends BaseFragment implements PullToRefre
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ArticleDetailActivity.actionStart(mContext,list.get(position).getArticleId());
+        ArticleDetailActivity.actionStart(mContext,list.get(position-1).getArticleId());
     }
 }
