@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,12 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 import oracle.mau.R;
-import oracle.mau.application.MaUApplication;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.entity.ArticleEntity;
 import oracle.mau.entity.CommentEntity;
-import oracle.mau.entity.LabelRecommendDetailEntity;
-import oracle.mau.entity.LabelRecommendEntity;
 import oracle.mau.entity.UserEntity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.common.Callback;
@@ -37,7 +32,6 @@ import oracle.mau.http.constants.URLConstants;
 import oracle.mau.http.data.ArticleData;
 import oracle.mau.http.data.CommonData;
 import oracle.mau.http.parser.ArticleDetailParser;
-import oracle.mau.http.parser.ArticleParser;
 import oracle.mau.http.parser.CommonParser;
 import oracle.mau.main.account.activity.AccountDetailActivity;
 import oracle.mau.main.label.adapter.ArticleDetailGVAdapter;
@@ -82,6 +76,11 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
     private EditText et_send_article_comment;
     private AVLoadingIndicatorView avi;
     /**
+     * 需要显示的控件
+     */
+    private TextView tv_ad_tag_name_flag;
+    private ImageView iv_ad_article_location_flag;
+    /**
      * 评论listview适配器
      */
     private ArticleDetailLVAdapter commentAdapter;
@@ -110,6 +109,11 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
         tv_send_article_comment.setOnClickListener(this);
         et_send_article_comment = (EditText) findViewById(R.id.et_send_article_comment);
         avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+        /**
+         * 需要显示的控件
+         */
+        tv_ad_tag_name_flag = (TextView) findViewById(R.id.tv_ad_tag_name_flag);
+        iv_ad_article_location_flag = (ImageView) findViewById(R.id.iv_ad_article_location_flag);
         /**
          * 获得传入的文章id
          */
@@ -170,6 +174,12 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
         tv_ad_tag_name.setText(mArticleEntity.getArticleTag().getTagTitle());
         tv_ad_article_location.setText(mArticleEntity.getArticleLocation());
         tv_ad_article_date.setText(mArticleEntity.getArticleDate());
+        /**
+         * 显示控件(为了刚显示时美化)
+         */
+        tv_ad_tag_name_flag.setVisibility(View.VISIBLE);
+        tv_ad_tag_name.setVisibility(View.VISIBLE);
+        iv_ad_article_location_flag.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -177,8 +187,10 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
      */
     private void initListView() {
         commentList = mArticleEntity.getCommentEntityList();
-        commentAdapter =new ArticleDetailLVAdapter(this, commentList);
-        lv_ad_article_comments.setAdapter(commentAdapter);
+        if (commentList!=null){
+            commentAdapter =new ArticleDetailLVAdapter(this, commentList);
+            lv_ad_article_comments.setAdapter(commentAdapter);
+        }
     }
 
     /**
@@ -295,9 +307,16 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
         /**
          * 追加的评论显示在第一行
          */
-        commentList.add(0,updateComment);
-        if (commentAdapter!=null) {
-            commentAdapter.notifyDataSetChanged();
+        if (commentList!=null){
+            commentList.add(0,updateComment);
+            if (commentAdapter!=null) {
+                commentAdapter.notifyDataSetChanged();
+            }
+        }else {
+            commentList = new ArrayList<>();
+            commentList.add(updateComment);
+            commentAdapter =new ArticleDetailLVAdapter(this, commentList);
+            lv_ad_article_comments.setAdapter(commentAdapter);
         }
     }
 

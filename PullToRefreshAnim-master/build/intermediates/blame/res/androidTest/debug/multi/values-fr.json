@@ -1,10 +1,6 @@
 [
     {
-<<<<<<< HEAD
-        "outputFile": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-fr\\values-fr.xml",
-=======
         "outputFile": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-fr\\values-fr.xml",
->>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
         "map": [
             {
                 "to": {
@@ -15,11 +11,7 @@
                     "endOffset": 128
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
-=======
                     "file": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
->>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -38,11 +30,7 @@
                     "endOffset": 201
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
-=======
                     "file": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
->>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -61,73 +49,7 @@
                     "endOffset": 285
                 },
                 "from": {
-<<<<<<< HEAD
-                    "file": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
-=======
                     "file": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
->>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 206,
-                        "endColumn": 83,
-                        "endOffset": 285
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-fr\\values-fr.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 77,
-                    "endOffset": 128
-                },
-                "from": {
-                    "file": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 77,
-                        "endOffset": 128
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 133,
-                    "endColumn": 72,
-                    "endOffset": 201
-                },
-                "from": {
-                    "file": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 133,
-                        "endColumn": 72,
-                        "endOffset": 201
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 206,
-                    "endColumn": 83,
-                    "endOffset": 285
-                },
-                "from": {
-                    "file": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

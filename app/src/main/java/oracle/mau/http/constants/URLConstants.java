@@ -58,7 +58,17 @@ public class URLConstants {
      */
     public static final String SEND_ARTICLE_COMMENT = "comment";
     /**
+<<<<<<< HEAD
      * 获取专题列表
      */
     public static final String gET_SPECIAL_LIST = "special";
+=======
+     * 用户详情
+     */
+    public static final String USER_DETAIL = "user/index/";
+    /**
+     * 推荐详情
+     */
+    public static final String RECOMMEND_DETAIL = "article/getArticlesByTag/";
+>>>>>>> 0672490f4d7a084540e094483d116186b0cd666d
 }

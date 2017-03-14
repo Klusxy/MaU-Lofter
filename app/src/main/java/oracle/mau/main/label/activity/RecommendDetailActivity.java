@@ -16,6 +16,7 @@ import java.util.List;
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.entity.LabelTagNoListEntity;
 import oracle.mau.main.label.adapter.RDCategoryItemVPAdapter;
 import oracle.mau.main.label.adapter.RDDragListViewAdapter;
 import oracle.mau.main.label.fragment.RecommendDetailFragment;
@@ -27,7 +28,7 @@ import oracle.mau.view.CategoryTabStrip;
  */
 
 public class RecommendDetailActivity extends BaseActivity implements View.OnClickListener {
-    private List<LabelTagEntity> tagList;
+    private List<LabelTagNoListEntity> tagList;
     private int position;
 
     private ImageView iv_rd_back;
@@ -71,14 +72,14 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
         /**
          * 得到所有的标签集合
          */
-        this.tagList = (List<LabelTagEntity>) getIntent().getSerializableExtra("all");
-        for (LabelTagEntity ll : tagList) {
+        this.tagList = (List<LabelTagNoListEntity>) getIntent().getSerializableExtra("all");
+        for (LabelTagNoListEntity ll : tagList) {
             Log.d("asdasda", ll.getTagTitle() + "  1111  \n");
         }
         /**
          * 得到传过来的标签实体
          */
-        LabelTagEntity tagEntity = (LabelTagEntity) getIntent().getExtras().getSerializable("tag");
+//        LabelTagEntity tagEntity = (LabelTagEntity) getIntent().getExtras().getSerializable("tag");
         /**
          * 得到position
          */
@@ -168,7 +169,7 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
                         ImageView iv_dsl_drag_selected = (ImageView) convertView.findViewById(R.id.iv_dsl_drag_selected);
                         ImageView iv_dsl_drag_sort = (ImageView) convertView.findViewById(R.id.iv_dsl_drag_sort);
                         iv_dsl_drag_sort.setVisibility(View.GONE);
-                        LabelTagEntity ll = (LabelTagEntity) selectChannelPop.getmAdapter().getItem(i);
+                        LabelTagNoListEntity ll = (LabelTagNoListEntity) selectChannelPop.getmAdapter().getItem(i);
                         if (i == ll.getSelectPosition()) {
                             iv_dsl_drag_selected.setVisibility(View.VISIBLE);
                         }
@@ -202,7 +203,7 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
                 /**
                  * 改变选中的postion
                  */
-                for (LabelTagEntity ll : tagList) {
+                for (LabelTagNoListEntity ll : tagList) {
                     ll.setSelectPosition(posi);
                     ll.setDrag(false);
                 }

@@ -22,32 +22,29 @@ public class LabelTagParser extends BeanParser {
     public BeanData parser(String result) {
         LabelTagData data = new LabelTagData();
         try {
-            LabelTagEntity tagEntity = new LabelTagEntity();
+
             List<LabelTagEntity> tagEntityList = new ArrayList<>();
-            //四篇文章实体集合
-            List<ArticleEntity> articleEntityList = new ArrayList<>();
             JSONArray arr = new JSONArray(result);
+
             for (int i = 0; i < arr.length(); i++) {
-                JSONObject jsonObject = arr.getJSONObject(i);
-                JSONObject tagObject = jsonObject.getJSONObject("tag");
+                LabelTagEntity tagEntity = new LabelTagEntity();
+                JSONObject tagObject = arr.getJSONObject(i);
                 //标签id
-                String tag_id = tagObject.getString("tag_id");
+                String tag_id = tagObject.getString("id");
                 tagEntity.setTagId(Integer.parseInt(tag_id));
                 //标签名
-                String tag_name = tagObject.getString("tag_name");
+                String tag_name = tagObject.getString("name");
                 tagEntity.setTagTitle(tag_name);
-                JSONArray imgArr = jsonObject.getJSONArray("article_imgs");
                 /**
-                 * 只要四张
+                 * 四篇文章集合
                  */
-                int flag;
-                if (imgArr.length() >= 4) {
-                    flag = 4;
-                } else {
-                    flag = imgArr.length();
-                }
-                for (int j = 0; j < flag; j++) {
+                JSONArray imgArr = tagObject.getJSONArray("article");
+                List<ArticleEntity> articleEntityList = new ArrayList<>();
+                for (int j = 0; j < imgArr.length(); j++) {
                     JSONObject articleObject = imgArr.getJSONObject(j);
+                    /**
+                     * 文章实体
+                     */
                     ArticleEntity articleEntity = new ArticleEntity();
                     //文章id
                     String article_id = articleObject.getString("article_id");
@@ -55,11 +52,12 @@ public class LabelTagParser extends BeanParser {
                     //文章图片地址
                     String img_url = articleObject.getString("img_url");
                     articleEntity.setArticleImg(img_url);
+
                     articleEntityList.add(articleEntity);
                 }
+                tagEntity.setArticleEntityListList(articleEntityList);
                 tagEntityList.add(tagEntity);
             }
-            tagEntity.setArticleEntityListList(articleEntityList);
             data.setList(tagEntityList);
         } catch (JSONException e) {
             e.printStackTrace();

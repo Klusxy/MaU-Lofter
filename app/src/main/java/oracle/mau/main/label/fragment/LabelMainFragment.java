@@ -4,20 +4,19 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseFragment;
 import oracle.mau.entity.ArticleEntity;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.entity.LabelTagNoListEntity;
 import oracle.mau.entity.UserEntity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.common.Callback;
@@ -26,7 +25,7 @@ import oracle.mau.http.constants.URLConstants;
 import oracle.mau.http.data.ArticleData;
 import oracle.mau.http.data.LabelTagData;
 import oracle.mau.http.data.HotUserData;
-import oracle.mau.http.parser.ArticleParser;
+import oracle.mau.http.parser.ArticlePicParser;
 import oracle.mau.http.parser.LabelTagParser;
 import oracle.mau.http.parser.HotUserParser;
 import oracle.mau.main.account.activity.AccountDetailActivity;
@@ -111,7 +110,7 @@ public class LabelMainFragment extends BaseFragment implements AdapterView.OnIte
      * 初始化文章推荐网格
      */
     private void initArticleRecommendGVData() {
-        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, new ArticleParser(), URLConstants.BASE_URL + URLConstants.ARTICLE_RECOMMEND + updateUpFlag, new Callback() {
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, new ArticlePicParser(), URLConstants.BASE_URL + URLConstants.ARTICLE_RECOMMEND + updateUpFlag, new Callback() {
             @Override
             public void success(BeanData beanData) {
                 ArticleData data = (ArticleData) beanData;
@@ -243,6 +242,19 @@ public class LabelMainFragment extends BaseFragment implements AdapterView.OnIte
                 page.setScaleY(normalizedposition / 2 + 0.5f);
             }
         });
+        /**
+         * 实体类中有List不能通过序列化传
+         */
+        List<LabelTagNoListEntity> tagNoListEntityList = new ArrayList<>();
+        for (LabelTagEntity lt : tagList) {
+            int tagId = lt.getTagId();
+            String tagTitle = lt.getTagTitle();
+            LabelTagNoListEntity tagNoListEntity = new LabelTagNoListEntity();
+            tagNoListEntity.setTagId(tagId);
+            tagNoListEntity.setTagTitle(tagTitle);
+            tagNoListEntityList.add(tagNoListEntity);
+        }
+        vp_label_tag.setTagList(tagNoListEntityList);
         TagGalleryVPAdapter galleryAdapter = new TagGalleryVPAdapter(tagList, mContext);
         /**
          * 动态设置vp的宽高

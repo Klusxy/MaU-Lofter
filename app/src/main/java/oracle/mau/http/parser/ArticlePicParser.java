@@ -14,9 +14,10 @@ import oracle.mau.http.data.ArticleData;
 
 /**
  * Created by 田帅 on 2017/3/13.
+ * label模块  文章图片解析器
  */
 
-public class ArticleParser extends BeanParser {
+public class ArticlePicParser extends BeanParser {
     @Override
     public BeanData parser(String result) {
         ArticleData data = new ArticleData();

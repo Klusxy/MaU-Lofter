@@ -1,5 +1,7 @@
 package oracle.mau.entity;
 
+import java.util.List;
+
 /**
  * Created by shadow on 2017/2/28.
  */
@@ -10,6 +12,21 @@ public class UserEntity {
     private String userpwd;
     private String username;
     private String userpic;
+    /**
+     * 用户详情使用
+     */
+    //文章集合
+    private List<ArticleEntity> articleEntityList;
+
+
+    public List<ArticleEntity> getArticleEntityList() {
+        return articleEntityList;
+    }
+
+    public void setArticleEntityList(List<ArticleEntity> articleEntityList) {
+        this.articleEntityList = articleEntityList;
+    }
+    //
 
     public int getUserid() {
         return userid;

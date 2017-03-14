@@ -14,6 +14,12 @@ import java.util.List;
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.entity.LabelTagEntity;
+import oracle.mau.http.bean.BeanData;
+import oracle.mau.http.common.Callback;
+import oracle.mau.http.common.HttpServer;
+import oracle.mau.http.constants.URLConstants;
+import oracle.mau.http.data.LabelTagData;
+import oracle.mau.http.parser.LabelTagParser;
 import oracle.mau.main.camera.utils.DensityUtils;
 import oracle.mau.view.WarpLinearLayout;
 
@@ -44,58 +50,31 @@ public class AddLabelActivity extends BaseActivity implements View.OnClickListen
         wll_al_labels = (WarpLinearLayout) findViewById(R.id.wll_al_labels);
         btn_al_reset = (Button) findViewById(R.id.btn_al_reset);
         btn_al_reset.setOnClickListener(this);
-        //初始化标签信息集合
-        initLabelsList();
-        //初始化回传信息，默认都在
-        initResultInfo();
-        //初始化线性布局中的内容
-        initLabels();
+        /**
+         * 请求标签数据
+         */
+        requestTagData();
+
     }
 
-    /**
-     * 初始化标签信息集合
-     */
-    private void initLabelsList() {
-        labelsList = new ArrayList<>();
-        LabelTagEntity e1 = new LabelTagEntity();
-        e1.setTagId(1);
-        e1.setTagTitle("摄影天堂");
-        labelsList.add(e1);
+    private void requestTagData() {
+        LabelTagParser parser = new LabelTagParser();
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, parser, URLConstants.BASE_URL + URLConstants.TAG_GALLERY, new Callback() {
+            @Override
+            public void success(BeanData beanData) {
+                LabelTagData data = (LabelTagData) beanData;
+                labelsList = data.getList();
+                //初始化回传信息，默认都在
+                initResultInfo();
+                //初始化线性布局中的内容
+                initLabels();
+            }
 
-        LabelTagEntity e2 = new LabelTagEntity();
-        e2.setTagId(2);
-        e2.setTagTitle("电影");
-        labelsList.add(e2);
+            @Override
+            public void failure(String error) {
 
-        LabelTagEntity e3 = new LabelTagEntity();
-        e3.setTagId(3);
-        e3.setTagTitle("说走就走的旅行");
-        labelsList.add(e3);
-
-        LabelTagEntity e4 = new LabelTagEntity();
-        e4.setTagId(4);
-        e4.setTagTitle("独一无二的设计");
-        labelsList.add(e4);
-
-        LabelTagEntity e5 = new LabelTagEntity();
-        e5.setTagId(5);
-        e5.setTagTitle("女神");
-        labelsList.add(e5);
-
-        LabelTagEntity e6 = new LabelTagEntity();
-        e6.setTagId(6);
-        e6.setTagTitle("运动圈");
-        labelsList.add(e6);
-
-        LabelTagEntity e7 = new LabelTagEntity();
-        e7.setTagId(7);
-        e7.setTagTitle("娱乐");
-        labelsList.add(e7);
-
-        LabelTagEntity e8 = new LabelTagEntity();
-        e8.setTagId(8);
-        e8.setTagTitle("穿搭");
-        labelsList.add(e8);
+            }
+        });
     }
 
     private void initResultInfo() {

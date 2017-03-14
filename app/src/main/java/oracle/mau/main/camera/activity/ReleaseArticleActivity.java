@@ -63,6 +63,7 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
      */
     private LinearLayout ll_ra_add_label;
     private TextView tv_ra_label;
+    private int labelTypeId = -1;
 
     /**
      * 单选还是多选
@@ -120,7 +121,6 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
          * 上传图片
          */
         sendPic();
-
         iv_ra_pic = (ImageView) findViewById(R.id.iv_ra_pic);
         iv_ra_pic.setImageURI(mImageUri);
         ll_ra_add_location = (LinearLayout) findViewById(R.id.ll_ra_add_location);
@@ -167,7 +167,6 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
             public void success(BeanData beanData) {
                 PicData picData = (PicData) beanData;
                 responcePicList.add(picData.getPicUrl());
-                toast("list长度   "+responcePicList.size());
                 flag++;
             }
 
@@ -258,7 +257,7 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
             } else
                 //位置是否为空
                 if ("添加位置".equals(tv_ta_location.getText().toString())) {
-                    toast("文章内容不能为空");
+                    toast("请添加位置");
                 } else {
                     avi.show();
                     Map<String, Object> map = new HashMap<>();
@@ -266,13 +265,17 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
                     map.put("user_id", user.getUserid()+"");
                     map.put("article_content", et_ra_article.getText().toString());
                     map.put("article_location", tv_ta_location.getText().toString());
-                    map.put("article_tag_content", tv_ra_label.getText().toString());
+                    map.put("article_tag_id", labelTypeId+"");
+                    List<Map<String,String>> imgList = new ArrayList<>();
                     /**
                      * 添加图片地址
                      */
                     for (int i = 0; i<responcePicList.size() ; i++) {
-                        map.put("imageUrl"+i , responcePicList.get(i));
+                        Map<String,String> imgMap = new HashMap<>();
+                        imgMap.put("img_url",responcePicList.get(i));
+                        imgList.add(imgMap);
                     }
+                    map.put("MauArticleImg", imgList);
                     HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST, map, null, URLConstants.BASE_URL + URLConstants.SEND_ARTICLE_CONTENT, new Callback() {
                         @Override
                         public void success(BeanData beanData) {
@@ -317,7 +320,7 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
              * 添加标签返回结果
              */
             case AddLabelActivity.ADDLABEL_BACKCODE:
-                int labelTypeId = data.getIntExtra("labelTypeId", -1);
+                labelTypeId = data.getIntExtra("labelTypeId", -1);
                 String label = data.getStringExtra("label");
                 tv_ra_label.setText(label);
                 break;

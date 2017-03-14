@@ -4,12 +4,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dip"
         android:background="@drawable/radius_drawable_bg"
-        android:orientation="vertical"
         android:padding="10dip" >
 
         <LinearLayout
@@ -30,24 +29,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
                 android:background="#00000000"
-                android:hint="账号/用户名/邮箱"
-                android:padding="5dip"
-                android:textSize="16sp" />
+                android:inputType="number"
+                android:hint="手机号"
+                android:padding="3dip"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <View
+            android:id="@+id/view_il_line"
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginBottom="5dip"
             android:layout_marginTop="5dip"
-            android:background="#eeeeee" />
+            android:background="#eeeeee"
+            android:layout_below="@+id/input_layout_name"/>
 
         <LinearLayout
             android:id="@+id/input_layout_psw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_below="@+id/view_il_line"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -60,11 +64,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
                 android:background="#00000000"
-                android:hint="密码"
                 android:inputType="textPassword"
-                android:padding="5dip"
-                android:textSize="16sp" />
+                android:hint="密码"
+                android:padding="3dip"
+                android:textSize="14sp" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
