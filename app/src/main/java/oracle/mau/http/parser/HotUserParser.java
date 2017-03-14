@@ -22,10 +22,11 @@ public class HotUserParser extends BeanParser {
         HotUserData uData = new HotUserData();
         try {
             JSONArray arr = new JSONArray(result);
-
+            /**
+             * 热门用户数据
+             */
             List<UserEntity> list = new ArrayList<>();
-
-            for (int i = 0 ;i<arr.length() ; i++) {
+            for (int i = 0; i < arr.length(); i++) {
                 JSONObject jsonObject = arr.getJSONObject(i);
                 String user_id = jsonObject.getString("user_id");
                 String user_tel = jsonObject.getString("user_tel");

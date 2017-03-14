@@ -33,4 +33,28 @@ public class URLConstants {
      * label画廊标签
      */
     public static final String TAG_GALLERY="article/tag";
+    /**
+     * 发布文章内容
+     */
+    public static final String SEND_ARTICLE_CONTENT  = "article/";
+    /**
+     * 发布文章图片
+     */
+    public static final String SEND_ARTICLE_PIC  = "upload/";
+    /**
+     * label推荐文章
+     */
+    public static final String ARTICLE_RECOMMEND = "article/list/";
+    /**
+     * label search模块
+     */
+    public static final String SEARCH_CONTENT = "search/index/";
+    /**
+     * 文章详情
+     */
+    public static final String ARTICLE_DETAIL = "article/get/";
+    /**
+     * 发表评论
+     */
+    public static final String SEND_ARTICLE_COMMENT = "comment";
 }

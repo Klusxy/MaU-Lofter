@@ -6,44 +6,39 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         >
-
         <ImageView
             android:id="@+id/home_addattention_head"
-            android:layout_width="wrap_content"
-            android:layout_weight="0.5"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-
-            app:srcCompat="@mipmap/ic_launcher" />
-
-
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/caise1" />
 
         <TextView
             android:id="@+id/home_addattention_username"
             android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:text="发布用户名"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/home_addattention_head"
+            android:text="测试用户"
              />
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
     <oracle.mau.view.GridViewForScrollView
         android:id="@+id/home_gv"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="#DDDDDD"
-        android:numColumns="3"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="2dp"
+        android:verticalSpacing="2dp" />
 
 
 </LinearLayout>

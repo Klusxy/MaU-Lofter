@@ -13,7 +13,7 @@ public class HotUserData extends BeanData {
     private UserEntity user;
 
     /**
-     * label页六个热门用户
+     * label页六个热门用户、search User模块
      */
     private List<UserEntity> userList;
 

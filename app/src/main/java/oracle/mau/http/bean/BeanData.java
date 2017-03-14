@@ -8,6 +8,25 @@ package oracle.mau.http.bean;
 public abstract class BeanData {
     private int flag;
     private int code;
+    private int status;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public int getStatus() {
+
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public int getFlag() {
         return flag;

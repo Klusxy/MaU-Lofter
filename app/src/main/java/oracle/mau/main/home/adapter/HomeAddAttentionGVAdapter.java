@@ -6,9 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 import oracle.mau.R;
+import oracle.mau.utils.ImageUtils;
+import oracle.mau.utils.ScreenUtils;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -54,7 +58,24 @@ public class HomeAddAttentionGVAdapter extends BaseAdapter {
         }else {
             vh=(ViewHolder)convertView.getTag();
         }
-        vh.home_addattention_gv_item.setImageResource(R.mipmap.mimi);
+       // vh.home_addattention_gv_item.setImageResource(R.mipmap.chuntian1);
+
+        int screenWidth = ScreenUtils.getScreenWidth(context);
+
+        LinearLayout.LayoutParams lp ;
+        if (list.size() == 1) {
+            lp =new LinearLayout.LayoutParams(screenWidth, screenWidth*3/4);
+            vh.home_addattention_gv_item.setLayoutParams(lp);
+        }
+        if (list.size() == 2) {
+            lp =new LinearLayout.LayoutParams(screenWidth/2, screenWidth*3/8);
+            vh.home_addattention_gv_item.setLayoutParams(lp);
+        }
+        if (list.size() >= 3) {
+            lp =new LinearLayout.LayoutParams(screenWidth/3, screenWidth/4);
+            vh.home_addattention_gv_item.setLayoutParams(lp);
+        }
+        ImageUtils.getBitmapUtils(context).display(vh.home_addattention_gv_item, list.get(position));
         return convertView;
     }
     class ViewHolder{

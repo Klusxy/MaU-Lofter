@@ -26,18 +26,32 @@ public class AccountDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
-        userId = getIntent().getIntExtra("userId",1);
-
         iv_user_img = (ImageView) findViewById(R.id.iv_account_user_img);
-        updateUI();
+        userId = getIntent().getIntExtra("userId",1);
+        /**
+         * 请求用户信息
+         */
+        requestData();
     }
+
+    /**
+     * 请求用户信息
+     */
+    private void requestData() {
+
+    }
+
     private void updateUI() {
         Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.mipmap.caise1);
         Bitmap circleBitmap = ImageUtils.circleBitmap(bitmap);
         iv_user_img.setImageBitmap(circleBitmap);
     }
 
+    /**
+     * 界面启动静态方法
+     * @param context
+     * @param userId
+     */
     public static void actionStart(Context context , int userId){
         Intent intent = new Intent(context,AccountDetailActivity.class);
         intent.putExtra("userId",userId);
