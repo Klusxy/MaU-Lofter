@@ -108,6 +108,8 @@
         <activity android:name=".main.loginAndregister.ConfirmationActivity" />
         <activity android:name=".main.loginAndregister.UserInfoActivity" />
         <activity android:name=".main.account.activity.AccountDetailActivity" />
+        <!--用户界面-->
+        <activity android:name=".main.account.activity.AboutUs" />
 
 
     </application>

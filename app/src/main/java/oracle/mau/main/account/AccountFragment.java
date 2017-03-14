@@ -1,5 +1,6 @@
 package oracle.mau.main.account;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseFragment;
+import oracle.mau.main.account.activity.AboutUs;
 import oracle.mau.main.account.activity.AccountDetailActivity;
 import oracle.mau.main.account.adapter.AccountListAdapter;
 import oracle.mau.utils.ImageUtils;
@@ -46,6 +48,18 @@ public class AccountFragment extends BaseFragment implements AdapterView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if(i==1){
 
+        }
+        if(i==2){
+
+        }
+        if(i==3){
+
+        }
+        if(i==3){
+            Intent intentAboutUs=new Intent(getActivity(), AboutUs.class);
+            startActivity(intentAboutUs);
+        }
     }
 }
