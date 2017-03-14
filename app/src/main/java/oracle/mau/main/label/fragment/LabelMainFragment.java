@@ -4,11 +4,8 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -26,7 +23,7 @@ import oracle.mau.http.constants.URLConstants;
 import oracle.mau.http.data.ArticleData;
 import oracle.mau.http.data.LabelTagData;
 import oracle.mau.http.data.HotUserData;
-import oracle.mau.http.parser.ArticleParser;
+import oracle.mau.http.parser.ArticlePicParser;
 import oracle.mau.http.parser.LabelTagParser;
 import oracle.mau.http.parser.HotUserParser;
 import oracle.mau.main.account.activity.AccountDetailActivity;
@@ -111,7 +108,7 @@ public class LabelMainFragment extends BaseFragment implements AdapterView.OnIte
      * 初始化文章推荐网格
      */
     private void initArticleRecommendGVData() {
-        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, new ArticleParser(), URLConstants.BASE_URL + URLConstants.ARTICLE_RECOMMEND + updateUpFlag, new Callback() {
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, new ArticlePicParser(), URLConstants.BASE_URL + URLConstants.ARTICLE_RECOMMEND + updateUpFlag, new Callback() {
             @Override
             public void success(BeanData beanData) {
                 ArticleData data = (ArticleData) beanData;

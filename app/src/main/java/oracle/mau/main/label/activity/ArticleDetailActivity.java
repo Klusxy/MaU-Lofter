@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,12 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 import oracle.mau.R;
-import oracle.mau.application.MaUApplication;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.entity.ArticleEntity;
 import oracle.mau.entity.CommentEntity;
-import oracle.mau.entity.LabelRecommendDetailEntity;
-import oracle.mau.entity.LabelRecommendEntity;
 import oracle.mau.entity.UserEntity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.common.Callback;
@@ -37,7 +32,6 @@ import oracle.mau.http.constants.URLConstants;
 import oracle.mau.http.data.ArticleData;
 import oracle.mau.http.data.CommonData;
 import oracle.mau.http.parser.ArticleDetailParser;
-import oracle.mau.http.parser.ArticleParser;
 import oracle.mau.http.parser.CommonParser;
 import oracle.mau.main.account.activity.AccountDetailActivity;
 import oracle.mau.main.label.adapter.ArticleDetailGVAdapter;
@@ -177,8 +171,10 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
      */
     private void initListView() {
         commentList = mArticleEntity.getCommentEntityList();
-        commentAdapter =new ArticleDetailLVAdapter(this, commentList);
-        lv_ad_article_comments.setAdapter(commentAdapter);
+        if (commentList!=null){
+            commentAdapter =new ArticleDetailLVAdapter(this, commentList);
+            lv_ad_article_comments.setAdapter(commentAdapter);
+        }
     }
 
     /**
@@ -295,9 +291,16 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
         /**
          * 追加的评论显示在第一行
          */
-        commentList.add(0,updateComment);
-        if (commentAdapter!=null) {
-            commentAdapter.notifyDataSetChanged();
+        if (commentList!=null){
+            commentList.add(0,updateComment);
+            if (commentAdapter!=null) {
+                commentAdapter.notifyDataSetChanged();
+            }
+        }else {
+            commentList = new ArrayList<>();
+            commentList.add(updateComment);
+            commentAdapter =new ArticleDetailLVAdapter(this, commentList);
+            lv_ad_article_comments.setAdapter(commentAdapter);
         }
     }
 
