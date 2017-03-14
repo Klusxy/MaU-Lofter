@@ -57,4 +57,8 @@ public class URLConstants {
      * 发表评论
      */
     public static final String SEND_ARTICLE_COMMENT = "comment";
+    /**
+     * 获取专题列表
+     */
+    public static final String gET_SPECIAL_LIST = "special";
 }

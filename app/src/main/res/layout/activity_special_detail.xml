@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--顶部-->
+            <RelativeLayout
+                android:id="@+id/rl_ad_top"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/main_top_height">
+                <ImageView
+                    android:id="@+id/iv_ad_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/back_nav_icon"
+                    android:layout_marginLeft="10dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_ad_user_name_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="专题详情"
+                    android:textColor="#555555"
+                    android:textSize="@dimen/main_nav_top_mid_test_size"/>
+                <oracle.mau.view.ThinLineView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:id="@+id/sp_detail_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="7dp"
+                android:text="aaaaaaaaaaaaa"
+                android:textSize="18sp"
+                android:layout_below="@id/rl_ad_top"
+                android:textColor="#434343"/>
+            <ImageView
+                android:id="@+id/sp_img1"
+                android:layout_below="@id/sp_detail_content"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_launcher"/>
+            <ImageView
+                android:id="@+id/sp_img2"
+                android:layout_below="@id/sp_img1"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+
+                android:src="@mipmap/ic_launcher"/>
+            <ImageView
+                android:id="@+id/sp_img3"
+                android:layout_below="@id/sp_img2"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+            android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_launcher"/>
+            <Button
+                android:id="@+id/sp_detailbtn_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sp_img3"
+                android:layout_marginTop="20dp"
+                android:text="订阅"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_shape_order"
+                android:layout_marginRight="10dp"
+                />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

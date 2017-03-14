@@ -3,6 +3,7 @@ package oracle.mau.main.message.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import oracle.mau.main.message.MessageFragment;
  * Created by shadow on 2017/3/2.
  */
 
-public class MsgFragmentPageAdapter extends FragmentPagerAdapter {
+public class MsgFragmentPageAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> list;
 
     public MsgFragmentPageAdapter(FragmentManager fm, List<Fragment> list) {

@@ -1,14 +1,27 @@
 package oracle.mau.entity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by 田帅 on 2017/3/13.
  */
 
-public class SpecialEntity {
+public class SpecialEntity implements Serializable{
     private int specialId;
     private String specialContent;
     private String specialTitle;
     private String specialDate;
+    private ArrayList<String> piclist;
+
+    public ArrayList<String> getPiclist() {
+        return piclist;
+    }
+
+    public void setPiclist(ArrayList<String> piclist) {
+        this.piclist = piclist;
+    }
 
     public int getSpecialId() {
         return specialId;
