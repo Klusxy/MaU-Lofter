@@ -21,7 +21,9 @@ import oracle.mau.http.common.Callback;
 import oracle.mau.http.common.HttpServer;
 import oracle.mau.http.constants.URLConstants;
 import oracle.mau.http.data.HotUserData;
+import oracle.mau.http.data.PicData;
 import oracle.mau.http.parser.HotUserParser;
+import oracle.mau.http.parser.PicParser;
 
 /**
  * Created by shadow on 2017/2/28.
@@ -34,6 +36,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     private Button btnOk;
     private String path;
     private String userTel;
+    private String backPath="";
     @Override
     public int getLayoutId() {
         return R.layout.activity_userinfo;
@@ -120,7 +123,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 
                         //btn_pic.setImageURI(Uri.parse(path));
                         userimg.setImageBitmap(BitmapFactory.decodeFile(path));
-
+                        sendPic(path);
                     }
                 }
                 else{
@@ -135,7 +138,31 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+    public void sendPic(String path){
+        Map<String, Object> p=new HashMap<String, Object>();
+        p.put("imgFile", path);
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,p, new PicParser(), URLConstants.BASE_URL+URLConstants.SEND_ARTICLE_PIC, new Callback() {
 
+
+
+
+            @Override
+            public void success(BeanData beanData) {
+
+                PicData uData=(PicData)beanData;
+               backPath=uData.getPicUrl();
+
+
+
+            }
+
+            @Override
+            public void failure(String error) {
+
+                toast(error);
+            }
+        });
+    }
     /**
      * 点击完成按钮后向服务器发送用户的注册信息
      */
@@ -145,7 +172,12 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         String userPwd=editpwd.getText().toString();
         params.put("user_name", userName);
         params.put("user_pwd", userPwd);
-        params.put("user_img",path);
+        if("".equals(backPath))
+        {
+            toast("9999999");
+        }else{
+            params.put("user_img",path);
+        }
         params.put("user_tel",userTel);
 
 

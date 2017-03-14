@@ -1,5 +1,6 @@
 package oracle.mau.main.message.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import oracle.mau.R;
 import oracle.mau.entity.LabelRecommendEntity;
+import oracle.mau.main.account.activity.AboutUs;
 import oracle.mau.main.label.adapter.LabelMainReommendLabelLVAdapter;
 import oracle.mau.main.message.adapter.NewsListAdapter;
 import oracle.mau.view.ListViewForScrollView;
@@ -27,7 +29,7 @@ import oracle.mau.view.ListViewForScrollView;
  * Created by shadow on 2017/3/2.
  */
 
-public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefreshListener<ScrollView> {
+public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefreshListener<ScrollView> ,AdapterView.OnItemClickListener{
 //    private ListViewForScrollView listView;
 
     /**
@@ -129,6 +131,23 @@ public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefre
         imgsList.add(lrImgs4);
         LabelMainReommendLabelLVAdapter adapter = new LabelMainReommendLabelLVAdapter(getContext(), lrList, bgs, imgsList);
         lv_label_main_label_recommend.setAdapter(adapter);
+        lv_label_main_label_recommend.setOnItemClickListener(this);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if(i==1){
+
+        }
+        if(i==2){
+
+        }
+        if(i==3){
+
+        }
+        if(i==4){
+            Intent intentAboutUs=new Intent(getActivity(), AboutUs.class);
+            startActivity(intentAboutUs);
+        }
+    }
 }
