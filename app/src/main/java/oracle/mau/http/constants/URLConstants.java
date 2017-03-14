@@ -58,6 +58,10 @@ public class URLConstants {
      */
     public static final String SEND_ARTICLE_COMMENT = "comment";
     /**
+     * 获取专题列表
+     */
+    public static final String gET_SPECIAL_LIST = "special";
+    /**
      * 用户详情
      */
     public static final String USER_DETAIL = "user/index/";

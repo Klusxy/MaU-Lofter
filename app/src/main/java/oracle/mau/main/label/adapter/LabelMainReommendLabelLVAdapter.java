@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import oracle.mau.R;
@@ -28,7 +29,7 @@ import oracle.mau.utils.ScreenUtils;
 public class LabelMainReommendLabelLVAdapter extends BaseAdapter {
     private Context context;
 
-    public LabelMainReommendLabelLVAdapter(Context context, List<LabelRecommendEntity> list, int[] bgs, List<int[]> imgsList) {
+    public LabelMainReommendLabelLVAdapter(Context context, ArrayList<LabelRecommendEntity> list, int[] bgs, ArrayList<ArrayList<String>> imgsList) {
         this.context = context;
         this.list = list;
         this.bgs = bgs;
@@ -37,7 +38,7 @@ public class LabelMainReommendLabelLVAdapter extends BaseAdapter {
 
     private List<LabelRecommendEntity> list;
     private int[] bgs;
-    private List<int[]> imgsList;
+    private ArrayList<ArrayList<String>> imgsList;
 
 
     @Override
@@ -80,7 +81,7 @@ public class LabelMainReommendLabelLVAdapter extends BaseAdapter {
          * 得到屏幕的宽度
          */
         int screenWidth = ScreenUtils.getScreenWidth(context);
-        int[] imgs = imgsList.get(position);
+
         /**
          * 动态设置imageview大小
          */
@@ -93,12 +94,14 @@ public class LabelMainReommendLabelLVAdapter extends BaseAdapter {
         vh.iv_lv_lm_rl_img3.setScaleType(ImageView.ScaleType.FIT_XY);
         vh.iv_lv_lm_rl_img3.setLayoutParams(lp);
         //不用addview   耗时  界面假死
-        Glide.with(context).load(imgs[0]).into(vh.iv_lv_lm_rl_img1);
-        Glide.with(context).load(imgs[1]).into(vh.iv_lv_lm_rl_img2);
-        Glide.with(context).load(imgs[2]).into(vh.iv_lv_lm_rl_img3);
-//        ImageUtils.getBitmapUtils(context).display(vh.iv_lv_lm_rl_img1,url);
-//        ImageUtils.getBitmapUtils(context).display(vh.iv_lv_lm_rl_img2,url);
-//        ImageUtils.getBitmapUtils(context).display(vh.iv_lv_lm_rl_img3,url);
+       /* Glide.with(context).load(imgsList.get(0)).into(vh.iv_lv_lm_rl_img1);
+        Glide.with(context).load(imgsList.get(0)).into(vh.iv_lv_lm_rl_img2);
+        Glide.with(context).load(imgsList.get(0)).into(vh.iv_lv_lm_rl_img3);*/
+
+        ImageUtils.getBitmapUtils(context).display(vh.iv_lv_lm_rl_img1,imgsList.get(position).get(0));
+        Log.d("aaa>>>>>>>>>>",imgsList.get(position).get(0));
+       ImageUtils.getBitmapUtils(context).display(vh.iv_lv_lm_rl_img2,imgsList.get(position).get(1));
+       ImageUtils.getBitmapUtils(context).display(vh.iv_lv_lm_rl_img3,imgsList.get(position).get(2));
         return convertView;
     }
 
