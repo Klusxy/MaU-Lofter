@@ -56,17 +56,19 @@ public class TouchViewPager extends ViewPager {
                 break;
             case MotionEvent.ACTION_UP:
                 if (vp_label_tag_flag == 0) {
-                    int item = this.getCurrentItem()%tagList.size();
-                    for (LabelTagEntity ll : tagList) {
-                        ll.setSelectPosition(item);
+                    if (tagList!=null){
+                        int item = this.getCurrentItem()%tagList.size();
+                        for (LabelTagEntity ll : tagList) {
+                            ll.setSelectPosition(item);
+                        }
+                        Intent intent = new Intent(mContext, RecommendDetailActivity.class);
+                        intent.putExtra("all",(Serializable) tagList);
+                        intent.putExtra("position",item);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("tag",tagList.get(item));
+                        intent.putExtras(bundle);
+                        mContext.startActivity(intent);
                     }
-                    Intent intent = new Intent(mContext, RecommendDetailActivity.class);
-                    intent.putExtra("all",(Serializable) tagList);
-                    intent.putExtra("position",item);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("tag",tagList.get(item));
-                    intent.putExtras(bundle);
-                    mContext.startActivity(intent);
                 }
                 break;
         }

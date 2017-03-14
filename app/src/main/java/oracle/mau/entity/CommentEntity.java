@@ -8,6 +8,20 @@ public class CommentEntity {
     private int userId;
     private int commentId;
     private int articleId;
+    private String userName;
+    private String userImg;
+
+    public String getUserImg() {
+        return userImg;
+    }
+
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
+    }
+
+    private String commentContent;
+    private String commentDate;
+
 
     public int getCommentId() {
         return commentId;
@@ -25,9 +39,7 @@ public class CommentEntity {
         this.articleId = articleId;
     }
 
-    private String userName;
-    private String commentContent;
-    private String commentDate;
+
 
     public String getCommentDate() {
         return commentDate;

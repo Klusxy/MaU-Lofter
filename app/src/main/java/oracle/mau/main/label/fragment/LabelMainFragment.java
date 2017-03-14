@@ -3,6 +3,7 @@ package oracle.mau.main.label.fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
@@ -41,7 +42,7 @@ import oracle.mau.view.GridViewForScrollView;
  * Created by 田帅 on 2017/2/28.
  */
 
-public class LabelMainFragment extends BaseFragment implements OnRefreshListener<ScrollView>, AdapterView.OnItemClickListener {
+public class LabelMainFragment extends BaseFragment implements AdapterView.OnItemClickListener, PullToRefreshBase.OnRefreshListener2 {
 
     /**
      * 用户推荐gridview
@@ -66,6 +67,7 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
     private int updateDowmFlag = 0;
     //标记几次上拉加载,默认是第一页
     private int updateUpFlag = 1;
+    private boolean isFirst = true;
 
     /**
      * 文章推荐网格
@@ -92,14 +94,17 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
          */
         mPullRefreshScrollView = (PullToRefreshScrollView) rootView.findViewById(R.id.ptr_label_main_scrollview);
         mPullRefreshScrollView.setOnRefreshListener(this);
-        //显示进度条
-        avi.show();
-        //初始化达人推荐gridview数据
-        initUserRecommendGVData();
-        //初始化标签画廊数据
-        initTagGalleryData();
-        //初始化文章数据
-        initArticleRecommendGVData();
+        if (isFirst) {
+            //显示进度条
+            avi.show();
+            //初始化达人推荐gridview数据
+            initUserRecommendGVData();
+            //初始化标签画廊数据
+            initTagGalleryData();
+            //初始化文章数据
+            initArticleRecommendGVData();
+            isFirst = false;
+        }
     }
 
     /**
@@ -113,12 +118,20 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
                 /**
                  * 得到数据
                  */
-                articleList = data.getArticleList();
-                /**
-                 * 设置适配器
-                 */
-                LabelMessageRecommendGVAdapter messageRecommendGVAdapter = new LabelMessageRecommendGVAdapter(mContext,articleList);
-                gv_label_main_article.setAdapter(messageRecommendGVAdapter);
+                if (updateUpFlag > 1) {
+                    List<ArticleEntity> newArticleList = data.getArticleList();
+                    for (ArticleEntity ae : newArticleList) {
+                        articleList.add(ae);
+                    }
+                    /**
+                     * 最后掉调用该方法缩回头部（主线程中）
+                     */
+                    mPullRefreshScrollView.onRefreshComplete();
+                } else {
+                    articleList = data.getArticleList();
+                }
+                toast("第 "+updateUpFlag+" 次"+",数据长度为：  "+articleList.size());
+                initArticleRecommendGV();
             }
 
             @Override
@@ -126,6 +139,28 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
 
             }
         });
+    }
+
+    /**
+     * 初始化文章推荐网格
+     */
+    private void initArticleRecommendGV() {
+        LabelMessageRecommendGVAdapter messageRecommendGVAdapter = null;
+        if (updateUpFlag == 1) {
+            /**
+             * 设置适配器
+             */
+            messageRecommendGVAdapter = new LabelMessageRecommendGVAdapter(mContext, articleList);
+            gv_label_main_article.setAdapter(messageRecommendGVAdapter);
+        } else {
+            /**
+             * 防止没网状态，上拉崩溃
+             */
+            if (messageRecommendGVAdapter != null) {
+                messageRecommendGVAdapter.notifyDataSetChanged();
+            }
+        }
+
     }
 
     /**
@@ -213,12 +248,30 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
          * 动态设置vp的宽高
          */
         int screenWidth = ScreenUtils.getScreenWidth(mContext);
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth, screenWidth * 3 / 4);
-        lp.addRule(RelativeLayout.BELOW, R.id.rl_label_main_user_recommend);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(screenWidth, screenWidth * 3 / 4);
         lp.setMargins(0, 30, 0, 0);
         vp_label_tag.setLayoutParams(lp);
         vp_label_tag.setAdapter(galleryAdapter);
         vp_label_tag.setCurrentItem(1000);
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (parent.getId()) {
+            case R.id.gv_label_main_user_recommend:
+                AccountDetailActivity.actionStart(mContext, userList.get(position).getUserid());
+                break;
+            case R.id.gv_label_main_article:
+                ArticleDetailActivity.actionStart(mContext, articleList.get(position).getArticleId());
+                break;
+        }
+    }
+
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase refreshView) {
+        updateDowmFlag++;
+        initUserRecommendGVData();
     }
 
     /**
@@ -228,20 +281,8 @@ public class LabelMainFragment extends BaseFragment implements OnRefreshListener
      * @param refreshView
      */
     @Override
-    public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-        updateDowmFlag++;
-        initUserRecommendGVData();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        switch (parent.getId()) {
-            case R.id.gv_label_main_user_recommend:
-                AccountDetailActivity.actionStart(mContext, userList.get(position).getUserid());
-                break;
-            case R.id.gv_label_main_article:
-                ArticleDetailActivity.actionStart(mContext,articleList.get(position).getArticleId());
-                break;
-        }
+    public void onPullUpToRefresh(PullToRefreshBase refreshView) {
+        updateUpFlag++;
+        initArticleRecommendGVData();
     }
 }

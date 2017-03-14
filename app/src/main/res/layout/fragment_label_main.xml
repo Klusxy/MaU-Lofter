@@ -3,10 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
         <!--
                 带有下拉刷新的滚动视图
                 ptr:ptrAnimationStyle="rotate"  设置刷新效果：在该项目中，已修改完源码，风格统一，所以这里设什么都一样
@@ -20,9 +16,10 @@
             ptr:ptrAnimationStyle="rotate"
             ptr:ptrMode="both">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <!--达人推荐-->
                 <RelativeLayout
                     android:id="@+id/rl_label_main_user_recommend"
@@ -89,9 +86,8 @@
 
                     </oracle.mau.view.GridViewForScrollView>
                 </RelativeLayout>
-            </RelativeLayout>
+            </LinearLayout>
         </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
-    </LinearLayout>
 
     <com.wang.avi.AVLoadingIndicatorView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/avi"

@@ -134,9 +134,11 @@ public class ArticleDetailActivity extends BaseActivity implements View.OnClickL
                 avi.hide();
                 ArticleData data = (ArticleData) beanData;
                 mArticleEntity = data.getArticleEntity();
-                initGridView();
-                initListView();
-                updateUI();
+                if (mArticleEntity!=null) {
+                    initGridView();
+                    initListView();
+                    updateUI();
+                }
             }
 
             @Override
