@@ -62,7 +62,11 @@
         ]
     },
     {
+<<<<<<< HEAD
+        "outputFile": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ro\\values-ro.xml",
+=======
         "outputFile": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ro\\values-ro.xml",
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
         "map": [
             {
                 "to": {
@@ -73,7 +77,11 @@
                     "endOffset": 134
                 },
                 "from": {
+<<<<<<< HEAD
+                    "file": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-ro\\values-ro.xml",
+=======
                     "file": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-ro\\values-ro.xml",
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -92,7 +100,11 @@
                     "endOffset": 206
                 },
                 "from": {
+<<<<<<< HEAD
+                    "file": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-ro\\values-ro.xml",
+=======
                     "file": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-ro\\values-ro.xml",
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -111,7 +123,11 @@
                     "endOffset": 298
                 },
                 "from": {
+<<<<<<< HEAD
+                    "file": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-ro\\values-ro.xml",
+=======
                     "file": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-ro\\values-ro.xml",
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

@@ -1,6 +1,10 @@
 [
     {
+<<<<<<< HEAD
+        "outputFile": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-fr\\values-fr.xml",
+=======
         "outputFile": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-fr\\values-fr.xml",
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
         "map": [
             {
                 "to": {
@@ -11,7 +15,11 @@
                     "endOffset": 128
                 },
                 "from": {
+<<<<<<< HEAD
+                    "file": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
+=======
                     "file": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -30,7 +38,11 @@
                     "endOffset": 201
                 },
                 "from": {
+<<<<<<< HEAD
+                    "file": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
+=======
                     "file": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -49,7 +61,11 @@
                     "endOffset": 285
                 },
                 "from": {
+<<<<<<< HEAD
+                    "file": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
+=======
                     "file": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\values-fr\\values-fr.xml",
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

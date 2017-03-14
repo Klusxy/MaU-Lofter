@@ -1,5 +1,13 @@
 [
     {
+<<<<<<< HEAD
+        "merged": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
+        "source": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
+    },
+    {
+        "merged": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
+        "source": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
+=======
         "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_arrow.png",
         "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
     },
@@ -10,6 +18,7 @@
     {
         "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
         "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
     },
     {
         "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
@@ -22,5 +31,9 @@
     {
         "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
         "source": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
+    },
+    {
+        "merged": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_arrow.png",
+        "source": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
     }
 ]

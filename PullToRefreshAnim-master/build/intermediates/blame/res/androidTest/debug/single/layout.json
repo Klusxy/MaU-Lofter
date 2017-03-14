@@ -1,19 +1,33 @@
 [
     {
+<<<<<<< HEAD
+        "merged": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_simple.xml",
+        "source": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_simple.xml"
+    },
+    {
+        "merged": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
+        "source": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
+=======
         "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
         "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
     },
     {
         "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
         "source": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
     },
     {
+<<<<<<< HEAD
+        "merged": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
+        "source": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
+=======
         "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_simple.xml",
         "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_simple.xml"
     },
     {
         "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
         "source": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
+>>>>>>> 2b7a1455707615642a73f9a1f963dd438e635b31
     },
     {
         "merged": "E:\\Git\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
