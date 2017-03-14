@@ -2,6 +2,7 @@ package oracle.mau.main.label.fragment;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
@@ -129,7 +130,7 @@ public class LabelMainFragment extends BaseFragment implements AdapterView.OnIte
                 } else {
                     articleList = data.getArticleList();
                 }
-                toast("第 "+updateUpFlag+" 次"+",数据长度为：  "+articleList.size());
+//                toast("第 " + updateUpFlag + " 次" + ",数据长度为：  " + articleList.size());
                 initArticleRecommendGV();
             }
 
@@ -145,20 +146,18 @@ public class LabelMainFragment extends BaseFragment implements AdapterView.OnIte
      */
     private void initArticleRecommendGV() {
         LabelMessageArticleGVAdapter messageRecommendGVAdapter = null;
-        if (updateUpFlag == 1) {
-            /**
-             * 设置适配器
-             */
-            messageRecommendGVAdapter = new LabelMessageArticleGVAdapter(mContext, articleList);
-            gv_label_main_article.setAdapter(messageRecommendGVAdapter);
-        } else {
-            /**
-             * 防止没网状态，上拉崩溃
-             */
-            if (messageRecommendGVAdapter != null) {
-                messageRecommendGVAdapter.notifyDataSetChanged();
-            }
+        /**
+         * 设置适配器
+         */
+        messageRecommendGVAdapter = new LabelMessageArticleGVAdapter(mContext, articleList);
+        gv_label_main_article.setAdapter(messageRecommendGVAdapter);
+        /**
+         * 防止没网状态，上拉崩溃
+         */
+        if (messageRecommendGVAdapter != null) {
+            messageRecommendGVAdapter.notifyDataSetChanged();
         }
+
 
     }
 
@@ -280,6 +279,12 @@ public class LabelMainFragment extends BaseFragment implements AdapterView.OnIte
         }
     }
 
+    /**
+     * 下拉刷新的监听方法
+     * 用于去获取数据
+     *
+     * @param refreshView
+     */
     @Override
     public void onPullDownToRefresh(PullToRefreshBase refreshView) {
         updateDowmFlag++;
@@ -287,7 +292,7 @@ public class LabelMainFragment extends BaseFragment implements AdapterView.OnIte
     }
 
     /**
-     * 下拉刷新的监听方法
+     * 上拉加载的监听方法
      * 用于去获取数据
      *
      * @param refreshView

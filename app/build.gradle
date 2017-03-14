@@ -91,4 +91,8 @@ dependencies {
      * 炫酷textview库
      */
     compile 'hanks.xyz:htextview-library:0.1.2'
+    /**
+     * 炫酷button库
+     */
+    compile 'com.sackcentury:shinebutton:0.1.6'
 }

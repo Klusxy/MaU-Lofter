@@ -69,4 +69,12 @@ public class URLConstants {
      * 用户好友文章列表
      */
     public static final String USER_FRIEND_ARTICLE_LIST = "user/rss/";
+    /**
+     * 关注
+     */
+    public static final String FOLLOW_USER = "user/follow";
+    /**
+     * 取消关注
+     */
+    public static final String CANCLE_FOLLOW_USER = "/user/unfollow";
 }

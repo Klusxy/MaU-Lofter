@@ -56,8 +56,18 @@ public class UserDetailParser extends BeanParser {
                 }
                 articleEntityList.add(articleEntity);
             }
-
             userEntity.setArticleEntityList(articleEntityList);
+            //用户的关注用户集合
+            JSONArray followArr = userObject.getJSONArray("user_follow");
+            List<UserEntity> followList = new ArrayList<>();
+            for (int i = 0; i < followArr.length(); i++) {
+                JSONObject followUserObject = followArr.getJSONObject(i);
+                String followUserId = followUserObject.getString("id");
+                UserEntity followUserEntity = new UserEntity();
+                followUserEntity.setUserid(Integer.parseInt(followUserId));
+                followList.add(followUserEntity);
+            }
+            userEntity.setFollowUserList(followList);
             data.setUserEntity(userEntity);
         } catch (JSONException e) {
             e.printStackTrace();

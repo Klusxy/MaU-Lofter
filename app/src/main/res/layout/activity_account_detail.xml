@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF">
+
     <RelativeLayout
         android:id="@+id/rl_user_top"
         android:layout_width="wrap_content"
@@ -29,14 +30,14 @@
             android:layout_height="90dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
+
         <TextView
             android:id="@+id/tv_account_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_account_user_img"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="测试用户"/>
+            android:layout_marginTop="10dp" />
 
         <ImageView
             android:layout_width="92dp"
@@ -45,35 +46,82 @@
             android:layout_centerVertical="true"
             android:background="@drawable/account_user_circle_img_bg" />
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/iv_account_user_img">
+
+            <com.sackcentury.shinebuttonlib.ShineButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/btn_account_user_follow"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:allow_random_color="true"
+                app:siShape="@raw/heart"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tv_account_user_follow_flag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未关注"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/btn_account_user_follow"
+                android:textColor="#000"
+                android:layout_marginTop="5dp"
+                android:textSize="8sp"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
         <oracle.mau.view.DynamicWave
             android:id="@+id/dw_user"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true" />
     </RelativeLayout>
+
     <TextView
         android:id="@+id/tv_fa_article_flag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_user_top"
-        android:text="我的文章"
-        android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:paddingLeft="20dp"
-        />
+        android:paddingTop="10dp"
+        android:text="我的文章" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tv_fa_article_flag"
-        android:background="#EEE"
-        >
+        android:background="#FFF">
+
         <TextView
             android:id="@+id/tv_fa_article_hiden_flag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="暂无文章"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:visibility="gone"/>
+            android:layout_centerVertical="true"
+            android:text="暂无文章"
+            android:visibility="gone" />
+
+        <GridView
+            android:id="@+id/gv_aad_article"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:horizontalSpacing="3dp"
+            android:numColumns="4"
+            android:verticalSpacing="3dp">
+
+        </GridView>
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_aad_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/user_data_back_selector" />
 </RelativeLayout>
