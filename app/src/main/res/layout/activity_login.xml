@@ -1,47 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#7adfb8">
+    <!--<EditText-->
+    <!--android:id="@+id/edit_login_tel"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:hint="请输入手机号码"-->
+    <!--android:layout_marginLeft="25dp"-->
+    <!--android:layout_marginRight="25dp"-->
+    <!--android:layout_marginTop="10dip"-->
+    <!--android:textColor="#727272"/>-->
+    <!--<EditText-->
+    <!--android:id="@+id/edit_login_pwd"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:hint="请输入密码"-->
+    <!--android:layout_marginLeft="25dp"-->
+    <!--android:layout_marginRight="25dp"-->
+    <!--android:layout_marginTop="10dip"-->
+    <!--android:textColor="#727272"/>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="#DDDDDD"-->
+    <!--android:textSize="20sp"-->
+    <!--android:text="登  录"-->
+    <!--/>-->
+    <!--<Button-->
+    <!--android:id="@+id/btn_register"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="注册新用户"-->
+    <!--android:background="@null"-->
+    <!--android:layout_gravity="right"-->
+    <!--android:layout_marginRight="10dp"/>-->
     <include
-        android:id="@+id/header_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/head_login" />
-    <EditText
-        android:id="@+id/edit_login_tel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入手机号码"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="10dip"
-        android:textColor="#727272"/>
-    <EditText
-        android:id="@+id/edit_login_pwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入密码"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="10dip"
-        android:textColor="#727272"/>
+        android:id="@+id/main_title"
+        layout="@layout/title_layout" />
 
-    <Button
-        android:id="@+id/button"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#DDDDDD"
-        android:textSize="20sp"
-        android:text="登  录"
-        />
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="wrap_content"
+        android:layout_below="@+id/main_title"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/project_detail_cir" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:gravity="center"
+            android:text="MaU"
+            android:textColor="#ffffff"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="兴趣牵动着 Me And U"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="注册新用户"
-        android:background="@null"
-        android:layout_gravity="right"
-        android:layout_marginRight="10dp"/>
+        android:layout_centerInParent="true">
 
+        <include
+            android:id="@+id/input_layout"
+            layout="@layout/input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="130dip" />
 
-</LinearLayout>
+        <include
+            android:id="@+id/layout_progress"
+            layout="@layout/layout_progress"
+            android:layout_width="match_parent"
+            android:layout_height="130dip"
+            android:visibility="gone" />
+
+        <TextView
+
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_layout"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dip"
+            android:background="@drawable/text_bg"
+            android:gravity="center"
+            android:paddingBottom="2dip"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip"
+            android:paddingTop="2dip"
+            android:text="Login"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

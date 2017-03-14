@@ -97,13 +97,15 @@
         <activity android:name=".main.message.mqtt.ChatActivity" />
         <!--登录注册界面-->
         <activity android:name=".main.loginAndregister.FirstActivity">
+
+        </activity>
+        <activity android:name=".main.loginAndregister.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.loginAndregister.LoginActivity" />
         <activity android:name=".main.loginAndregister.RegisterActivity" />
         <activity android:name=".main.loginAndregister.ConfirmationActivity" />
         <activity android:name=".main.loginAndregister.UserInfoActivity" />

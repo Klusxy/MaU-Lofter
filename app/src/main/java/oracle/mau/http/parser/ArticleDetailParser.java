@@ -66,20 +66,20 @@ public class ArticleDetailParser extends BeanParser {
             e.setArticleTag(labelTagEntity);
             //评论实体集合
             List<CommentEntity> commentEntityList = new ArrayList<>();
-            JSONArray commentArr = jsonObject.getJSONArray("comments");
+            JSONArray commentArr = jsonObject.getJSONArray("comment");
             for (int i = 0 ;i <commentArr.length() ; i++) {
                 CommentEntity commentEntity = new CommentEntity();
                 JSONObject commentObject = commentArr.getJSONObject(i);
-                String comment_id = commentObject.getString("comment_id");
-                String comment_user_id = commentObject.getString("user_id");
-                String comment_article_id = commentObject.getString("article_id");
+                String comment_id = commentObject.getString("id");
                 String create_time = commentObject.getString("create_time");
                 String comment_content = commentObject.getString("comment_content");
+                String comment_user_name = commentObject.getString("username");
+                String comment_user_img = commentObject.getString("user_img");
                 commentEntity.setCommentId(Integer.parseInt(comment_id));
                 commentEntity.setCommentContent(comment_content);
                 commentEntity.setCommentDate(create_time);
-                commentEntity.setUserId(Integer.parseInt(comment_user_id));
-                commentEntity.setArticleId(Integer.parseInt(comment_article_id));
+                commentEntity.setUserName(comment_user_name);
+                commentEntity.setUserImg(comment_user_img);
                 commentEntityList.add(commentEntity);
             }
             e.setCommentEntityList(commentEntityList);
