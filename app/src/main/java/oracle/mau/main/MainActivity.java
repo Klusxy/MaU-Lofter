@@ -37,6 +37,7 @@ import oracle.mau.main.camera.activity.ReleaseArticleActivity;
 import oracle.mau.main.camera.constant.PhotoConstant;
 import oracle.mau.main.camera.utils.FileUtils;
 import oracle.mau.main.home.HomeFragment;
+import oracle.mau.main.home.other.HomeNewFragment;
 import oracle.mau.main.label.fragment.LabelFragment;
 import oracle.mau.main.message.MessageFragment;
 import oracle.mau.view.BottomMenuDialog;
@@ -166,7 +167,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.rb_main_home:
-                replaceFragment(new HomeFragment(), R.id.fl_main_fragment);
+                replaceFragment(new HomeNewFragment(), R.id.fl_main_fragment);
                 break;
             case R.id.rb_main_label:
                 replaceFragment(new LabelFragment(), R.id.fl_main_fragment);

@@ -65,4 +65,8 @@ public class URLConstants {
      * 推荐详情
      */
     public static final String RECOMMEND_DETAIL = "article/getArticlesByTag/";
+    /**
+     * 用户好友文章列表
+     */
+    public static final String USER_FRIEND_ARTICLE_LIST = "user/rss/";
 }
