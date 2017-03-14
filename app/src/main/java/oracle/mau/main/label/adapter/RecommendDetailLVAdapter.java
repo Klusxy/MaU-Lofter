@@ -93,25 +93,26 @@ public class RecommendDetailLVAdapter extends BaseAdapter {
         /**
          * 圆形头像
          */
-//        ImageUtils.getBitmapUtils(context).display(vh.iv_rd_lv_item_user_img, list.get(position).getArticleUser().getUserpic(), new BitmapLoadCallBack<ImageView>() {
-//            @Override
-//            public void onLoadCompleted(ImageView imageView, String s, Bitmap bitmap, BitmapDisplayConfig bitmapDisplayConfig, BitmapLoadFrom bitmapLoadFrom) {
-//                Bitmap circleBm = ImageUtils.circleBitmap(bitmap);
-//                imageView.setImageBitmap(circleBm);
-//            }
-//
-//            @Override
-//            public void onLoadFailed(ImageView imageView, String s, Drawable drawable) {
-//
-//            }
-//        });
-//        vh.iv_rd_lv_item_user_img.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context, "头像点击事件", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        vh.tv_rd_lv_item_user_name.setText(list.get(position).getArticleUser().getUsername());
+        ImageUtils.getBitmapUtils(context).display(vh.iv_rd_lv_item_user_img, list.get(position).getArticleUser().getUserpic(), new BitmapLoadCallBack<ImageView>() {
+            @Override
+            public void onLoadCompleted(ImageView imageView, String s, Bitmap bitmap, BitmapDisplayConfig bitmapDisplayConfig, BitmapLoadFrom bitmapLoadFrom) {
+                Bitmap circleBm = ImageUtils.circleBitmap(bitmap);
+                imageView.setImageBitmap(circleBm);
+            }
+
+            @Override
+            public void onLoadFailed(ImageView imageView, String s, Drawable drawable) {
+
+            }
+        });
+        vh.iv_rd_lv_item_user_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "头像点击事件", Toast.LENGTH_SHORT).show();
+            }
+        });
+        vh.tv_rd_lv_item_user_name.setText(list.get(position).getArticleUser().getUsername());
+
         vh.tv_rd_lv_item_article_content.setText(list.get(position).getArticleContent());
         vh.tv_rd_lv_item_tag_name.setText(list.get(position).getArticleTag().getTagTitle());
         vh.tv_rd_lv_item_article_location.setText(list.get(position).getArticleLocation());

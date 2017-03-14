@@ -31,7 +31,7 @@ import oracle.mau.http.parser.HotUserParser;
 import oracle.mau.main.account.activity.AccountDetailActivity;
 import oracle.mau.main.label.activity.ArticleDetailActivity;
 import oracle.mau.main.label.adapter.LabelMainRecommendUserGVAdapter;
-import oracle.mau.main.label.adapter.LabelMessageRecommendGVAdapter;
+import oracle.mau.main.label.adapter.LabelMessageArticleGVAdapter;
 import oracle.mau.main.label.adapter.TagGalleryVPAdapter;
 import oracle.mau.main.label.view.TouchViewPager;
 import oracle.mau.utils.ScreenUtils;
@@ -144,12 +144,12 @@ public class LabelMainFragment extends BaseFragment implements AdapterView.OnIte
      * 初始化文章推荐网格
      */
     private void initArticleRecommendGV() {
-        LabelMessageRecommendGVAdapter messageRecommendGVAdapter = null;
+        LabelMessageArticleGVAdapter messageRecommendGVAdapter = null;
         if (updateUpFlag == 1) {
             /**
              * 设置适配器
              */
-            messageRecommendGVAdapter = new LabelMessageRecommendGVAdapter(mContext, articleList);
+            messageRecommendGVAdapter = new LabelMessageArticleGVAdapter(mContext, articleList);
             gv_label_main_article.setAdapter(messageRecommendGVAdapter);
         } else {
             /**

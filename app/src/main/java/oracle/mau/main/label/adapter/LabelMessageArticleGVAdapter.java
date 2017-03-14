@@ -26,12 +26,12 @@ import oracle.mau.view.XCRoundRectImageView;
  * Created by 田帅 on 2017/3/13.
  */
 
-public class LabelMessageRecommendGVAdapter extends BaseAdapter {
+public class LabelMessageArticleGVAdapter extends BaseAdapter {
 
     private Context context;
     private List<ArticleEntity> articleList;
 
-    public LabelMessageRecommendGVAdapter(Context context, List<ArticleEntity> articleList) {
+    public LabelMessageArticleGVAdapter(Context context, List<ArticleEntity> articleList) {
         this.context = context;
         this.articleList = articleList;
     }
@@ -64,6 +64,7 @@ public class LabelMessageRecommendGVAdapter extends BaseAdapter {
         }
         int screenWidth = ScreenUtils.getScreenWidth(context);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(screenWidth/4,screenWidth/4);
+        vh.iv_gv_item_label_main_article_img.setScaleType(ImageView.ScaleType.FIT_XY);
         vh.iv_gv_item_label_main_article_img.setLayoutParams(lp);
         ImageUtils.getBitmapUtils(context).display(vh.iv_gv_item_label_main_article_img, articleList.get(position).getArticleImg(), new BitmapLoadCallBack<ImageView>() {
             @Override
