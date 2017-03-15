@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import oracle.mau.http.common.HttpServer;
 import oracle.mau.http.constants.URLConstants;
 import oracle.mau.http.data.HotUserData;
 import oracle.mau.http.parser.HotUserParser;
+import oracle.mau.main.account.activity.AccountDetailActivity;
 import oracle.mau.main.label.adapter.SearchUserAdapter;
 import oracle.mau.main.label.constants.BroConstants;
 import oracle.mau.utils.DensityUtils;
@@ -32,7 +34,7 @@ import oracle.mau.utils.DensityUtils;
  * Created by 田帅 on 2017/3/5.
  */
 
-public class LabelSearchUserDetailFragment extends BaseFragment {
+public class LabelSearchUserDetailFragment extends BaseFragment implements AdapterView.OnItemClickListener{
     /**
      * 广播
      */
@@ -59,6 +61,7 @@ public class LabelSearchUserDetailFragment extends BaseFragment {
         rl_flsd_top = (RelativeLayout) rootView.findViewById(R.id.rl_search_detail_user_top);
         tv_flsd_flag = (TextView) rootView.findViewById(R.id.tv_search_detail_user_flag);
         lv_label_search_detail = (ListView) rootView.findViewById(R.id.lv_search_detail_user);
+        lv_label_search_detail.setOnItemClickListener(this);
         avi = (AVLoadingIndicatorView) rootView.findViewById(R.id.avi);
         //注册广播
         mContext.registerReceiver(uub, new IntentFilter(BroConstants.BRO_UPDATE_USER));
@@ -68,6 +71,17 @@ public class LabelSearchUserDetailFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         mContext.unregisterReceiver(uub);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        /**
+         * 跳转之前
+         * 发送广播告知主碎片关闭软键盘
+         */
+        Intent broIntent = new Intent(LabelFragment.LABEL_MAIN_CLOSE_KEY);
+        getActivity().sendBroadcast(broIntent);
+        AccountDetailActivity.actionStart(mContext,userList.get(position).getUserid());
     }
 
     private class UpdateUIBrocast extends BroadcastReceiver {

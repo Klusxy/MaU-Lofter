@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ import oracle.mau.utils.DensityUtils;
  * Created by 田帅 on 2017/3/13.
  */
 
-public class LabelSearchSpecialDetailFragment extends BaseFragment {
+public class LabelSearchSpecialDetailFragment extends BaseFragment implements AdapterView.OnItemClickListener{
     /**
      * 广播
      */
@@ -51,6 +52,17 @@ public class LabelSearchSpecialDetailFragment extends BaseFragment {
      * 数据源
      */
     private List<SpecialEntity> specialList;
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        /**
+         * 跳转之前
+         * 发送广播告知主碎片关闭软键盘
+         */
+        Intent broIntent = new Intent(LabelFragment.LABEL_MAIN_CLOSE_KEY);
+        getActivity().sendBroadcast(broIntent);
+
+    }
 
     private class UpdateUIBrocast extends BroadcastReceiver {
 
@@ -136,6 +148,7 @@ public class LabelSearchSpecialDetailFragment extends BaseFragment {
         rl_search_detail_special_top = (RelativeLayout) rootView.findViewById(R.id.rl_search_detail_special_top);
         tv_search_detail_special_flag = (TextView) rootView.findViewById(R.id.tv_search_detail_special_flag);
         lv_search_detail_special = (ListView) rootView.findViewById(R.id.lv_search_detail_special);
+        lv_search_detail_special.setOnItemClickListener(this);
         avi = (AVLoadingIndicatorView) rootView.findViewById(R.id.avi);
         //注册广播
         mContext.registerReceiver(uub, new IntentFilter(BroConstants.BRO_UPDATE_SPECIAL));

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -117,9 +118,6 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
     }
 
     private void updateUI() {
-        if (mDetailUser != null) {
-            toast(mDetailUser.getUserid() + "");
-        }
         //头像
         if (mDetailUser != null) {
             if (!JudgeUtils.isEmpty(mDetailUser.getUserpic())) {
@@ -136,7 +134,6 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
                     }
                 });
             }
-
             tv_account_user_name.setText(mDetailUser.getUsername());
             if (mDetailUser.getArticleEntityList().size() == 0 || mDetailUser.getArticleEntityList() == null) {
                 tv_fa_article_hiden_flag.setVisibility(View.VISIBLE);
@@ -151,6 +148,7 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
             //判断是否关注
             if (followUserList != null) {
                 for (UserEntity u : followUserList) {
+                    Log.d("dasdasd","关注好友的id" + u.getUserid());
                     //判断自己的id 是否 在详情用户的好友列表中
                     if (mUser.getUserid() == u.getUserid()) {
                         isFollow = true;
@@ -226,6 +224,8 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
      * 关注
      */
     private void follow(Map<String,Object> map) {
+        Log.d("dasdasd","关注：   当前用户id ：  " + map.get("user_id"));
+        Log.d("dasdasd","关注：   目标用户id ：  " + map.get("follew_user_id"));
         String url = URLConstants.BASE_URL + URLConstants.FOLLOW_USER;
         HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST, map, null, url, new Callback() {
             @Override
@@ -247,6 +247,8 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
      * 取消关注
      */
     private void cancleFollow(Map<String,Object> map) {
+        Log.d("dasdasd","取消关注：   当前用户id ：  " + map.get("user_id"));
+        Log.d("dasdasd","取消关注：   目标用户id ：  " + map.get("follew_user_id"));
         String url = URLConstants.BASE_URL + URLConstants.CANCLE_FOLLOW_USER;
         HttpServer.sendPostRequest(HttpServer.HTTPSERVER_DELETE, map, null, url, new Callback() {
             @Override

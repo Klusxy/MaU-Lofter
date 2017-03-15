@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,16 +26,18 @@ import oracle.mau.http.common.HttpServer;
 import oracle.mau.http.constants.URLConstants;
 import oracle.mau.http.data.LabelTagData;
 import oracle.mau.http.parser.TagParser;
+import oracle.mau.main.label.activity.RecommendDetailActivity;
 import oracle.mau.main.label.adapter.SearchLabelVPAdapter;
 import oracle.mau.main.label.adapter.SearchTagAdapter;
 import oracle.mau.main.label.constants.BroConstants;
 import oracle.mau.utils.DensityUtils;
+import oracle.mau.utils.KeyBoardUtils;
 
 /**
  * Created by 田帅 on 2017/3/13.
  */
 
-public class LabelSearchTagDetailFragment extends BaseFragment {
+public class LabelSearchTagDetailFragment extends BaseFragment implements AdapterView.OnItemClickListener{
 
     /**
      * 广播
@@ -51,6 +54,19 @@ public class LabelSearchTagDetailFragment extends BaseFragment {
      * 数据源
      */
     private List<LabelTagEntity> tagList;
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), RecommendDetailActivity.class);
+        intent.putExtra("tag_id",tagList.get(position).getTagId());
+        /**
+         * 跳转之前
+         * 发送广播告知主碎片关闭软键盘
+         */
+        Intent broIntent = new Intent(LabelFragment.LABEL_MAIN_CLOSE_KEY);
+        getActivity().sendBroadcast(broIntent);
+        startActivity(intent);
+    }
 
     private class UpdateUIBrocast extends BroadcastReceiver {
 
@@ -134,6 +150,7 @@ public class LabelSearchTagDetailFragment extends BaseFragment {
         tv_search_detail_tag_flag = (TextView) rootView.findViewById(R.id.tv_search_detail_tag_flag);
         rl_search_detail_tag_top = (RelativeLayout) rootView.findViewById(R.id.rl_search_detail_tag_top);
         lv_search_detail_tag = (ListView) rootView.findViewById(R.id.lv_search_detail_tag);
+        lv_search_detail_tag.setOnItemClickListener(this);
         avi = (AVLoadingIndicatorView) rootView.findViewById(R.id.avi);
         //注册广播
         mContext.registerReceiver(uub, new IntentFilter(BroConstants.BRO_UPDATE_TAG));

@@ -10,6 +10,16 @@ import java.util.List;
 public class UserFriendArticleEntity {
     private int userId;
     private String userName;
+    private String userImg;
+
+    public String getUserImg() {
+        return userImg;
+    }
+
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
+    }
+
     private List<ArticleEntity> articleEntityList;
 
     public int getUserId() {

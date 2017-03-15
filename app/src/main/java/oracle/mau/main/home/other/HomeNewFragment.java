@@ -87,11 +87,13 @@ public class HomeNewFragment extends BaseFragment implements PullToRefreshBase.O
         for (UserFriendArticleEntity userFriendArticleEntity : list) {
             int userId = userFriendArticleEntity.getUserId();
             String userName = userFriendArticleEntity.getUserName();
+            String userImg = userFriendArticleEntity.getUserImg();
             List<ArticleEntity> aList = userFriendArticleEntity.getArticleEntityList();
             for (ArticleEntity articleEntity : aList) {
                 UserEntity u = new UserEntity();
                 u.setUserid(userId);
                 u.setUsername(userName);
+                u.setUserpic(userImg);
                 articleEntity.setArticleUser(u);
                 articleList.add(articleEntity);
             }

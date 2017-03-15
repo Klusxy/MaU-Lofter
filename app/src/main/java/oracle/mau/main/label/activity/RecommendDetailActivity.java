@@ -73,9 +73,6 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
          * 得到所有的标签集合
          */
         this.tagList = (List<LabelTagNoListEntity>) getIntent().getSerializableExtra("all");
-        for (LabelTagNoListEntity ll : tagList) {
-            Log.d("asdasda", ll.getTagTitle() + "  1111  \n");
-        }
         /**
          * 得到传过来的标签实体
          */
@@ -84,6 +81,18 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
          * 得到position
          */
         position = getIntent().getIntExtra("position", -1);
+        //初始化假数据，如果是从搜索界面跳过来时
+        if (tagList == null) {
+            int fakeTagId = getIntent().getIntExtra("tag_id",-1);
+            initFakeData();
+            for (int i = 0 ;i < tagList.size() ; i++) {
+                LabelTagNoListEntity le = tagList.get(i);
+                if (le.getTagId() == fakeTagId) {
+                    position = i;
+                    break;
+                }
+            }
+        }
 
         iv_rd_back = (ImageView) findViewById(R.id.iv_rd_back);
         iv_rd_back.setOnClickListener(this);
@@ -95,6 +104,52 @@ public class RecommendDetailActivity extends BaseActivity implements View.OnClic
         tv_rd_adjust_position_flag = (TextView) findViewById(R.id.tv_rd_adjust_position_flag);
         //初始化选项卡和viewpager
         initTabCategoryWithVP();
+    }
+
+    /**
+     * 初始化假数据
+     */
+    private void initFakeData() {
+        tagList = new ArrayList<>();
+        LabelTagNoListEntity tagEntity1 = new LabelTagNoListEntity();
+        tagEntity1.setTagId(1);
+        tagEntity1.setTagTitle("运动");
+        tagList.add(tagEntity1);
+
+        LabelTagNoListEntity tagEntity2 = new LabelTagNoListEntity();
+        tagEntity2.setTagId(2);
+        tagEntity2.setTagTitle("电影");
+        tagList.add(tagEntity2);
+
+        LabelTagNoListEntity tagEntity3 = new LabelTagNoListEntity();
+        tagEntity3.setTagId(3);
+        tagEntity3.setTagTitle("娱乐");
+        tagList.add(tagEntity3);
+
+        LabelTagNoListEntity tagEntity4 = new LabelTagNoListEntity();
+        tagEntity4.setTagId(4);
+        tagEntity4.setTagTitle("萌宠");
+        tagList.add(tagEntity4);
+
+        LabelTagNoListEntity tagEntity5 = new LabelTagNoListEntity();
+        tagEntity5.setTagId(5);
+        tagEntity5.setTagTitle("美食");
+        tagList.add(tagEntity5);
+
+        LabelTagNoListEntity tagEntity6 = new LabelTagNoListEntity();
+        tagEntity6.setTagId(6);
+        tagEntity6.setTagTitle("旅行");
+        tagList.add(tagEntity6);
+
+        LabelTagNoListEntity tagEntity7 = new LabelTagNoListEntity();
+        tagEntity7.setTagId(7);
+        tagEntity7.setTagTitle("设计");
+        tagList.add(tagEntity7);
+
+        LabelTagNoListEntity tagEntity8 = new LabelTagNoListEntity();
+        tagEntity8.setTagId(8);
+        tagEntity8.setTagTitle("女神");
+        tagList.add(tagEntity8);
     }
 
     /**

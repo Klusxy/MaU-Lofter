@@ -1,6 +1,9 @@
 package oracle.mau.main.label.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -46,6 +49,21 @@ public class LabelFragment extends BaseFragment implements View.OnClickListener,
     private RelativeLayout rl_label_top_left;
 
 
+    /**
+     * 广播，用来关闭软键盘
+     */
+    public static final String LABEL_MAIN_CLOSE_KEY = "com.tianshuai.close";
+    private LFCloseKeyBroadcast ckb = new LFCloseKeyBroadcast();
+
+    private class LFCloseKeyBroadcast extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            KeyBoardUtils.closeKeybord(et_label_search,getContext());
+        }
+    }
+
+
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_label;
@@ -71,6 +89,19 @@ public class LabelFragment extends BaseFragment implements View.OnClickListener,
         rl_label_top_left.setLayoutParams(lp);
         iv_label_add_attention = (ImageView) rootView.findViewById(R.id.iv_label_add_attention);
         iv_label_add_attention.setOnClickListener(this);
+        /**
+         * 注册广播
+         */
+        getActivity().registerReceiver(ckb,new IntentFilter(LABEL_MAIN_CLOSE_KEY));
+    }
+
+    /**
+     * 防止内存泄露  将广播反注册掉
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(ckb);
     }
 
     @Override
