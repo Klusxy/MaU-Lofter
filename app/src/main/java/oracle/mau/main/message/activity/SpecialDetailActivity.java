@@ -1,14 +1,26 @@
 package oracle.mau.main.message.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
 import oracle.mau.entity.SpecialEntity;
+import oracle.mau.http.bean.BeanData;
+import oracle.mau.http.common.Callback;
+import oracle.mau.http.common.HttpServer;
+import oracle.mau.http.constants.URLConstants;
+import oracle.mau.http.data.SpecialListData;
+import oracle.mau.http.parser.SpecialListParser;
 import oracle.mau.utils.ImageUtils;
 
 /**
@@ -24,6 +36,7 @@ public class SpecialDetailActivity extends BaseActivity implements View.OnClickL
     private ImageView img3;
     private Button btnOrder;
     private SpecialEntity specialEntity;
+    private ArrayList<SpecialEntity> listSpecial=new ArrayList<>();
     @Override
     public int getLayoutId() {
         return R.layout.activity_special_detail;
@@ -31,20 +44,57 @@ public class SpecialDetailActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void initView() {
-        Intent intent=getIntent();
-        specialEntity=(SpecialEntity) intent.getSerializableExtra("specialEntity");
+        sendMessage();
         btnBack=(ImageView)findViewById(R.id.iv_ad_back);
         title=(TextView) findViewById(R.id.tv_ad_user_name_top);
-        title.setText(specialEntity.getSpecialTitle());
+
         content=(TextView) findViewById(R.id.sp_detail_content);
-        content.setText(specialEntity.getSpecialContent());
+
         img1=(ImageView) findViewById(R.id.sp_img1);
-        ImageUtils.getBitmapUtils(this).display(img1,specialEntity.getPiclist().get(0));
+
         img2=(ImageView) findViewById(R.id.sp_img2);
-        ImageUtils.getBitmapUtils(this).display(img2,specialEntity.getPiclist().get(1));
+
         img3=(ImageView) findViewById(R.id.sp_img3);
-        ImageUtils.getBitmapUtils(this).display(img3,specialEntity.getPiclist().get(2));
+
         btnOrder=(Button)findViewById(R.id.sp_detailbtn_order);
+    }
+
+
+
+    public void sendMessage(){
+        Map<String, Object> params = new HashMap<String, Object>();
+        Intent intent=getIntent();
+        String specialid = intent.getStringExtra("specialid");
+;        params.put("special_id", specialid);
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, params, new SpecialListParser(), URLConstants.BASE_URL + URLConstants.gET_SPECIAL_LIST, new Callback() {
+
+
+            @Override
+            public void success(BeanData beanData) {
+                SpecialListData uData = (SpecialListData) beanData;
+                listSpecial=uData.getSpecialEntityList();
+                specialEntity=listSpecial.get(0);
+                title.setText(specialEntity.getSpecialTitle());
+                content.setText(specialEntity.getSpecialContent());
+                ImageUtils.getBitmapUtils(SpecialDetailActivity.this).display(img1,specialEntity.getPiclist().get(0));
+                ImageUtils.getBitmapUtils(SpecialDetailActivity.this).display(img2,specialEntity.getPiclist().get(1));
+                ImageUtils.getBitmapUtils(SpecialDetailActivity.this).display(img3,specialEntity.getPiclist().get(2));
+            }
+
+
+            @Override
+            public void failure(String error) {
+                Toast.makeText(SpecialDetailActivity.this,error,Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
+
+    public static  void actionGetid(Context context,int specialid){
+        Intent intentgetDetail=new Intent(context,SpecialDetailActivity.class);
+        intentgetDetail.putExtra("specialid",specialid);
+        context.startActivity(intentgetDetail);
     }
 
     @Override

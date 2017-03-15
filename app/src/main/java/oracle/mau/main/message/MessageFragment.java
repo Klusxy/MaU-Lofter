@@ -33,7 +33,7 @@ public class MessageFragment  extends Fragment {
     private TabLayout tab;
     private ViewPager viewpager;
     private MsgFragmentPageAdapter adapter;
-    public static final String[] tabTitle = new String[]{"动态", "专题"};
+    public static final String[] tabTitle = new String[]{ "专题"};
     @Nullable
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,12 +45,13 @@ public class MessageFragment  extends Fragment {
         List<Fragment> fragments = new ArrayList<>();
         for (int i = 0; i < tabTitle.length; i++) {
             if(i==0) {
-                fragments.add(new DynamicFragment());
-            }
-
-            if(i==1) {
+               // fragments.add(new DynamicFragment());
                 fragments.add(new TalkFragment());
             }
+
+           /* if(i==1) {
+                fragments.add(new TalkFragment());
+            }*/
 
         }
         adapter = new MsgFragmentPageAdapter(getChildFragmentManager(), fragments);

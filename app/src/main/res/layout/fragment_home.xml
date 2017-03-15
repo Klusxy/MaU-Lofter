@@ -16,7 +16,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="47dp"
-        app:tabIndicatorColor="#37d43a"
+
         >
     </android.support.design.widget.TabLayout>
     <ImageView
