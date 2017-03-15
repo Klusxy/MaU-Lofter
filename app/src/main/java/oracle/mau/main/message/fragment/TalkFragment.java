@@ -183,10 +183,11 @@ public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefre
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-            Intent intentSpecial=new Intent(getActivity(), SpecialDetailActivity.class);
+            /*Intent intentSpecial=new Intent(getActivity(), SpecialDetailActivity.class);
 
-            intentSpecial.putExtra("specialid",listSpecial.get(i).getSpecialId());
-            startActivity(intentSpecial);
+            intentSpecial.putExtra("special_id",listSpecial.get(i).getSpecialId());
+            startActivity(intentSpecial);*/
+            SpecialDetailActivity.actionGetid(getActivity(),listSpecial.get(i).getSpecialId()+"");
 
     }
 }

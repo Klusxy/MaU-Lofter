@@ -2,6 +2,7 @@ package oracle.mau.main.message.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -62,16 +63,17 @@ public class SpecialDetailActivity extends BaseActivity implements View.OnClickL
 
 
     public void sendMessage(){
-        Map<String, Object> params = new HashMap<String, Object>();
+
         Intent intent=getIntent();
-        String specialid = intent.getStringExtra("specialid");
-;        params.put("special_id", specialid);
-        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, params, new SpecialListParser(), URLConstants.BASE_URL + URLConstants.gET_SPECIAL_LIST, new Callback() {
+        String specialid = intent.getStringExtra("special_id");
+;
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, new SpecialListParser(), URLConstants.BASE_URL + URLConstants.gET_SPECIAL_DETAIL+specialid, new Callback() {
 
 
             @Override
             public void success(BeanData beanData) {
                 SpecialListData uData = (SpecialListData) beanData;
+               // Log.d("vvvvv",uData+"");
                 listSpecial=uData.getSpecialEntityList();
                 specialEntity=listSpecial.get(0);
                 title.setText(specialEntity.getSpecialTitle());
@@ -91,9 +93,9 @@ public class SpecialDetailActivity extends BaseActivity implements View.OnClickL
 
     }
 
-    public static  void actionGetid(Context context,int specialid){
+    public static  void actionGetid(Context context,String  specialid){
         Intent intentgetDetail=new Intent(context,SpecialDetailActivity.class);
-        intentgetDetail.putExtra("specialid",specialid);
+        intentgetDetail.putExtra("special_id",specialid);
         context.startActivity(intentgetDetail);
     }
 
