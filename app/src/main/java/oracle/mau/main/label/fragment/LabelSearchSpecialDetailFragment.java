@@ -30,6 +30,7 @@ import oracle.mau.http.parser.SpecialParser;
 import oracle.mau.main.label.adapter.SearchSpecialAdapter;
 import oracle.mau.main.label.adapter.SearchUserAdapter;
 import oracle.mau.main.label.constants.BroConstants;
+import oracle.mau.main.message.activity.SpecialDetailActivity;
 import oracle.mau.utils.DensityUtils;
 
 /**
@@ -61,7 +62,7 @@ public class LabelSearchSpecialDetailFragment extends BaseFragment implements Ad
          */
         Intent broIntent = new Intent(LabelFragment.LABEL_MAIN_CLOSE_KEY);
         getActivity().sendBroadcast(broIntent);
-
+        SpecialDetailActivity.actionGetid(getContext(),specialList.get(position).getSpecialId());
     }
 
     private class UpdateUIBrocast extends BroadcastReceiver {

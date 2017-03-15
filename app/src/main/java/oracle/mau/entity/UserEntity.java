@@ -17,16 +17,7 @@ public class UserEntity {
      */
     //文章集合
     private List<ArticleEntity> articleEntityList;
-    //关注用户集合(只存id)
-    private List<UserEntity> followUserList;
 
-    public List<UserEntity> getFollowUserList() {
-        return followUserList;
-    }
-
-    public void setFollowUserList(List<UserEntity> followUserList) {
-        this.followUserList = followUserList;
-    }
 
     public List<ArticleEntity> getArticleEntityList() {
         return articleEntityList;

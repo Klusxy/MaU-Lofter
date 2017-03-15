@@ -47,7 +47,7 @@
                         android:background="#FFF"
                         android:listSelector="@android:color/transparent"
                         android:numColumns="4"
-                        android:paddingBottom="10dp"></oracle.mau.view.GridViewForScrollView>
+                        android:layout_marginBottom="10dp"></oracle.mau.view.GridViewForScrollView>
                 </RelativeLayout>
                 <!--中部标签画廊-->
                 <oracle.mau.main.label.view.TouchViewPager
