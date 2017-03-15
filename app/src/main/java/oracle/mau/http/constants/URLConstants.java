@@ -85,4 +85,8 @@ public class URLConstants {
      * 取消关注
      */
     public static final String CANCLE_FOLLOW_USER = "/user/unfollow";
+    /**
+     * 获取该用户关注的用户
+     */
+    public static final String ATTENTION_PEOPLE= "user/followers/";
 }

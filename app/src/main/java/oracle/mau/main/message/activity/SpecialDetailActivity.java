@@ -46,7 +46,8 @@ public class SpecialDetailActivity extends BaseActivity implements View.OnClickL
     @Override
     public void initView() {
         sendMessage();
-        btnBack=(ImageView)findViewById(R.id.iv_ad_back);
+        btnBack=(ImageView)findViewById(R.id.detail_ad_back);
+        btnBack.setOnClickListener(this);
         title=(TextView) findViewById(R.id.tv_ad_user_name_top);
 
         content=(TextView) findViewById(R.id.sp_detail_content);
@@ -57,7 +58,7 @@ public class SpecialDetailActivity extends BaseActivity implements View.OnClickL
 
         img3=(ImageView) findViewById(R.id.sp_img3);
 
-        btnOrder=(Button)findViewById(R.id.sp_detailbtn_order);
+
     }
 
 
@@ -102,11 +103,10 @@ public class SpecialDetailActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.iv_ad_back:
+            case R.id.detail_ad_back:
                 finish();
                 break;
-            case R.id.sp_detailbtn_order:
-                break;
+
         }
     }
 }

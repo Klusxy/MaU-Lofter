@@ -49,9 +49,6 @@ import oracle.mau.view.ListViewForScrollView;
 public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefreshListener<ScrollView> ,AdapterView.OnItemClickListener{
 //    private ListViewForScrollView listView;
 
-    /**
-     * 标签推荐listview
-     */
     private ListViewForScrollView lv_label_main_label_recommend;
     private ArrayList<LabelRecommendEntity> lrList;
     /**
@@ -60,11 +57,7 @@ public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefre
 
     private final int LABEL_MAIN_PULL_UPDATE = 100001;
     private PullToRefreshScrollView mPullRefreshScrollView;
-    private Handler handler = new Handler() {
-        public void handleMessage(android.os.Message msg) {
-            mPullRefreshScrollView.onRefreshComplete();
-        }
-    };
+
     private ArrayList<SpecialEntity> listSpecial=new ArrayList<>();
     @Nullable
     @Override
@@ -98,6 +91,10 @@ public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefre
                 listSpecial=uData.getSpecialEntityList();
                 //初始化标签推荐listview数据
                 initLabelRecommendLVData();
+                /**
+                 * 下拉刷新返回头部
+                 */
+                mPullRefreshScrollView.onRefreshComplete();
             }
 
 
@@ -119,21 +116,7 @@ public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefre
      */
     @Override
     public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    //模拟获取数据花费4秒
-                    sleep(4000);
-                    //得到数据后不能直接在子线程中让下拉刷新头部缩回，通过handler机制告诉主线程缩回下拉刷新头部
-                    Message msg = handler.obtainMessage(LABEL_MAIN_PULL_UPDATE, "刷新成功");
-                    handler.sendMessage(msg);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        sendMessages();
     }
 
     /**

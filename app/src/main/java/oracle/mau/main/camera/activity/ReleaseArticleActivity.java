@@ -103,6 +103,7 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
          * 得到图片的路径
          */
         mImagePath = getIntent().getStringExtra("tag_image_path");
+        Log.d("shadow",mImagePath);
         mImageUri = Uri.parse(mImagePath);
         /**
          * 得到是否多选

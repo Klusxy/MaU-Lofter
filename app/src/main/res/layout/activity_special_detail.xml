@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/main_top_height">
                 <ImageView
-                    android:id="@+id/iv_ad_back"
+                    android:id="@+id/detail_ad_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -44,18 +44,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:layout_margin="7dp"
-                android:text="aaaaaaaaaaaaa"
+                android:layout_margin="10dp"
+
                 android:textSize="18sp"
                 android:layout_below="@id/rl_ad_top"
-                android:textColor="#434343"/>
+                android:textColor="#767676"/>
             <ImageView
                 android:id="@+id/sp_img1"
                 android:layout_below="@id/sp_detail_content"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_centerHorizontal="true"
-                android:src="@mipmap/ic_launcher"/>
+                />
             <ImageView
                 android:id="@+id/sp_img2"
                 android:layout_below="@id/sp_img1"
@@ -63,15 +63,17 @@
                 android:layout_height="300dp"
                 android:layout_centerHorizontal="true"
 
-                android:src="@mipmap/ic_launcher"/>
+
+                android:layout_marginTop="10dp"/>
             <ImageView
                 android:id="@+id/sp_img3"
                 android:layout_below="@id/sp_img2"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
             android:layout_centerHorizontal="true"
-                android:src="@mipmap/ic_launcher"/>
-            <Button
+
+                android:layout_marginTop="10dp"/>
+           <!-- <Button
                 android:id="@+id/sp_detailbtn_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,7 +84,7 @@
                 android:background="@drawable/button_shape_order"
                 android:layout_marginRight="10dp"
                 />
-
+-->
         </RelativeLayout>
     </ScrollView>
 

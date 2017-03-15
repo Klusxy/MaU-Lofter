@@ -23,7 +23,7 @@
                 android:id="@+id/lv_label_main_label_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_label_main_label_recommend_flag">
+                >
 
             </oracle.mau.view.ListViewForScrollView>
 

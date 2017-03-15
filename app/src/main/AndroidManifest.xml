@@ -112,9 +112,11 @@
         <activity android:name=".main.account.activity.AccountDetailActivity" />
         <!--用户界面-->
         <activity android:name=".main.account.activity.AboutUs" />
-        <!--专题详情-->
+               <!--专题详情-->
         <activity android:name=".main.message.activity.SpecialDetailActivity" />
 
+        <!--关注的用户-->
+        <activity android:name=".main.account.activity.AttentionPeople" />
 
     </application>
 
