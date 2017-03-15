@@ -62,6 +62,10 @@ public class URLConstants {
      */
     public static final String gET_SPECIAL_LIST = "special";
     /**
+     * 获取专题详情
+     */
+    public static final String gET_SPECIAL_DETAIL = "special/index/";
+    /**
      * 用户详情
      */
     public static final String USER_DETAIL = "user/index/";
