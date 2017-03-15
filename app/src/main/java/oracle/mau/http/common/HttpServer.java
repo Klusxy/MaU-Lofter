@@ -259,24 +259,10 @@ public class HttpServer {
          * DELETE请求
          */
         if (HTTPSERVER_DELETE.equals(type)) {
-            // GET方式参数拼接在URL结尾
-//                StringBuilder sb = new StringBuilder();
-//                sb.append(url).append("?");
-
             if (map != null) {
                 for (String key : map.keySet()) {
                     url = url + map.get(key).toString();
-                    //拼接url
-//                    url = url +"&"+key+"="+ map.get(key).toString();
-                    // 如果请求参数中有中文，需要进行URLEncoder编码
-//                        sb.append(key)
-//                                .append("=")
-//                                .append(URLEncoder.encode(map.get(key).toString(), "utf-8"));
-//                        sb.append("&");
                 }
-//                    sb.deleteCharAt(sb.length() - 1);
-//                    url = sb.toString();
-
                 //向服务器发送请求方法
                 httpUtils.send(HttpRequest.HttpMethod.DELETE, url, new RequestCallBack<String>() {
                     //发送请求成功

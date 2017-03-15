@@ -36,6 +36,8 @@ public class UserFriendArticleParser extends BeanParser {
                 userFriendArticleEntity.setUserId(Integer.parseInt(userId));
                 String user_name = object.getString("user_name");
                 userFriendArticleEntity.setUserName(user_name);
+                String user_img = object.getString("user_img");
+                userFriendArticleEntity.setUserImg(user_img);
                 //文章信息
                 List<ArticleEntity> articleEntityList = new ArrayList<>();
                 JSONArray articleArr = object.getJSONArray("user_articles");
