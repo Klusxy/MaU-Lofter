@@ -62,7 +62,7 @@ public class LabelSearchSpecialDetailFragment extends BaseFragment implements Ad
          */
         Intent broIntent = new Intent(LabelFragment.LABEL_MAIN_CLOSE_KEY);
         getActivity().sendBroadcast(broIntent);
-        SpecialDetailActivity.actionGetid(getContext(),specialList.get(position).getSpecialId());
+        SpecialDetailActivity.actionGetid(getContext(),specialList.get(position).getSpecialId()+"");
     }
 
     private class UpdateUIBrocast extends BroadcastReceiver {
