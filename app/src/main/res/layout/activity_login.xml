@@ -2,9 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DB6547"
+    android:background="#313A41"
     >
-    <!--android:background="#7adfb8"-->
+    <!--android:background="#7adfb8"
+    DB6547-->
     <!--<EditText-->
     <!--android:id="@+id/edit_login_tel"-->
     <!--android:layout_width="match_parent"-->
