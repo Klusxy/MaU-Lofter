@@ -42,6 +42,12 @@ public class HomeNewFragment extends BaseFragment implements PullToRefreshBase.O
     private UserEntity mUser;
     private List<UserFriendArticleEntity> list;
     private List<ArticleEntity> articleList;
+
+    /**
+     * 判断是否是第一次加载
+     */
+    private boolean isFirst = true;
+
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_home_new;
@@ -52,12 +58,16 @@ public class HomeNewFragment extends BaseFragment implements PullToRefreshBase.O
         htv_home_new_fragment_flag = (HTextView) rootView.findViewById(R.id.htv_home_new_fragment_flag);
         ptr_home_new_fragment = (PullToRefreshListView) rootView.findViewById(R.id.ptr_home_new_fragment);
         ptr_home_new_fragment.setOnRefreshListener(this);
-        /**
-         * 请求数据
-         */
-        requestData();
-        htv_home_new_fragment_flag.setAnimateType(HTextViewType.LINE);
-        htv_home_new_fragment_flag.animateText("我关注的好友文章");
+        if (isFirst) {
+            /**
+             * 请求数据
+             */
+            requestData();
+            htv_home_new_fragment_flag.setAnimateType(HTextViewType.LINE);
+            htv_home_new_fragment_flag.animateText("我关注的好友文章");
+            isFirst = false;
+        }
+
     }
 
     private void requestData() {

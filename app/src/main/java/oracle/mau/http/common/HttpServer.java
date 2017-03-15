@@ -102,7 +102,7 @@ public class HttpServer {
                         rp.addBodyParameter(key, new File((String) map.get(key)));
                     } else {
                         try {
-                            rp.setBodyEntity(new StringEntity(json.toString()));
+                            rp.setBodyEntity(new StringEntity(json.toString(), "utf-8"));
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }

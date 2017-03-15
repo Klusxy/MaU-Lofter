@@ -47,6 +47,10 @@ public class LabelFragment extends BaseFragment implements View.OnClickListener,
     private TextView tv_label_search_text;
     // 包含搜索icon和tv的相对布局  为了实现动画效果
     private RelativeLayout rl_label_top_left;
+    /**
+     * 判断是否是第一次加载
+     */
+    private boolean isFirst = true;
 
 
     /**
