@@ -102,7 +102,7 @@ public class HttpServer {
                         rp.addBodyParameter(key, new File((String) map.get(key)));
                     } else {
                         try {
-                            rp.setBodyEntity(new StringEntity(json.toString()));
+                            rp.setBodyEntity(new StringEntity(json.toString(), "utf-8"));
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
@@ -260,11 +260,19 @@ public class HttpServer {
          */
         if (HTTPSERVER_DELETE.equals(type)) {
             if (map != null) {
-                for (String key : map.keySet()) {
-                    url = url + map.get(key).toString();
+                JSONObject json = new JSONObject(map);
+//                for (String key : map.keySet()) {
+//                    url = url + map.get(key).toString();
+//                }
+                //创建一个参数对象，用来存储需要传递的参数,如果想把值传给服务器，那么就必须把值存在RequestParams中
+                RequestParams rp = new RequestParams();
+                try {
+                    rp.setBodyEntity(new StringEntity(json.toString()));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
                 }
                 //向服务器发送请求方法
-                httpUtils.send(HttpRequest.HttpMethod.DELETE, url, new RequestCallBack<String>() {
+                httpUtils.send(HttpRequest.HttpMethod.DELETE, url, rp, new RequestCallBack<String>() {
                     //发送请求成功
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {

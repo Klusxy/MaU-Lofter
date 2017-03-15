@@ -59,13 +59,16 @@ public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefre
     private PullToRefreshScrollView mPullRefreshScrollView;
 
     private ArrayList<SpecialEntity> listSpecial=new ArrayList<>();
+    /**
+     * 判断是否是第一次加载
+     */
+    private boolean isFirst = true;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_msg_talk,null);
 //        listView=(ListViewForScrollView) view.findViewById(R.id.msg_talk_listview);
         lv_label_main_label_recommend = (ListViewForScrollView) view.findViewById(R.id.lv_label_main_label_recommend);
-
 
 //        listView.setOnItemClickListener(this);
         /**
@@ -74,8 +77,12 @@ public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefre
         mPullRefreshScrollView = (PullToRefreshScrollView) view.findViewById(R.id.ptr_label_main_scrollview);
         mPullRefreshScrollView.smoothScrollTo(0, 0);//将ScrollView滚动至最顶端（自定义的listview影响下的效果）
         mPullRefreshScrollView.setOnRefreshListener(this);
-        //向服务器请求专题数据
-        sendMessages();
+        if (isFirst) {
+            //向服务器请求专题数据
+            sendMessages();
+            isFirst = false;
+        }
+
 
         return  view;
     }

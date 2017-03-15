@@ -23,12 +23,15 @@ import java.util.Map;
 
 import oracle.mau.R;
 import oracle.mau.base.BaseActivity;
+import oracle.mau.entity.FollowEntity;
 import oracle.mau.entity.UserEntity;
 import oracle.mau.http.bean.BeanData;
 import oracle.mau.http.common.Callback;
 import oracle.mau.http.common.HttpServer;
 import oracle.mau.http.constants.URLConstants;
+import oracle.mau.http.data.FollowUserData;
 import oracle.mau.http.data.UserData;
+import oracle.mau.http.parser.FollowParser;
 import oracle.mau.http.parser.UserDetailParser;
 import oracle.mau.main.label.activity.ArticleDetailActivity;
 import oracle.mau.main.label.adapter.LabelMessageArticleGVAdapter;
@@ -53,7 +56,7 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
      */
     private UserEntity mUser;
 
-    private List<UserEntity> followUserList;
+    private List<FollowEntity> followUserList;
     private boolean isFollow = false;
     /**
      * 控件
@@ -95,6 +98,53 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
          * 请求用户信息
          */
         requestData();
+
+    }
+
+    /**
+     * 请求关注信息
+     */
+    private void requestFollowData() {
+        String url = URLConstants.BASE_URL + URLConstants.USER_FOLLOWS + mUser.getUserid();
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, new FollowParser(), url, new Callback() {
+            @Override
+            public void success(BeanData beanData) {
+                FollowUserData data = (FollowUserData) beanData;
+                followUserList = data.getFollowEntityList();
+                /**
+                 * 判断是否关注
+                 */
+                judgeIsFollow();
+            }
+
+            @Override
+            public void failure(String error) {
+
+            }
+        });
+    }
+
+    /**
+     * 判断是否是关注关系
+     */
+    private void judgeIsFollow() {
+        /**
+         * 首先判断是不是用户自己的详情界面
+         */
+        if (mUser.getUserid() != mDetailUser.getUserid()) {
+            //判断是否关注
+            if (followUserList != null) {
+                for (FollowEntity u : followUserList) {
+                    Log.d("dasdasd", "关注好友的id" + u.getFollow_user_id());
+                    //判断详情用户的id 是否 在自己的关注好友列表中
+                    if (mDetailUser.getUserid() == u.getFollow_user_id()) {
+                        isFollow = true;
+                        break;
+                    }
+                }
+                updateFollowButton();
+            }
+        }
     }
 
     /**
@@ -108,6 +158,11 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
                 UserData data = (UserData) beanData;
                 mDetailUser = data.getUserEntity();
                 updateUI();
+                /**
+                 * 请求完用户详情信息之后再去请求关注信息，避免由于异步结果返回的时间不一样导致空指针异常
+                 * 请求mUser关注信息
+                 */
+                requestFollowData();
             }
 
             @Override
@@ -117,6 +172,10 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
         });
     }
 
+
+    /**
+     * 更新除了关注按钮之外的ui界面
+     */
     private void updateUI() {
         //头像
         if (mDetailUser != null) {
@@ -142,24 +201,13 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
                 initGV();
             }
         }
-        followUserList = mDetailUser.getFollowUserList();
-        //首先判断当前是否是用户自己
-        if (mUser.getUserid() != mDetailUser.getUserid()){
-            //判断是否关注
-            if (followUserList != null) {
-                for (UserEntity u : followUserList) {
-                    Log.d("dasdasd","关注好友的id" + u.getUserid());
-                    //判断自己的id 是否 在详情用户的好友列表中
-                    if (mUser.getUserid() == u.getUserid()) {
-                        isFollow = true;
-                        break;
-                    }
-                }
-                updateFollowButton();
-            }
-        }
+
+
     }
 
+    /**
+     * 更新关注按钮
+     */
     private void updateFollowButton() {
         btn_account_user_follow.setVisibility(View.VISIBLE);
         tv_account_user_follow_flag.setVisibility(View.VISIBLE);
@@ -206,14 +254,13 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
                 finish();
                 break;
             case R.id.btn_account_user_follow:
-//                btn_account_user_follow.setBtnFillColor(Color.parseColor("#A3C53C"));
-                Map<String,Object> map = new HashMap<>();
-                map.put("user_id",mUser.getUserid()+"");
-                map.put("follew_user_id",mDetailUser.getUserid()+"");
+                Map<String, Object> map = new HashMap<>();
+                map.put("user_id", mUser.getUserid() + "");
+                map.put("follew_user_id", mDetailUser.getUserid() + "");
                 if (isFollow) {
                     //关注
                     cancleFollow(map);
-                }else {
+                } else {
                     follow(map);
                 }
                 break;
@@ -223,9 +270,7 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
     /**
      * 关注
      */
-    private void follow(Map<String,Object> map) {
-        Log.d("dasdasd","关注：   当前用户id ：  " + map.get("user_id"));
-        Log.d("dasdasd","关注：   目标用户id ：  " + map.get("follew_user_id"));
+    private void follow(Map<String, Object> map) {
         String url = URLConstants.BASE_URL + URLConstants.FOLLOW_USER;
         HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST, map, null, url, new Callback() {
             @Override
@@ -233,12 +278,16 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
                 toast("关注成功");
                 isFollow = true;
                 tv_account_user_follow_flag.setText("已关注");
-                updateFollowButton();
+                btn_account_user_follow.setBtnFillColor(Color.RED);
+                btn_account_user_follow.setBtnColor(Color.RED);
+//                updateFollowButton();
             }
 
             @Override
             public void failure(String error) {
-                toast("关注失败");
+                btn_account_user_follow.setBtnFillColor(Color.BLACK);
+                btn_account_user_follow.setBtnColor(Color.BLACK);
+                toast("关注失败" + error);
             }
         });
     }
@@ -246,9 +295,7 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
     /**
      * 取消关注
      */
-    private void cancleFollow(Map<String,Object> map) {
-        Log.d("dasdasd","取消关注：   当前用户id ：  " + map.get("user_id"));
-        Log.d("dasdasd","取消关注：   目标用户id ：  " + map.get("follew_user_id"));
+    private void cancleFollow(Map<String, Object> map) {
         String url = URLConstants.BASE_URL + URLConstants.CANCLE_FOLLOW_USER;
         HttpServer.sendPostRequest(HttpServer.HTTPSERVER_DELETE, map, null, url, new Callback() {
             @Override
@@ -256,12 +303,15 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
                 toast("取消关注成功");
                 isFollow = false;
                 tv_account_user_follow_flag.setText("未关注");
-                updateFollowButton();
+                btn_account_user_follow.setBtnFillColor(Color.BLACK);
+                btn_account_user_follow.setBtnColor(Color.BLACK);
             }
 
             @Override
             public void failure(String error) {
                 toast("取消关注失败");
+                btn_account_user_follow.setBtnFillColor(Color.RED);
+                btn_account_user_follow.setBtnColor(Color.RED);
             }
         });
     }

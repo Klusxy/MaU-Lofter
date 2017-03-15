@@ -78,6 +78,10 @@ public class URLConstants {
      */
     public static final String USER_FRIEND_ARTICLE_LIST = "user/rss/";
     /**
+     * 用户关注好友id列表
+     */
+    public static final String USER_FOLLOWS = "user/followers/";
+    /**
      * 关注
      */
     public static final String FOLLOW_USER = "user/follow";
