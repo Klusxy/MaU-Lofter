@@ -6,11 +6,14 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,6 +35,7 @@ import oracle.mau.http.data.UserData;
 import oracle.mau.http.parser.HotUserParser;
 import oracle.mau.http.parser.UserParser;
 import oracle.mau.main.MainActivity;
+import oracle.mau.utils.ImageUtils;
 import oracle.mau.view.JellyInterpolator;
 
 /**
@@ -43,6 +47,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText editpwd;
     private TextView btnLogin;
     private TextView btnRegister;
+    private ImageView iv_login_top_logo;
 
     private View progress;
 
@@ -71,6 +76,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mInputLayout = findViewById(R.id.input_layout);
         mName = (LinearLayout) findViewById(R.id.input_layout_name);
         mPsw = (LinearLayout) findViewById(R.id.input_layout_psw);
+
+        iv_login_top_logo = (ImageView) findViewById(R.id.iv_login_top_logo);
+        Bitmap bm = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+        Bitmap otherBm = ImageUtils.toRoundCornerImage(bm,5);
+        iv_login_top_logo.setImageBitmap(otherBm);
     }
 
     @Override

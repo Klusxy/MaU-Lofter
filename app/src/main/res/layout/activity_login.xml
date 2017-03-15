@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7adfb8">
+    android:background="#DB6547"
+    >
+    <!--android:background="#7adfb8"-->
     <!--<EditText-->
     <!--android:id="@+id/edit_login_tel"-->
     <!--android:layout_width="match_parent"-->
@@ -49,10 +51,11 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/iv_login_top_logo"
             android:layout_width="80dip"
             android:layout_height="80dip"
             android:layout_gravity="center_horizontal"
-            android:src="@mipmap/project_detail_cir" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:layout_width="fill_parent"
