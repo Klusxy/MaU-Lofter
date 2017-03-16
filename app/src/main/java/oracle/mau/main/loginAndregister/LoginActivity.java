@@ -103,6 +103,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }else {
             editTel.setText(userTel);
             editpwd.setText(userPwd);
+            //密码框获取焦点。  设置光标位置
+            editpwd.requestFocus();
+            editpwd.setSelection(userPwd.length());
 //            sendMessage(userTel,userPwd);
         }
     }
