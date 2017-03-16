@@ -99,7 +99,8 @@ public class HttpServer {
                 for (String key : map.keySet()) {
                     //判断请求的map中包含不包含文件
                     if (key.contains("File")) {
-                        rp.addBodyParameter(key, new File((String) map.get(key)));
+                        File file = new File((String) map.get(key));
+                        rp.addBodyParameter(key, file);
                     } else {
                         try {
                             rp.setBodyEntity(new StringEntity(json.toString(), "utf-8"));

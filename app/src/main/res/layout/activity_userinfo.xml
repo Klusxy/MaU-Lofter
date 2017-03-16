@@ -9,14 +9,14 @@
         android:layout_height="wrap_content"
         layout="@layout/head_login" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imageButton1"
-        android:layout_width="100dip"
-        android:layout_height="100dip"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/user_header"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dip"
-        android:src="@mipmap/bb_btn_label_select" />
+        android:src="@mipmap/bb_btn_label_select"/>
 
     <TextView
         android:id="@+id/text_pic"

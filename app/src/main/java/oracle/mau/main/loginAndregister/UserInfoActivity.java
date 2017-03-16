@@ -1,16 +1,27 @@
 package oracle.mau.main.loginAndregister;
 
-import android.content.DialogInterface;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.v7.app.AlertDialog;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,19 +35,40 @@ import oracle.mau.http.data.HotUserData;
 import oracle.mau.http.data.PicData;
 import oracle.mau.http.parser.HotUserParser;
 import oracle.mau.http.parser.PicParser;
+import oracle.mau.main.MainActivity;
+import oracle.mau.utils.CameraUtil;
+import oracle.mau.utils.ImageUtils;
+import oracle.mau.view.BottomMenuDialog;
 
 /**
  * Created by shadow on 2017/2/28.
  */
 
-public class UserInfoActivity extends BaseActivity implements View.OnClickListener{
-    private ImageButton userimg;
+public class UserInfoActivity extends BaseActivity implements View.OnClickListener {
+    private ImageView userimg;
     private EditText editname;
     private EditText editpwd;
     private Button btnOk;
-    private String path;
     private String userTel;
-    private String backPath="";
+    private String backPath = "";
+    private BottomMenuDialog bottomMenuDialog;
+
+    /**
+     * 默认头像地址为这个
+     */
+    private String imgPath = "http://omjbpdxi4.bkt.clouddn.com/touxiang.png";
+    //照片在手机中的位置
+    private String imgTelPath = "";
+
+    /**
+     * 照相机
+     * @return
+     */
+    public Uri mCameraImageUri;
+    public static final String IMAGE_SAVE = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera";
+
+
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_userinfo;
@@ -44,174 +76,293 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void initView() {
-        Intent intent=getIntent();
-       userTel= intent.getStringExtra("usertel");
-        userimg=(ImageButton)findViewById(R.id.imageButton1);
+
+        userimg = (ImageView) findViewById(R.id.imageButton1);
         userimg.setOnClickListener(this);
-        editname=(EditText) findViewById(R.id.edit_userName);
-        editpwd=(EditText) findViewById(R.id.edit_usersex);
-        btnOk=(Button) findViewById(R.id.btn_ok);
+        editname = (EditText) findViewById(R.id.edit_userName);
+        editpwd = (EditText) findViewById(R.id.edit_usersex);
+        btnOk = (Button) findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(this);
+
+        Intent intent = getIntent();
+        userTel = intent.getStringExtra("usertel");
+        updateUserImg(imgPath);
+    }
+
+
+    /**
+     * 更新用户头像
+     *
+     * @param imgTelPath
+     */
+    private void updateUserImg(String imgTelPath) {
+        ImageUtils.getBitmapUtils(this).display(userimg, imgTelPath, new BitmapLoadCallBack<ImageView>() {
+            @Override
+            public void onLoadCompleted(ImageView imageView, String s, Bitmap bitmap, BitmapDisplayConfig bitmapDisplayConfig, BitmapLoadFrom bitmapLoadFrom) {
+                Bitmap bm = ImageUtils.circleBitmap(bitmap);
+                imageView.setImageBitmap(bm);
+            }
+
+            @Override
+            public void onLoadFailed(ImageView imageView, String s, Drawable drawable) {
+
+            }
+        });
+        /**
+         * 判断是否是默认照片
+         */
+        if (!imgTelPath.equals(imgPath)) {
+            /**
+             * 发送照片到服务器
+             */
+            sendPic(imgTelPath);
+        }
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.imageButton1:
-                showDialog();
+                openDialog();
                 break;
             case R.id.btn_ok:
                 sendMessage();
                 break;
-
         }
     }
 
     /**
-     * 弹出对话框，询问是否打开相册
+     * 打开弹出框
      */
-    public void showDialog() {
-        AlertDialog.Builder ab = new AlertDialog.Builder(this);
-        ab.setTitle("头像设置");
-        ab.setPositiveButton("相册", new DialogInterface.OnClickListener() {
+    private void openDialog() {
+        bottomMenuDialog = new BottomMenuDialog.Builder(UserInfoActivity.this)
+                .setTitle("设置头像")
+                .addMenu("打开图库", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomMenuDialog.dismiss();
+                        openOnePhotoLib();
+                    }
+                }).addMenu("拍一张", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomMenuDialog.dismiss();
+                        openCamera();
+                    }
+                }).create();
 
+        bottomMenuDialog.show();
+    }
 
-            public void onClick(DialogInterface arg0, int arg1) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 3);
-            }
-        });
+    /**
+     * 打开照相机
+     */
+    /**
+     * 打开照相机
+     */
+    private void openCamera() {
+        Intent localIntent1 = new Intent("android.media.action.IMAGE_CAPTURE");
+        //设置相机图片的输出路径
+        mCameraImageUri = Uri.fromFile(new File(IMAGE_SAVE, new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date()) + ".jpg"));
+        localIntent1.putExtra("output", mCameraImageUri);
+        startActivityForResult(localIntent1, 2);
+    }
 
-        ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-
-
-            public void onClick(DialogInterface arg0, int arg1) {
-
-            }
-        });
-
-        ab.show();
+    /**
+     * 打开系统图库
+     */
+    private void openOnePhotoLib() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 1);
     }
 
 
     /**
      * 用于接收用户选择完的头像
+     *
      * @param requestCode
      * @param resultCode
      * @param data
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 3) {
-
-            //Bitmap bb=	BitmapFactory.decodeFile("file:///storage/emulated/0/DCIM/Camera/IMG_20170210_170034.jpg");
+        /**
+         * 系统图库
+         */
+        if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
-
-				/* 代码区 */
-
                 Uri uri = data.getData();
-                Cursor c = getContentResolver().query(uri, null,
-                        null, null, null);
-                if(c!=null){
-                    if (c.moveToNext()) {
-                        path = c.getString(1);
-
-                        //btn_pic.setImageURI(Uri.parse(path));
-                        userimg.setImageBitmap(BitmapFactory.decodeFile(path));
-                        sendPic(path);
-                    }
+                //得到所有公开的内容提供者
+                ContentResolver con = getContentResolver();
+                //利用uri去查  得到cursor
+                Cursor cur = con.query(uri, null, null, null, null);
+                if (cur.moveToNext()) {
+                    imgTelPath = cur.getString(1);
+                    updateUserImg(imgTelPath);
                 }
-                else{
-                    String sub=data.getDataString();
-                    path=sub.split("///")[1];
-                    userimg.setImageBitmap(BitmapFactory.decodeFile(path));
-                }
-
             }
-        } else {
-            System.out.println("请求码错误");
+        }
+        /**
+         * 照相机
+         */
+        if (requestCode == 2) {
+            if (resultCode == RESULT_OK) {
+                if (mCameraImageUri!=null) {
+                    imgTelPath = getRealFilePath(this,mCameraImageUri);
+                    updateUserImg(imgTelPath);
+                }
+            }
         }
     }
 
-    public void sendPic(String path){
-        Map<String, Object> p=new HashMap<String, Object>();
-        p.put("imgFile", path);
-        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,p, new PicParser(), URLConstants.BASE_URL+URLConstants.SEND_ARTICLE_PIC, new Callback() {
+    private void oldCode() {
+        //        if (requestCode == 3) {
+//
+//            //Bitmap bb=	BitmapFactory.decodeFile("file:///storage/emulated/0/DCIM/Camera/IMG_20170210_170034.jpg");
+//            if (resultCode == RESULT_OK) {
+//
+//				/* 代码区 */
+//
+//                Uri uri = data.getData();
+//                Cursor c = getContentResolver().query(uri, null,
+//                        null, null, null);
+//                if(c!=null){
+//                    if (c.moveToNext()) {
+//                        imgPath = c.getString(1);
+//
+//                        //btn_pic.setImageURI(Uri.parse(imgPath));
+//                        userimg.setImageBitmap(BitmapFactory.decodeFile(imgPath));
+//                        sendPic(imgPath);
+//                    }
+//                }
+//                else{
+//                    String sub=data.getDataString();
+//                    imgPath=sub.split("///")[1];
+//                    userimg.setImageBitmap(BitmapFactory.decodeFile(imgPath));
+//                }
+//
+//            }
+//        } else {
+//            System.out.println("请求码错误");
+//        }
+//        /**
+//         * 弹出对话框，询问是否打开相册
+//         */
+//        public void showDialog() {
+//            AlertDialog.Builder ab = new AlertDialog.Builder(this);
+//            ab.setTitle("头像设置");
+//            ab.setPositiveButton("相册", new DialogInterface.OnClickListener() {
+//
+//
+//                public void onClick(DialogInterface arg0, int arg1) {
+//                    Intent intent = new Intent();
+//                    intent.setType("image/*");
+//                    intent.setAction(Intent.ACTION_GET_CONTENT);
+//                    startActivityForResult(intent, 3);
+//                }
+//            });
+//
+//            ab.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//
+//
+//                public void onClick(DialogInterface arg0, int arg1) {
+//
+//                }
+//            });
+//
+//            ab.show();
+//        }
+    }
 
-
-
+    /**
+     * 上传头像
+     *
+     * @param path
+     */
+    public void sendPic(String path) {
+        Map<String, Object> p = new HashMap<>();
+        p.put("File", path);
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST, p, new PicParser(), URLConstants.BASE_URL + URLConstants.SEND_ARTICLE_PIC, new Callback() {
 
             @Override
             public void success(BeanData beanData) {
-
-                PicData uData=(PicData)beanData;
-               backPath=uData.getPicUrl();
-
-
-
+                PicData uData = (PicData) beanData;
+                imgPath = uData.getPicUrl();
+                toast("上传头像成功");
             }
 
             @Override
             public void failure(String error) {
-
-                toast(error);
+                toast("上传头像失败，请重新选择头像");
             }
         });
     }
+
     /**
      * 点击完成按钮后向服务器发送用户的注册信息
      */
-    public void sendMessage(){
-        Map<String, Object> params=new HashMap<String, Object>();
-        String userName=editname.getText().toString();
-        String userPwd=editpwd.getText().toString();
+    public void sendMessage() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        String userName = editname.getText().toString();
+        String userPwd = editpwd.getText().toString();
+        params.put("user_img", imgPath);
         params.put("user_name", userName);
         params.put("user_pwd", userPwd);
-        if("".equals(backPath))
-        {
-            toast("9999999");
-        }else{
-            params.put("user_img",path);
-        }
-        params.put("user_tel",userTel);
+        params.put("user_tel", userTel);
 
 
-        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST,params, new HotUserParser(), URLConstants.BASE_URL+URLConstants.USERRESGISTER, new Callback() {
-
-
-
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_POST, params, null, URLConstants.BASE_URL + URLConstants.USERRESGISTER, new Callback() {
 
             @Override
             public void success(BeanData beanData) {
-                HotUserData uData=(HotUserData)beanData;
-
-/*
-注册成功后跳转到登录界面
- */
-                toast("注册SAAA成功");
-                Intent intentLog=new Intent(UserInfoActivity.this,LoginActivity.class);
+                /**
+                 *  注册成功后跳转到登录界面
+                */
+                toast("注册成功");
+                Intent intentLog = new Intent(UserInfoActivity.this, LoginActivity.class);
                 startActivity(intentLog);
                 finish();
-
 
             }
 
             @Override
             public void failure(String error) {
-
-                toast(error);
+                toast("用户已被注册或其他原因导致注册失败");
             }
         });
 
 
-
     }
 
-
-
+    /**
+     * 通过uri得到真实路径
+     * @param context
+     * @param uri
+     * @return
+     */
+    public static String getRealFilePath(final Context context, final Uri uri ) {
+        if ( null == uri ) return null;
+        final String scheme = uri.getScheme();
+        String data = null;
+        if ( scheme == null )
+            data = uri.getPath();
+        else if ( ContentResolver.SCHEME_FILE.equals( scheme ) ) {
+            data = uri.getPath();
+        } else if ( ContentResolver.SCHEME_CONTENT.equals( scheme ) ) {
+            Cursor cursor = context.getContentResolver().query( uri, new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null );
+            if ( null != cursor ) {
+                if ( cursor.moveToFirst() ) {
+                    int index = cursor.getColumnIndex( MediaStore.Images.ImageColumns.DATA );
+                    if ( index > -1 ) {
+                        data = cursor.getString( index );
+                    }
+                }
+                cursor.close();
+            }
+        }
+        return data;
+    }
 }
