@@ -1,6 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#0f3e3d"
+
  >
 
     <include
@@ -24,82 +27,47 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageButton1"
         android:layout_centerHorizontal="true"
+        android:textColor="#727272"
+        android:padding="2dp"
         android:text="上传头像"
-
-        android:textSize="20sp" />
-    <LinearLayout
-        android:layout_below="@id/text_pic"
+        android:textSize="18sp" />
+    <RelativeLayout
+        android:id="@+id/rela_reg_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dip"
-        >
-        <LinearLayout
-            android:id="@+id/line_name"
+        android:layout_below="@id/text_pic">
+        <include
+            android:id="@+id/reg_edit"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:orientation="horizontal"
-            android:layout_marginTop="20dip"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="我的昵称"
-
-                android:textSize="20sp"
-                />
-
-            <EditText
-                android:id="@+id/edit_userName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-
-
-                android:ems="10"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/line_sex"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-
-            android:layout_marginTop="20dip"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="我的密码"
-
-                android:textSize="20sp"
-
-                />
-
-            <EditText
-                android:id="@+id/edit_usersex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:ems="10"/>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_ok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="完  成"
-            android:layout_marginTop="15dip"
-
-
-
-
+            layout="@layout/inclu_register"
             />
-
-    </LinearLayout>
-
+    </RelativeLayout>
 
 
 
-</RelativeLayout>
+
+    <TextView
+
+        android:id="@+id/btn_reg_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rela_reg_edit"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dip"
+        android:background="@drawable/text_bg"
+        android:gravity="center"
+        android:paddingBottom="2dip"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
+        android:paddingTop="2dip"
+        android:text="提交"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+    </RelativeLayout>
+
+
+
+

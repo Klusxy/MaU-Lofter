@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
 import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
@@ -48,7 +49,8 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     private ImageView userimg;
     private EditText editname;
     private EditText editpwd;
-    private Button btnOk;
+    private EditText edityespwd;
+    private TextView btnOk;
     private String userTel;
     private String backPath = "";
     private BottomMenuDialog bottomMenuDialog;
@@ -79,9 +81,10 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 
         userimg = (ImageView) findViewById(R.id.imageButton1);
         userimg.setOnClickListener(this);
-        editname = (EditText) findViewById(R.id.edit_userName);
-        editpwd = (EditText) findViewById(R.id.edit_usersex);
-        btnOk = (Button) findViewById(R.id.btn_ok);
+        editname = (EditText) findViewById(R.id.edit_reg_name);
+        editpwd = (EditText) findViewById(R.id.edit_reg_pwd);
+        edityespwd=(EditText)findViewById(R.id.edit_reg_yes_pwd);
+        btnOk = (TextView) findViewById(R.id.btn_reg_button);
         btnOk.setOnClickListener(this);
 
         Intent intent = getIntent();
@@ -125,8 +128,13 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
             case R.id.imageButton1:
                 openDialog();
                 break;
-            case R.id.btn_ok:
-                sendMessage();
+            case R.id.btn_reg_button:
+                if(editpwd.getText().toString().equals(edityespwd.getText().toString())){
+                    sendMessage();
+                }else{
+                    toast("两次密码输入冲突");
+                }
+
                 break;
         }
     }
@@ -199,9 +207,17 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 ContentResolver con = getContentResolver();
                 //利用uri去查  得到cursor
                 Cursor cur = con.query(uri, null, null, null, null);
-                if (cur.moveToNext()) {
-                    imgTelPath = cur.getString(1);
+                if(cur!=null)
+                {
+                    if (cur.moveToNext()) {
+                        imgTelPath = cur.getString(1);
+                        updateUserImg(imgTelPath);
+                    }
+                }else{
+                    String sub=data.getDataString();
+                    imgTelPath=sub.split("///")[1];
                     updateUserImg(imgTelPath);
+
                 }
             }
         }
