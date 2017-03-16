@@ -10,10 +10,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.wang.avi.AVLoadingIndicatorView;
 import com.yongchun.library.view.ImageSelectorActivity;
@@ -327,9 +329,34 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         intent.putExtra(IMAGE_URI, uri);
         startActivityForResult(intent, reqCode);
     }
+
+    private long exitTime = 0;
+
     @Override
     public void onBackPressed() {
-        // do something what you want
-        super.onBackPressed();
+//        super.onBackPressed();
+        Intent i= new Intent(Intent.ACTION_MAIN);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.addCategory(Intent.CATEGORY_HOME);
+        startActivity(i);
     }
+
+    /**
+     * 设置双击退出程序
+     */
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK
+//                && event.getAction() == KeyEvent.ACTION_DOWN) {
+//            if ((System.currentTimeMillis() - exitTime) > 2000) {
+//                Toast.makeText(getApplicationContext(), "再按一次退出程序",
+//                        Toast.LENGTH_SHORT).show();
+//                exitTime = System.currentTimeMillis();
+//            } else {
+//                finish();
+//                System.exit(0);
+//            }
+//        }
+//        return true;
+//    }
 }
