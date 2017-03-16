@@ -96,6 +96,8 @@ public class HttpServer {
             RequestParams rp = new RequestParams();
             if (map != null) {
                 JSONObject json = new JSONObject(map);
+                Log.d(TAG, "请求方式: " + type + " 请求参数json格式 ： " + json.toString());
+                Log.d(TAG, "请求方式: " + type + " 请求地址 ： " + url);
                 for (String key : map.keySet()) {
                     //判断请求的map中包含不包含文件
                     if (key.contains("File")) {
@@ -164,6 +166,7 @@ public class HttpServer {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            Log.d(TAG, "请求方式: " + type + " 请求地址 ： " + url);
             //向服务器发送请求方法
             httpUtils.send(HttpRequest.HttpMethod.GET, url, new RequestCallBack<String>() {
                 //发送请求成功

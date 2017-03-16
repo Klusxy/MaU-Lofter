@@ -102,6 +102,31 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
     }
 
     /**
+     * 请求用户信息
+     */
+    private void requestData() {
+        String url = URLConstants.BASE_URL + URLConstants.USER_DETAIL + userId;
+        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, new UserDetailParser(), url, new Callback() {
+            @Override
+            public void success(BeanData beanData) {
+                UserData data = (UserData) beanData;
+                mDetailUser = data.getUserEntity();
+                updateUI();
+                /**
+                 * 请求完用户详情信息之后再去请求关注信息，避免由于异步结果返回的时间不一样导致空指针异常
+                 * 请求mUser关注信息
+                 */
+                requestFollowData();
+            }
+
+            @Override
+            public void failure(String error) {
+
+            }
+        });
+    }
+
+    /**
      * 请求关注信息
      */
     private void requestFollowData() {
@@ -147,30 +172,7 @@ public class AccountDetailActivity extends BaseActivity implements AdapterView.O
         }
     }
 
-    /**
-     * 请求用户信息
-     */
-    private void requestData() {
-        String url = URLConstants.BASE_URL + URLConstants.USER_DETAIL + userId;
-        HttpServer.sendPostRequest(HttpServer.HTTPSERVER_GET, null, new UserDetailParser(), url, new Callback() {
-            @Override
-            public void success(BeanData beanData) {
-                UserData data = (UserData) beanData;
-                mDetailUser = data.getUserEntity();
-                updateUI();
-                /**
-                 * 请求完用户详情信息之后再去请求关注信息，避免由于异步结果返回的时间不一样导致空指针异常
-                 * 请求mUser关注信息
-                 */
-                requestFollowData();
-            }
 
-            @Override
-            public void failure(String error) {
-
-            }
-        });
-    }
 
 
     /**
