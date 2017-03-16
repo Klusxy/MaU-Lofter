@@ -44,13 +44,13 @@ public class AccountFragment extends BaseFragment implements AdapterView.OnItemC
     private ListView listView;
     private Bitmap circleBitmap;
     private RelativeLayout rela;
-    private Button btnClose;
+   // private Button btnClose;
 
     /*
     listview的数据源
      */
-    private int [] msgpic={R.drawable.message_new_fans,R.drawable.message_fav,R.drawable.message_new_notices,R.drawable.message_sys_notices,R.mipmap.aboutus};
-    private String[] msgtext={"我关注的人","清除缓存","反馈信息","关于我们"};
+    private int [] msgpic={R.drawable.message_new_fans,R.drawable.message_fav,R.drawable.message_new_notices,R.drawable.message_sys_notices,R.mipmap.aboutus,R.mipmap.gohome};
+    private String[] msgtext={"我关注的人","清除缓存","反馈信息","关于我们","退出登录"};
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_account;
@@ -63,8 +63,8 @@ public class AccountFragment extends BaseFragment implements AdapterView.OnItemC
         imguser=(ImageView)rootView.findViewById(R.id.my_img_userimg);
         username=(TextView)rootView.findViewById(R.id.my_text_username);
         listView=(ListView) rootView.findViewById(R.id.my_list);
-        btnClose=(Button)rootView.findViewById(R.id.btn_close);
-        btnClose.setOnClickListener(this);
+        /*btnClose=(Button)rootView.findViewById(R.id.btn_close);
+        btnClose.setOnClickListener(this);*/
         AccountListAdapter accountListAdapter=new AccountListAdapter(getActivity(),msgtext,msgpic);
         listView.setAdapter(accountListAdapter);
         listView.setOnItemClickListener(this);
@@ -121,6 +121,12 @@ public class AccountFragment extends BaseFragment implements AdapterView.OnItemC
             Intent intentAboutUs=new Intent(getActivity(), AboutUs.class);
             startActivity(intentAboutUs);
         }
+        if(i==4){
+            Intent intentFirst=new Intent(getActivity(), LoginActivity.class);
+            getActivity().startActivity(intentFirst);
+            getActivity().finish();
+        }
+
     }
 
     @Override
@@ -130,11 +136,11 @@ public class AccountFragment extends BaseFragment implements AdapterView.OnItemC
                 UserEntity user=GetTheUser.getUser(getActivity());
                 AccountDetailActivity.actionStart(getActivity(),user.getUserid());
                 break;
-            case R.id.btn_close:
+            /*case R.id.btn_close:
                 Intent intentFirst=new Intent(getActivity(), LoginActivity.class);
                 getActivity().startActivity(intentFirst);
                 getActivity().finish();
-                break;
+                break;*/
         }
     }
 }

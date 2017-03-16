@@ -151,7 +151,7 @@ public class TalkFragment extends Fragment  implements PullToRefreshBase.OnRefre
         lr4.setLrParticipationNum(232875);
         lrList.add(lr4);
 
-        int[] bgs = {R.mipmap.mh1, R.mipmap.mh2, R.mipmap.mh3, R.mipmap.mh4};
+        int[] bgs = {R.mipmap.mh9, R.mipmap.mh10, R.mipmap.mh11, R.mipmap.mh12};
        /* int[] lrImgs1 = {R.mipmap.renxiang1, R.mipmap.renxiang2, R.mipmap.renxiang3};
         int[] lrImgs2 = {R.mipmap.caise1, R.mipmap.caise2, R.mipmap.caise3};
         int[] lrImgs3 = {R.mipmap.chuntian1, R.mipmap.chuntian2, R.mipmap.chuntian3};

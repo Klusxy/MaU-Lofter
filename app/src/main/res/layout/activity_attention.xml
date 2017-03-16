@@ -1,48 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
+    <!--顶部-->
+    <RelativeLayout
+        android:id="@+id/rl_ad_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_top_height">
+        <ImageView
+            android:id="@+id/attention_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_user_data_back_normal"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:id="@+id/tv_ad_user_name_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="我的关注"
+            android:textColor="#555555"
+            android:textSize="@dimen/main_nav_top_mid_test_size"/>
+        <oracle.mau.view.ThinLineView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr_label_main_scrollview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         ptr:ptrAnimationStyle="rotate"
-        ptr:ptrMode="pullDownFromTop">
+        ptr:ptrMode="pullDownFromTop"
+        android:layout_below="@id/rl_ad_top">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!--顶部-->
-            <RelativeLayout
-                android:id="@+id/rl_ad_top"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_top_height">
-                <ImageView
-                    android:id="@+id/attention_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/ic_user_data_back_normal"
-                    android:layout_marginLeft="10dp"
-                    />
-                <TextView
-                    android:id="@+id/tv_ad_user_name_top"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="我的关注"
-                    android:textColor="#555555"
-                    android:textSize="@dimen/main_nav_top_mid_test_size"/>
-                <oracle.mau.view.ThinLineView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"/>
-            </RelativeLayout>
+
 
             <oracle.mau.view.ListViewForScrollView
                 android:id="@+id/attention_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_ad_top"
+
                 android:layout_marginTop="10dp"
                 >
 

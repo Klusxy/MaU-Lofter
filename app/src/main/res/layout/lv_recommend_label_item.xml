@@ -15,7 +15,7 @@
             android:id="@+id/iv_lv_lm_rl_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/mh1"
+            android:src="@mipmap/mh9"
             android:scaleType="fitXY"
             />
         <TextView
