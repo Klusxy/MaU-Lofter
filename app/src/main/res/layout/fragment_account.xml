@@ -62,6 +62,18 @@
         >
 
     </ListView>
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="退出登录"
+        android:layout_alignParentBottom="true"
+        android:background="#2ab79b"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
 
 
 

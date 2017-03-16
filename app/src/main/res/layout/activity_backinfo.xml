@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <!--顶部-->
+    <RelativeLayout
+        android:id="@+id/rl_ad_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_top_height">
+        <ImageView
+            android:id="@+id/help_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/back_nav_icon"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:id="@+id/tv_ad_user_name_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="反馈信息"
+            android:textColor="#555555"
+            android:textSize="@dimen/main_nav_top_mid_test_size"/>
+        <oracle.mau.view.ThinLineView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/help"
+        android:layout_width="match_parent"
+        android:layout_height="250dip"
+        android:background="@mipmap/menu_background"
+        android:layout_marginTop="15dip"
+        android:layout_below="@id/rl_ad_top"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:alpha="0.2"
+        />
+    <Button
+        android:id="@+id/btn_backinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发  送"
+        android:textColor="#f9f6f5"
+        android:layout_below="@id/help"
+        android:textSize="23sp"
+        android:layout_marginTop="15dip"
+        android:background="#42c6ab"
+        />
+</RelativeLayout>

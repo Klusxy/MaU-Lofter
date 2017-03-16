@@ -60,12 +60,12 @@
         "source": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\mipmap-xxhdpi-v4\\lofterin_loading_17.png"
     },
     {
-        "merged": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\mipmap-xxhdpi-v4\\lofterin_loading_11.png",
-        "source": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\mipmap-xxhdpi-v4\\lofterin_loading_11.png"
-    },
-    {
         "merged": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\mipmap-xxhdpi-v4\\lofterin_loading_2.png",
         "source": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\mipmap-xxhdpi-v4\\lofterin_loading_2.png"
+    },
+    {
+        "merged": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\mipmap-xxhdpi-v4\\lofterin_loading_11.png",
+        "source": "E:\\androidstudiospace\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\bundles\\debug\\res\\mipmap-xxhdpi-v4\\lofterin_loading_11.png"
     },
     {
         "merged": "E:\\Android\\AndroidStudioProjects\\MaU\\PullToRefreshAnim-master\\build\\intermediates\\res\\merged\\androidTest\\debug\\mipmap-xxhdpi-v4\\lofterin_loading_20.png",

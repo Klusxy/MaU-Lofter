@@ -1,5 +1,6 @@
 package oracle.mau.main.account;
 
+import android.accounts.Account;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,8 +9,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
@@ -24,7 +27,10 @@ import oracle.mau.entity.UserEntity;
 import oracle.mau.main.account.activity.AboutUs;
 import oracle.mau.main.account.activity.AccountDetailActivity;
 import oracle.mau.main.account.activity.AttentionPeople;
+import oracle.mau.main.account.activity.BackInfo;
 import oracle.mau.main.account.adapter.AccountListAdapter;
+import oracle.mau.main.loginAndregister.FirstActivity;
+import oracle.mau.main.loginAndregister.LoginActivity;
 import oracle.mau.utils.GetTheUser;
 import oracle.mau.utils.ImageUtils;
 
@@ -32,17 +38,19 @@ import oracle.mau.utils.ImageUtils;
  * Created by 田帅 on 2017/2/20.
  */
 
-public class AccountFragment extends BaseFragment implements AdapterView.OnItemClickListener {
+public class AccountFragment extends BaseFragment implements AdapterView.OnItemClickListener,View.OnClickListener {
     private ImageView imguser;
     private TextView username;
     private ListView listView;
     private Bitmap circleBitmap;
+    private RelativeLayout rela;
+    private Button btnClose;
 
     /*
     listview的数据源
      */
-    private int [] msgpic={R.drawable.message_new_fans,R.drawable.message_fav,R.drawable.message_new_notices,R.drawable.message_sys_notices,R.mipmap.aboutus,R.mipmap.gohome};
-    private String[] msgtext={"我关注的人","清除缓存","反馈信息","关于我们","退出登录"};
+    private int [] msgpic={R.drawable.message_new_fans,R.drawable.message_fav,R.drawable.message_new_notices,R.drawable.message_sys_notices,R.mipmap.aboutus};
+    private String[] msgtext={"我关注的人","清除缓存","反馈信息","关于我们"};
     @Override
     protected int getLayoutResource() {
         return R.layout.fragment_account;
@@ -50,9 +58,13 @@ public class AccountFragment extends BaseFragment implements AdapterView.OnItemC
 
     @Override
     protected void initView() {
+        rela=(RelativeLayout) rootView.findViewById(R.id.my_self);
+        rela.setOnClickListener(this);
         imguser=(ImageView)rootView.findViewById(R.id.my_img_userimg);
         username=(TextView)rootView.findViewById(R.id.my_text_username);
         listView=(ListView) rootView.findViewById(R.id.my_list);
+        btnClose=(Button)rootView.findViewById(R.id.btn_close);
+        btnClose.setOnClickListener(this);
         AccountListAdapter accountListAdapter=new AccountListAdapter(getActivity(),msgtext,msgpic);
         listView.setAdapter(accountListAdapter);
         listView.setOnItemClickListener(this);
@@ -102,11 +114,27 @@ public class AccountFragment extends BaseFragment implements AdapterView.OnItemC
 
         }
         if(i==2){
-
+            Intent intentHelp=new Intent(getActivity(), BackInfo.class);
+            startActivity(intentHelp);
         }
         if(i==3){
             Intent intentAboutUs=new Intent(getActivity(), AboutUs.class);
             startActivity(intentAboutUs);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.my_self:
+                UserEntity user=GetTheUser.getUser(getActivity());
+                AccountDetailActivity.actionStart(getActivity(),user.getUserid());
+                break;
+            case R.id.btn_close:
+                Intent intentFirst=new Intent(getActivity(), LoginActivity.class);
+                getActivity().startActivity(intentFirst);
+                getActivity().finish();
+                break;
         }
     }
 }
