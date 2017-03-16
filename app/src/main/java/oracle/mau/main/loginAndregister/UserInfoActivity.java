@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
 import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
@@ -48,7 +50,8 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     private ImageView userimg;
     private EditText editname;
     private EditText editpwd;
-    private Button btnOk;
+    private EditText edityespwd;
+    private TextView btnOk;
     private String userTel;
     private String backPath = "";
     private BottomMenuDialog bottomMenuDialog;
@@ -67,7 +70,11 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     public Uri mCameraImageUri;
     public static final String IMAGE_SAVE = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera";
 
-
+    /**
+     * 把图片设置为圆形
+     * @return
+     */
+    private Bitmap circle=null;
 
     @Override
     public int getLayoutId() {
@@ -79,9 +86,10 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 
         userimg = (ImageView) findViewById(R.id.imageButton1);
         userimg.setOnClickListener(this);
-        editname = (EditText) findViewById(R.id.edit_userName);
-        editpwd = (EditText) findViewById(R.id.edit_usersex);
-        btnOk = (Button) findViewById(R.id.btn_ok);
+        editname = (EditText) findViewById(R.id.edit_reg_name);
+        editpwd = (EditText) findViewById(R.id.edit_reg_pwd);
+        edityespwd=(EditText)findViewById(R.id.edit_reg_yes_pwd);
+        btnOk = (TextView) findViewById(R.id.btn_reg_button);
         btnOk.setOnClickListener(this);
 
         Intent intent = getIntent();
@@ -93,10 +101,10 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     /**
      * 更新用户头像
      *
-     * @param imgTelPath
+     * @param
      */
     private void updateUserImg(String imgTelPath) {
-        ImageUtils.getBitmapUtils(this).display(userimg, imgTelPath, new BitmapLoadCallBack<ImageView>() {
+        ImageUtils.getBitmapUtils(UserInfoActivity.this).display(userimg, imgTelPath, new BitmapLoadCallBack<ImageView>() {
             @Override
             public void onLoadCompleted(ImageView imageView, String s, Bitmap bitmap, BitmapDisplayConfig bitmapDisplayConfig, BitmapLoadFrom bitmapLoadFrom) {
                 Bitmap bm = ImageUtils.circleBitmap(bitmap);
@@ -108,6 +116,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 
             }
         });
+        Log.d("ooo",imgTelPath);
         /**
          * 判断是否是默认照片
          */
@@ -115,6 +124,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
             /**
              * 发送照片到服务器
              */
+
             sendPic(imgTelPath);
         }
     }
@@ -125,8 +135,13 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
             case R.id.imageButton1:
                 openDialog();
                 break;
-            case R.id.btn_ok:
-                sendMessage();
+            case R.id.btn_reg_button:
+                if(editpwd.getText().toString().equals(edityespwd.getText().toString())){
+                    sendMessage();
+                }else{
+                    toast("两次密码输入冲突");
+                }
+
                 break;
         }
     }
@@ -199,9 +214,26 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 ContentResolver con = getContentResolver();
                 //利用uri去查  得到cursor
                 Cursor cur = con.query(uri, null, null, null, null);
-                if (cur.moveToNext()) {
-                    imgTelPath = cur.getString(1);
+                if(cur!=null)
+                {
+                    if (cur.moveToNext()) {
+                        imgTelPath = cur.getString(1);
+                        updateUserImg(imgTelPath);
+
+/**
+ * 有点问题，不知道为什么再updateUserImg中将选好的图片放到当前页面，
+ * 放不上去，所以在此处，又做了一次，图片的放置。
+ */
+                       circle= ImageUtils.circleBitmap(BitmapFactory.decodeFile(imgTelPath));
+                        userimg.setImageBitmap( circle);
+                    }
+                }else{
+                    String sub=data.getDataString();
+                    imgTelPath=sub.split("///")[1];
                     updateUserImg(imgTelPath);
+                    circle= ImageUtils.circleBitmap(BitmapFactory.decodeFile(imgTelPath));
+                    userimg.setImageBitmap( circle);
+
                 }
             }
         }
