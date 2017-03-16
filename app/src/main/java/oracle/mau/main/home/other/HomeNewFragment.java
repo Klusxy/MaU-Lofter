@@ -2,12 +2,15 @@ package oracle.mau.main.home.other;
 
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.hanks.htextview.HTextView;
 import com.hanks.htextview.HTextViewType;
+
+import net.frakbot.jumpingbeans.JumpingBeans;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +29,15 @@ import oracle.mau.http.parser.UserFriendArticleParser;
 import oracle.mau.main.label.activity.ArticleDetailActivity;
 import oracle.mau.main.label.adapter.RecommendDetailLVAdapter;
 import oracle.mau.utils.GetTheUser;
-import oracle.mau.utils.ImageUtils;
 
 /**
  * Created by 田帅 on 2017/3/14.
  */
 
 public class HomeNewFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener , AdapterView.OnItemClickListener{
-    private HTextView htv_home_new_fragment_flag;
+    private HTextView htv_home_new_fragment_top_flag;
+    private LinearLayout ll_home_new_fragment_mid_flag;
+    private TextView tv_home_new_fragment_mid_flag;
 
     private PullToRefreshListView ptr_home_new_fragment;
     private RecommendDetailLVAdapter mAdapter;
@@ -55,19 +59,25 @@ public class HomeNewFragment extends BaseFragment implements PullToRefreshBase.O
 
     @Override
     protected void initView() {
-        htv_home_new_fragment_flag = (HTextView) rootView.findViewById(R.id.htv_home_new_fragment_flag);
+        htv_home_new_fragment_top_flag = (HTextView) rootView.findViewById(R.id.htv_home_new_fragment_top_flag);
         ptr_home_new_fragment = (PullToRefreshListView) rootView.findViewById(R.id.ptr_home_new_fragment);
         ptr_home_new_fragment.setOnRefreshListener(this);
+        ll_home_new_fragment_mid_flag = (LinearLayout) rootView.findViewById(R.id.ll_home_new_fragment_mid_flag);
+        tv_home_new_fragment_mid_flag = (TextView) rootView.findViewById(R.id.tv_home_new_fragment_mid_flag);
         if (isFirst) {
             /**
              * 请求数据
              */
             requestData();
-            htv_home_new_fragment_flag.setAnimateType(HTextViewType.LINE);
-            htv_home_new_fragment_flag.animateText("我关注的好友文章");
             isFirst = false;
         }
 
+    }
+
+    private void updateTopFlag(){
+        htv_home_new_fragment_top_flag.setVisibility(View.VISIBLE);
+        htv_home_new_fragment_top_flag.setAnimateType(HTextViewType.LINE);
+        htv_home_new_fragment_top_flag.animateText("我关注的好友文章");
     }
 
     private void requestData() {
@@ -78,6 +88,19 @@ public class HomeNewFragment extends BaseFragment implements PullToRefreshBase.O
             public void success(BeanData beanData) {
                 UserFriendArticleData data = (UserFriendArticleData) beanData;
                 list = data.getUserFriendArticleEntityList();
+                if (list!=null) {
+                    if (list.size()!=0) {
+                        /**
+                         * 显示“我关注的好友文章效果”
+                         */
+                        updateTopFlag();
+                    }else {
+                        /**
+                         * 显示“您还没有关注的用户效果”
+                         */
+                        updateMidFlag();
+                    }
+                }
                 initArticleList();
                 if (updateDown != 0){
                     //收起头部
@@ -90,6 +113,15 @@ public class HomeNewFragment extends BaseFragment implements PullToRefreshBase.O
 
             }
         });
+    }
+
+    private void updateMidFlag() {
+        ll_home_new_fragment_mid_flag.setVisibility(View.VISIBLE);
+        JumpingBeans.with(tv_home_new_fragment_mid_flag)
+                .makeTextJump(tv_home_new_fragment_mid_flag.getText().length()-6, tv_home_new_fragment_mid_flag.getText().length())
+                .setIsWave(true)
+                .setLoopDuration(2000)  // ms
+                .build();
     }
 
     private void initArticleList() {

@@ -4,13 +4,28 @@
     android:layout_height="match_parent"
     xmlns:htext="http://schemas.android.com/apk/res-auto"
     >
+    <LinearLayout
+        android:id="@+id/ll_home_new_fragment_mid_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tv_home_new_fragment_mid_flag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您还没有关注的用户哦......"/>
+    </LinearLayout>
     <com.hanks.htextview.HTextView
-        android:id="@+id/htv_home_new_fragment_flag"
+        android:id="@+id/htv_home_new_fragment_top_flag"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:gravity="center"
         android:textColor="#A3C53C"
         android:textSize="16sp"
+        android:visibility="gone"
         />
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
@@ -19,7 +34,7 @@
         android:layout_height="match_parent"
         ptr:ptrAnimationStyle="rotate"
         ptr:ptrMode="pullDownFromTop"
-        android:layout_below="@+id/htv_home_new_fragment_flag">
+        android:layout_below="@+id/htv_home_new_fragment_top_flag">
 
     </com.handmark.pulltorefresh.library.PullToRefreshListView>
 </RelativeLayout>
