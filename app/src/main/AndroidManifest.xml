@@ -117,6 +117,8 @@
 
         <!--关注的用户-->
         <activity android:name=".main.account.activity.AttentionPeople" />
+        <!--反馈信息-->
+        <activity android:name=".main.account.activity.BackInfo" />
 
     </application>
 
