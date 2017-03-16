@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
@@ -69,7 +70,11 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     public Uri mCameraImageUri;
     public static final String IMAGE_SAVE = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera";
 
-
+    /**
+     * 把图片设置为圆形
+     * @return
+     */
+    private Bitmap circle=null;
 
     @Override
     public int getLayoutId() {
@@ -212,11 +217,17 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                     if (cur.moveToNext()) {
                         imgTelPath = cur.getString(1);
                         updateUserImg(imgTelPath);
+
+
+                       circle= ImageUtils.circleBitmap(BitmapFactory.decodeFile(imgTelPath));
+                        userimg.setImageBitmap( circle);
                     }
                 }else{
                     String sub=data.getDataString();
                     imgTelPath=sub.split("///")[1];
                     updateUserImg(imgTelPath);
+                    circle= ImageUtils.circleBitmap(BitmapFactory.decodeFile(imgTelPath));
+                    userimg.setImageBitmap( circle);
 
                 }
             }
