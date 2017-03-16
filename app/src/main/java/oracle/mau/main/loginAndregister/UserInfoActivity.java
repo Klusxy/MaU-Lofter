@@ -101,10 +101,10 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     /**
      * 更新用户头像
      *
-     * @param imgTelPath
+     * @param
      */
     private void updateUserImg(String imgTelPath) {
-        ImageUtils.getBitmapUtils(this).display(userimg, imgTelPath, new BitmapLoadCallBack<ImageView>() {
+        ImageUtils.getBitmapUtils(UserInfoActivity.this).display(userimg, imgTelPath, new BitmapLoadCallBack<ImageView>() {
             @Override
             public void onLoadCompleted(ImageView imageView, String s, Bitmap bitmap, BitmapDisplayConfig bitmapDisplayConfig, BitmapLoadFrom bitmapLoadFrom) {
                 Bitmap bm = ImageUtils.circleBitmap(bitmap);
@@ -116,6 +116,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 
             }
         });
+        Log.d("ooo",imgTelPath);
         /**
          * 判断是否是默认照片
          */
@@ -123,6 +124,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
             /**
              * 发送照片到服务器
              */
+
             sendPic(imgTelPath);
         }
     }
@@ -218,7 +220,10 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                         imgTelPath = cur.getString(1);
                         updateUserImg(imgTelPath);
 
-
+/**
+ * 有点问题，不知道为什么再updateUserImg中将选好的图片放到当前页面，
+ * 放不上去，所以在此处，又做了一次，图片的放置。
+ */
                        circle= ImageUtils.circleBitmap(BitmapFactory.decodeFile(imgTelPath));
                         userimg.setImageBitmap( circle);
                     }
