@@ -75,11 +75,11 @@ public abstract class BaseActivity extends FragmentActivity {
         super.onStop();
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        AppManager.getAppManager().finishActivity(this);
-//    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppManager.getAppManager().finishActivity(this);
+    }
 
     protected void toast(String msg){
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();

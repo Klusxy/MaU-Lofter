@@ -327,4 +327,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         intent.putExtra(IMAGE_URI, uri);
         startActivityForResult(intent, reqCode);
     }
+    @Override
+    public void onBackPressed() {
+        // do something what you want
+        super.onBackPressed();
+    }
 }

@@ -119,7 +119,7 @@ public class LabelFragment extends BaseFragment implements View.OnClickListener,
                 replaceFragment(new LabelMainFragment(), R.id.fl_label_fg);
                 tv_label_cancel.setVisibility(View.GONE);
                 et_label_search.setVisibility(View.GONE);
-                iv_label_add_attention.setVisibility(View.VISIBLE);
+//                iv_label_add_attention.setVisibility(View.VISIBLE);
                 et_label_search.setText("");
                 startToRightAnim();
                 //弹回软键盘
@@ -135,7 +135,7 @@ public class LabelFragment extends BaseFragment implements View.OnClickListener,
                     replaceFragment(new LabelSearchFragment(), R.id.fl_label_fg);
                     tv_label_cancel.setVisibility(View.VISIBLE);
                     et_label_search.setVisibility(View.VISIBLE);
-                    iv_label_add_attention.setVisibility(View.GONE);
+//                    iv_label_add_attention.setVisibility(View.GONE);
                     /**
                      * 平移动画
                      */
@@ -261,4 +261,5 @@ public class LabelFragment extends BaseFragment implements View.OnClickListener,
     public void afterTextChanged(Editable s) {
 
     }
+
 }
