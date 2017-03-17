@@ -47,7 +47,7 @@ Android团队项目
     
 # 项目其余小伙伴GitHub地址
  
- * [shadow]|(https://github.com/shadowgjy)（Android端）
+ * [shadow]|(https://github.com/shadowgjy)  （Android端）
  * [DongYaQin]|(https://github.com/Dongyaqin1)  （Android端，文档的设计编写）
  * [ZhaoYan]|(暂无)  （Android端，数据库维护，文档的设计编写）
  * [独步清风大神]|(https://github.com/dubuqingfeng)  （后台所有接口）
