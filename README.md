@@ -13,8 +13,7 @@ Android团队项目
 ##项目运行部分效果图
 <div  style="text-align:center;">
 ## 项目运行效果图
-![](https://raw.githubusercontent.com/GitHub-bigT/MaU/master/images/mau_login.jpg)
-![](https://github.com/GitHub-bigT/MaU/blob/master/images/mau_register.jpg)
+* 登陆注册模块
 <div  style="text-align:center;">
 <div>
   <img src="https://raw.githubusercontent.com/GitHub-bigT/MaU/master/images/mau_login.jpg" width="300px"/>
