@@ -11,6 +11,8 @@ Android团队项目
 * 多种动画
 * 较多比较困难的控件实现
 ## 项目运行效果图
+![](https://raw.githubusercontent.com/GitHub-bigT/MaU/master/images/mau_login.jpg)
+![](https://github.com/GitHub-bigT/MaU/blob/master/images/mau_register.jpg)
 <div  style="text-align:center;">
 <div>
   <img src="https://raw.githubusercontent.com/GitHub-bigT/MaU/master/images/mau_login.jpg" width="300px"/>
