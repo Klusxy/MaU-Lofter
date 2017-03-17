@@ -60,8 +60,8 @@ public class MessageFragment  extends Fragment {
 
         tab.setupWithViewPager(viewpager);
 
-        tab.setTabMode(TabLayout.MODE_FIXED);
-        tab.setTabGravity(TabLayout.GRAVITY_FILL);
+       /* tab.setTabMode(TabLayout.MODE_FIXED);
+        tab.setTabGravity(TabLayout.GRAVITY_FILL);*/
 
 
 
