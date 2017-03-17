@@ -130,13 +130,13 @@ public class LabelMainFragment extends BaseFragment implements AdapterView.OnIte
                 } else {
                     articleList = data.getArticleList();
                 }
-//                toast("第 " + updateUpFlag + " 次" + ",数据长度为：  " + articleList.size());
+                toast("第 " + updateUpFlag + " 次" + ",数据长度为：  " + articleList.size());
                 initArticleRecommendGV();
             }
 
             @Override
             public void failure(String error) {
-
+                mPullRefreshScrollView.onRefreshComplete();
             }
         });
     }

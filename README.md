@@ -10,7 +10,7 @@ Android团队项目
 * 界面美观
 * 多种动画
 * 较多比较困难的控件实现
-##项目运行效果图
+##项目运行部分效果图
 <div  style="text-align:center;">
   <img src="https://raw.githubusercontent.com/GitHub-bigT/MaU/master/images/mau_login.jpg" width="300px"/>
 </div>
