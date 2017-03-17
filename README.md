@@ -10,17 +10,29 @@ Android团队项目
 * 界面美观
 * 多种动画
 * 较多比较困难的控件实现
-##项目运行部分效果图
-<div  style="text-align:center;">
-## 项目运行效果图
-* 登陆注册模块
+## 项目运行部分效果图
+#### 登陆注册模块
 <div  style="text-align:center;">
-<div>
   <img src="https://raw.githubusercontent.com/GitHub-bigT/MaU/master/images/mau_login.jpg" width="300px"/>
   <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_register.jpg" width="300px"/>
 </div>
+#### 照相机文章发布模块
 <div>
-  
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_camera2.jpg" width="300px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_camera.jpg" width="300px"/>  
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_article.jpg" width="300px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_article2.jpg" width="300px"/>  
 </div>
+#### 专题模块
+<div>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_special.jpg" width="300px"/> 
 </div>
+#### 标签搜索模块
+<div>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_label.jpg" width="300px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_label_detail2.jpg" width="300px"/>  
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_labek_detail1.jpg" width="300px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_search.jpg" width="300px"/>  
+</div>
+
 
