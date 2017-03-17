@@ -146,6 +146,10 @@ public class HttpServer {
          * GET请求
          */
         if (HTTPSERVER_GET.equals(type)) {
+            /**
+             * 解除缓存
+             */
+            httpUtils.configCurrentHttpCacheExpiry(0);
             try {
                 if (map != null) {
                     // GET方式参数拼接在URL结尾
