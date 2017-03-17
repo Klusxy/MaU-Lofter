@@ -575,6 +575,6 @@ public class EditPicActivity extends Activity implements View.OnClickListener, T
      */
     @Override
     public void onTagViewClicked(View view, TagInfo info) {
-        Toast.makeText(this, "点点点", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "点点点", Toast.LENGTH_SHORT).show();
     }
 }
