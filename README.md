@@ -11,17 +11,13 @@ Android团队项目
 * 多种动画
 * 较多比较困难的控件实现
 ## 项目运行部分效果图
-
-
-
+<br>
 #### 登陆注册模块
-    
-    
-    
+<br>
 <div  style="text-align:center;">
   <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_register.jpg" width="300px"/>
 </div>
-
+<br>
 #### 照相机文章发布模块
     
     
