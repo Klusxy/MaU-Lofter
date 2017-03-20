@@ -49,7 +49,7 @@ public class AccountFragment extends BaseFragment implements AdapterView.OnItemC
     /*
     listview的数据源
      */
-    private int [] msgpic={R.drawable.message_new_fans,R.drawable.message_fav,R.drawable.message_new_notices,R.drawable.message_sys_notices,R.mipmap.aboutus,R.mipmap.gohome};
+    private int [] msgpic={R.drawable.message_new_fans,R.drawable.message_fav,R.drawable.message_new_notices,R.drawable.message_sys_notices,R.mipmap.gohome};
     private String[] msgtext={"我关注的人","清除缓存","反馈信息","关于我们","退出登录"};
     @Override
     protected int getLayoutResource() {

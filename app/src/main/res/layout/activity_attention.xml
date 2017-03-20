@@ -8,8 +8,8 @@
         android:layout_height="@dimen/main_top_height">
         <ImageView
             android:id="@+id/attention_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:src="@mipmap/back_nav_icon"
             android:layout_marginLeft="10dp"
