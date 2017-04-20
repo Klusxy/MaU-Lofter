@@ -154,6 +154,7 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
             for (int i = 0; i < imageList.size(); i++) {
                 Map<String, Object> map = new HashMap<>();
                 map.put("File" + i, imageList.get(i));
+                Log.d("sdadasdas", "第一张图片地址" + imageList.get(i));
                 send(map);
             }
         }
@@ -259,7 +260,9 @@ public class ReleaseArticleActivity extends BaseActivity implements View.OnClick
                 //位置是否为空
                 if ("添加位置".equals(tv_ta_location.getText().toString())) {
                     toast("请添加位置");
-                } else {
+                } else if (responcePicList.size()==0) {
+                    toast("图片还未上传完成");
+                }else {
                     avi.show();
                     Map<String, Object> map = new HashMap<>();
                     UserEntity user = GetTheUser.getUser(this);

@@ -1,5 +1,8 @@
 package oracle.mau.http.parser;
 
+import android.icu.text.UFormat;
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,24 +53,15 @@ public class UserDetailParser extends BeanParser {
                 JSONArray imgArr = articleObject.getJSONArray("imgs");
                 //只取一张文章图片
                 for (int j = 0; j < 1; j++) {
+                    if (imgArr.length()!=0) {
                     JSONObject imgObject = imgArr.getJSONObject(j);
-                    String img_url = imgObject.getString("img_url");
-                    articleEntity.setArticleImg(img_url);
+                        String img_url = imgObject.getString("img_url");
+                        articleEntity.setArticleImg(img_url);
+                    }
                 }
                 articleEntityList.add(articleEntity);
             }
             userEntity.setArticleEntityList(articleEntityList);
-//            //用户的关注用户集合
-//            JSONArray followArr = userObject.getJSONArray("user_follow");
-//            List<UserEntity> followList = new ArrayList<>();
-//            for (int i = 0; i < followArr.length(); i++) {
-//                JSONObject followUserObject = followArr.getJSONObject(i);
-//                String followUserId = followUserObject.getString("id");
-//                UserEntity followUserEntity = new UserEntity();
-//                followUserEntity.setUserid(Integer.parseInt(followUserId));
-//                followList.add(followUserEntity);
-//            }
-//            userEntity.setFollowUserList(followList);
             data.setUserEntity(userEntity);
         } catch (JSONException e) {
             e.printStackTrace();

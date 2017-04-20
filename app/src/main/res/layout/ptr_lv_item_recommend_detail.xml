@@ -122,8 +122,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/iv_rd_lv_item_article_location_flag"
+            android:layout_toLeftOf="@+id/tv_rd_lv_item_article_date"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textSize="10sp"
             />
         <TextView
             android:id="@+id/tv_rd_lv_item_article_date"
@@ -132,6 +135,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
+            android:textSize="10sp"
             />
     </RelativeLayout>
 </LinearLayout>
