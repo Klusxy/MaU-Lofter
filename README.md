@@ -25,6 +25,8 @@ Android团队项目
 <div>
   <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_camera2.jpg" width="300px"/>
   <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_camera.jpg" width="300px"/>  
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new1.jpg" width="300px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new2.jpg" width="300px"/>
 </div>
 <br>    
     
