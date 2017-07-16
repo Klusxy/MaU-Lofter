@@ -4,8 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center"
-    android:paddingLeft="95dp"
-    android:paddingRight="95dp"
+    android:paddingLeft="115dp"
+    android:paddingRight="115dp"
     android:background="#00000000"
     >
 
