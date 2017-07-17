@@ -20,15 +20,24 @@ Android团队项目
 </div>
 <br>
 
-#### 照相机文章发布模块
+#### 多选图片
 <br>
 <div>
-  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_camera2.jpg" width="300px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new2.jpg" width="300px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_camera2.jpg" width="300px"/>  
+</div>
+<br> 
+
+#### 自定义图片：选择->裁剪->添加贴图、滤镜、自定义标签等->生成新的图片
+<br>
+<div>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new11.jpg" width="300px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new5.jpg" width="300px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new6.jpg" width="300px"/>
   <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_camera.jpg" width="300px"/>  
   <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new1.jpg" width="300px"/>
-  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new2.jpg" width="300px"/>
 </div>
-<br>    
+<br>
     
 #### 专题模块
 <br>            
