@@ -37,9 +37,10 @@ Android团队项目
 ### 发现模块
 #### 水平滚动条 + 拖拽排序的listview
 <br>            
-<div>
-  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new12.jpg" width="300px"/> 
-  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new13.jpg" width="300px"/> 
+<div width="700px">
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_labek_detail1.jpg" width="200px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new12.jpg" width="200px"/> 
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new13.jpg" width="200px"/> 
 </div>
 <br>
 
@@ -49,7 +50,14 @@ Android团队项目
   <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_special.jpg" width="300px"/> 
   <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new4.jpg" width="300px"/> 
 </div>
-<br>    
+<br> 
+
+### 动态模块
+<br>            
+<div>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new10.jpg" width="300px"/> 
+</div>
+<br>
 
 ### 登陆注册模块
 <br>
@@ -62,11 +70,17 @@ Android团队项目
 <br>            
 <div>
   <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_label.jpg" width="300px"/>
-  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_labek_detail1.jpg" width="300px"/>
   <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/mau_search.jpg" width="300px"/>  
 </div>
-<br>    
+<br>   
     
+### 我的模块
+<br>            
+<div>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new9.jpg" width="300px"/>
+  <img src="https://github.com/GitHub-bigT/MaU/blob/master/images/new3.jpg" width="300px"/>  
+</div>
+<br> 
     
 # 项目其余小伙伴GitHub地址
  
